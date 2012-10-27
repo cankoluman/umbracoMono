@@ -1,5 +1,5 @@
 ﻿using umbraco.cms.businesslogic.datatype;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Xml;
 using umbraco.BusinessLogic;
@@ -10,7 +10,6 @@ using System.Linq;
 using umbraco.cms.businesslogic.property;
 using umbraco.cms.businesslogic.propertytype;
 using umbraco.editorControls;
-using System.Linq;
 
 namespace umbraco.Test
 {
@@ -20,20 +19,29 @@ namespace umbraco.Test
     ///This is a test class for DataTypeDefinitionTest and is intended
     ///to contain all DataTypeDefinitionTest Unit Tests
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class DataTypeDefinitionTest
     {
 
-        /// <summary>
+        private User m_User; 
+
+		[TestFixtureSetUp]
+		public void InitTestFixture()
+		{
+			ConfigurationManagerService.ConfigManager = new ConfigurationManagerTest(SetUpUtilities.GetAppSettings());
+			m_User = new User(0); 
+		}        
+
+		/// <summary>
         ///A test for MakeNew
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void DataTypeDefinition_Make_New()
         {
             //create data tyep definition
             var dtd = DataTypeDefinition.MakeNew(m_User, "TEST" + Guid.NewGuid().ToString("N"));            
             Assert.IsTrue(dtd.Id > 0);
-            Assert.IsInstanceOfType(dtd, typeof(DataTypeDefinition));
+			Assert.IsInstanceOf<DataTypeDefinition>(dtd);
 
             //now delete it
             dtd.delete();
@@ -43,7 +51,7 @@ namespace umbraco.Test
         /// <summary>
         /// Create a data type definition, add some prevalues to it then delete it
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void DataTypeDefinition_Assign_Data_Type_With_PreValues()
         {
             //System.Diagnostics.Debugger.Launch();
@@ -51,13 +59,13 @@ namespace umbraco.Test
             //create datatype definition, assign data type
             var dtd = DataTypeDefinition.MakeNew(m_User, "TEST" + Guid.NewGuid().ToString("N"));
             Assert.IsTrue(dtd.Id > 0);
-            Assert.IsInstanceOfType(dtd, typeof(DataTypeDefinition));
+            Assert.IsInstanceOf<DataTypeDefinition>(dtd);
             IDataType dt = new TextFieldDataType();
             dt.DataTypeDefinitionId = dtd.Id; //need to set the data types data type definition id
             dtd.DataType = dt; //set our data type definition's data type to the text field... i know this is all too weird.
             
             Assert.AreEqual(dt.Id, dtd.DataType.Id);
-            Assert.IsInstanceOfType(dtd.DataType, dt.GetType());
+            Assert.IsInstanceOfType(dt.GetType(), dtd.DataType);
             Assert.AreEqual(dtd.Id, dt.DataTypeDefinitionId);
 
             //create the prevalues
@@ -65,7 +73,7 @@ namespace umbraco.Test
             dt.PrevalueEditor.Save();
 
             //verify that the prevalue is there
-            Assert.AreEqual<int>(1, PreValues.GetPreValues(dtd.Id).Count);
+            Assert.AreEqual(1, PreValues.GetPreValues(dtd.Id).Count);
 
             //now remove it
             dtd.delete();
@@ -84,17 +92,17 @@ namespace umbraco.Test
         /// 
         /// then we'll clean up the rest of the data.
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void DataTypeDefinition_Assign_Data_Type_To_Doc_Type_Then_Create_Doc_And_Set_Value()
         {
             //create datatype definition, assign data type
             var dtd = DataTypeDefinition.MakeNew(m_User, "TEST" + Guid.NewGuid().ToString("N"));
             Assert.IsTrue(dtd.Id > 0);
-            Assert.IsInstanceOfType(dtd, typeof(DataTypeDefinition));
+            Assert.IsInstanceOf<DataTypeDefinition>(dtd);
             IDataType dt = new TextFieldDataType();
             dtd.DataType = dt;
             Assert.AreEqual(dt.Id, dtd.DataType.Id);
-            Assert.IsInstanceOfType(dtd.DataType, dt.GetType());
+            Assert.IsInstanceOfType(dtd.DataType.GetType(), dt.GetType());
 
             //create new doc type
             var docType = DocumentType.MakeNew(m_User, "TEST" + Guid.NewGuid().ToString("N"));
@@ -102,7 +110,7 @@ namespace umbraco.Test
             //create the property with this new data type definition
             var alias = "TEST" + Guid.NewGuid().ToString("N");
             docType.AddPropertyType(dtd, alias, alias);
-            Assert.AreEqual<int>(1, docType.PropertyTypes.Count());
+            Assert.AreEqual(1, docType.PropertyTypes.Count());
 
             //create a new doc with the new doc type
             var doc = Document.MakeNew("TEST" + Guid.NewGuid().ToString("N"), docType, m_User, -1);
@@ -119,7 +127,7 @@ namespace umbraco.Test
             dtd.delete();
 
             //make sure the property value is gone, check with sql
-            Assert.AreEqual<int>(0, Application.SqlHelper.ExecuteScalar<int>(
+            Assert.AreEqual(0, Application.SqlHelper.ExecuteScalar<int>(
                 "SELECT COUNT(id) FROM cmsPropertyData WHERE propertytypeid=@propTypeId",
                 Application.SqlHelper.CreateParameter("@propTypeId", propType.Id)));
 
@@ -145,15 +153,11 @@ namespace umbraco.Test
             Assert.IsFalse(DocumentType.IsNode(docType.Id));
         }
 
-        #region Private methods/members
-        private User m_User = new User(0); 
-        #endregion
-
         #region Tests to write
         ///// <summary>
         /////A test for DataTypeDefinition Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void DataTypeDefinitionConstructorTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -164,7 +168,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for DataTypeDefinition Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void DataTypeDefinitionConstructorTest1()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -175,7 +179,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Delete
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void DeleteTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -187,7 +191,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetAll
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetAllTest()
         //{
         //    DataTypeDefinition[] expected = null; // TODO: Initialize to an appropriate value
@@ -200,7 +204,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetByDataTypeId
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetByDataTypeIdTest()
         //{
         //    Guid DataTypeId = new Guid(); // TODO: Initialize to an appropriate value
@@ -214,7 +218,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetDataTypeDefinition
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetDataTypeDefinitionTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -228,7 +232,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetDataTypeDefinition
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetDataTypeDefinitionTest1()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -242,7 +246,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Import
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ImportTest()
         //{
         //    XmlNode xmlData = null; // TODO: Initialize to an appropriate value
@@ -256,7 +260,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for IsDefaultData
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void IsDefaultDataTest()
         //{
         //    object Data = null; // TODO: Initialize to an appropriate value
@@ -272,7 +276,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for MakeNew
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MakeNewTest1()
         //{
         //    User u = null; // TODO: Initialize to an appropriate value
@@ -288,7 +292,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Save
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SaveTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -300,7 +304,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ToXml
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ToXmlTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -316,7 +320,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for delete
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void deleteTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -333,26 +337,26 @@ namespace umbraco.Test
         // 
         //You can use the following additional attributes as you write your tests:
         //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
+        //Use TestFixtureSetUp to run code before running the first test in the class
+        //[TestFixtureSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
         //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
+        //Use TestFixtureTearDown to run code after all tests in a class have run
+        //[TestFixtureTearDown]
         //public static void MyClassCleanup()
         //{
         //}
         //
-        //Use TestInitialize to run code before running each test
-        //[TestInitialize()]
+        //Use SetUp to run code before running each test
+        //[SetUp]
         //public void MyTestInitialize()
         //{
         //}
         //
         //Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
+        //[TearDown]
         //public void MyTestCleanup()
         //{
         //}

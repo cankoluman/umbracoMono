@@ -1,5 +1,5 @@
 ﻿using umbraco.cms.businesslogic.task;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using umbraco.BusinessLogic;
@@ -15,14 +15,14 @@ namespace umbraco.Test
     ///This is a test class for TaskTypeTest and is intended
     ///to contain all TaskTypeTest Unit Tests
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class TaskTypeTest
     {
 
         /// <summary>
         /// Test the constructor to throw an exception when the object is not found by id
         ///</summary>
-        [TestMethod()]
+        [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void TaskType_Not_Found_Constructor1()
         {
@@ -32,7 +32,7 @@ namespace umbraco.Test
         /// <summary>
         /// Test the constructor to throw an exception when the object is not found by id
         ///</summary>
-        [TestMethod()]
+        [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void TaskType_Not_Found_Constructor2()
         {
@@ -42,7 +42,7 @@ namespace umbraco.Test
         /// <summary>
         /// Creates a new task type, creates some tasks with it, then deletes the type. ensure that all tasks associated are removed.
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void TaskType_Make_New_Assign_Tasks_And_Remove()
         {
             TaskType tt = new TaskType();
@@ -72,7 +72,7 @@ namespace umbraco.Test
         /// <summary>
         /// Ensures that duplicate task type names are not allowed either by an update or an insert
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void TaskType_Make_Duplicate()
         {
             var alias = Guid.NewGuid().ToString("N");
@@ -126,7 +126,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for TaskType Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void TaskTypeConstructorTest1()
         //{
         //    string TypeAlias = string.Empty; // TODO: Initialize to an appropriate value
@@ -137,7 +137,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for TaskType Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void TaskTypeConstructorTest2()
         //{
         //    TaskType target = new TaskType();
@@ -147,7 +147,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetAll
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetAllTest()
         //{
         //    IEnumerable<TaskType> expected = null; // TODO: Initialize to an appropriate value
@@ -160,7 +160,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Save
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SaveTest()
         //{
         //    TaskType target = new TaskType(); // TODO: Initialize to an appropriate value
@@ -171,7 +171,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Alias
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void AliasTest()
         //{
         //    TaskType target = new TaskType(); // TODO: Initialize to an appropriate value
@@ -186,7 +186,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Id
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void IdTest()
         //{
         //    TaskType target = new TaskType(); // TODO: Initialize to an appropriate value
@@ -203,26 +203,26 @@ namespace umbraco.Test
         // 
         //You can use the following additional attributes as you write your tests:
         //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
+        //Use TestFixtureSetUp to run code before running the first test in the class
+        //[TestFixtureSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
         //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
+        //Use TestFixtureTearDown to run code after all tests in a class have run
+        //[TestFixtureTearDown]
         //public static void MyClassCleanup()
         //{
         //}
         //
-        //Use TestInitialize to run code before running each test
-        //[TestInitialize()]
+        //Use SetUp to run code before running each test
+        //[SetUp]
         //public void MyTestInitialize()
         //{
         //}
         //
         //Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
+        //[TearDown]
         //public void MyTestCleanup()
         //{
         //}

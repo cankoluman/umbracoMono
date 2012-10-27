@@ -1,5 +1,5 @@
 ﻿using umbraco.cms.businesslogic.member;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using umbraco.BusinessLogic;
 using umbraco.cms.businesslogic.propertytype;
@@ -15,16 +15,16 @@ namespace umbraco.Test
     ///This is a test class for MemberTypeTest and is intended
     ///to contain all MemberTypeTest Unit Tests
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class MemberTypeTest
     {
 
-        [TestMethod()]
+        [Test]
         public void MemberType_Make_New_Add_Remove_Properties()
         {
             var m = MemberType.MakeNew(m_User, "TEST" + Guid.NewGuid().ToString("N"));
 
-            Assert.IsInstanceOfType(m, typeof(MemberType));
+            Assert.IsInstanceOf<MemberType>(m);
             Assert.IsTrue(m.Id > 0);
 
             //System.Diagnostics.Debugger.Launch();
@@ -47,18 +47,18 @@ namespace umbraco.Test
             m.AddPropertyType(ddt, alias, alias);
             //make sure it's there
             var prop = m.getPropertyType(alias);
-            Assert.IsInstanceOfType(prop, typeof(PropertyType));
+            Assert.IsInstanceOf<PropertyType>(prop);
         }
 
         /// <summary>
         ///A test for MakeNew
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void MemberType_Make_New()
         {
             var m = MemberType.MakeNew(m_User, "TEST" + Guid.NewGuid().ToString("N"));
             
-            Assert.IsInstanceOfType(m, typeof(MemberType));
+            Assert.IsInstanceOf<MemberType>(m);
             Assert.IsTrue(m.Id > 0);
 
             //remove it
@@ -70,7 +70,7 @@ namespace umbraco.Test
         /// Create a member type, create some members of the member type and then delete the member type.
         /// This should also delete all of the members.
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void MemberType_Delete_With_Assigned_Members()
         {
             
@@ -93,7 +93,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for MemberType Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MemberTypeConstructorTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -104,7 +104,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for MemberType Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MemberTypeConstructorTest1()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -115,7 +115,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetByAlias
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetByAliasTest()
         //{
         //    string Alias = string.Empty; // TODO: Initialize to an appropriate value
@@ -129,7 +129,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for MemberCanEdit
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MemberCanEditTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -145,7 +145,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Save
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SaveTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -157,7 +157,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ViewOnProfile
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ViewOnProfileTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -173,7 +173,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for delete
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void deleteTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -185,7 +185,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for setMemberCanEdit
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void setMemberCanEditTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -199,7 +199,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for setMemberViewOnProfile
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void setMemberViewOnProfileTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -213,7 +213,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetAll
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetAllTest()
         //{
         //    MemberType[] actual;
@@ -232,26 +232,26 @@ namespace umbraco.Test
         // 
         //You can use the following additional attributes as you write your tests:
         //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
+        //Use TestFixtureSetUp to run code before running the first test in the class
+        //[TestFixtureSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
         //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
+        //Use TestFixtureTearDown to run code after all tests in a class have run
+        //[TestFixtureTearDown]
         //public static void MyClassCleanup()
         //{
         //}
         //
-        //Use TestInitialize to run code before running each test
-        //[TestInitialize()]
+        //Use SetUp to run code before running each test
+        //[SetUp]
         //public void MyTestInitialize()
         //{
         //}
         //
         //Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
+        //[TearDown]
         //public void MyTestCleanup()
         //{
         //}

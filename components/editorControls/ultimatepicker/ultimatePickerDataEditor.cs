@@ -381,7 +381,7 @@ namespace umbraco.editorControls.ultimatepicker
         /// </summary>
         private void setupAutoComplete(int parentNodeId)
         {
-            ClientDependencyLoader.Instance.RegisterDependency("Application/JQuery/jquery.autocomplete.js", "UmbracoClient", ClientDependencyType.Javascript);
+            ClientDependencyLoader.Instance.RegisterDependency("Application/jQuery/jquery.autocomplete.js", "UmbracoClient", ClientDependencyType.Javascript);
             ClientDependencyLoader.Instance.RegisterDependency("css/umbracoGui.css", "UmbracoRoot", ClientDependencyType.Css);
 
             

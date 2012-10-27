@@ -1,5 +1,5 @@
 ﻿using umbraco.cms.businesslogic.macro;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Xml;
 using System.Linq;
@@ -12,14 +12,14 @@ namespace umbraco.Test
     ///This is a test class for MacroTest and is intended
     ///to contain all MacroTest Unit Tests
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class MacroTest
     {
 
         /// <summary>
         /// Test the constructor to throw an exception when the object is not found by id
         ///</summary>
-        [TestMethod()]
+        [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void Macro_Not_Found_Constructor()
         {
@@ -29,12 +29,12 @@ namespace umbraco.Test
         /// <summary>
         ///A test for MakeNew
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void Macro_Make_New()
         {
             var m = Macro.MakeNew(Guid.NewGuid().ToString("N"));
             Assert.IsTrue(m.Id > 0);
-            Assert.IsInstanceOfType(m, typeof(Macro));
+            Assert.IsInstanceOf<Macro>(m);
 
             m.Delete();
             var isfound = false;
@@ -54,12 +54,12 @@ namespace umbraco.Test
         /// <summary>
         /// Creates a new macro, add a property to it and delete the macro ensuring the properties are all gone.
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void Macro_Make_New_Add_Property()
         {
             var m = Macro.MakeNew(Guid.NewGuid().ToString("N"));
             Assert.IsTrue(m.Id > 0);
-            Assert.IsInstanceOfType(m, typeof(Macro));
+            Assert.IsInstanceOf<Macro>(m);
 
             //now, add a property...
             
@@ -67,7 +67,7 @@ namespace umbraco.Test
             var mpt = MacroPropertyType.GetAll.First();
             var mp = MacroProperty.MakeNew(m, false, Guid.NewGuid().ToString("N"), Guid.NewGuid().ToString("N"), mpt);
             Assert.IsTrue(mp.Id > 0);
-            Assert.IsInstanceOfType(mp, typeof(MacroProperty));
+            Assert.IsInstanceOf<MacroProperty>(mp);
 
             m.Delete();
             
@@ -97,7 +97,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Macro Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MacroConstructorTest1()
         //{
         //    int Id = 0; // TODO: Initialize to an appropriate value
@@ -108,7 +108,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Macro Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MacroConstructorTest2()
         //{
         //    Macro target = new Macro();
@@ -118,7 +118,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Delete
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void DeleteTest()
         //{
         //    Macro target = new Macro(); // TODO: Initialize to an appropriate value
@@ -129,7 +129,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetAll
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetAllTest()
         //{
         //    Macro[] expected = null; // TODO: Initialize to an appropriate value
@@ -142,7 +142,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetByAlias
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetByAliasTest()
         //{
         //    string Alias = string.Empty; // TODO: Initialize to an appropriate value
@@ -156,7 +156,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Import
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ImportTest()
         //{
         //    XmlNode n = null; // TODO: Initialize to an appropriate value
@@ -172,7 +172,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for RefreshProperties
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void RefreshPropertiesTest()
         //{
         //    Macro target = new Macro(); // TODO: Initialize to an appropriate value
@@ -183,7 +183,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Save
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SaveTest()
         //{
         //    Macro target = new Macro(); // TODO: Initialize to an appropriate value
@@ -194,7 +194,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ToXml
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ToXmlTest()
         //{
         //    Macro target = new Macro(); // TODO: Initialize to an appropriate value
@@ -209,7 +209,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Alias
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void AliasTest()
         //{
         //    Macro target = new Macro(); // TODO: Initialize to an appropriate value
@@ -224,7 +224,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Assembly
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void AssemblyTest()
         //{
         //    Macro target = new Macro(); // TODO: Initialize to an appropriate value
@@ -239,7 +239,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for CacheByPage
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void CacheByPageTest()
         //{
         //    Macro target = new Macro(); // TODO: Initialize to an appropriate value
@@ -254,7 +254,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for CachePersonalized
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void CachePersonalizedTest()
         //{
         //    Macro target = new Macro(); // TODO: Initialize to an appropriate value
@@ -269,7 +269,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Id
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void IdTest()
         //{
         //    Macro target = new Macro(); // TODO: Initialize to an appropriate value
@@ -281,7 +281,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Name
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void NameTest()
         //{
         //    Macro target = new Macro(); // TODO: Initialize to an appropriate value
@@ -296,7 +296,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Properties
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void PropertiesTest()
         //{
         //    Macro target = new Macro(); // TODO: Initialize to an appropriate value
@@ -308,7 +308,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for RefreshRate
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void RefreshRateTest()
         //{
         //    Macro target = new Macro(); // TODO: Initialize to an appropriate value
@@ -323,7 +323,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for RenderContent
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void RenderContentTest()
         //{
         //    Macro target = new Macro(); // TODO: Initialize to an appropriate value
@@ -338,7 +338,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ScriptingFile
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ScriptingFileTest()
         //{
         //    Macro target = new Macro(); // TODO: Initialize to an appropriate value
@@ -353,7 +353,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Type
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void TypeTest()
         //{
         //    Macro target = new Macro(); // TODO: Initialize to an appropriate value
@@ -368,7 +368,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for UseInEditor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void UseInEditorTest()
         //{
         //    Macro target = new Macro(); // TODO: Initialize to an appropriate value
@@ -383,7 +383,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Xslt
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void XsltTest()
         //{
         //    Macro target = new Macro(); // TODO: Initialize to an appropriate value
@@ -400,26 +400,26 @@ namespace umbraco.Test
         // 
         //You can use the following additional attributes as you write your tests:
         //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
+        //Use TestFixtureSetUp to run code before running the first test in the class
+        //[TestFixtureSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
         //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
+        //Use TestFixtureTearDown to run code after all tests in a class have run
+        //[TestFixtureTearDown]
         //public static void MyClassCleanup()
         //{
         //}
         //
-        //Use TestInitialize to run code before running each test
-        //[TestInitialize()]
+        //Use SetUp to run code before running each test
+        //[SetUp]
         //public void MyTestInitialize()
         //{
         //}
         //
         //Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
+        //[TearDown]
         //public void MyTestCleanup()
         //{
         //}

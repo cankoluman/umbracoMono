@@ -1,5 +1,5 @@
 ﻿using umbraco.providers.members;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Web.Security;
 using System.Collections.Specialized;
@@ -15,15 +15,20 @@ namespace umbraco.Test
     ///This is a test class for UmbracoMembershipProviderTest and is intended
     ///to contain all UmbracoMembershipProviderTest Unit Tests
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class UmbracoMembershipProviderTest
     {
 
+		[TestFixtureSetUp]
+		public void InitTestFixture()
+		{
+			ConfigurationManagerService.ConfigManager = new ConfigurationManagerTest(SetUpUtilities.GetAppSettings());
+		}
 
         /// <summary>
         /// Create a new member with the provider, then re-get them with the provider and make sure they are the same
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void MembershipProvider_Create_User()
         {
            
@@ -38,11 +43,11 @@ namespace umbraco.Test
 
             var m = m_Provider.CreateUser(username, password, email, passwordQuestion, passwordAnswer, isApproved, null, out status);
 
-            Assert.AreEqual<MembershipCreateStatus>(MembershipCreateStatus.Success, status);
-            Assert.AreEqual<string>(email, m.Email);
+            Assert.AreEqual(MembershipCreateStatus.Success, status);
+            Assert.AreEqual(email, m.Email);
 
             var m1 = m_Provider.GetUser(m.ProviderUserKey, false);
-            Assert.AreEqual<string>(m.UserName, m1.UserName);
+            Assert.AreEqual(m.UserName, m1.UserName);
 
             //delete the member
             m_Provider.DeleteUser(username, true);
@@ -63,7 +68,7 @@ namespace umbraco.Test
         /// <summary>
         /// Create a new member and role and assign the member to the role, then cleanup
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void MembershipProvider_Create_User_Assign_New_Role()
         {
 
@@ -78,11 +83,11 @@ namespace umbraco.Test
 
             var m = m_Provider.CreateUser(username, password, email, passwordQuestion, passwordAnswer, isApproved, null, out status);
 
-            Assert.AreEqual<MembershipCreateStatus>(MembershipCreateStatus.Success, status);
-            Assert.AreEqual<string>(email, m.Email);
+            Assert.AreEqual(MembershipCreateStatus.Success, status);
+            Assert.AreEqual(email, m.Email);
 
             var m1 = m_Provider.GetUser(m.ProviderUserKey, false);
-            Assert.AreEqual<string>(m.UserName, m1.UserName);
+            Assert.AreEqual(m.UserName, m1.UserName);
 
 
             //create role provider
@@ -91,7 +96,7 @@ namespace umbraco.Test
             var newRole = Guid.NewGuid().ToString("N");
             roleProvider.CreateRole(newRole);
             //make sure it's there
-            Assert.AreEqual<int>(1, roleProvider.GetAllRoles().Where(x => x == newRole).Count());
+            Assert.AreEqual(1, roleProvider.GetAllRoles().Where(x => x == newRole).Count());
 
             //add the user to the role
             roleProvider.AddUsersToRoles(new string[] { m.UserName }, new string[] { newRole });
@@ -128,7 +133,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for UmbracoMembershipProvider Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void UmbracoMembershipProviderConstructorTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider();
@@ -138,7 +143,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ChangePassword
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ChangePasswordTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -155,7 +160,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ChangePasswordQuestionAndAnswer
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ChangePasswordQuestionAndAnswerTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -175,7 +180,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for DeleteUser
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void DeleteUserTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -191,7 +196,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for EncodePassword
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void EncodePasswordTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -206,7 +211,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for FindUsersByEmail
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void FindUsersByEmailTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -226,7 +231,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for FindUsersByName
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void FindUsersByNameTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -246,7 +251,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetAllUsers
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetAllUsersTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -265,7 +270,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetNumberOfUsersOnline
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetNumberOfUsersOnlineTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -279,7 +284,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetPassword
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetPasswordTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -295,7 +300,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetUser
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetUserTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -311,7 +316,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetUser
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetUserTest1()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -327,7 +332,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetUserNameByEmail
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetUserNameByEmailTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -342,7 +347,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Initialize
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void InitializeTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -355,7 +360,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ResetPassword
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ResetPasswordTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -371,7 +376,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for UnEncodePassword
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void UnEncodePasswordTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -386,7 +391,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for UnlockUser
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void UnlockUserTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -401,7 +406,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for UpdateUser
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void UpdateUserTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -413,7 +418,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ValidateUser
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ValidateUserTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -429,7 +434,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ApplicationName
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ApplicationNameTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -444,7 +449,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for EnablePasswordReset
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void EnablePasswordResetTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -456,7 +461,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for EnablePasswordRetrieval
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void EnablePasswordRetrievalTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -468,7 +473,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for MaxInvalidPasswordAttempts
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MaxInvalidPasswordAttemptsTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -480,7 +485,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for MinRequiredNonAlphanumericCharacters
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MinRequiredNonAlphanumericCharactersTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -492,7 +497,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for MinRequiredPasswordLength
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MinRequiredPasswordLengthTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -504,7 +509,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for PasswordAttemptWindow
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void PasswordAttemptWindowTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -516,7 +521,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for PasswordFormat
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void PasswordFormatTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -528,7 +533,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for PasswordStrengthRegularExpression
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void PasswordStrengthRegularExpressionTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -540,7 +545,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for RequiresQuestionAndAnswer
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void RequiresQuestionAndAnswerTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -552,7 +557,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for RequiresUniqueEmail
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void RequiresUniqueEmailTest()
         //{
         //    UmbracoMembershipProvider target = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -566,20 +571,20 @@ namespace umbraco.Test
         // 
         //You can use the following additional attributes as you write your tests:
         //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
+        //Use TestFixtureSetUp to run code before running the first test in the class
+        //[TestFixtureSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
         //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
+        //Use TestFixtureTearDown to run code after all tests in a class have run
+        //[TestFixtureTearDown]
         //public static void MyClassCleanup()
         //{
         //}
         //
         
-        [TestInitialize()]
+        [SetUp]
         public void MyTestInitialize()
         {
             //need to create a member type for the provider
@@ -600,7 +605,7 @@ namespace umbraco.Test
         }
         
         
-        [TestCleanup()]
+        [TearDown]
         public void MyTestCleanup()
         {
             //remove the member type

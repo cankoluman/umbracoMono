@@ -1,5 +1,5 @@
 ﻿using umbraco.cms.businesslogic.member;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using umbraco.BusinessLogic;
 using System.Collections;
@@ -13,19 +13,19 @@ namespace umbraco.Test
     ///This is a test class for MemberGroupTest and is intended
     ///to contain all MemberGroupTest Unit Tests
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class MemberGroupTest
     {
 
         /// <summary>
         /// Make a new member group and delete it
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void MemberGroup_Make_New()
         {
             var m = MemberGroup.MakeNew(Guid.NewGuid().ToString("N"), m_User);
             Assert.IsTrue(m.Id > 0);
-            Assert.IsInstanceOfType(m, typeof(MemberGroup));
+            Assert.IsInstanceOf<MemberGroup>(m);
 
             m.delete();
             //make sure its gone
@@ -36,7 +36,7 @@ namespace umbraco.Test
         /// <summary>
         /// Create a new member group, put a member in it, then delete the group and ensure the member is gone
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void MemberGroup_Add_Member_To_Group_And_Delete_Group()
         {
             var mt = MemberType.MakeNew(m_User, "TEST" + Guid.NewGuid().ToString("N"));
@@ -44,7 +44,7 @@ namespace umbraco.Test
                 "TEST" + Guid.NewGuid().ToString("N") + "@test.com", mt, m_User);
 
             var mg = MemberGroup.MakeNew("TEST" + Guid.NewGuid().ToString("N"), m_User);
-            Assert.IsInstanceOfType(mg, typeof(MemberGroup));
+            Assert.IsInstanceOf<MemberGroup>(mg);
             Assert.IsTrue(mg.Id > 0);          
 
             //add the member to the group
@@ -52,14 +52,14 @@ namespace umbraco.Test
 
             //ensure they are added
             Assert.AreEqual(1, m.Groups.Count);
-            Assert.AreEqual<int>(mg.Id, ((MemberGroup)m.Groups.Cast<DictionaryEntry>().First().Value).Id);
+            Assert.AreEqual(mg.Id, ((MemberGroup)m.Groups.Cast<DictionaryEntry>().First().Value).Id);
 
             //delete the group
             mg.delete();
 
             //make sure the member is no longer associated
             m = new Member(m.Id); //need to re-get the member
-            Assert.AreEqual<int>(0, m.Groups.Count);
+            Assert.AreEqual(0, m.Groups.Count);
             
             //now cleanup...
 
@@ -77,7 +77,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for MemberGroup Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MemberGroupConstructorTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -88,7 +88,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for MemberGroup Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MemberGroupConstructorTest1()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -99,7 +99,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetByName
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetByNameTest()
         //{
         //    string Name = string.Empty; // TODO: Initialize to an appropriate value
@@ -113,7 +113,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetMembers
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetMembersTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -128,7 +128,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetMembers
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetMembersTest1()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -144,7 +144,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetMembersAsIds
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetMembersAsIdsTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -159,7 +159,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for HasMember
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void HasMemberTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -177,7 +177,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Save
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SaveTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -189,7 +189,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for delete
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void deleteTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -201,7 +201,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetAll
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetAllTest()
         //{
         //    MemberGroup[] actual;
@@ -212,7 +212,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Text
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void TextTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -230,26 +230,26 @@ namespace umbraco.Test
         // 
         //You can use the following additional attributes as you write your tests:
         //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
+        //Use TestFixtureSetUp to run code before running the first test in the class
+        //[TestFixtureSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
         //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
+        //Use TestFixtureTearDown to run code after all tests in a class have run
+        //[TestFixtureTearDown]
         //public static void MyClassCleanup()
         //{
         //}
         //
-        //Use TestInitialize to run code before running each test
-        //[TestInitialize()]
+        //Use SetUp to run code before running each test
+        //[SetUp]
         //public void MyTestInitialize()
         //{
         //}
         //
         //Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
+        //[TearDown]
         //public void MyTestCleanup()
         //{
         //}

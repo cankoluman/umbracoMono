@@ -1,5 +1,5 @@
 ﻿using umbraco.cms.businesslogic.template;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Xml;
@@ -15,20 +15,20 @@ namespace umbraco.Test
     ///This is a test class for TemplateTest and is intended
     ///to contain all TemplateTest Unit Tests
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class TemplateTest
     {
 
         /// <summary>
         /// create a new template
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void Template_Make_New()
         {
 
             var t = Template.MakeNew(Guid.NewGuid().ToString("N"), m_User);
             Assert.IsTrue(t.Id > 0);
-            Assert.IsInstanceOfType(t, typeof(Template));
+            Assert.IsInstanceOf<Template>(t);
 
             t.delete();
             Assert.IsFalse(Template.IsNode(t.Id));
@@ -39,13 +39,13 @@ namespace umbraco.Test
         /// Make a new template as a master and a child template. Then try to delete the master template and ensure that it can't be deleted
         /// without first changning the child template to have a null parent.
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void Template_Make_New_With_Master_And_Remove_Heirarchy_And_Delete()
         {
             var t = Template.MakeNew(Guid.NewGuid().ToString("N"), m_User);
             var child = Template.MakeNew(Guid.NewGuid().ToString("N"), m_User, t);
             Assert.IsTrue(t.Id > 0);
-            Assert.IsInstanceOfType(t, typeof(Template));
+            Assert.IsInstanceOf<Template>(t);
 
             //verify heirarchy
             Assert.IsTrue(child.HasMasterTemplate);
@@ -91,7 +91,7 @@ namespace umbraco.Test
         /// Creates a new document type, new template, asssign the template to the document type, create a new document using the new template
         /// then delete the template. This should throw an exception. We will not allow deleting a template that is currently in use
         /// </summary>
-        [TestMethod()]        
+        [Test]        
         public void Template_Assign_To_Document_And_Delete()
         {
             //create the doc type, template and document
@@ -106,7 +106,7 @@ namespace umbraco.Test
             //create the document (this should have the default template set)
             var doc = Document.MakeNew(Guid.NewGuid().ToString("N"), dt, m_User, -1);
 
-            Assert.AreEqual<int>(t.Id, doc.Template);
+            Assert.AreEqual(t.Id, doc.Template);
 
             //now delete, this should throw the exception
             // changed by NH as the API will cleanup instead!
@@ -138,7 +138,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Template Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void TemplateConstructorTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -149,7 +149,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Template Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void TemplateConstructorTest1()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -160,7 +160,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ConvertToMasterPageSyntax
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ConvertToMasterPageSyntaxTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -176,7 +176,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for EnsureMasterPageSyntax
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void EnsureMasterPageSyntaxTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -192,7 +192,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetAllAsList
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetAllAsListTest()
         //{
         //    List<Template> expected = null; // TODO: Initialize to an appropriate value
@@ -205,7 +205,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetByAlias
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetByAliasTest()
         //{
         //    string Alias = string.Empty; // TODO: Initialize to an appropriate value
@@ -219,7 +219,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetMasterContentElement
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetMasterContentElementTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -235,7 +235,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetRawText
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetRawTextTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -250,7 +250,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetTemplate
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetTemplateTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -264,7 +264,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetTemplateIdFromAlias
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetTemplateIdFromAliasTest()
         //{
         //    string alias = string.Empty; // TODO: Initialize to an appropriate value
@@ -278,7 +278,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Import
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ImportTest()
         //{
         //    XmlNode n = null; // TODO: Initialize to an appropriate value
@@ -293,7 +293,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ImportDesign
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ImportDesignTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -308,7 +308,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for RemoveAllReferences
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void RemoveAllReferencesTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -320,7 +320,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Save
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SaveTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -332,7 +332,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for SaveAsMasterPage
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SaveAsMasterPageTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -344,7 +344,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for SaveMasterPageFile
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SaveMasterPageFileTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -357,7 +357,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ToXml
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ToXmlTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -373,7 +373,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for contentPlaceholderIds
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void contentPlaceholderIdsTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -388,7 +388,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for delete
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void deleteTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -400,7 +400,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for getAll
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void getAllTest()
         //{
         //    Template[] expected = null; // TODO: Initialize to an appropriate value
@@ -413,7 +413,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Alias
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void AliasTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -429,7 +429,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Design
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void DesignTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -445,7 +445,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for HasChildren
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void HasChildrenTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -461,7 +461,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for HasMasterTemplate
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void HasMasterTemplateTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -474,7 +474,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for MasterPageFile
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MasterPageFileTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -487,7 +487,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for MasterTemplate
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MasterTemplateTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -503,7 +503,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for OutputContentType
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void OutputContentTypeTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -519,7 +519,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for TemplateAliases
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void TemplateAliasesTest()
         //{
         //    Hashtable expected = null; // TODO: Initialize to an appropriate value
@@ -533,7 +533,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Text
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void TextTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -551,26 +551,26 @@ namespace umbraco.Test
         // 
         //You can use the following additional attributes as you write your tests:
         //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
+        //Use TestFixtureSetUp to run code before running the first test in the class
+        //[TestFixtureSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
         //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
+        //Use TestFixtureTearDown to run code after all tests in a class have run
+        //[TestFixtureTearDown]
         //public static void MyClassCleanup()
         //{
         //}
         //
-        //Use TestInitialize to run code before running each test
-        //[TestInitialize()]
+        //Use SetUp to run code before running each test
+        //[SetUp]
         //public void MyTestInitialize()
         //{
         //}
         //
         //Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
+        //[TearDown]
         //public void MyTestCleanup()
         //{
         //}

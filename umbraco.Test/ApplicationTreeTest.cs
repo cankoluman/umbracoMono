@@ -1,5 +1,5 @@
 ﻿using umbraco.BusinessLogic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using umbraco.DataLayer;
 using System.Linq;
@@ -12,16 +12,20 @@ namespace umbraco.Test
     ///This is a test class for ApplicationTreeTest and is intended
     ///to contain all ApplicationTreeTest Unit Tests
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class ApplicationTreeTest
     {
 
-
+		[TestFixtureSetUp]
+		public void InitTestFixture()
+		{
+			ConfigurationManagerService.ConfigManager = new ConfigurationManagerTest(SetUpUtilities.GetAppSettings());
+		}
 
         /// <summary>
         /// Creates a new app tree linked to an application, then delete the application and make sure the tree is gone as well
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void ApplicationTree_Make_New_Then_Delete_App()
         {
             //create new app
@@ -41,7 +45,7 @@ namespace umbraco.Test
             app.Delete();
 
             //check that the tree is gone
-            Assert.AreEqual<int>(0, ApplicationTree.getApplicationTree(name).Count());
+            Assert.AreEqual(0, ApplicationTree.getApplicationTree(name).Count());
         }
 
 
@@ -49,7 +53,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ApplicationTree Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ApplicationTreeConstructorTest()
         //{
         //    bool silent = false; // TODO: Initialize to an appropriate value
@@ -70,7 +74,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ApplicationTree Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ApplicationTreeConstructorTest1()
         //{
         //    ApplicationTree target = new ApplicationTree();
@@ -80,7 +84,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Delete
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void DeleteTest()
         //{
         //    ApplicationTree target = new ApplicationTree(); // TODO: Initialize to an appropriate value
@@ -92,7 +96,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Save
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SaveTest()
         //{
         //    ApplicationTree target = new ApplicationTree(); // TODO: Initialize to an appropriate value
@@ -103,7 +107,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for getAll
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void getAllTest()
         //{
         //    ApplicationTree[] expected = null; // TODO: Initialize to an appropriate value
@@ -116,7 +120,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for getApplicationTree
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void getApplicationTreeTest()
         //{
         //    string applicationAlias = string.Empty; // TODO: Initialize to an appropriate value
@@ -130,7 +134,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for getApplicationTree
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void getApplicationTreeTest1()
         //{
         //    string applicationAlias = string.Empty; // TODO: Initialize to an appropriate value
@@ -145,7 +149,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for getByAlias
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void getByAliasTest()
         //{
         //    string treeAlias = string.Empty; // TODO: Initialize to an appropriate value
@@ -159,7 +163,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Action
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ActionTest()
         //{
         //    ApplicationTree target = new ApplicationTree(); // TODO: Initialize to an appropriate value
@@ -174,7 +178,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Alias
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void AliasTest()
         //{
         //    ApplicationTree target = new ApplicationTree(); // TODO: Initialize to an appropriate value
@@ -186,7 +190,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ApplicationAlias
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ApplicationAliasTest()
         //{
         //    ApplicationTree target = new ApplicationTree(); // TODO: Initialize to an appropriate value
@@ -198,7 +202,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for AssemblyName
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void AssemblyNameTest()
         //{
         //    ApplicationTree target = new ApplicationTree(); // TODO: Initialize to an appropriate value
@@ -213,7 +217,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for IconClosed
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void IconClosedTest()
         //{
         //    ApplicationTree target = new ApplicationTree(); // TODO: Initialize to an appropriate value
@@ -228,7 +232,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for IconOpened
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void IconOpenedTest()
         //{
         //    ApplicationTree target = new ApplicationTree(); // TODO: Initialize to an appropriate value
@@ -243,7 +247,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Initialize
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void InitializeTest()
         //{
         //    ApplicationTree target = new ApplicationTree(); // TODO: Initialize to an appropriate value
@@ -258,7 +262,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Silent
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SilentTest()
         //{
         //    ApplicationTree target = new ApplicationTree(); // TODO: Initialize to an appropriate value
@@ -273,7 +277,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for SortOrder
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SortOrderTest()
         //{
         //    ApplicationTree target = new ApplicationTree(); // TODO: Initialize to an appropriate value
@@ -288,7 +292,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for SqlHelper
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SqlHelperTest()
         //{
         //    ISqlHelper actual;
@@ -299,7 +303,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Title
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void TitleTest()
         //{
         //    ApplicationTree target = new ApplicationTree(); // TODO: Initialize to an appropriate value
@@ -314,7 +318,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Type
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void TypeTest()
         //{
         //    ApplicationTree target = new ApplicationTree(); // TODO: Initialize to an appropriate value
@@ -331,26 +335,26 @@ namespace umbraco.Test
         // 
         //You can use the following additional attributes as you write your tests:
         //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
+        //Use TestFixtureSetUp to run code before running the first test in the class
+        //[TestFixtureSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
         //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
+        //Use TestFixtureTearDown to run code after all tests in a class have run
+        //[TestFixtureTearDown]
         //public static void MyClassCleanup()
         //{
         //}
         //
-        //Use TestInitialize to run code before running each test
-        //[TestInitialize()]
+        //Use SetUp to run code before running each test
+        //[SetUp]
         //public void MyTestInitialize()
         //{
         //}
         //
         //Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
+        //[TearDown]
         //public void MyTestCleanup()
         //{
         //}

@@ -13,9 +13,9 @@ VERSION
 bin/
 obj/
 test-results/
-presentation/App_Data/*
-presentation/masterpages/
-presentation/~/
+umbraco/presentation/App_Data/*
+umbraco/presentation/masterpages/
+umbraco/presentation/~/
 
 # OS generated files #
 ######################

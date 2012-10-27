@@ -1,5 +1,5 @@
 ﻿using umbraco.cms.businesslogic.task;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using umbraco.BusinessLogic;
 using umbraco.cms.businesslogic;
@@ -14,7 +14,7 @@ namespace umbraco.Test
     ///This is a test class for TaskTest and is intended
     ///to contain all TaskTest Unit Tests
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class TaskTest
     {
 
@@ -22,7 +22,7 @@ namespace umbraco.Test
         /// <summary>
         /// Test the constructor to throw an exception when the object is not found by id
         ///</summary>
-        [TestMethod()]
+        [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void Task_Not_Found_Constructor()
         {
@@ -32,7 +32,7 @@ namespace umbraco.Test
         /// <summary>
         /// Create a new task and then close it (then deletes it)
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void Task_Make_New_And_Close()
         {   
             //create the task
@@ -69,7 +69,7 @@ namespace umbraco.Test
             
         }
 
-        [TestMethod()]
+        [Test]
         public void Task_Assign_To_New_Node_Delete_Node_And_Ensure_Tasks_Removed()
         {
             //create a new document in the root
@@ -111,7 +111,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Task Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void TaskConstructorTest1()
         //{
         //    Task target = new Task();
@@ -121,7 +121,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetOwnedTasks
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetOwnedTasksTest()
         //{
         //    User User = null; // TODO: Initialize to an appropriate value
@@ -136,7 +136,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetTasks
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetTasksTest()
         //{
         //    User User = null; // TODO: Initialize to an appropriate value
@@ -151,7 +151,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Save
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SaveTest()
         //{
         //    Task target = new Task(); // TODO: Initialize to an appropriate value
@@ -162,7 +162,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Closed
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ClosedTest()
         //{
         //    Task target = new Task(); // TODO: Initialize to an appropriate value
@@ -177,7 +177,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Comment
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void CommentTest()
         //{
         //    Task target = new Task(); // TODO: Initialize to an appropriate value
@@ -192,7 +192,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Date
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void DateTest()
         //{
         //    Task target = new Task(); // TODO: Initialize to an appropriate value
@@ -207,7 +207,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Id
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void IdTest()
         //{
         //    Task target = new Task(); // TODO: Initialize to an appropriate value
@@ -222,7 +222,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Node
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void NodeTest()
         //{
         //    Task target = new Task(); // TODO: Initialize to an appropriate value
@@ -237,7 +237,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ParentUser
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ParentUserTest()
         //{
         //    Task target = new Task(); // TODO: Initialize to an appropriate value
@@ -252,7 +252,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Type
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void TypeTest()
         //{
         //    Task target = new Task(); // TODO: Initialize to an appropriate value
@@ -267,7 +267,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for User
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void UserTest()
         //{
         //    Task target = new Task(); // TODO: Initialize to an appropriate value
@@ -284,26 +284,26 @@ namespace umbraco.Test
         // 
         //You can use the following additional attributes as you write your tests:
         //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
+        //Use TestFixtureSetUp to run code before running the first test in the class
+        //[TestFixtureSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
         //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
+        //Use TestFixtureTearDown to run code after all tests in a class have run
+        //[TestFixtureTearDown]
         //public static void MyClassCleanup()
         //{
         //}
         //
-        //Use TestInitialize to run code before running each test
-        //[TestInitialize()]
+        //Use SetUp to run code before running each test
+        //[SetUp]
         //public void MyTestInitialize()
         //{
         //}
         //
         //Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
+        //[TearDown]
         //public void MyTestCleanup()
         //{
         //}

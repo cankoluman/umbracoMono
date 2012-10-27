@@ -10,7 +10,7 @@
 <umb:JsInclude ID="JsInclude3" runat="server" FilePath="Application/UmbracoApplicationActions.js" PathNameAlias="UmbracoClient" />
 <umb:JsInclude ID="JsInclude4" runat="server" FilePath="Application/UmbracoUtils.js" PathNameAlias="UmbracoClient" />
 <umb:JsInclude ID="JsInclude5" runat="server" FilePath="ui/jquery.js" PathNameAlias="UmbracoClient" Priority="0" />
-<umb:JsInclude ID="JsInclude6" runat="server" FilePath="Application/JQuery/jquery.metadata.min.js" PathNameAlias="UmbracoClient" Priority="10" />
+<umb:JsInclude ID="JsInclude6" runat="server" FilePath="Application/jQuery/jquery.metadata.min.js" PathNameAlias="UmbracoClient" Priority="10" />
 <umb:JsInclude ID="JsInclude8" runat="server" FilePath="Tree/jquery.tree.js" PathNameAlias="UmbracoClient" Priority="11"  />
 <umb:JsInclude ID="JsInclude11" runat="server" FilePath="Tree/UmbracoContext.js" PathNameAlias="UmbracoClient" Priority="12"  />
 <umb:JsInclude ID="JsInclude7" runat="server" FilePath="Tree/jquery.tree.contextmenu.js" PathNameAlias="UmbracoClient" Priority="12"  />

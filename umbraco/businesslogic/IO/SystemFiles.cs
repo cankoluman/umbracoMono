@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Web;
 
+using umbraco.BusinessLogic;
+
 namespace umbraco.IO
 {
     public class SystemFiles
@@ -109,7 +111,7 @@ namespace umbraco.IO
             get
             {
                 bool returnValue = false;
-                string configSetting = ConfigurationManager.AppSettings["umbracoContentXMLUseLocalTemp"];
+                string configSetting = ConfigurationManagerService.Instance.AppSettings["umbracoContentXMLUseLocalTemp"];
 
                 if (!string.IsNullOrEmpty(configSetting))
                     if(bool.TryParse(configSetting, out returnValue))

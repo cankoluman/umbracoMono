@@ -1,5 +1,5 @@
 ﻿using umbraco.cms.businesslogic.media;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using umbraco.BusinessLogic;
 using System.Collections.Generic;
@@ -14,13 +14,13 @@ namespace umbraco.Test
     ///This is a test class for MediaTypeTest and is intended
     ///to contain all MediaTypeTest Unit Tests
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class MediaTypeTest
     {
         /// <summary>
         ///A test for GetAll
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void MediaType_Get_All()
         {
             //check with sql that it's the correct number of children
@@ -36,7 +36,7 @@ namespace umbraco.Test
 
             var all = MediaType.GetAllAsList();
 
-            Assert.AreEqual<int>(ids.Distinct().Count(), all.Count());
+            Assert.AreEqual(ids.Distinct().Count(), all.Count());
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace umbraco.Test
         /// Then we'll delete media type #1. The result should be that node1 and node3 are completely deleted from the database and node2 and node4 are
         /// moved to the recycle bin.
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void MediaType_Delete_Media_Type_With_Media_And_Children_Of_Diff_Media_Types()
         {
             //System.Diagnostics.Debugger.Break();
@@ -96,7 +96,7 @@ namespace umbraco.Test
         /// <summary>
         /// Tests adding every type of property to a new media type on a new tab, then delete the tab, then the media type
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void MediaType_Add_Properties_To_Tab_Then_Delete_It()
         {
             //System.Diagnostics.Debugger.Break();
@@ -125,7 +125,7 @@ namespace umbraco.Test
                 m_NewMediaType.SetTabOnPropertyType(prop, tabs[0].Id);
                 //re-get the property since data is cached in the object
                 prop = m_NewMediaType.getPropertyType("testProperty" + i.ToString());
-                Assert.AreEqual<int>(tabs[0].Id, prop.TabId);
+                Assert.AreEqual(tabs[0].Id, prop.TabId);
             }
 
             //now we need to delete the tab
@@ -136,7 +136,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Save
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SaveTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -148,7 +148,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for MakeNew
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MakeNewTest()
         //{
         //    User u = null; // TODO: Initialize to an appropriate value
@@ -163,7 +163,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetByAlias
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetByAliasTest()
         //{
         //    string Alias = string.Empty; // TODO: Initialize to an appropriate value
@@ -177,7 +177,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for delete
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void deleteTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -189,7 +189,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for MediaType Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MediaTypeConstructorTest1()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -200,7 +200,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for MediaType Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MediaTypeConstructorTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -249,14 +249,14 @@ namespace umbraco.Test
         // 
         //You can use the following additional attributes as you write your tests:
         //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
+        //Use TestFixtureSetUp to run code before running the first test in the class
+        //[TestFixtureSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
         //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
+        //Use TestFixtureTearDown to run code after all tests in a class have run
+        //[TestFixtureTearDown]
         //public static void MyClassCleanup()
         //{
         //}
@@ -264,7 +264,7 @@ namespace umbraco.Test
         /// <summary>
         /// Create a new document type for use in tests
         /// </summary>
-        [TestInitialize()]
+        [SetUp]
         public void MyTestInitialize()
         {
             m_NewMediaType = CreateNewMediaType();
@@ -273,7 +273,7 @@ namespace umbraco.Test
         /// <summary>
         /// Remove the created document type
         /// </summary>
-        [TestCleanup()]
+        [TearDown]
         public void MyTestCleanup()
         {
             DeleteMediaType(m_NewMediaType);
