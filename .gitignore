@@ -1,0 +1,29 @@
+# Compiled source #
+###################
+*.com
+*.dll
+*.exe
+*.pidb
+*.resources
+*.userprefs
+VERSION
+*.designer.cs
+
+# ignored folders
+bin/
+obj/
+test-results/
+presentation/App_Data/*
+presentation/masterpages/
+presentation/~/
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
