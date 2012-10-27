@@ -1,0 +1,23 @@
+Umbraco CMS Mono Port
+-------------------------------------------------
+
+This is the community port of the Umbraco CMS to mono. 
+
+Umbraco is an excellent and extesible .NET based CMS. With this port,
+we are hoping that the Umbraco CMS will become available to a wider 
+audience on Linux, OSX, and other platforms capable of running mono.
+
+Prerequisites:
+* mono 2.11 and above to compile
+* Apache or nginx, and mono with fast-cgi support.
+
+Port Version(s) Information:
+Umbraco 4.7.2 - completed
+This port focused on getting the CMS across with the minimum amount of 
+changes to the Windows .NET code base.
+
+Umbraco 4.9.x - planned
+This port will focus on platform specific optimisations where possible.
+It is anticipated to differ form the Windows .NET code base.
+
+More details coming later...
