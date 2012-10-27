@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using umbraco.cms.businesslogic.web;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using umbraco.BusinessLogic;
@@ -21,15 +21,15 @@ namespace umbraco.Test
     ///<remarks>
     /// After each test is run, any document type created is removed
     /// </remarks>
-    [TestClass()]
+    [TestFixture]
     public class DocumentTypeTest
     {
-        [TestMethod()]
+        [Test]
         public void DocumentType_Delete_Doc_Type_With_Content()
         {
             var dt = CreateNewDocType();
             var doc = Document.MakeNew("TEST" + Guid.NewGuid().ToString("N"), dt, m_User, -1);
-            Assert.IsInstanceOfType(doc, typeof(Document));
+            Assert.IsInstanceOf<Document>(doc);
             Assert.IsTrue(doc.Id > 0);
 
             DeleteDocType(dt);
@@ -48,7 +48,7 @@ namespace umbraco.Test
         /// Then we'll delete doc type #1. The result should be that node1 and node3 are completely deleted from the database and node2 and node4 are
         /// moved to the recycle bin.
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void DocumentType_Delete_Doc_Type_With_Content_And_Children_Of_Different_Doc_Types()
         {
             //System.Diagnostics.Debugger.Break();
@@ -94,16 +94,16 @@ namespace umbraco.Test
         /// <summary>
         ///A test for creating a new document type
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void DocumentType_Make_New()
         {
-            Assert.IsInstanceOfType(m_NewDocType, typeof(DocumentType));
+            Assert.IsInstanceOf<DocumentType>(m_NewDocType);
         }
 
         /// <summary>
         /// Tests adding every type of property to a new document type on a new tab, then delete the tab, then the document type
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void DocumentType_Add_Properties_To_Tab_Then_Delete_It()
         {
             //System.Diagnostics.Debugger.Break();
@@ -132,7 +132,7 @@ namespace umbraco.Test
                 m_NewDocType.SetTabOnPropertyType(prop, tabs[0].Id);                
                 //re-get the property since data is cached in the object
                 prop = m_NewDocType.getPropertyType("testProperty" + i.ToString());
-                Assert.AreEqual<int>(tabs[0].Id, prop.TabId);
+                Assert.AreEqual(tabs[0].Id, prop.TabId);
             }
 
             //now we need to delete the tab
@@ -142,7 +142,7 @@ namespace umbraco.Test
         /// <summary>
         ///A test for GetAll
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void DocumentType_Get_All()
         {
             //check with sql that it's the correct number of children
@@ -158,13 +158,13 @@ namespace umbraco.Test
 
             var all = DocumentType.GetAllAsList();
 
-            Assert.AreEqual<int>(ids.Distinct().Count(), all.Count);
+            Assert.AreEqual(ids.Distinct().Count(), all.Count);
         }
 
         /// <summary>
         ///A test for HasChildren
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void DocumentType_Has_Children()
         {
             //System.Diagnostics.Debugger.Break();
@@ -208,7 +208,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for allowedTemplates
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void allowedTemplatesTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -224,7 +224,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for DefaultTemplate
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void DefaultTemplateTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -241,7 +241,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ToXml
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ToXmlTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -257,7 +257,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Save
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SaveTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -269,7 +269,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for RemoveDefaultTemplate
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void RemoveDefaultTemplateTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -283,7 +283,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for HasTemplate
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void HasTemplateTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -298,7 +298,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetByAlias
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetByAliasTest()
         //{
         //    string Alias = string.Empty; // TODO: Initialize to an appropriate value
@@ -312,7 +312,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetAllAsList
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetAllAsListTest()
         //{
         //    List<DocumentType> expected = null; // TODO: Initialize to an appropriate value
@@ -325,7 +325,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GenerateDtd
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GenerateDtdTest()
         //{
         //    string expected = string.Empty; // TODO: Initialize to an appropriate value
@@ -338,7 +338,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for delete
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void deleteTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -350,7 +350,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for clearTemplates
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void clearTemplatesTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -362,7 +362,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Thumbnail
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ThumbnailTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -378,7 +378,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Text
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void TextTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -394,7 +394,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for PropertyTypes
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void PropertyTypesTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -407,7 +407,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for MasterContentType
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MasterContentTypeTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -423,7 +423,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for IconUrl
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void IconUrlTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -439,7 +439,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for getVirtualTabs
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void getVirtualTabsTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -452,7 +452,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Description
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void DescriptionTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -468,7 +468,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for AllowedChildContentTypeIDs
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void AllowedChildContentTypeIDsTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -484,7 +484,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Alias
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void AliasTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -500,7 +500,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for SetTabSortOrder
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SetTabSortOrderTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -514,7 +514,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for SetTabOnPropertyType
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SetTabOnPropertyTypeTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -528,7 +528,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for SetTabName
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SetTabNameTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -542,7 +542,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Save
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SaveTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -554,7 +554,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for removePropertyTypeFromTab
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void removePropertyTypeFromTabTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -567,7 +567,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for getTabIdFromPropertyType
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void getTabIdFromPropertyTypeTest()
         //{
         //    PropertyType pt = null; // TODO: Initialize to an appropriate value
@@ -581,7 +581,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetRawText
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetRawTextTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -596,7 +596,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for getPropertyType
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void getPropertyTypeTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -612,7 +612,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetContentType
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetContentTypeTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -626,7 +626,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetByAlias
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetByAliasTest()
         //{
         //    string Alias = string.Empty; // TODO: Initialize to an appropriate value
@@ -640,7 +640,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetAll
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetAllTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -655,7 +655,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for FlushTabCache
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void FlushTabCacheTest()
         //{
         //    int TabId = 0; // TODO: Initialize to an appropriate value
@@ -667,7 +667,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for delete
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void deleteTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -679,7 +679,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for AddVirtualTab
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void AddVirtualTabTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -695,7 +695,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for AddPropertyType
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void AddPropertyTypeTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -710,7 +710,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ContentType Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ContentTypeConstructorTest2()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -721,7 +721,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ContentType Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ContentTypeConstructorTest1()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -732,7 +732,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ContentType Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ContentTypeConstructorTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -783,14 +783,14 @@ namespace umbraco.Test
         // 
         //You can use the following additional attributes as you write your tests:
         //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
+        //Use TestFixtureSetUp to run code before running the first test in the class
+        //[TestFixtureSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
         //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
+        //Use TestFixtureTearDown to run code after all tests in a class have run
+        //[TestFixtureTearDown]
         //public static void MyClassCleanup()
         //{
         //}
@@ -799,7 +799,7 @@ namespace umbraco.Test
         /// <summary>
         /// Create a new document type for use in tests
         /// </summary>
-        [TestInitialize()]
+        [SetUp]
         public void MyTestInitialize()
         {
             m_NewDocType = CreateNewDocType();
@@ -808,7 +808,7 @@ namespace umbraco.Test
         /// <summary>
         /// Remove the created document type
         /// </summary>
-        [TestCleanup()]
+        [TearDown]
         public void MyTestCleanup()
         {
             DeleteDocType(m_NewDocType);

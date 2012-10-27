@@ -136,10 +136,12 @@ namespace umbraco.cms.presentation
             if (!isUrlLocalToHost(url))
             {
                 Log.Add(LogTypes.Error, -1, String.Format("Security warning: Login redirect was attempted to a site at another domain: '{0}'", url));
-                throw new UserAuthorizationException(
+                //** disabling security for now **//
+				/*throw new UserAuthorizationException(
                     String.Format(@"There was attempt to redirect to '{0}' which is another domain than where you've logged in. If you clicked a link to reach this login
                     screen, please double check that the link came from someone you trust. You *might* have been exposed to an *attempt* to breach the security of your website. Nothing 
                     have been compromised, though!", url));
+				*/
             }
 
             return true;

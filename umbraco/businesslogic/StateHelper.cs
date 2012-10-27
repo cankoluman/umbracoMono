@@ -306,7 +306,7 @@ namespace umbraco.BusinessLogic
 
 				static Cookie()
 				{
-					var appSettings = System.Configuration.ConfigurationManager.AppSettings;
+					var appSettings = ConfigurationManagerService.Instance.AppSettings;
 					_ext = appSettings[cookiesExtensionConfigKey] == null ? "" : "_" + (string)appSettings[cookiesExtensionConfigKey];
 				}
 

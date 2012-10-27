@@ -1,5 +1,5 @@
 ﻿using umbraco.cms.businesslogic.workflow;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using umbraco.BusinessLogic;
 using umbraco.cms.businesslogic;
@@ -16,13 +16,13 @@ namespace umbraco.Test
     ///This is a test class for NotificationTest and is intended
     ///to contain all NotificationTest Unit Tests
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class NotificationTest
     {
         /// <summary>
         /// Create a new notification for the admin user for the first node found in the tree and delete it.
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void Notification_Make_New()
         {
             //create a new notification
@@ -32,13 +32,13 @@ namespace umbraco.Test
             //get the notifications
             var n = Notification.GetUserNotifications(m_User);
             Assert.IsTrue(n.Count() > 0);
-            Assert.AreEqual<int>(1, n.Where(x => x.NodeId == doc.Id && x.UserId == m_User.Id && x.ActionId == ActionNew.Instance.Letter).Count());
+            Assert.AreEqual(1, n.Where(x => x.NodeId == doc.Id && x.UserId == m_User.Id && x.ActionId == ActionNew.Instance.Letter).Count());
 
             //delete the notification
             Notification.DeleteNotifications(doc);
 
             //make sure they're gone
-            Assert.AreEqual<int>(0, Notification.GetNodeNotifications(doc).Count());
+            Assert.AreEqual(0, Notification.GetNodeNotifications(doc).Count());
             
         }
 
@@ -46,7 +46,7 @@ namespace umbraco.Test
         /// Creates a new document, assigns some notifications to it, then deletes the document.
         /// Need to ensure that the notifications are removed.
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void Notification_Assign_To_New_Node_Then_Delete_Node()
         {
             //create anew document
@@ -60,7 +60,7 @@ namespace umbraco.Test
             doc.delete(true);
 
             //make sure they're gone
-            Assert.AreEqual<int>(0, Notification.GetNodeNotifications(doc).Count());
+            Assert.AreEqual(0, Notification.GetNodeNotifications(doc).Count());
             Assert.IsFalse(Document.IsNode(doc.Id));
 
         }
@@ -68,7 +68,7 @@ namespace umbraco.Test
         /// <summary>
         /// Create a new user, assign a notification to it, remove the user and ensure the notifications are gone as well.
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void Notification_Assign_To_New_User_Then_Delete_User()
         {
             //create anew document
@@ -84,7 +84,7 @@ namespace umbraco.Test
             u.delete();
 
             //make sure they're gone
-            Assert.AreEqual<int>(0, Notification.GetUserNotifications(u).Count());
+            Assert.AreEqual(0, Notification.GetUserNotifications(u).Count());
             Assert.IsNull(User.GetUser(u.Id));
 
         }
@@ -97,7 +97,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for DeleteNotifications
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void DeleteNotificationsTest()
         //{
         //    User user = null; // TODO: Initialize to an appropriate value
@@ -109,7 +109,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for DeleteNotifications
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void DeleteNotificationsTest1()
         //{
         //    User user = null; // TODO: Initialize to an appropriate value
@@ -120,7 +120,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for DeleteNotifications
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void DeleteNotificationsTest2()
         //{
         //    CMSNode node = null; // TODO: Initialize to an appropriate value
@@ -131,7 +131,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetNotifications
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetNotificationsTest()
         //{
         //    CMSNode Node = null; // TODO: Initialize to an appropriate value
@@ -144,7 +144,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for MakeNew
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MakeNewTest()
         //{
         //    User User = null; // TODO: Initialize to an appropriate value
@@ -157,7 +157,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for UpdateNotifications
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void UpdateNotificationsTest()
         //{
         //    User User = null; // TODO: Initialize to an appropriate value
@@ -172,26 +172,26 @@ namespace umbraco.Test
         // 
         //You can use the following additional attributes as you write your tests:
         //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
+        //Use TestFixtureSetUp to run code before running the first test in the class
+        //[TestFixtureSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
         //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
+        //Use TestFixtureTearDown to run code after all tests in a class have run
+        //[TestFixtureTearDown]
         //public static void MyClassCleanup()
         //{
         //}
         //
-        //Use TestInitialize to run code before running each test
-        //[TestInitialize()]
+        //Use SetUp to run code before running each test
+        //[SetUp]
         //public void MyTestInitialize()
         //{
         //}
         //
         //Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
+        //[TearDown]
         //public void MyTestCleanup()
         //{
         //}

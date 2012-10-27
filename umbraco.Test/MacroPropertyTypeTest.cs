@@ -1,5 +1,5 @@
 ﻿using umbraco.cms.businesslogic.macro;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 
@@ -11,14 +11,14 @@ namespace umbraco.Test
     ///This is a test class for MacroPropertyTypeTest and is intended
     ///to contain all MacroPropertyTypeTest Unit Tests
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class MacroPropertyTypeTest
     {
 
         /// <summary>
         /// Test the constructor to throw an exception when the object is not found by id
         ///</summary>
-        [TestMethod()]
+        [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void MacroProperty_Not_Found_Constructor()
         {
@@ -32,7 +32,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for MacroPropertyType Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MacroPropertyTypeConstructorTest1()
         //{
         //    MacroPropertyType target = new MacroPropertyType();
@@ -42,7 +42,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for MacroPropertyType Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MacroPropertyTypeConstructorTest2()
         //{
         //    int Id = 0; // TODO: Initialize to an appropriate value
@@ -53,7 +53,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Alias
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void AliasTest()
         //{
         //    MacroPropertyType target = new MacroPropertyType(); // TODO: Initialize to an appropriate value
@@ -65,7 +65,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Assembly
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void AssemblyTest()
         //{
         //    MacroPropertyType target = new MacroPropertyType(); // TODO: Initialize to an appropriate value
@@ -77,7 +77,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for BaseType
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void BaseTypeTest()
         //{
         //    MacroPropertyType target = new MacroPropertyType(); // TODO: Initialize to an appropriate value
@@ -89,7 +89,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetAll
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetAllTest()
         //{
         //    List<MacroPropertyType> actual;
@@ -100,7 +100,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Id
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void IdTest()
         //{
         //    MacroPropertyType target = new MacroPropertyType(); // TODO: Initialize to an appropriate value
@@ -112,7 +112,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Type
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void TypeTest()
         //{
         //    MacroPropertyType target = new MacroPropertyType(); // TODO: Initialize to an appropriate value
@@ -126,26 +126,26 @@ namespace umbraco.Test
         // 
         //You can use the following additional attributes as you write your tests:
         //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
+        //Use TestFixtureSetUp to run code before running the first test in the class
+        //[TestFixtureSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
         //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
+        //Use TestFixtureTearDown to run code after all tests in a class have run
+        //[TestFixtureTearDown]
         //public static void MyClassCleanup()
         //{
         //}
         //
-        //Use TestInitialize to run code before running each test
-        //[TestInitialize()]
+        //Use SetUp to run code before running each test
+        //[SetUp]
         //public void MyTestInitialize()
         //{
         //}
         //
         //Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
+        //[TearDown]
         //public void MyTestCleanup()
         //{
         //}

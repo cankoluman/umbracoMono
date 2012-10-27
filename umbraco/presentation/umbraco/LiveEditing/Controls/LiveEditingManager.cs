@@ -20,7 +20,7 @@ namespace umbraco.presentation.LiveEditing.Controls
     [ClientDependency(0, ClientDependencyType.Javascript, "Application/NamespaceManager.js", "UmbracoClient")]
     [ClientDependency(1, ClientDependencyType.Css, "LiveEditing/CSS/LiveEditing.css", "UmbracoRoot")]
 	[ClientDependency(1, ClientDependencyType.Javascript, "ui/jquery.js", "UmbracoClient")]
-	[ClientDependency(2, ClientDependencyType.Javascript, "Application/JQuery/jquery.noconflict-invoke.js", "UmbracoClient")]	
+	[ClientDependency(2, ClientDependencyType.Javascript, "Application/jQuery/jquery.noconflict-invoke.js", "UmbracoClient")]	
     [ClientDependency(3, ClientDependencyType.Javascript, "js/UmbracoSpeechBubble.js", "UmbracoRoot")]
 	[ClientDependency(4, ClientDependencyType.Javascript, "js/UmbracoSpeechBubbleInit.js", "UmbracoRoot")]
     [ClientDependency(10, ClientDependencyType.Javascript, "Application/UmbracoUtils.js", "UmbracoClient")] 

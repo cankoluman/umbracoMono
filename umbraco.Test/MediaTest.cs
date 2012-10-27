@@ -1,5 +1,5 @@
 ﻿using umbraco.cms.businesslogic.media;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using umbraco.BusinessLogic;
@@ -19,21 +19,21 @@ namespace umbraco.Test
     /// These test assume the following criteria, if this criteria is not met, these tests will fail:
     /// - There is a Label data type assigned to one of your Media types.
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class MediaTest
     {
         /// <summary>
         ///A test for making a new media and deleting it which actuall first moves it to the recycle bin
         ///and then deletes it.
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void Media_Make_New()
         {
             //System.Diagnostics.Debugger.Break();
-            Assert.IsInstanceOfType(m_NewRootMedia, typeof(Media));
+            Assert.IsInstanceOf<Media>(m_NewRootMedia);
         }
 
-        [TestMethod()]
+        [Test]
         public void Media_Update_Data()
         {
             //System.Diagnostics.Debugger.Break();
@@ -51,7 +51,7 @@ namespace umbraco.Test
             Assert.IsFalse(Media.IsNode(m.Id));
         }
 
-        [TestMethod()]
+        [Test]
         public void Media_Delete_Heirarchy_Permanently()
         {
             var mediaList = new List<Media>();
@@ -82,7 +82,7 @@ namespace umbraco.Test
 
         }
         
-        [TestMethod]
+        [Test]
         public void Media_Move()
         {
             //first need to document type that allows other types of document types to exist underneath it
@@ -124,7 +124,7 @@ namespace umbraco.Test
             RecycleAndDelete(node1);
         }
 
-        [TestMethod()]
+        [Test]
         public void Media_Delete_All_Docs_By_Document_Type()
         {
             //System.Diagnostics.Debugger.Break();
@@ -180,7 +180,7 @@ namespace umbraco.Test
             Assert.IsFalse(MediaType.IsNode(mt.Id));
         }
 
-        [TestMethod]
+        [Test]
         public void Media_Empty_Recycle_Bin()
         {
             //System.Diagnostics.Debugger.Break();
@@ -219,7 +219,7 @@ namespace umbraco.Test
             Assert.AreEqual(0, RecycleBin.Count(RecycleBin.RecycleBinType.Media));
         }
 
-        [TestMethod]
+        [Test]
         public void Media_Undelete()
         {
             //find existing content
@@ -249,7 +249,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Children
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ChildrenTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -262,7 +262,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Save
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SaveTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -274,7 +274,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetRootMedias
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetRootMediasTest()
         //{
         //    Media[] expected = null; // TODO: Initialize to an appropriate value
@@ -287,7 +287,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetChildrenForTree
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetChildrenForTreeTest()
         //{
         //    int nodeId = 0; // TODO: Initialize to an appropriate value
@@ -301,7 +301,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for DeleteFromType
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void DeleteFromTypeTest()
         //{
         //    MediaType dt = null; // TODO: Initialize to an appropriate value
@@ -312,7 +312,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for delete
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void deleteTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -451,14 +451,14 @@ namespace umbraco.Test
         // 
         //You can use the following additional attributes as you write your tests:
         //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
+        //Use TestFixtureSetUp to run code before running the first test in the class
+        //[TestFixtureSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
         //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
+        //Use TestFixtureTearDown to run code after all tests in a class have run
+        //[TestFixtureTearDown]
         //public static void MyClassCleanup()
         //{
         //}
@@ -467,7 +467,7 @@ namespace umbraco.Test
         /// <summary>
         /// Creates a new root document to use for each test if required
         /// </summary>
-        [TestInitialize()]
+        [SetUp]
         public void MyTestInitialize()
         {
             m_ExistingMediaType = GetExistingMediaType();
@@ -477,7 +477,7 @@ namespace umbraco.Test
         /// <summary>
         /// Makes sure the root doc is deleted
         /// </summary>
-        [TestCleanup()]
+        [TearDown]
         public void MyTestCleanup()
         {
             RecycleAndDelete(m_NewRootMedia);

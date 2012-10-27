@@ -29,7 +29,8 @@ namespace umbraco.settings
 
         override protected void OnInit(EventArgs e)
         {
-            ContentTypeControlNew1.InfoTabPage.Controls.Add(tmpPane);
+			//ContentTypeControlNew1.InfoTabPage.Controls.Remove(tmpPane);
+			ContentTypeControlNew1.InfoTabPage.Controls.Add(tmpPane);
             base.OnInit(e);
         }
 
@@ -155,6 +156,6 @@ namespace umbraco.settings
 			}
 		}
 
-		
+
 	}
 }

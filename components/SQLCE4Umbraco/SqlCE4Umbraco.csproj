@@ -10,7 +10,6 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SQLCE4Umbraco</RootNamespace>
     <AssemblyName>SQLCE4Umbraco</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>
     </SccProjectName>
@@ -41,15 +40,14 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\foreign dlls\SQLCE4\System.Data.SqlServerCe.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Data.SqlServerCe">
+      <HintPath>..\..\foreign dlls\SQLCE4\System.Data.SqlServerCe.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,7 +67,7 @@
     <Compile Include="SqlCEUtility.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Sql\Total.sql" />
+    <Content Include="sql\total.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SqlCEResources.resx">

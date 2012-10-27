@@ -1,5 +1,5 @@
 ﻿using umbraco.BusinessLogic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Linq;
 using umbraco.DataLayer;
@@ -12,14 +12,14 @@ namespace umbraco.Test
     ///This is a test class for UserTest and is intended
     ///to contain all UserTest Unit Tests
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class UserTest
     {
 
         /// <summary>
         /// Make sure that the admin account cannot be deleted
         /// </summary>
-        [TestMethod()]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void User_Delete_Admin_Not_Allowed() 
         {
@@ -30,7 +30,7 @@ namespace umbraco.Test
         /// <summary>
         /// Test the constructor to throw an exception when the object is not found by id
         ///</summary>
-        [TestMethod()]
+        [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void User_Not_Found_Constructor()
         {
@@ -40,7 +40,7 @@ namespace umbraco.Test
         /// <summary>
         ///A test for MakeNew
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void User_Make_New_Override1()
         {
             //System.Diagnostics.Debugger.Break();
@@ -67,7 +67,7 @@ namespace umbraco.Test
         /// <summary>
         ///A test for MakeNew
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void User_Make_New_Override2()
         {
             var name = "TEST" + Guid.NewGuid().ToString("N");
@@ -91,7 +91,7 @@ namespace umbraco.Test
             Assert.IsNull(stillUser);
         }
 
-        [TestMethod()]
+        [Test]
         public void User_Make_New_Duplicate_Login()
         {
             var name1 = "TEST" + Guid.NewGuid().ToString("N");
@@ -128,7 +128,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for UserType
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void UserTypeTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -144,7 +144,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for StartNodeId
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void StartNodeIdTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -160,7 +160,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for StartMediaId
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void StartMediaIdTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -176,7 +176,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Password
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void PasswordTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -192,7 +192,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for NoConsole
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void NoConsoleTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -208,7 +208,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Name
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void NameTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -224,7 +224,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for LoginName
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void LoginNameTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -240,7 +240,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Language
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void LanguageTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -256,7 +256,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Id
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void IdTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -269,7 +269,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Email
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void EmailTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -285,7 +285,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Disabled
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void DisabledTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -301,7 +301,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for DefaultToLiveEditing
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void DefaultToLiveEditingTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -317,7 +317,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Applications
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ApplicationsTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -330,7 +330,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ValidatePassword
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ValidatePasswordTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -346,7 +346,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for validateCredentials
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void validateCredentialsTest1()
         //{
         //    string lname = string.Empty; // TODO: Initialize to an appropriate value
@@ -362,7 +362,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for validateCredentials
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void validateCredentialsTest()
         //{
         //    string lname = string.Empty; // TODO: Initialize to an appropriate value
@@ -377,7 +377,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Update
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void UpdateTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -392,7 +392,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Save
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SaveTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -404,7 +404,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for resetNotificationCache
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void resetNotificationCacheTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -416,7 +416,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for MakeNew
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MakeNewTest1()
         //{
         //    string name = string.Empty; // TODO: Initialize to an appropriate value
@@ -430,7 +430,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for MakeNew
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MakeNewTest()
         //{
         //    string name = string.Empty; // TODO: Initialize to an appropriate value
@@ -445,7 +445,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for IsRoot
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void IsRootTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -460,7 +460,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for IsAdmin
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void IsAdminTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -475,7 +475,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for initNotifications
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void initNotificationsTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -487,7 +487,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for initCruds
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void initCrudsTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -499,7 +499,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for getUserId
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void getUserIdTest1()
         //{
         //    string lname = string.Empty; // TODO: Initialize to an appropriate value
@@ -513,7 +513,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for getUserId
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void getUserIdTest()
         //{
         //    string lname = string.Empty; // TODO: Initialize to an appropriate value
@@ -528,7 +528,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetUser
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetUserTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -542,7 +542,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetPermissions
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetPermissionsTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -558,7 +558,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetPassword
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetPasswordTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -573,7 +573,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetNotifications
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetNotificationsTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -589,7 +589,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetCurrent
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetCurrentTest()
         //{
         //    User expected = null; // TODO: Initialize to an appropriate value
@@ -602,7 +602,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for getAllByLoginName
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void getAllByLoginNameTest()
         //{
         //    string login = string.Empty; // TODO: Initialize to an appropriate value
@@ -616,7 +616,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for getAllByEmail
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void getAllByEmailTest()
         //{
         //    string email = string.Empty; // TODO: Initialize to an appropriate value
@@ -630,7 +630,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for getAll
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void getAllTest()
         //{
         //    User[] expected = null; // TODO: Initialize to an appropriate value
@@ -643,7 +643,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for disable
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void disableTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -655,7 +655,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for delete
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void deleteTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -667,7 +667,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for clearApplications
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void clearApplicationsTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -679,7 +679,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for addApplication
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void addApplicationTest()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -692,7 +692,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for User Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void UserConstructorTest3()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -704,7 +704,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for User Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void UserConstructorTest2()
         //{
         //    int ID = 0; // TODO: Initialize to an appropriate value
@@ -715,7 +715,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for User Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void UserConstructorTest1()
         //{
         //    string Login = string.Empty; // TODO: Initialize to an appropriate value
@@ -726,7 +726,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for User Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void UserConstructorTest()
         //{
         //    string Login = string.Empty; // TODO: Initialize to an appropriate value
@@ -741,26 +741,26 @@ namespace umbraco.Test
         // 
         //You can use the following additional attributes as you write your tests:
         //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
+        //Use TestFixtureSetUp to run code before running the first test in the class
+        //[TestFixtureSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
         //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
+        //Use TestFixtureTearDown to run code after all tests in a class have run
+        //[TestFixtureTearDown]
         //public static void MyClassCleanup()
         //{
         //}
         //
-        //Use TestInitialize to run code before running each test
-        //[TestInitialize()]
+        //Use SetUp to run code before running each test
+        //[SetUp]
         //public void MyTestInitialize()
         //{
         //}
         //
         //Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
+        //[TearDown]
         //public void MyTestCleanup()
         //{
         //}

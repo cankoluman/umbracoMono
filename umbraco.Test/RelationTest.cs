@@ -1,5 +1,5 @@
 ﻿using umbraco.cms.businesslogic.relation;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using umbraco.cms.businesslogic;
@@ -15,14 +15,14 @@ namespace umbraco.Test
     ///This is a test class for RelationTest and is intended
     ///to contain all RelationTest Unit Tests
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class RelationTest
     {
 
         /// <summary>
         /// Creates 2 documents and relates them, then deletes the relation
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void Relation_Make_New()
         {
             var dt = DocumentType.GetAllAsList().First();
@@ -33,13 +33,13 @@ namespace umbraco.Test
             //make the relation
             var r = Relation.MakeNew(parent.Id, child.Id, rt, Guid.NewGuid().ToString("N"));
             Assert.IsTrue(r.Id > 0);
-            Assert.IsInstanceOfType(r, typeof(Relation));
+            Assert.IsInstanceOf<Relation>(r);
 
             //delete the relation
             r.Delete();
             //make sure it's gone by looking up both parent & children
-            Assert.AreEqual<int>(0, Relation.GetRelations(parent.Id).Count());
-            Assert.AreEqual<int>(0, Relation.GetRelations(child.Id).Count());
+            Assert.AreEqual(0, Relation.GetRelations(parent.Id).Count());
+            Assert.AreEqual(0, Relation.GetRelations(child.Id).Count());
 
             //now remove the documents
             child.delete(true);
@@ -49,7 +49,7 @@ namespace umbraco.Test
         /// <summary>
         /// Creates 2 documents, relates them, then deletes the parent doc and ensure that the relation is gone
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void Relation_Relate_Docs_And_Delete_Parent()
         {
             var dt = DocumentType.GetAllAsList().First();
@@ -60,14 +60,14 @@ namespace umbraco.Test
             //make the relation
             var r = Relation.MakeNew(parent.Id, child.Id, rt, Guid.NewGuid().ToString("N"));
             Assert.IsTrue(r.Id > 0);
-            Assert.IsInstanceOfType(r, typeof(Relation));
+            Assert.IsInstanceOf<Relation>(r);
 
             //deletes the parent
             parent.delete(true);
 
             //make sure it's gone by looking up both parent & children
-            Assert.AreEqual<int>(0, Relation.GetRelations(parent.Id).Count());
-            Assert.AreEqual<int>(0, Relation.GetRelations(child.Id).Count());
+            Assert.AreEqual(0, Relation.GetRelations(parent.Id).Count());
+            Assert.AreEqual(0, Relation.GetRelations(child.Id).Count());
 
             //now remove the documents
             child.delete(true);
@@ -80,7 +80,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Relation Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void RelationConstructorTest()
         //{
         //    int Id = 0; // TODO: Initialize to an appropriate value
@@ -91,7 +91,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Delete
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void DeleteTest()
         //{
         //    int Id = 0; // TODO: Initialize to an appropriate value
@@ -103,7 +103,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetRelations
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetRelationsTest()
         //{
         //    int NodeId = 0; // TODO: Initialize to an appropriate value
@@ -118,7 +118,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetRelations
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetRelationsTest1()
         //{
         //    int NodeId = 0; // TODO: Initialize to an appropriate value
@@ -132,7 +132,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetRelationsAsList
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetRelationsAsListTest()
         //{
         //    int NodeId = 0; // TODO: Initialize to an appropriate value
@@ -146,7 +146,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for IsRelated
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void IsRelatedTest()
         //{
         //    int ParentID = 0; // TODO: Initialize to an appropriate value
@@ -162,7 +162,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for IsRelated
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void IsRelatedTest1()
         //{
         //    int ParentID = 0; // TODO: Initialize to an appropriate value
@@ -179,7 +179,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Save
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SaveTest()
         //{
         //    int Id = 0; // TODO: Initialize to an appropriate value
@@ -191,7 +191,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Child
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ChildTest()
         //{
         //    int Id = 0; // TODO: Initialize to an appropriate value
@@ -207,7 +207,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Comment
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void CommentTest()
         //{
         //    int Id = 0; // TODO: Initialize to an appropriate value
@@ -223,7 +223,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for CreateDate
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void CreateDateTest()
         //{
         //    int Id = 0; // TODO: Initialize to an appropriate value
@@ -236,7 +236,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Id
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void IdTest()
         //{
         //    int Id = 0; // TODO: Initialize to an appropriate value
@@ -249,7 +249,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Parent
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ParentTest()
         //{
         //    int Id = 0; // TODO: Initialize to an appropriate value
@@ -265,7 +265,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for RelType
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void RelTypeTest()
         //{
         //    int Id = 0; // TODO: Initialize to an appropriate value
@@ -283,26 +283,26 @@ namespace umbraco.Test
         // 
         //You can use the following additional attributes as you write your tests:
         //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
+        //Use TestFixtureSetUp to run code before running the first test in the class
+        //[TestFixtureSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
         //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
+        //Use TestFixtureTearDown to run code after all tests in a class have run
+        //[TestFixtureTearDown]
         //public static void MyClassCleanup()
         //{
         //}
         //
-        //Use TestInitialize to run code before running each test
-        //[TestInitialize()]
+        //Use SetUp to run code before running each test
+        //[SetUp]
         //public void MyTestInitialize()
         //{
         //}
         //
         //Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
+        //[TearDown]
         //public void MyTestCleanup()
         //{
         //}

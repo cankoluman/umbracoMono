@@ -96,7 +96,7 @@ namespace umbraco.IO
         public static string MapPath(string path, bool useHttpContext)
         {
             // Check if the path is already mapped
-            if (path.Length >= 2 && path[1] == Path.VolumeSeparatorChar)
+            if (path.Length >= 2 && path[0] == Path.VolumeSeparatorChar)
                 return path;
 
             if (useHttpContext)
@@ -127,7 +127,7 @@ namespace umbraco.IO
         //use a tilde character instead of the complete path
         public static string returnPath(string settingsKey, string standardPath, bool useTilde)
         {
-            string retval = ConfigurationManager.AppSettings[settingsKey];
+            string retval = ConfigurationManagerService.Instance.AppSettings[settingsKey];
 
             if (string.IsNullOrEmpty(retval))
                 retval = standardPath;

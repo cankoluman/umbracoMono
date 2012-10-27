@@ -1,5 +1,5 @@
 ﻿using umbraco.BusinessLogic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using umbraco.interfaces;
 using System.Collections.Generic;
@@ -14,14 +14,21 @@ namespace umbraco.Test
     ///This is a test class for ApplicationTest and is intended
     ///to contain all ApplicationTest Unit Tests
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class ApplicationTest
     {
 
-        /// <summary>
+		[TestFixtureSetUp]
+		public void InitTestFixture()
+		{
+			ConfigurationManagerService.ConfigManager = new ConfigurationManagerTest(SetUpUtilities.GetAppSettings());
+		}
+
+
+		/// <summary>
         /// Create a new application and delete it
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void Application_Make_New()
         {
             var name = Guid.NewGuid().ToString("N");
@@ -40,7 +47,7 @@ namespace umbraco.Test
         /// Creates a new user, assigns the user to existing application, 
         /// then deletes the user
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void Application_Create_New_User_Assign_Application_And_Delete_User()
         {
             var name = Guid.NewGuid().ToString("N");
@@ -55,19 +62,19 @@ namespace umbraco.Test
             //assign the app
             user.addApplication(app.alias);
             //ensure it's added
-            Assert.AreEqual<int>(1, user.Applications.Where(x => x.alias == app.alias).Count());
+            Assert.AreEqual(1, user.Applications.Where(x => x.alias == app.alias).Count());
 
             //delete the user
             user.delete();
 
             //make sure the assigned applications are gone
-            Assert.AreEqual<int>(0, user.Applications.Where(x => x.alias == name).Count());
+            Assert.AreEqual(0, user.Applications.Where(x => x.alias == name).Count());
         }
 
         /// <summary>
         /// create a new application and assigne an new user and deletes the application making sure the assignments are removed
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void Application_Make_New_Assign_User_And_Delete()
         {
             var name = Guid.NewGuid().ToString("N");
@@ -85,13 +92,13 @@ namespace umbraco.Test
             //assign the app
             user.addApplication(app.alias);
             //ensure it's added
-            Assert.AreEqual<int>(1, user.Applications.Where(x => x.alias == app.alias).Count());
+            Assert.AreEqual(1, user.Applications.Where(x => x.alias == app.alias).Count());
 
             //delete the app
             app.Delete();
 
             //make sure the assigned applications are gone
-            Assert.AreEqual<int>(0, user.Applications.Where(x => x.alias == name).Count());
+            Assert.AreEqual(0, user.Applications.Where(x => x.alias == name).Count());
         }
 
         #region Tests to write
@@ -100,7 +107,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Application Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ApplicationConstructorTest()
         //{
         //    string name = string.Empty; // TODO: Initialize to an appropriate value
@@ -113,7 +120,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Application Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ApplicationConstructorTest1()
         //{
         //    Application target = new Application();
@@ -123,7 +130,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Delete
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void DeleteTest()
         //{
         //    Application target = new Application(); // TODO: Initialize to an appropriate value
@@ -136,7 +143,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for MakeNew
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MakeNewTest1()
         //{
         //    string name = string.Empty; // TODO: Initialize to an appropriate value
@@ -149,7 +156,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for RegisterIApplications
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void RegisterIApplicationsTest()
         //{
         //    Application.RegisterIApplications();
@@ -159,7 +166,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for getAll
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void getAllTest()
         //{
         //    List<Application> expected = null; // TODO: Initialize to an appropriate value
@@ -172,7 +179,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for getByAlias
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void getByAliasTest()
         //{
         //    string appAlias = string.Empty; // TODO: Initialize to an appropriate value
@@ -186,7 +193,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for SqlHelper
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SqlHelperTest()
         //{
         //    ISqlHelper actual;
@@ -197,7 +204,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for alias
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void aliasTest()
         //{
         //    Application target = new Application(); // TODO: Initialize to an appropriate value
@@ -212,7 +219,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for icon
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void iconTest()
         //{
         //    Application target = new Application(); // TODO: Initialize to an appropriate value
@@ -227,7 +234,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for name
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void nameTest()
         //{
         //    Application target = new Application(); // TODO: Initialize to an appropriate value
@@ -244,30 +251,37 @@ namespace umbraco.Test
         // 
         //You can use the following additional attributes as you write your tests:
         //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
+        //Use TestFixtureSetUp to run code before running the first test in the class
+        //[TestFixtureSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
         //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
+        //Use TestFixtureTearDown to run code after all tests in a class have run
+        //[TestFixtureTearDown]
         //public static void MyClassCleanup()
         //{
         //}
         //
-        //Use TestInitialize to run code before running each test
-        //[TestInitialize()]
+        //Use SetUp to run code before running each test
+        //[SetUp]
         //public void MyTestInitialize()
         //{
         //}
         //
         //Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
+        //[TearDown]
         //public void MyTestCleanup()
         //{
         //}
         //
         #endregion
+
+		[TestFixtureTearDown]
+		public void Dispose()
+		{
+			ConfigurationManagerService.ConfigManager = new ConfigurationManagerDefault();
+		}
+
     }
 }

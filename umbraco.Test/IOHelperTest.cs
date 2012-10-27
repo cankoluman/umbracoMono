@@ -1,5 +1,5 @@
 ﻿using umbraco.IO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 
 namespace umbraco.Test
@@ -10,7 +10,8 @@ namespace umbraco.Test
     ///This is a test class for IOHelperTest and is intended
     ///to contain all IOHelperTest Unit Tests
     ///</summary>
-    [TestClass()]
+    /*
+	[TestFixture]
     public class IOHelperTest
     {
 
@@ -37,26 +38,26 @@ namespace umbraco.Test
         // 
         //You can use the following additional attributes as you write your tests:
         //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
+        //Use TestFixtureSetUp to run code before running the first test in the class
+        //[TestFixtureSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
         //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
+        //Use TestFixtureTearDown to run code after all tests in a class have run
+        //[TestFixtureTearDown]
         //public static void MyClassCleanup()
         //{
         //}
         //
-        //Use TestInitialize to run code before running each test
-        //[TestInitialize()]
+        //Use SetUp to run code before running each test
+        //[SetUp]
         //public void MyTestInitialize()
         //{
         //}
         //
         //Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
+        //[TearDown]
         //public void MyTestCleanup()
         //{
         //}
@@ -67,7 +68,7 @@ namespace umbraco.Test
         /// <summary>
         ///A test for MapPath verifying that HttpContext method (which includes vdirs) matches non-HttpContext method
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void IOHelper_MapPathTestVDirTraversal()
         {
             //System.Diagnostics.Debugger.Break();
@@ -91,4 +92,5 @@ namespace umbraco.Test
             Assert.AreEqual(IOHelper.MapPath(SystemDirectories.Xslt, true), IOHelper.MapPath(SystemDirectories.Xslt, false));
         }
     }
+    */
 }

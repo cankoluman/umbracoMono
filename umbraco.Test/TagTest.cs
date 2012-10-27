@@ -1,5 +1,5 @@
 ﻿using umbraco.cms.businesslogic.Tags;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using umbraco.cms.businesslogic.web;
 using System.Collections.Generic;
@@ -15,23 +15,23 @@ namespace umbraco.Test
     ///This is a test class for TagTest and is intended
     ///to contain all TagTest Unit Tests
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class TagTest
     {
 
         /// <summary>
         /// Create a new tag and delete it
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void Tag_Make_New()
         {
             var t = Tag.AddTag(Guid.NewGuid().ToString("N"), Guid.NewGuid().ToString("N"));
             Assert.IsTrue(t > 0); //id should be greater than zero
-            Assert.AreEqual<int>(1, Tag.GetTags().Where(x => x.Id == t).Count());
+            Assert.AreEqual(1, Tag.GetTags().Where(x => x.Id == t).Count());
 
             Tag.RemoveTag(t);
             //make sure it's gone
-            Assert.AreEqual<int>(0, Tag.GetTags().Where(x => x.Id == t).Count());
+            Assert.AreEqual(0, Tag.GetTags().Where(x => x.Id == t).Count());
          
         }
 
@@ -39,37 +39,37 @@ namespace umbraco.Test
         /// <summary>
         /// Creates a new tag and a new document, assigns the tag to the document and deletes the document
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void Tag_Make_New_Assign_Node_Delete_Node()
         {
 
             var t = Tag.AddTag(Guid.NewGuid().ToString("N"), Guid.NewGuid().ToString("N"));
             Assert.IsTrue(t > 0); //id should be greater than zero
-            Assert.AreEqual<int>(1, Tag.GetTags().Where(x => x.Id == t).Count());
+            Assert.AreEqual(1, Tag.GetTags().Where(x => x.Id == t).Count());
 
             var dt = DocumentType.GetAllAsList().First();
             var doc = Document.MakeNew(Guid.NewGuid().ToString("N"), dt, m_User, -1);
 
             Tag.AssociateTagToNode(doc.Id, t);
             //make sure it's associated
-            Assert.AreEqual<int>(1, Tag.GetTags(doc.Id).Count());
+            Assert.AreEqual(1, Tag.GetTags(doc.Id).Count());
 
             //delete the doc
             doc.delete(true);
 
             //make sure it's not related any more
-            Assert.AreEqual<int>(0, Tag.GetTags(doc.Id).Count());
+            Assert.AreEqual(0, Tag.GetTags(doc.Id).Count());
 
             Tag.RemoveTag(t);
             //make sure it's gone
-            Assert.AreEqual<int>(0, Tag.GetTags().Where(x => x.Id == t).Count());
+            Assert.AreEqual(0, Tag.GetTags().Where(x => x.Id == t).Count());
 
         }
 
         /// <summary>
         /// Test the AddTagsToNode method and deletes it
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void Tag_Add_Tags_To_Node()
         {
             var dt = DocumentType.GetAllAsList().First();
@@ -80,24 +80,24 @@ namespace umbraco.Test
 
             var tags = Tag.GetTags(doc.Id);
             //make sure they are there by document
-            Assert.AreEqual<int>(2, tags.Count());
+            Assert.AreEqual(2, tags.Count());
 
             //make sure they are there by group
-            Assert.AreEqual<int>(2, Tag.GetTags(grp).Count());
+            Assert.AreEqual(2, Tag.GetTags(grp).Count());
 
             //make sure they are there by both group and node
-            Assert.AreEqual<int>(2, Tag.GetTags(doc.Id, grp).Count());
+            Assert.AreEqual(2, Tag.GetTags(doc.Id, grp).Count());
 
             doc.delete(true);
 
             //make sure associations are gone
-            Assert.AreEqual<int>(0, Tag.GetTags(doc.Id).Count());
+            Assert.AreEqual(0, Tag.GetTags(doc.Id).Count());
 
             //delete the tags
             foreach (var t in tags)
             {
                 Tag.RemoveTag(t.Id);
-                Assert.AreEqual<int>(0, Tag.GetTags().Where(x => x.Id == t.Id).Count());
+                Assert.AreEqual(0, Tag.GetTags().Where(x => x.Id == t.Id).Count());
             }
         }
 
@@ -108,7 +108,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Tag Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void TagConstructorTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -122,7 +122,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Tag Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void TagConstructorTest1()
         //{
         //    Tag target = new Tag();
@@ -134,7 +134,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for AddTagsToNode
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void AddTagsToNodeTest()
         //{
         //    int nodeId = 0; // TODO: Initialize to an appropriate value
@@ -147,7 +147,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for AssociateTagToNode
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void AssociateTagToNodeTest()
         //{
         //    int nodeId = 0; // TODO: Initialize to an appropriate value
@@ -159,7 +159,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetDocumentsWithTags
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetDocumentsWithTagsTest()
         //{
         //    string tags = string.Empty; // TODO: Initialize to an appropriate value
@@ -173,7 +173,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetNodesWithTags
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetNodesWithTagsTest()
         //{
         //    string tags = string.Empty; // TODO: Initialize to an appropriate value
@@ -187,7 +187,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetTagId
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetTagIdTest()
         //{
         //    string tag = string.Empty; // TODO: Initialize to an appropriate value
@@ -202,7 +202,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetTags
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetTagsTest()
         //{
         //    string group = string.Empty; // TODO: Initialize to an appropriate value
@@ -216,7 +216,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetTags
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetTagsTest1()
         //{
         //    IEnumerable<Tag> expected = null; // TODO: Initialize to an appropriate value
@@ -229,7 +229,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetTags
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetTagsTest2()
         //{
         //    int nodeId = 0; // TODO: Initialize to an appropriate value
@@ -243,7 +243,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetTags
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetTagsTest3()
         //{
         //    int nodeId = 0; // TODO: Initialize to an appropriate value
@@ -258,7 +258,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for RemoveTagFromNode
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void RemoveTagFromNodeTest()
         //{
         //    int nodeId = 0; // TODO: Initialize to an appropriate value
@@ -271,7 +271,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for RemoveTagsFromNode
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void RemoveTagsFromNodeTest()
         //{
         //    int nodeId = 0; // TODO: Initialize to an appropriate value
@@ -283,7 +283,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for RemoveTagsFromNode
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void RemoveTagsFromNodeTest1()
         //{
         //    int nodeId = 0; // TODO: Initialize to an appropriate value
@@ -294,7 +294,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Group
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GroupTest()
         //{
         //    Tag target = new Tag(); // TODO: Initialize to an appropriate value
@@ -309,7 +309,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Id
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void IdTest()
         //{
         //    Tag target = new Tag(); // TODO: Initialize to an appropriate value
@@ -324,7 +324,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for TagCaption
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void TagCaptionTest()
         //{
         //    Tag target = new Tag(); // TODO: Initialize to an appropriate value
@@ -341,26 +341,26 @@ namespace umbraco.Test
         // 
         //You can use the following additional attributes as you write your tests:
         //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
+        //Use TestFixtureSetUp to run code before running the first test in the class
+        //[TestFixtureSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
         //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
+        //Use TestFixtureTearDown to run code after all tests in a class have run
+        //[TestFixtureTearDown]
         //public static void MyClassCleanup()
         //{
         //}
         //
-        //Use TestInitialize to run code before running each test
-        //[TestInitialize()]
+        //Use SetUp to run code before running each test
+        //[SetUp]
         //public void MyTestInitialize()
         //{
         //}
         //
         //Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
+        //[TearDown]
         //public void MyTestCleanup()
         //{
         //}

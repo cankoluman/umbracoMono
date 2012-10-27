@@ -220,7 +220,7 @@ namespace umbraco.presentation.umbraco.webservices
 
         private int GetMaxRequestLength()
         {
-            var appSetting = Convert.ToInt32(ConfigurationManager.AppSettings["DesktopMediaUploaderMaxRequestLength"]);
+            var appSetting = Convert.ToInt32(ConfigurationManagerService.Instance.AppSettings["DesktopMediaUploaderMaxRequestLength"]);
             if (appSetting > 0)
                 return appSetting;
 
@@ -239,7 +239,7 @@ namespace umbraco.presentation.umbraco.webservices
                 }
             }
 
-            var httpRuntime = ConfigurationManager.GetSection("system.web/httpRuntime") as HttpRuntimeSection;
+            var httpRuntime = ConfigurationManagerService.Instance.GetSection("system.web/httpRuntime") as HttpRuntimeSection;
             if (httpRuntime != null)
                 return httpRuntime.MaxRequestLength;
 

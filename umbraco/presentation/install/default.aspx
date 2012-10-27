@@ -1,4 +1,7 @@
 <%@ Page Language="c#" CodeBehind="default.aspx.cs" AutoEventWireup="True" Inherits="umbraco.presentation.install._default" EnableViewState="False" %>
+<%@ Import Namespace="System.Web.Configuration" %>
+<%@ Import Namespace="System.Text" %>
+<%@ Import Namespace="System.Drawing" %> 
 <%@ Register TagPrefix="umb" Namespace="ClientDependency.Core.Controls" Assembly="ClientDependency.Core" %>
 
 <%@ Register Src="~/install/Title.ascx" TagPrefix="umb1" TagName="PageTitle" %>
@@ -7,13 +10,16 @@
 <html>
 <head runat="server">
 
-	<meta charset="utf-8">
+
+
+
+	<meta charset="utf-8" />
 
 	<umb1:PageTitle runat="server" />
 
-	<link media="all" rel="stylesheet" href="../umbraco_client/installer/css/jquery-ui-1.8.6.custom.css">
+	<link media="all" rel="stylesheet" href="../umbraco_client/installer/css/jquery-ui-1.8.6.custom.css" />
 	<link media="all" type="text/css" rel="stylesheet" href="../umbraco_client/installer/css/reset.css" />
-	<link media="all" rel="stylesheet" href="../umbraco_client/installer/css/all.css">
+	<link media="all" rel="stylesheet" href="../umbraco_client/installer/css/all.css" />
 	<link media="all" type="text/css" rel="stylesheet" href="../umbraco_client/installer/css/form.css" />
 
 	<script src="../umbraco_client/installer/js/jquery.1.4.4.js" type="text/javascript"></script>
@@ -34,11 +40,10 @@
 
    
 	<form runat="server">
-	<asp:ScriptManager ID="ScriptManager1"  EnablePageMethods="true" runat="server"/>
+	<asp:ScriptManager ID="ScriptManager1" EnablePageMethods="true" runat="server"/>
     <!-- all page -->
 
 	<section id="wrapper">
-
 		<div class="wholder">
 
 			<!-- header -->

@@ -1,5 +1,5 @@
 ﻿using umbraco.cms.businesslogic.member;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections;
 using umbraco.BusinessLogic;
@@ -14,14 +14,14 @@ namespace umbraco.Test
     ///This is a test class for MemberTest and is intended
     ///to contain all MemberTest Unit Tests
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class MemberTest
     {
 
         /// <summary>
         /// Creates a new member type and member, then deletes it
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void Member_Make_New()
         {
            
@@ -29,7 +29,7 @@ namespace umbraco.Test
             var m = Member.MakeNew("TEST" + Guid.NewGuid().ToString("N"),
                 "TEST" + Guid.NewGuid().ToString("N") + "@test.com", mt, m_User);
 
-            Assert.IsInstanceOfType(m, typeof(Member));
+            Assert.IsInstanceOf<Member>(m);
             Assert.IsTrue(m.Id > 0);
 
             m.delete();
@@ -43,7 +43,7 @@ namespace umbraco.Test
         ///Creates a new member type, member group and a member, then adds the member to the group. 
         ///then deletes the data in order for cleanup
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void Member_Add_To_Group()
         {
             var mt = MemberType.MakeNew(m_User, "TEST" + Guid.NewGuid().ToString("N"));
@@ -51,7 +51,7 @@ namespace umbraco.Test
                 "TEST" + Guid.NewGuid().ToString("N") + "@test.com", mt, m_User);
 
             var mg = MemberGroup.MakeNew("TEST" + Guid.NewGuid().ToString("N"), m_User);
-            Assert.IsInstanceOfType(mg, typeof(MemberGroup));
+            Assert.IsInstanceOf<MemberGroup>(mg);
             Assert.IsTrue(mg.Id > 0);
 
             //add the member to the group
@@ -59,7 +59,7 @@ namespace umbraco.Test
 
             //ensure they are added
             Assert.AreEqual(1, m.Groups.Count);
-            Assert.AreEqual<int>(mg.Id, ((MemberGroup)m.Groups.Cast<DictionaryEntry>().First().Value).Id);
+            Assert.AreEqual(mg.Id, ((MemberGroup)m.Groups.Cast<DictionaryEntry>().First().Value).Id);
 
             //remove the grup association
             m.RemoveGroup(mg.Id);
@@ -85,7 +85,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Member Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MemberConstructorTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -97,7 +97,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Member Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MemberConstructorTest1()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -109,7 +109,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Member Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MemberConstructorTest2()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -120,7 +120,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Member Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MemberConstructorTest3()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -133,7 +133,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for AddMemberToCache
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void AddMemberToCacheTest()
         //{
         //    Member m = null; // TODO: Initialize to an appropriate value
@@ -144,7 +144,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for AddMemberToCache
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void AddMemberToCacheTest1()
         //{
         //    Member m = null; // TODO: Initialize to an appropriate value
@@ -157,7 +157,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for CachedMembers
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void CachedMembersTest()
         //{
         //    Hashtable expected = null; // TODO: Initialize to an appropriate value
@@ -170,7 +170,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ChangePassword
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ChangePasswordTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -183,7 +183,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ClearMemberFromClient
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ClearMemberFromClientTest()
         //{
         //    int NodeId = 0; // TODO: Initialize to an appropriate value
@@ -194,7 +194,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ClearMemberFromClient
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ClearMemberFromClientTest1()
         //{
         //    Member m = null; // TODO: Initialize to an appropriate value
@@ -205,7 +205,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for CurrentMemberId
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void CurrentMemberIdTest()
         //{
         //    int expected = 0; // TODO: Initialize to an appropriate value
@@ -218,7 +218,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for DeleteFromType
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void DeleteFromTypeTest()
         //{
         //    MemberType dt = null; // TODO: Initialize to an appropriate value
@@ -229,7 +229,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetCurrentMember
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetCurrentMemberTest()
         //{
         //    Member expected = null; // TODO: Initialize to an appropriate value
@@ -242,7 +242,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetMemberByName
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetMemberByNameTest()
         //{
         //    string usernameToMatch = string.Empty; // TODO: Initialize to an appropriate value
@@ -257,7 +257,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetMemberFromCache
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetMemberFromCacheTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -271,7 +271,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetMemberFromEmail
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetMemberFromEmailTest()
         //{
         //    string email = string.Empty; // TODO: Initialize to an appropriate value
@@ -285,7 +285,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetMemberFromLoginAndEncodedPassword
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetMemberFromLoginAndEncodedPasswordTest()
         //{
         //    string loginName = string.Empty; // TODO: Initialize to an appropriate value
@@ -300,7 +300,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetMemberFromLoginName
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetMemberFromLoginNameTest()
         //{
         //    string loginName = string.Empty; // TODO: Initialize to an appropriate value
@@ -314,7 +314,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetMemberFromLoginNameAndPassword
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetMemberFromLoginNameAndPasswordTest()
         //{
         //    string loginName = string.Empty; // TODO: Initialize to an appropriate value
@@ -329,7 +329,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for InUmbracoMemberMode
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void InUmbracoMemberModeTest()
         //{
         //    bool expected = false; // TODO: Initialize to an appropriate value
@@ -342,7 +342,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for IsLoggedOn
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void IsLoggedOnTest()
         //{
         //    bool expected = false; // TODO: Initialize to an appropriate value
@@ -355,7 +355,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for IsMember
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void IsMemberTest()
         //{
         //    string loginName = string.Empty; // TODO: Initialize to an appropriate value
@@ -369,7 +369,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for IsUsingUmbracoRoles
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void IsUsingUmbracoRolesTest()
         //{
         //    bool expected = false; // TODO: Initialize to an appropriate value
@@ -384,7 +384,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for MakeNew
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MakeNewTest1()
         //{
         //    string Name = string.Empty; // TODO: Initialize to an appropriate value
@@ -400,7 +400,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for RemoveGroup
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void RemoveGroupTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -413,7 +413,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for RemoveMemberFromCache
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void RemoveMemberFromCacheTest()
         //{
         //    Member m = null; // TODO: Initialize to an appropriate value
@@ -424,7 +424,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for RemoveMemberFromCache
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void RemoveMemberFromCacheTest1()
         //{
         //    int NodeId = 0; // TODO: Initialize to an appropriate value
@@ -435,7 +435,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Save
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SaveTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -447,7 +447,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ToXml
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ToXmlTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -464,7 +464,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for XmlGenerate
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void XmlGenerateTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -479,7 +479,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for getAllOtherMembers
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void getAllOtherMembersTest()
         //{
         //    Member[] expected = null; // TODO: Initialize to an appropriate value
@@ -492,7 +492,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for getMemberFromFirstLetter
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void getMemberFromFirstLetterTest()
         //{
         //    char letter = '\0'; // TODO: Initialize to an appropriate value
@@ -506,7 +506,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Email
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void EmailTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -522,7 +522,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetAll
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetAllTest()
         //{
         //    Member[] actual;
@@ -533,7 +533,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Groups
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GroupsTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -546,7 +546,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for LoginName
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void LoginNameTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -562,7 +562,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Password
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void PasswordTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -578,7 +578,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Text
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void TextTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -597,26 +597,26 @@ namespace umbraco.Test
         // 
         //You can use the following additional attributes as you write your tests:
         //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
+        //Use TestFixtureSetUp to run code before running the first test in the class
+        //[TestFixtureSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
         //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
+        //Use TestFixtureTearDown to run code after all tests in a class have run
+        //[TestFixtureTearDown]
         //public static void MyClassCleanup()
         //{
         //}
         //
-        //Use TestInitialize to run code before running each test
-        //[TestInitialize()]
+        //Use SetUp to run code before running each test
+        //[SetUp]
         //public void MyTestInitialize()
         //{
         //}
         //
         //Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
+        //[TearDown]
         //public void MyTestCleanup()
         //{
         //}

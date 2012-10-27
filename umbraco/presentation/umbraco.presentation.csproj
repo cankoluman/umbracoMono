@@ -4,16 +4,12 @@
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{651E1350-91B6-44B7-BD60-7207006D7003}</ProjectGuid>
-    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <ProjectTypeGuids>{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ApplicationIcon>
-    </ApplicationIcon>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
     <AssemblyName>umbraco</AssemblyName>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
     <DefaultClientScript>JScript</DefaultClientScript>
     <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
     <DefaultTargetSchema>IE50</DefaultTargetSchema>
@@ -21,8 +17,6 @@
     <OutputType>Library</OutputType>
     <RootNamespace>umbraco.presentation</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <StartupObject>
-    </StartupObject>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -36,14 +30,10 @@
     <SccProvider>
     </SccProvider>
     <OldToolsVersion>3.5</OldToolsVersion>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\</OutputPath>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
-    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -51,78 +41,36 @@
     </DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
-    <NoStdLib>false</NoStdLib>
-    <NoWarn>
-    </NoWarn>
     <Optimize>false</Optimize>
     <RegisterForComInterop>false</RegisterForComInterop>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningLevel>4</WarningLevel>
     <DebugType>full</DebugType>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <StartupObject />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\</OutputPath>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <BaseAddress>285212672</BaseAddress>
-    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
     <DefineConstants>TRACE</DefineConstants>
     <DocumentationFile>bin\umbraco.xml</DocumentationFile>
-    <DebugSymbols>false</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
-    <NoStdLib>false</NoStdLib>
-    <NoWarn>
-    </NoWarn>
     <Optimize>true</Optimize>
     <RegisterForComInterop>false</RegisterForComInterop>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <WarningLevel>4</WarningLevel>
     <DebugType>none</DebugType>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ClientDependency.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\foreign dlls\ClientDependency.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="CookComputing.XmlRpcV2, Version=2.2.0.4, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\foreign dlls\CookComputing.XmlRpcV2.dll</HintPath>
-    </Reference>
-    <Reference Include="Examine, Version=0.9.0.0, Culture=en-AU, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\foreign dlls\Examine.dll</HintPath>
-    </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.4.0.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\foreign dlls\HtmlAgilityPack.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=0.83.1.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\foreign dlls\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
-    <Reference Include="Lucene.Net, Version=2.9.2.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>C:\Users\Shannon\Documents\Visual Studio 2008\Projects\Umbraco\Branch-4.1\foreign dlls\Lucene.Net.dll</HintPath>
-    </Reference>
-    <Reference Include="Our.Umbraco.uGoLive">
-      <HintPath>..\..\foreign dlls\Our.Umbraco.uGoLive.dll</HintPath>
-    </Reference>
-    <Reference Include="Our.Umbraco.uGoLive.47x">
-      <HintPath>..\..\foreign dlls\Our.Umbraco.uGoLive.47x.dll</HintPath>
-    </Reference>
-    <Reference Include="Our.Umbraco.uGoLive.Checks">
-      <HintPath>..\..\foreign dlls\Our.Umbraco.uGoLive.Checks.dll</HintPath>
-    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
-    <Reference Include="System.configuration" />
     <Reference Include="System.Data">
       <Name>System.Data</Name>
     </Reference>
@@ -140,7 +88,6 @@
     </Reference>
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.DynamicData" />
-    <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Extensions.Design" />
     <Reference Include="System.Web.Services">
@@ -150,14 +97,6 @@
       <Name>System.XML</Name>
     </Reference>
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="UmbracoExamine, Version=0.9.0.0, Culture=en-AU, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\foreign dlls\UmbracoExamine.dll</HintPath>
-    </Reference>
-    <Reference Include="UrlRewritingNet.UrlRewriter, Version=2.0.60829.1, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\foreign dlls\UrlRewritingNet.UrlRewriter.dll</HintPath>
-    </Reference>
     <ProjectReference Include="..\..\components\macroRenderings\umbraco.macroRenderings.csproj">
       <Project>{52AB8F1F-FB76-4E8C-885F-0747B6CE71EC}</Project>
       <Name>umbraco.macroRenderings</Name>
@@ -169,7 +108,6 @@
     <ProjectReference Include="..\businesslogic\umbraco.businesslogic.csproj">
       <Name>umbraco.businesslogic</Name>
       <Project>{E469A9CE-1BEC-423F-AC44-713CD72457EA}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
     </ProjectReference>
     <ProjectReference Include="..\cms\umbraco.cms.csproj">
       <Project>{CCD75EC3-63DB-4184-B49D-51C1DD337230}</Project>
@@ -182,12 +120,36 @@
     <ProjectReference Include="..\interfaces\umbraco.interfaces.csproj">
       <Name>umbraco.interfaces</Name>
       <Project>{511F6D8D-7717-440A-9A57-A507E9A8B27F}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
     </ProjectReference>
     <ProjectReference Include="..\providers\umbraco.providers.csproj">
       <Project>{D7636876-0756-43CB-A192-138C6F0D5E42}</Project>
       <Name>umbraco.providers</Name>
     </ProjectReference>
+    <Reference Include="CookComputing.XmlRpcV2">
+      <HintPath>..\..\foreign dlls\CookComputing.XmlRpcV2.dll</HintPath>
+    </Reference>
+    <Reference Include="Examine">
+      <HintPath>..\..\foreign dlls\Examine.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\..\foreign dlls\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\foreign dlls\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="UmbracoExamine">
+      <HintPath>..\..\foreign dlls\UmbracoExamine.dll</HintPath>
+    </Reference>
+    <Reference Include="UrlRewritingNet.UrlRewriter">
+      <HintPath>..\..\foreign dlls\UrlRewritingNet.UrlRewriter.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net">
+      <HintPath>..\..\foreign dlls\Lucene.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="ClientDependency.Core">
+      <HintPath>..\..\foreign dlls\ClientDependency.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\LinqToUmbraco\src\umbraco.Linq\Solution Items\SolutionInfo.cs">
@@ -1685,7 +1647,6 @@
     <Content Include="umbraco_client\splitbutton\images\splitbutton_hover.png" />
     <Content Include="umbraco_client\splitbutton\images\splitbutton_downarrow.png" />
     <Content Include="umbraco_client\splitbutton\splitbutton.css" />
-    <Content Include="umbraco_client\Installer\images\bg-inp-big.png" />
     <Content Include="umbraco_client\modal\jquery.simplemodal.1.4.1.custom.js" />
     <Content Include="umbraco_client\tinymce3\plugins\advhr\css\advhr.css" />
     <Content Include="umbraco_client\tinymce3\plugins\advhr\editor_plugin.js" />
@@ -1952,103 +1913,6 @@
     <Content Include="umbraco_client\tinymce3\plugins\xhtmlxtras\langs\no_dlg.js" />
     <Content Include="umbraco_client\tinymce3\plugins\xhtmlxtras\langs\sv_dlg.js" />
     <Content Include="web.config.INDIGO64SSD.xslt" />
-    <Content Include="umbraco_client\Installer\css\all.css" />
-    <Content Include="umbraco_client\Installer\css\form.css" />
-    <Content Include="umbraco_client\Installer\css\jquery-ui-1.8.6.custom.css" />
-    <Content Include="umbraco_client\Installer\css\lt7.css" />
-    <Content Include="umbraco_client\Installer\css\reset.css" />
-    <Content Include="umbraco_client\Installer\images\bg-bhuiness-cl.gif" />
-    <Content Include="umbraco_client\Installer\images\bg-bhuiness-cr.gif" />
-    <Content Include="umbraco_client\Installer\images\bg-bhuiness.jpg" />
-    <Content Include="umbraco_client\Installer\images\bg-blog-cl.gif" />
-    <Content Include="umbraco_client\Installer\images\bg-blog-cr.gif" />
-    <Content Include="umbraco_client\Installer\images\bg-blog.jpg" />
-    <Content Include="umbraco_client\Installer\images\bg-drop-b.png" />
-    <Content Include="umbraco_client\Installer\images\bg-drop-c.gif" />
-    <Content Include="umbraco_client\Installer\images\bg-drop-t.png" />
-    <Content Include="umbraco_client\Installer\images\bg-header.png" />
-    <Content Include="umbraco_client\Installer\images\bg-img-ie.png" />
-    <Content Include="umbraco_client\Installer\images\bg-img.png" />
-    <Content Include="umbraco_client\Installer\images\bg-inp-error.png" />
-    <Content Include="umbraco_client\Installer\images\bg-inp.png" />
-    <Content Include="umbraco_client\Installer\images\bg-lightbox-b.png" />
-    <Content Include="umbraco_client\Installer\images\bg-lightbox-t.png" />
-    <Content Include="umbraco_client\Installer\images\bg-normal-cl.gif" />
-    <Content Include="umbraco_client\Installer\images\bg-normal-cr.gif" />
-    <Content Include="umbraco_client\Installer\images\bg-normal.jpg" />
-    <Content Include="umbraco_client\Installer\images\bg-paging-h.png" />
-    <Content Include="umbraco_client\Installer\images\bg-paging.png" />
-    <Content Include="umbraco_client\Installer\images\bg-personal-cl.gif" />
-    <Content Include="umbraco_client\Installer\images\bg-personal-cr.gif" />
-    <Content Include="umbraco_client\Installer\images\bg-personal.jpg" />
-    <Content Include="umbraco_client\Installer\images\bg-simple-cl.gif" />
-    <Content Include="umbraco_client\Installer\images\bg-simple-cr.gif" />
-    <Content Include="umbraco_client\Installer\images\bg-simple.jpg" />
-    <Content Include="umbraco_client\Installer\images\btn-accept.png" />
-    <Content Include="umbraco_client\Installer\images\btn-blog.png" />
-    <Content Include="umbraco_client\Installer\images\btn-buisness.png" />
-    <Content Include="umbraco_client\Installer\images\btn-close.png" />
-    <Content Include="umbraco_client\Installer\images\btn-continue.png" />
-    <Content Include="umbraco_client\Installer\images\btn-create-hover.png" />
-    <Content Include="umbraco_client\Installer\images\btn-create.png" />
-    <Content Include="umbraco_client\Installer\images\btn-get.png" />
-    <Content Include="umbraco_client\Installer\images\btn-install-gal.png" />
-    <Content Include="umbraco_client\Installer\images\btn-install-hover.png" />
-    <Content Include="umbraco_client\Installer\images\btn-install.png" />
-    <Content Include="umbraco_client\Installer\images\btn-next.png" />
-    <Content Include="umbraco_client\Installer\images\btn-no-thanks.png" />
-    <Content Include="umbraco_client\Installer\images\btn-no.png" />
-    <Content Include="umbraco_client\Installer\images\btn-personal.png" />
-    <Content Include="umbraco_client\Installer\images\btn-prev.png" />
-    <Content Include="umbraco_client\Installer\images\btn-preview-web.png" />
-    <Content Include="umbraco_client\Installer\images\btn-preview.png" />
-    <Content Include="umbraco_client\Installer\images\btn-set.png" />
-    <Content Include="umbraco_client\Installer\images\btn-simple.png" />
-    <Content Include="umbraco_client\Installer\images\btn-yes.png" />
-    <Content Include="umbraco_client\Installer\images\bul1.png" />
-    <Content Include="umbraco_client\Installer\images\bul2.gif" />
-    <Content Include="umbraco_client\Installer\images\bul3.png" />
-    <Content Include="umbraco_client\Installer\images\bul4.gif" />
-    <Content Include="umbraco_client\Installer\images\ico-invalidaing.png" />
-    <Content Include="umbraco_client\Installer\images\ico-validaing.png" />
-    <Content Include="umbraco_client\Installer\images\img01.jpg" />
-    <Content Include="umbraco_client\Installer\images\img02.jpg" />
-    <Content Include="umbraco_client\Installer\images\img03.jpg" />
-    <Content Include="umbraco_client\Installer\images\img04.jpg" />
-    <Content Include="umbraco_client\Installer\images\img05.jpg" />
-    <Content Include="umbraco_client\Installer\images\img06.jpg" />
-    <Content Include="umbraco_client\Installer\images\img07.jpg" />
-    <Content Include="umbraco_client\Installer\images\img08.jpg" />
-    <Content Include="umbraco_client\Installer\images\img09.jpg" />
-    <Content Include="umbraco_client\Installer\images\img10.jpg" />
-    <Content Include="umbraco_client\Installer\images\img11.jpg" />
-    <Content Include="umbraco_client\Installer\images\loader.gif" />
-    <Content Include="umbraco_client\Installer\images\logo.gif" />
-    <Content Include="umbraco_client\Installer\images\none.gif" />
-    <Content Include="umbraco_client\Installer\images\pbar-ani.gif" />
-    <Content Include="umbraco_client\Installer\images\select-button.png" />
-    <Content Include="umbraco_client\Installer\images\select-center.png" />
-    <Content Include="umbraco_client\Installer\images\select-left-2.png" />
-    <Content Include="umbraco_client\Installer\images\select-left.png" />
-    <Content Include="umbraco_client\Installer\images\sep1.png" />
-    <Content Include="umbraco_client\Installer\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
-    <Content Include="umbraco_client\Installer\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
-    <Content Include="umbraco_client\Installer\images\ui-bg_flat_10_000000_40x100.png" />
-    <Content Include="umbraco_client\Installer\images\ui-bg_glass_100_f6f6f6_1x400.png" />
-    <Content Include="umbraco_client\Installer\images\ui-bg_glass_100_fdf5ce_1x400.png" />
-    <Content Include="umbraco_client\Installer\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="umbraco_client\Installer\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
-    <Content Include="umbraco_client\Installer\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
-    <Content Include="umbraco_client\Installer\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
-    <Content Include="umbraco_client\Installer\images\ui-icons_222222_256x240.png" />
-    <Content Include="umbraco_client\Installer\images\ui-icons_228ef1_256x240.png" />
-    <Content Include="umbraco_client\Installer\images\ui-icons_ef8c08_256x240.png" />
-    <Content Include="umbraco_client\Installer\images\ui-icons_ffd27a_256x240.png" />
-    <Content Include="umbraco_client\Installer\images\ui-icons_ffffff_256x240.png" />
-    <Content Include="umbraco_client\Installer\js\ie-png.js" />
-    <Content Include="umbraco_client\Installer\js\jquery.1.4.4.js" />
-    <Content Include="umbraco_client\Installer\js\jquery.main.js" />
-    <Content Include="umbraco_client\Installer\js\jquery.ui.selectmenu.js" />
     <Content Include="install\steps\database.ascx" />
     <Content Include="install\steps\renaming.ascx" />
     <Content Include="install\steps\skinning.ascx" />
@@ -2523,9 +2387,6 @@
     <Content Include="umbraco\images\editor\underline_tw.gif" />
     <Content Include="umbraco\images\editor\unlink.gif" />
     <Content Include="umbraco\images\editor\visualaid.gif" />
-    <Content Include="install\steps\defaultUser.ascx">
-      <SubType>UserControl</SubType>
-    </Content>
     <Content Include="install\steps\theend.ascx">
       <SubType>UserControl</SubType>
     </Content>
@@ -2946,14 +2807,6 @@
     <Content Include="umbraco_client\menuicon\style.css" />
     <Content Include="umbraco_client\modal\modal.js" />
     <Content Include="umbraco_client\modal\style.css" />
-    <Content Include="umbraco_client\Panel\images\panel_bg.gif" />
-    <Content Include="umbraco_client\Panel\images\panel_boxfooter_bg.gif" />
-    <Content Include="umbraco_client\Panel\images\panel_boxfooter_statusBar_bg.gif" />
-    <Content Include="umbraco_client\Panel\images\panel_boxfooter_statusBar_h2_bg.gif" />
-    <Content Include="umbraco_client\Panel\images\panel_boxhead_bg.gif" />
-    <Content Include="umbraco_client\Panel\images\panel_boxhead_h2_bg.gif" />
-    <Content Include="umbraco_client\Panel\javascript.js" />
-    <Content Include="umbraco_client\Panel\style.css" />
     <Content Include="umbraco_client\progressBar\images\container_left.gif" />
     <Content Include="umbraco_client\progressBar\images\container_right.gif" />
     <Content Include="umbraco_client\progressBar\images\indicator.gif" />
@@ -3216,6 +3069,115 @@
     <Content Include="web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="umbraco_client\panel\images\panel_bg.gif" />
+    <Content Include="umbraco_client\panel\images\panel_boxfooter_bg.gif" />
+    <Content Include="umbraco_client\panel\images\panel_boxfooter_statusBar_bg.gif" />
+    <Content Include="umbraco_client\panel\images\panel_boxfooter_statusBar_h2_bg.gif" />
+    <Content Include="umbraco_client\panel\images\panel_boxhead_bg.gif" />
+    <Content Include="umbraco_client\panel\images\panel_boxhead_h2_bg.gif" />
+    <Content Include="umbraco_client\panel\javascript.js" />
+    <Content Include="umbraco_client\panel\style.css" />
+    <Content Include="install\steps\defaultUser.ascx">
+      <SubType>UserControl</SubType>
+    </Content>
+    <Content Include="umbraco_client\installer\images\bg-inp-big.png" />
+    <Content Include="umbraco_client\installer\css\all.css" />
+    <Content Include="umbraco_client\installer\css\form.css" />
+    <Content Include="umbraco_client\installer\css\jquery-ui-1.8.6.custom.css" />
+    <Content Include="umbraco_client\installer\css\lt7.css" />
+    <Content Include="umbraco_client\installer\css\reset.css" />
+    <Content Include="umbraco_client\installer\images\bg-bhuiness-cl.gif" />
+    <Content Include="umbraco_client\installer\images\bg-bhuiness-cr.gif" />
+    <Content Include="umbraco_client\installer\images\bg-bhuiness.jpg" />
+    <Content Include="umbraco_client\installer\images\bg-blog-cl.gif" />
+    <Content Include="umbraco_client\installer\images\bg-blog-cr.gif" />
+    <Content Include="umbraco_client\installer\images\bg-blog.jpg" />
+    <Content Include="umbraco_client\installer\images\bg-drop-b.png" />
+    <Content Include="umbraco_client\installer\images\bg-drop-c.gif" />
+    <Content Include="umbraco_client\installer\images\bg-drop-t.png" />
+    <Content Include="umbraco_client\installer\images\bg-header.png" />
+    <Content Include="umbraco_client\installer\images\bg-img-ie.png" />
+    <Content Include="umbraco_client\installer\images\bg-img.png" />
+    <Content Include="umbraco_client\installer\images\bg-inp-error.png" />
+    <Content Include="umbraco_client\installer\images\bg-inp.png" />
+    <Content Include="umbraco_client\installer\images\bg-lightbox-b.png" />
+    <Content Include="umbraco_client\installer\images\bg-lightbox-t.png" />
+    <Content Include="umbraco_client\installer\images\bg-normal-cl.gif" />
+    <Content Include="umbraco_client\installer\images\bg-normal-cr.gif" />
+    <Content Include="umbraco_client\installer\images\bg-normal.jpg" />
+    <Content Include="umbraco_client\installer\images\bg-paging-h.png" />
+    <Content Include="umbraco_client\installer\images\bg-paging.png" />
+    <Content Include="umbraco_client\installer\images\bg-personal-cl.gif" />
+    <Content Include="umbraco_client\installer\images\bg-personal-cr.gif" />
+    <Content Include="umbraco_client\installer\images\bg-personal.jpg" />
+    <Content Include="umbraco_client\installer\images\bg-simple-cl.gif" />
+    <Content Include="umbraco_client\installer\images\bg-simple-cr.gif" />
+    <Content Include="umbraco_client\installer\images\bg-simple.jpg" />
+    <Content Include="umbraco_client\installer\images\btn-accept.png" />
+    <Content Include="umbraco_client\installer\images\btn-blog.png" />
+    <Content Include="umbraco_client\installer\images\btn-buisness.png" />
+    <Content Include="umbraco_client\installer\images\btn-close.png" />
+    <Content Include="umbraco_client\installer\images\btn-continue.png" />
+    <Content Include="umbraco_client\installer\images\btn-create-hover.png" />
+    <Content Include="umbraco_client\installer\images\btn-create.png" />
+    <Content Include="umbraco_client\installer\images\btn-get.png" />
+    <Content Include="umbraco_client\installer\images\btn-install-gal.png" />
+    <Content Include="umbraco_client\installer\images\btn-install-hover.png" />
+    <Content Include="umbraco_client\installer\images\btn-install.png" />
+    <Content Include="umbraco_client\installer\images\btn-next.png" />
+    <Content Include="umbraco_client\installer\images\btn-no-thanks.png" />
+    <Content Include="umbraco_client\installer\images\btn-no.png" />
+    <Content Include="umbraco_client\installer\images\btn-personal.png" />
+    <Content Include="umbraco_client\installer\images\btn-prev.png" />
+    <Content Include="umbraco_client\installer\images\btn-preview-web.png" />
+    <Content Include="umbraco_client\installer\images\btn-preview.png" />
+    <Content Include="umbraco_client\installer\images\btn-set.png" />
+    <Content Include="umbraco_client\installer\images\btn-simple.png" />
+    <Content Include="umbraco_client\installer\images\btn-yes.png" />
+    <Content Include="umbraco_client\installer\images\bul1.png" />
+    <Content Include="umbraco_client\installer\images\bul2.gif" />
+    <Content Include="umbraco_client\installer\images\bul3.png" />
+    <Content Include="umbraco_client\installer\images\bul4.gif" />
+    <Content Include="umbraco_client\installer\images\ico-invalidaing.png" />
+    <Content Include="umbraco_client\installer\images\ico-validaing.png" />
+    <Content Include="umbraco_client\installer\images\img01.jpg" />
+    <Content Include="umbraco_client\installer\images\img02.jpg" />
+    <Content Include="umbraco_client\installer\images\img03.jpg" />
+    <Content Include="umbraco_client\installer\images\img04.jpg" />
+    <Content Include="umbraco_client\installer\images\img05.jpg" />
+    <Content Include="umbraco_client\installer\images\img06.jpg" />
+    <Content Include="umbraco_client\installer\images\img07.jpg" />
+    <Content Include="umbraco_client\installer\images\img08.jpg" />
+    <Content Include="umbraco_client\installer\images\img09.jpg" />
+    <Content Include="umbraco_client\installer\images\img10.jpg" />
+    <Content Include="umbraco_client\installer\images\img11.jpg" />
+    <Content Include="umbraco_client\installer\images\loader.gif" />
+    <Content Include="umbraco_client\installer\images\logo.gif" />
+    <Content Include="umbraco_client\installer\images\none.gif" />
+    <Content Include="umbraco_client\installer\images\pbar-ani.gif" />
+    <Content Include="umbraco_client\installer\images\select-button.png" />
+    <Content Include="umbraco_client\installer\images\select-center.png" />
+    <Content Include="umbraco_client\installer\images\select-left-2.png" />
+    <Content Include="umbraco_client\installer\images\select-left.png" />
+    <Content Include="umbraco_client\installer\images\sep1.png" />
+    <Content Include="umbraco_client\installer\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="umbraco_client\installer\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="umbraco_client\installer\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="umbraco_client\installer\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="umbraco_client\installer\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="umbraco_client\installer\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="umbraco_client\installer\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="umbraco_client\installer\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="umbraco_client\installer\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="umbraco_client\installer\images\ui-icons_222222_256x240.png" />
+    <Content Include="umbraco_client\installer\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="umbraco_client\installer\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="umbraco_client\installer\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="umbraco_client\installer\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="umbraco_client\installer\js\ie-png.js" />
+    <Content Include="umbraco_client\installer\js\jquery.1.4.4.js" />
+    <Content Include="umbraco_client\installer\js\jquery.main.js" />
+    <Content Include="umbraco_client\installer\js\jquery.ui.selectmenu.js" />
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />
@@ -3225,10 +3187,8 @@
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\org.umbraco.update\</RelPath>
       <UpdateFromURL>http://update.umbraco.org/checkforupgrade.asmx</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
+      <ServiceLocationURL />
+      <CachedDynamicPropName />
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>umbraco_org_umbraco_update_CheckForUpgrade</CachedSettingsPropName>
     </WebReferenceUrl>
@@ -3264,6 +3224,7 @@
     </PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
@@ -3272,6 +3233,11 @@
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>
+    <MonoDevelop>
+      <Properties VerifyCodeBehindFields="true" VerifyCodeBehindEvents="true">
+        <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="true" />
+      </Properties>
+    </MonoDevelop>
   </ProjectExtensions>
   <PropertyGroup>
     <!--<PostBuildEvent>xcopy "$(ProjectDir)..\..\foreign dlls\*.dll" "$(TargetDir)*.dll" /Y</PostBuildEvent>-->

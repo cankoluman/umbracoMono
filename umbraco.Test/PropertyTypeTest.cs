@@ -1,5 +1,5 @@
 ﻿using umbraco.cms.businesslogic.propertytype;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using umbraco.interfaces;
 using umbraco.cms.businesslogic.datatype;
@@ -15,14 +15,14 @@ namespace umbraco.Test
     ///This is a test class for PropertyTypeTest and is intended
     ///to contain all PropertyTypeTest Unit Tests
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class PropertyTypeTest
     {
 
         /// <summary>
         ///A test for MakeNew
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void PropertyType_Make_New()
         {
 
@@ -33,7 +33,7 @@ namespace umbraco.Test
             var pt = PropertyType.MakeNew(allDataTypes.First(), contentTypes.First(), name, name);
 
             Assert.IsTrue(pt.Id > 0);
-            Assert.IsInstanceOfType(pt, typeof(PropertyType));
+            Assert.IsInstanceOf<PropertyType>(pt);
 
             pt.delete();
 
@@ -47,7 +47,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for PropertyType Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void PropertyTypeConstructorTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -58,7 +58,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetAll
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetAllTest()
         //{
         //    PropertyType[] expected = null; // TODO: Initialize to an appropriate value
@@ -71,7 +71,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetEditControl
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetEditControlTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -88,7 +88,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetPropertyType
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetPropertyTypeTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -102,7 +102,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetRawDescription
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetRawDescriptionTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -117,7 +117,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetRawName
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetRawNameTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -134,7 +134,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Save
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SaveTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -146,7 +146,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for delete
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void deleteTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -158,7 +158,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Alias
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void AliasTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -174,7 +174,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ContentTypeId
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ContentTypeIdTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -187,7 +187,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for DataTypeDefinition
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void DataTypeDefinitionTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -203,7 +203,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Description
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void DescriptionTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -219,7 +219,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Id
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void IdTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -232,7 +232,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Mandatory
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void MandatoryTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -248,7 +248,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Name
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void NameTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -264,7 +264,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for SortOrder
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SortOrderTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -280,7 +280,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for TabId
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void TabIdTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -296,7 +296,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ValidationRegExp
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ValidationRegExpTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -315,26 +315,26 @@ namespace umbraco.Test
         // 
         //You can use the following additional attributes as you write your tests:
         //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
+        //Use TestFixtureSetUp to run code before running the first test in the class
+        //[TestFixtureSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
         //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
+        //Use TestFixtureTearDown to run code after all tests in a class have run
+        //[TestFixtureTearDown]
         //public static void MyClassCleanup()
         //{
         //}
         //
-        //Use TestInitialize to run code before running each test
-        //[TestInitialize()]
+        //Use SetUp to run code before running each test
+        //[SetUp]
         //public void MyTestInitialize()
         //{
         //}
         //
         //Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
+        //[TearDown]
         //public void MyTestCleanup()
         //{
         //}

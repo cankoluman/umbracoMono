@@ -1,5 +1,5 @@
 ﻿using umbraco.cms.businesslogic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Xml;
 using umbraco.cms.businesslogic.language;
@@ -14,17 +14,24 @@ namespace umbraco.Test
     ///This is a test class for Dictionary_DictionaryItemTest and is intended
     ///to contain all Dictionary_DictionaryItemTest Unit Tests
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class DictionaryTest
     {
-        [TestMethod()]
+        
+		[TestFixtureSetUp]
+		public void InitTestFixture()
+		{
+			ConfigurationManagerService.ConfigManager = new ConfigurationManagerTest(SetUpUtilities.GetAppSettings());
+		}
+
+		[Test]
         public void Dictionary_Get_Top_Level_Items()
         {
             var items = Dictionary.getTopMostItems;
 
             var d = CreateNew();
 
-            Assert.AreEqual<int>(items.Count() + 1, Dictionary.getTopMostItems.Count());
+            Assert.AreEqual(items.Count() + 1, Dictionary.getTopMostItems.Count());
 
             DeleteItem(d);
         }
@@ -33,7 +40,7 @@ namespace umbraco.Test
         /// Creates a new dictionary entry, adds values for all languages assigned, then deletes the 
         /// entry and ensure that all other data is gone too.
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void Dictionary_Create_Add_Text_And_Delete()
         {
             var d = CreateNew();
@@ -55,7 +62,7 @@ namespace umbraco.Test
         /// <summary>
         ///A test for IsTopMostItem
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void Dictionary_IsTopMostItem()
         {
             var parent = CreateNew();
@@ -64,7 +71,7 @@ namespace umbraco.Test
             var childId = Dictionary.DictionaryItem.addKey("Test" + Guid.NewGuid().ToString("N"), "", parent.key);
             Assert.IsTrue(childId > 0);
             var child = new Dictionary.DictionaryItem(childId);
-            Assert.IsInstanceOfType(child, typeof(Dictionary.DictionaryItem));
+            Assert.IsInstanceOf<Dictionary.DictionaryItem>(child);
 
             Assert.IsTrue(parent.IsTopMostItem());
             Assert.IsFalse(child.IsTopMostItem());
@@ -76,7 +83,7 @@ namespace umbraco.Test
         /// <summary>
         /// Test the Parent and Children properties and ensures that the relationships work both ways
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void Dictionary_Parent_Child_Relationship()
         {
             var parent = CreateNew();
@@ -85,7 +92,7 @@ namespace umbraco.Test
             var childId = Dictionary.DictionaryItem.addKey("Test" + Guid.NewGuid().ToString("N"), "", parent.key);
             Assert.IsTrue(childId > 0);
             var child = new Dictionary.DictionaryItem(childId);
-            Assert.IsInstanceOfType(child, typeof(Dictionary.DictionaryItem));
+            Assert.IsInstanceOf<Dictionary.DictionaryItem>(child);
 
             //set the parent relationship
             Assert.AreEqual(parent.id, child.Parent.id);
@@ -94,7 +101,7 @@ namespace umbraco.Test
 
             //test the child relationship
             Assert.IsTrue(parent.hasChildren);
-            Assert.AreEqual<int>(1, parent.Children.Length);
+            Assert.AreEqual(1, parent.Children.Length);
             Assert.AreEqual(child.id, parent.Children.First().id);
             Assert.AreEqual(child.key, parent.Children.First().key);
             Assert.AreEqual(child.UniqueId, parent.Children.First().UniqueId);
@@ -106,7 +113,7 @@ namespace umbraco.Test
         /// <summary>
         /// Deletes a parent with existing children and ensures they are all gone.
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void Dictionary_Delete_Parent_With_Children()
         {
             var parent = CreateNew();
@@ -115,16 +122,16 @@ namespace umbraco.Test
             var childId1 = Dictionary.DictionaryItem.addKey("Test" + Guid.NewGuid().ToString("N"), "", parent.key);
             Assert.IsTrue(childId1 > 0);
             var child1 = new Dictionary.DictionaryItem(childId1);
-            Assert.IsInstanceOfType(child1, typeof(Dictionary.DictionaryItem));
+            Assert.IsInstanceOf<Dictionary.DictionaryItem>(child1);
 
             //create a child
             var childId2 = Dictionary.DictionaryItem.addKey("Test" + Guid.NewGuid().ToString("N"), "", parent.key);
             Assert.IsTrue(childId2 > 0);
             var child2 = new Dictionary.DictionaryItem(childId2);
-            Assert.IsInstanceOfType(child2, typeof(Dictionary.DictionaryItem));
+            Assert.IsInstanceOf<Dictionary.DictionaryItem>(child2);
 
             Assert.IsTrue(parent.hasChildren);
-            Assert.AreEqual<int>(2, parent.Children.Length);
+            Assert.AreEqual(2, parent.Children.Length);
 
 
             DeleteItem(parent);
@@ -157,7 +164,7 @@ namespace umbraco.Test
         /// <summary>
         /// Guid constructor test
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void Dictionary_Contructor_Guid()
         {
             var d = CreateNew();
@@ -174,7 +181,7 @@ namespace umbraco.Test
         /// <summary>
         /// key constructor test
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void Dictionary_Contructor_Key()
         {
             var d = CreateNew();
@@ -191,7 +198,7 @@ namespace umbraco.Test
         /// <summary>
         ///A test for ToXml
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void Dictionary_ToXml()
         {
             var d = CreateNew();
@@ -200,7 +207,7 @@ namespace umbraco.Test
             var childId = Dictionary.DictionaryItem.addKey("Test" + Guid.NewGuid().ToString("N"), "", d.key);
             Assert.IsTrue(childId > 0);
             var child = new Dictionary.DictionaryItem(childId);
-            Assert.IsInstanceOfType(child, typeof(Dictionary.DictionaryItem));
+            Assert.IsInstanceOf<Dictionary.DictionaryItem>(child);
             
             var xml = new XmlDocument();
 
@@ -218,7 +225,7 @@ namespace umbraco.Test
         /// <summary>
         ///A test to change the key of an element
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void Dictionary_Change_Key()
         {
             //System.Diagnostics.Debugger.Break();
@@ -247,14 +254,14 @@ namespace umbraco.Test
         /// <summary>
         /// Tries to create a duplicate key and ensures it's not possible.
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void Dictionary_Attempt_Duplicate_Key()
         {
             var key = "Test" + Guid.NewGuid().ToString("N");
             var d1Id = Dictionary.DictionaryItem.addKey(key, "");
             Assert.IsTrue(d1Id > 0);
             var d1 = new Dictionary.DictionaryItem(d1Id);
-            Assert.IsInstanceOfType(d1, typeof(Dictionary.DictionaryItem));
+            Assert.IsInstanceOf<Dictionary.DictionaryItem>(d1);
 
             var alreadyExists = false;
             try
@@ -279,7 +286,7 @@ namespace umbraco.Test
             Assert.IsTrue(id > 0);
 
             var d = new Dictionary.DictionaryItem(id);
-            Assert.IsInstanceOfType(d, typeof(Dictionary.DictionaryItem));
+            Assert.IsInstanceOf<Dictionary.DictionaryItem>(d);
 
             return d;
         }
@@ -314,7 +321,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Import
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ImportTest()
         //{
         //    XmlNode xmlData = null; // TODO: Initialize to an appropriate value
@@ -329,7 +336,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Import
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ImportTest1()
         //{
         //    XmlNode xmlData = null; // TODO: Initialize to an appropriate value
@@ -345,7 +352,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Save
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SaveTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -359,7 +366,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Value
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ValueTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -375,7 +382,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Value
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ValueTest1()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -390,7 +397,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for addKey
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void addKeyTest()
         //{
         //    string key = string.Empty; // TODO: Initialize to an appropriate value
@@ -405,7 +412,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for addKey
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void addKeyTest1()
         //{
         //    string key = string.Empty; // TODO: Initialize to an appropriate value
@@ -421,7 +428,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for delete
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void deleteTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -433,7 +440,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for hasKey
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void hasKeyTest()
         //{
         //    string key = string.Empty; // TODO: Initialize to an appropriate value
@@ -447,7 +454,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for setValue
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void setValueTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -461,7 +468,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for setValue
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void setValueTest1()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -474,7 +481,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Children
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ChildrenTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -487,7 +494,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Parent
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ParentTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -500,7 +507,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for hasChildren
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void hasChildrenTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -513,7 +520,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for id
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void idTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -530,26 +537,26 @@ namespace umbraco.Test
         // 
         //You can use the following additional attributes as you write your tests:
         //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
+        //Use TestFixtureSetUp to run code before running the first test in the class
+        //[TestFixtureSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
         //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
+        //Use TestFixtureTearDown to run code after all tests in a class have run
+        //[TestFixtureTearDown]
         //public static void MyClassCleanup()
         //{
         //}
         //
-        //Use TestInitialize to run code before running each test
-        //[TestInitialize()]
+        //Use SetUp to run code before running each test
+        //[SetUp]
         //public void MyTestInitialize()
         //{
         //}
         //
         //Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
+        //[TearDown]
         //public void MyTestCleanup()
         //{
         //}

@@ -1,5 +1,5 @@
 ﻿using umbraco.cms.businesslogic.web;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using umbraco.BusinessLogic;
 using System.Xml;
@@ -12,20 +12,20 @@ namespace umbraco.Test
     ///This is a test class for StyleSheetTest and is intended
     ///to contain all StyleSheetTest Unit Tests
     ///</summary>
-    [TestClass()]
+    [TestFixture]
     public class StyleSheetTest
     {
 
         /// <summary>
         ///A test for MakeNew
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void StyleSheet_Make_New()
         {
             
             var s = StyleSheet.MakeNew(m_User, Guid.NewGuid().ToString("N"), Guid.NewGuid().ToString("N") + ".css", Guid.NewGuid().ToString("N"));
             Assert.IsTrue(s.Id > 0);
-            Assert.IsInstanceOfType(s, typeof(StyleSheet));
+            Assert.IsInstanceOf<StyleSheet>(s);
 
             //now remove it
             s.delete();
@@ -33,18 +33,18 @@ namespace umbraco.Test
             
         }
 
-        [TestMethod()]
+        [Test]
         public void StyleSheet_Make_New_AddProperty()
         {
 
             var s = StyleSheet.MakeNew(m_User, Guid.NewGuid().ToString("N"), Guid.NewGuid().ToString("N") + ".css", Guid.NewGuid().ToString("N"));
             Assert.IsTrue(s.Id > 0);
-            Assert.IsInstanceOfType(s, typeof(StyleSheet));
+            Assert.IsInstanceOf<StyleSheet>(s);
 
             //add property
             var p = s.AddProperty(Guid.NewGuid().ToString("N"), m_User);
             Assert.IsTrue(p.Id > 0);
-            Assert.IsInstanceOfType(p, typeof(StylesheetProperty));
+            Assert.IsInstanceOf<StylesheetProperty>(p);
             
             //now remove it
             s.delete();
@@ -61,7 +61,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for StyleSheet Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void StyleSheetConstructorTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -74,7 +74,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for StyleSheet Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void StyleSheetConstructorTest1()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -85,7 +85,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for StyleSheet Constructor
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void StyleSheetConstructorTest2()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -96,7 +96,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for AddProperty
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void AddPropertyTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -113,7 +113,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetAll
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetAllTest()
         //{
         //    StyleSheet[] expected = null; // TODO: Initialize to an appropriate value
@@ -126,7 +126,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetByName
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetByNameTest()
         //{
         //    string name = string.Empty; // TODO: Initialize to an appropriate value
@@ -140,7 +140,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetStyleSheet
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetStyleSheetTest()
         //{
         //    int id = 0; // TODO: Initialize to an appropriate value
@@ -156,7 +156,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Import
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ImportTest()
         //{
         //    XmlNode n = null; // TODO: Initialize to an appropriate value
@@ -173,7 +173,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Save
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SaveTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -185,7 +185,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ToXml
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ToXmlTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -201,7 +201,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for delete
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void deleteTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -213,7 +213,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for saveCssToFile
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void saveCssToFileTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -225,7 +225,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Content
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ContentTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -241,7 +241,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Filename
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void FilenameTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -257,7 +257,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Properties
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void PropertiesTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -274,26 +274,26 @@ namespace umbraco.Test
         // 
         //You can use the following additional attributes as you write your tests:
         //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
+        //Use TestFixtureSetUp to run code before running the first test in the class
+        //[TestFixtureSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
         //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
+        //Use TestFixtureTearDown to run code after all tests in a class have run
+        //[TestFixtureTearDown]
         //public static void MyClassCleanup()
         //{
         //}
         //
-        //Use TestInitialize to run code before running each test
-        //[TestInitialize()]
+        //Use SetUp to run code before running each test
+        //[SetUp]
         //public void MyTestInitialize()
         //{
         //}
         //
         //Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
+        //[TearDown]
         //public void MyTestCleanup()
         //{
         //}

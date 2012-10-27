@@ -1,12 +1,11 @@
 ﻿using System.Diagnostics;
 using umbraco.cms.businesslogic.web;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using umbraco.BusinessLogic;
 using umbraco.cms.businesslogic;
 using System.Collections.Generic;
 using System.Xml;
-using Microsoft.VisualStudio.TestTools.UnitTesting.Web;
 using System.Linq;
 using System.Threading;
 using umbraco.cms.businesslogic.datatype;
@@ -31,15 +30,23 @@ namespace umbraco.Test
     /// 
     /// All of these tests will also delete any data that they create
     /// </remarks>
-    [TestClass()]
+    [TestFixture]
     public class DocumentTest
     {
+
+		[TestFixtureSetUp]
+		public void Teste()
+		{
+			try{}
+			catch (Exception e)
+			{}
+		}
 
         /// <summary>
         /// Creates a bunch of nodes in a heirarchy, then deletes the top most node (moves to the recycle bin
         /// and completely deletes from system.) This should completely delete all of these nodes from the database.
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void Document_Delete_Heirarchy_Permanently()
         {
             var docList = new List<Document>();
@@ -73,7 +80,7 @@ namespace umbraco.Test
         /// <summary>
         ///A test for PublishWithResult
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void Document_Publish_With_Result()
         {
             var val = m_NewRootDoc.PublishWithResult(m_User);            
@@ -82,7 +89,7 @@ namespace umbraco.Test
         /// <summary>
         /// Creates a doc type, assigns a domain to it and removes it
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void Document_Assign_Domain()
         {
             var d = CreateNewUnderRoot(GetExistingDocType());
@@ -98,23 +105,23 @@ namespace umbraco.Test
             //add a domain name to the node with the first language found
             Domain.MakeNew(domainName, d.Id, languages[0].id);
             Assert.IsTrue(Domain.Exists(domainName));
-            Assert.AreEqual<int>(domains.Count + 1, Domain.GetDomains().Count);
+            Assert.AreEqual(domains.Count + 1, Domain.GetDomains().Count);
 
             //delete the document, ensure that the domain is gone
             RecycleAndDelete(d);
 
             Assert.IsFalse(Domain.Exists(domainName));
-            Assert.AreEqual<int>(domains.Count, Domain.GetDomains().Count);
+            Assert.AreEqual(domains.Count, Domain.GetDomains().Count);
         }
 
         /// <summary>
         ///A test for making a new document and deleting it which actuall first moves it to the recycle bin
         ///and then deletes it.
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void Document_Make_New()
         {
-            Assert.IsInstanceOfType(m_NewRootDoc, typeof(Document));
+            Assert.IsInstanceOf<Document>(m_NewRootDoc);
         }
 
         /// <summary>
@@ -122,7 +129,7 @@ namespace umbraco.Test
         /// This does error checking on the case of when a node is being copied that is in the root and doesn't have a parent node, it will 
         /// lookup the root docs to do the test.
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void Document_Copy()
         {
             //System.Diagnostics.Debugger.Break();
@@ -148,7 +155,7 @@ namespace umbraco.Test
 
             //get the node that is the difference to compare
             Document newDoc = new Document(diff.First());
-            Assert.AreEqual<int>(parentId, newDoc.ParentId);
+            Assert.AreEqual(parentId, newDoc.ParentId);
 
             RecycleAndDelete(newDoc);
         }
@@ -156,7 +163,7 @@ namespace umbraco.Test
         /// <summary>
         /// Tests copying by relating nodes, then deleting
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void Document_Copy_And_Relate()
         {
             //System.Diagnostics.Debugger.Break();
@@ -185,7 +192,7 @@ namespace umbraco.Test
         /// <summary>
         ///Create a new document, create preview xml for it, then delete it
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void Document_To_Preview_Xml()
         {
             //System.Diagnostics.Debugger.Break();
@@ -206,7 +213,7 @@ namespace umbraco.Test
         /// <summary>
         /// Run test to create a node, publish it and delete it. This will test the versioning too.
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void Document_Make_New_And_Publish()
         {
             //System.Diagnostics.Debugger.Break();
@@ -225,7 +232,7 @@ namespace umbraco.Test
         /// <summary>
         ///A test that creates a new document, publishes it, unpublishes it and finally deletes it
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void Document_Publish_Then_UnPublish()
         {
             //System.Diagnostics.Debugger.Break();
@@ -248,7 +255,7 @@ namespace umbraco.Test
         /// <summary>
         ///A test that makes a new document, updates some properties, saves and publishes the document, then rolls the document back and finally deletes it.
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void Document_Save_And_Publish_Then_Roll_Back()
         {
             //System.Diagnostics.Debugger.Break();
@@ -292,7 +299,7 @@ namespace umbraco.Test
         ///This will create a document type that has it's own id allowed as children. When we create the content nodes, we'll create
         ///them as children of each other to ensure the deletion occurs correctly.
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void Document_Delete_All_Docs_By_Document_Type()
         {
             //System.Diagnostics.Debugger.Break();
@@ -352,7 +359,7 @@ namespace umbraco.Test
         /// This will find a document type that supports a heirarchy, create 2 root nodes, then create a child node under the first one,
         /// then move it to the second one and finally delete everything that was created.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void Document_Move()
         {
             //first need to document type that allows other types of document types to exist underneath it
@@ -397,7 +404,7 @@ namespace umbraco.Test
         /// <summary>
         /// This will find an existing node, copy it to the same parent, delete the copied node and restore it, then finally completley remove it.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void Document_Undelete()
         {
             //find existing content
@@ -425,7 +432,7 @@ namespace umbraco.Test
         /// <summary>
         /// This method will create 20 content nodes, send them to the recycle bin and then empty the recycle bin
         /// </summary>
-        [TestMethod]
+        [Test]
         public void Document_Empty_Recycle_Bin()
         {
             var docList = new List<Document>();
@@ -466,7 +473,7 @@ namespace umbraco.Test
         /// <summary>
         ///A test for RePublishAll
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void Document_RePublish_All()
         {
             //publish the node
@@ -475,7 +482,7 @@ namespace umbraco.Test
             Document.RePublishAll();
 
             //now ensure that the xml has been generated
-            Assert.AreEqual<int>(1, Application.SqlHelper.ExecuteScalar<int>("SELECT COUNT(nodeId) FROM cmsContentXml WHERE nodeId=@nodeId",
+            Assert.AreEqual(1, Application.SqlHelper.ExecuteScalar<int>("SELECT COUNT(nodeId) FROM cmsContentXml WHERE nodeId=@nodeId",
                 Application.SqlHelper.CreateParameter("@nodeId", m_NewRootDoc.Id)));
 
         }
@@ -483,7 +490,7 @@ namespace umbraco.Test
         /// <summary>
         ///A test for RegeneratePreviews
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void Document_Regenerate_Previews()
         {
             //there won't be a preview yet...
@@ -495,7 +502,7 @@ namespace umbraco.Test
         /// <summary>
         ///A test for PublishWithSubs
         ///</summary>
-        [TestMethod()]
+        [Test]
         public void Document_Publish_With_Subs()
         {
             var docList = new List<Document>();
@@ -549,7 +556,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for XmlPopulate
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void XmlPopulateTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -566,7 +573,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for XmlNodeRefresh
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void XmlNodeRefreshTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -582,7 +589,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for XmlGenerate
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void XmlGenerateTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -595,7 +602,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for ToXml
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ToXmlTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -613,7 +620,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for SendToPublication
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void SendToPublicationTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -633,7 +640,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for refreshXmlSortOrder
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void refreshXmlSortOrderTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -649,7 +656,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for PublishWithChildrenWithResult
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void PublishWithChildrenWithResultTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -665,7 +672,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Publish
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void PublishTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -678,7 +685,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Import
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void ImportTest()
         //{
         //    int ParentId = 0; // TODO: Initialize to an appropriate value
@@ -694,7 +701,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetTextPath
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetTextPathTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -709,7 +716,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetRootDocuments
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetRootDocumentsTest()
         //{
         //    Document[] expected = null; // TODO: Initialize to an appropriate value
@@ -722,7 +729,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetNodesForPreview
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetNodesForPreviewTest()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -738,7 +745,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetDocumentsForRelease
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetDocumentsForReleaseTest()
         //{
         //    Document[] expected = null; // TODO: Initialize to an appropriate value
@@ -751,7 +758,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetDocumentsForExpiration
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetDocumentsForExpirationTest()
         //{
         //    Document[] expected = null; // TODO: Initialize to an appropriate value
@@ -764,7 +771,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for GetChildrenForTree
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void GetChildrenForTreeTest()
         //{
         //    int NodeId = 0; // TODO: Initialize to an appropriate value
@@ -778,7 +785,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for CountSubs
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void CountSubsTest()
         //{
         //    int parentId = 0; // TODO: Initialize to an appropriate value
@@ -793,7 +800,7 @@ namespace umbraco.Test
         ///// <summary>
         /////A test for Copy
         /////</summary>
-        //[TestMethod()]
+        //[Test]
         //public void CopyTest1()
         //{
         //    Guid id = new Guid(); // TODO: Initialize to an appropriate value
@@ -963,14 +970,14 @@ namespace umbraco.Test
         // 
         //You can use the following additional attributes as you write your tests:
         //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
+        //Use TestFixtureSetUp to run code before running the first test in the class
+        //[TestFixtureSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
         //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
+        //Use TestFixtureTearDown to run code after all tests in a class have run
+        //[TestFixtureTearDown]
         //public static void MyClassCleanup()
         //{
         //}
@@ -980,8 +987,8 @@ namespace umbraco.Test
         /// <summary>
         /// Creates a new root document to use for each test if required
         /// </summary>
-        [TestInitialize()]
-        public void MyTestInitialize()
+        [SetUp]
+        public void Init()
         {
             m_ExistingDocType = GetExistingDocType();
             m_NewRootDoc = CreateNewUnderRoot(m_ExistingDocType);
@@ -990,8 +997,8 @@ namespace umbraco.Test
         /// <summary>
         /// Makes sure the root doc is deleted
         /// </summary>
-        [TestCleanup()]
-        public void MyTestCleanup()
+        [TearDown]
+        public void Cleanup()
         {
             RecycleAndDelete(m_NewRootDoc);
         }
