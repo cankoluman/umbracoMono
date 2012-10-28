@@ -10,7 +10,6 @@
         PathNameAlias="UmbracoClient" Priority="1" />
     <script language="javascript" type="text/javascript">
 
-
         jQuery(document).ready(function() {
 
             //macro split button
@@ -138,10 +137,12 @@
           if (master == "") master = 0;
           umbraco.presentation.webservices.legacyAjaxCalls.TemplateMasterPageContentContainer(<%=Request["templateID"] %>, master, umbracoTemplateInsertMasterPageContentContainerDo);
         }
-        
+       
+       <!--
         function umbracoTemplateInsertMasterPageContentContainerDo(result) {
           UmbEditor.Insert(result + '\n', '\n</asp\:Content>\n', '<%= editorSource.ClientID%>');
         }
+        // -->
         
         function changeMasterPageFile(){
           var editor = document.getElementById("<%= editorSource.ClientID %>");
@@ -149,10 +150,10 @@
           
           var templateCode = UmbEditor.GetCode();
           var selectedTemplate = templateDropDown.options[templateDropDown.selectedIndex].id;
-          var masterTemplate = "<%= umbraco.IO.SystemDirectories.Masterpages%>/" + selectedTemplate + ".master";
+          var masterTemplate = "<%= umbraco.IO.SystemDirectories.Masterpages%>/" + selectedTemplate + ".Master";
           
           if(selectedTemplate == "")
-            masterTemplate = "<%= umbraco.IO.SystemDirectories.Umbraco%>/masterpages/default.master";
+            masterTemplate = "<%= umbraco.IO.SystemDirectories.Umbraco%>/masterpages/default.Master";
                     
           var regex = /MasterPageFile=[~a-z0-9/._"-]+/im;
           
@@ -167,17 +168,20 @@
              return false;
            } 
         }
-        
-       function insertContentElement(id){
        
+       <!--
+       function insertContentElement(id){
        //nasty hack to avoid asp.net freaking out because of the markup...
         var cp = 'asp:Content ContentPlaceHolderId="' + id + '"';
         cp += ' runat="server"';
+        
         cp += '>\n\t<!-- Insert "' + id + '" markup here -->';
 
         UmbEditor.Insert('\n<' + cp, '\n</asp:Content' + '>\n', '<%= editorSource.ClientID %>');
        }
-       
+       // -->
+      
+       <!-- 
        function insertPlaceHolderElement(id){       
         
         var cp = 'asp:ContentPlaceHolder Id="' + id + '"';
@@ -186,6 +190,7 @@
 
         UmbEditor.Insert('\n<' + cp, '\n</asp:ContentPlaceHolder' + '>\n', '<%= editorSource.ClientID %>');
        }
+       // -->
         
        function insertCodeBlock()
        {

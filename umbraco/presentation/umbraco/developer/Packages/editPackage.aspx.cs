@@ -384,7 +384,7 @@ namespace umbraco.presentation.developer.packages
             int count = 1;
             foreach (uicontrols.TabPage tp in TabView1.GetPanels()) {
                 ImageButton saves = tp.Menu.NewImageButton();
-                saves.ImageUrl = SystemDirectories.Umbraco + "/images/editor/save.gif";
+                saves.ImageUrl = SystemDirectories.Umbraco + "/images/editor/Save.GIF";
                 saves.CommandName = "save";
                 saves.AlternateText = "Save package";
                 saves.Command += new CommandEventHandler(saveOrPublish);
