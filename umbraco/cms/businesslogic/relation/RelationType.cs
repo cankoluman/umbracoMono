@@ -41,7 +41,7 @@ namespace umbraco.cms.businesslogic.relation
 		public RelationType(int id)
 		{
 			using (IRecordsReader dr = SqlHelper.ExecuteReader(
-				"select id, dual, name, alias from umbracoRelationType where id = @id", SqlHelper.CreateParameter("@id", id)))
+				"select id, [dual], name, alias from umbracoRelationType where id = @id", SqlHelper.CreateParameter("@id", id)))
 			{
                 if (dr.Read())
                 {
@@ -128,7 +128,7 @@ namespace umbraco.cms.businesslogic.relation
         {
             var relationTypes = new List<RelationType>();
 
-            using (IRecordsReader dr = SqlHelper.ExecuteReader("select id, dual, name, alias from umbracoRelationType"))
+            using (IRecordsReader dr = SqlHelper.ExecuteReader("select id, [dual], name, alias from umbracoRelationType"))
             {
                 while (dr.Read())
                 {

@@ -283,7 +283,7 @@ namespace umbraco.cms.businesslogic.member
 
                 return new Member(tmpId);
             }
-            else
+            else if (HttpContext.Current != null)
                 HttpContext.Current.Trace.Warn("No member with loginname: " + loginName + " Exists");
 
             return null;
