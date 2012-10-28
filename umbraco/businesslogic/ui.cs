@@ -260,7 +260,7 @@ namespace umbraco
             {
                 
 				string langFilePath = umbracoPath + "/config/lang/" + language + ".xml";
-				langFilePath = IOHelper.MapFilePath(langFilePath);
+				langFilePath = IOHelper.MapPath(langFilePath);
 
 				XmlTextReader langReader =
 					new XmlTextReader(langFilePath);

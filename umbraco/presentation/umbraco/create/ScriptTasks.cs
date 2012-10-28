@@ -41,9 +41,8 @@ namespace umbraco
 
         public bool Save()
         {
-            string[] scriptFileAr = _alias.Split('¤');
-
-
+			char c = '\u00A4'; 
+			string[] scriptFileAr = _alias.Split(c);
 
             string relPath = scriptFileAr[0];
             string fileName = scriptFileAr[1];
