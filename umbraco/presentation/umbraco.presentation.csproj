@@ -3213,8 +3213,6 @@
     <Folder Include="masterpages\" />
     <Folder Include="media\" />
     <Folder Include="umbraco\ActionHandlers\scripts\" />
-    <Folder Include="umbraco\imaging\" />
-    <Folder Include="umbraco\library\" />
     <Folder Include="umbraco\webservices\api\" />
     <Folder Include="umbraco_client\tagging\" />
     <Folder Include="usercontrols\" />
