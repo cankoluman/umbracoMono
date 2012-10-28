@@ -142,7 +142,8 @@ namespace umbraco
             {
                 try
                 {
-                    return ConfigurationManager.AppSettings["umbracoDbDSN"];
+                    //return ConfigurationManager.AppSettings["umbracoDbDSN"];
+                    return ConfigurationManagerService.Instance.AppSettings["umbracoDbDSN"];
                 }
                 catch
                 {

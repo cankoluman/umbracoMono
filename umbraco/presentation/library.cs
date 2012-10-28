@@ -93,7 +93,7 @@ namespace umbraco
 
         public library(int id)
         {
-            _page = new page(((System.Xml.IHasXmlNode)GetXmlNodeById(id.ToString()).Current).GetNode());
+			_page = new page(xmlHelper.GetCurrentNodeFromIterator(GetXmlNodeById(id.ToString())));
         }
 
         /// <summary>
@@ -1204,8 +1204,8 @@ namespace umbraco
         {
             try
             {
-                page p = new page(((IHasXmlNode)GetXmlNodeById(PageId.ToString()).Current).GetNode());
-                template t = new template(p.Template);
+				page p = new page(xmlHelper.GetCurrentNodeFromIterator(GetXmlNodeById(PageId.ToString())));
+				template t = new template(p.Template);
                 Control c = t.parseStringBuilder(new StringBuilder(Text), p);
 
                 StringWriter sw = new StringWriter();
@@ -1263,8 +1263,8 @@ namespace umbraco
                 }
                 else
                 {
-                    page p = new page(((IHasXmlNode)GetXmlNodeById(PageId.ToString()).Current).GetNode());
-                    p.RenderPage(TemplateId);
+					page p = new page(xmlHelper.GetCurrentNodeFromIterator(GetXmlNodeById(PageId.ToString())));
+					p.RenderPage(TemplateId);
                     Control c = p.PageContentControl;
                     StringWriter sw = new StringWriter();
                     HtmlTextWriter hw = new HtmlTextWriter(sw);
@@ -1337,9 +1337,10 @@ namespace umbraco
                 }
                 else
                 {
-                    return
+					page p = new page(xmlHelper.GetCurrentNodeFromIterator(GetXmlNodeById(PageId.ToString())));
+					return
                         RenderTemplate(PageId,
-                                       new page(((IHasXmlNode)GetXmlNodeById(PageId.ToString()).Current).GetNode()).Template);
+                                       p.Template);
                 }
             }
             catch (Exception ee)
