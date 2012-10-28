@@ -137,13 +137,7 @@
     <Compile Include="SqlHelpers\SqlServer\SqlServerParameter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="SqlHelpers\SqlServer\sql\total.sql" />
-    <None Include="SqlHelpers\MySql\sql\KeysIndexesAndConstraints.sql" />
-    <None Include="SqlHelpers\MySql\sql\total.sql" />
-    <None Include="SqlHelpers\MySql\sql\version4_upgrade.sql" />
-    <None Include="SqlHelpers\SqlServer\sql\KeysIndexesAndConstraints.sql" />
-    <None Include="SqlHelpers\SqlServer\sql\version3_upgrade.sql" />
-    <None Include="SqlHelpers\SqlServer\sql\version4_upgrade.sql" />
+    <None Include="SqlHelpers\SqlServer\Sql\Total.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SqlHelpers\MySql\SqlResources.resx">
@@ -156,6 +150,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SqlResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SqlHelpers\MySql\Sql\KeysIndexesAndConstraints.sql" />
+    <None Include="SqlHelpers\MySql\Sql\Total.sql" />
+    <None Include="SqlHelpers\MySql\Sql\Version4_Upgrade.sql" />
+    <None Include="SqlHelpers\SqlServer\Sql\KeysIndexesAndConstraints.sql" />
+    <None Include="SqlHelpers\SqlServer\Sql\Version3_Upgrade.sql" />
+    <None Include="SqlHelpers\SqlServer\Sql\Version4_Upgrade.sql" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

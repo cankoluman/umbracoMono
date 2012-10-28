@@ -7,7 +7,7 @@ namespace umbraco.Test
 	{
 		public SetUpUtilities () {}
 
-		private const string _umbracoDbDSN = "server=127.0.0.1;database=umbraco472;user id=umbracouser;password=P@ssword1;datalayer=MySql";
+		private const string _umbracoDbDSN = "server=127.0.0.1;database=umbraco_test;user id=umbracouser;password=P@ssword1;datalayer=MySql";
 
 		public static NameValueCollection GetAppSettings()
 		{

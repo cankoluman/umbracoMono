@@ -29,7 +29,7 @@ namespace umbraco.cms.presentation.members
 		private cms.businesslogic.member.Member _document;
         private MembershipUser m_Member;
 		controls.ContentControl tmp;
-        protected umbraco.uicontrols.UmbracoPanel m_MemberShipPanel = new umbraco.uicontrols.UmbracoPanel(); 
+        protected global::umbraco.uicontrols.UmbracoPanel m_MemberShipPanel = new umbraco.uicontrols.UmbracoPanel(); 
 
 		protected TextBox MemberLoginNameTxt = new TextBox();
 	    protected RequiredFieldValidator MemberLoginNameVal = new RequiredFieldValidator();

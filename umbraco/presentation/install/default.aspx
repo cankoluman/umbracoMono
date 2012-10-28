@@ -1,17 +1,13 @@
 <%@ Page Language="c#" CodeBehind="default.aspx.cs" AutoEventWireup="True" Inherits="umbraco.presentation.install._default" EnableViewState="False" %>
+<%@ Register TagPrefix="umb" Namespace="ClientDependency.Core.Controls" Assembly="ClientDependency.Core" %>
 <%@ Import Namespace="System.Web.Configuration" %>
 <%@ Import Namespace="System.Text" %>
 <%@ Import Namespace="System.Drawing" %> 
-<%@ Register TagPrefix="umb" Namespace="ClientDependency.Core.Controls" Assembly="ClientDependency.Core" %>
-
 <%@ Register Src="~/install/Title.ascx" TagPrefix="umb1" TagName="PageTitle" %>
 
 <!DOCTYPE html>
 <html>
 <head runat="server">
-
-
-
 
 	<meta charset="utf-8" />
 
@@ -40,10 +36,11 @@
 
    
 	<form runat="server">
-	<asp:ScriptManager ID="ScriptManager1" EnablePageMethods="true" runat="server"/>
+	<asp:ScriptManager ID="ScriptManager1"  EnablePageMethods="true" runat="server"/>
     <!-- all page -->
 
 	<section id="wrapper">
+
 		<div class="wholder">
 
 			<!-- header -->
