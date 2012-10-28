@@ -93,25 +93,10 @@ namespace umbraco.IO
             return text;
         }
 
-		public static string MapFilePath(string path)
-		{
-			string filePath = path;
-			string osPlatform = System.Environment.OSVersion.Platform.ToString();
-
-			if (!osPlatform.Contains("Unix"))
-				return MapPath(filePath);
-
-			if (filePath.StartsWith("~"))
-				filePath = ResolveUrl(filePath);
-			filePath = MapPath(filePath);
-
-			return filePath;
-		}
-
         public static string MapPath(string path, bool useHttpContext)
         {
             // Check if the path is already mapped
-            if (path.Length >= 2 && path[0] == Path.VolumeSeparatorChar)
+            if (path.Length >= 2 && path[1] == Path.VolumeSeparatorChar)
                 return path;
 
             if (useHttpContext)
@@ -136,7 +121,11 @@ namespace umbraco.IO
 
         public static string MapPath(string path)
         {
-            return MapPath(path, true);
+
+			if (IO.MultiPlatformHelper.IsWindows())
+				return MapPath(path, true);            
+
+			return IO.MultiPlatformHelper.MapUnixPath(path);
         }
 
         //use a tilde character instead of the complete path

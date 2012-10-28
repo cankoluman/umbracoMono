@@ -180,6 +180,7 @@
     </Compile>
     <Compile Include="ConfigurationManager\ConfigurationManagerFactory.cs" />
     <Compile Include="ConfigurationManager\ConfigurationManagerService.cs" />
+    <Compile Include="IO\MultiPlatformHelper.cs" />
     <Compile Include="ConfigurationManager\ConfigurationManagerDefault.cs" />
     <Compile Include="ConfigurationManager\ConfigurationManagerTest.cs" />
   </ItemGroup>
