@@ -23,6 +23,13 @@ namespace umbraco.Test
     public class LanguageTest
     {
 
+
+		[TestFixtureSetUp]
+		public void InitTestFixture()
+		{
+			ConfigurationManagerService.ConfigManager = new ConfigurationManagerTest(SetUpUtilities.GetAppSettings());
+		}
+
         /// <summary>
         /// A test to ensure you cannot delete the default language: en-US
         /// </summary>

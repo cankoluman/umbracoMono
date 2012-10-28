@@ -490,14 +490,16 @@ namespace umbraco.cms.businesslogic.packager.standardPackageActions
                         string _alias = newExt.Attributes["alias"].Value;
                         if (xn.HasChildNodes)
                         {
-                            foreach (XmlNode ext in xn.SelectNodes("//ext"))
-                            {
-                                if (ext.Attributes["alias"] != null && ext.Attributes["alias"].Value == _alias)
+							XmlNode[] NodesToRemove = 
+								(new List<XmlNode>(xn.SelectNodes("//ext").OfType<XmlNode>())).ToArray();
+							for (int j = 0; j < NodesToRemove.Length; j++)
+							{
+                                if (NodesToRemove[j].Attributes["alias"] != null && NodesToRemove[j].Attributes["alias"].Value == _alias)
                                 {
-                                    xn.RemoveChild(ext);
+                                    xn.RemoveChild(NodesToRemove[j]);
                                     inserted = true;
                                 }
-                            }
+							}
                         }
                     }
 
@@ -583,14 +585,16 @@ namespace umbraco.cms.businesslogic.packager.standardPackageActions
                 bool inserted = false;
                 if (xn.HasChildNodes)
                 {
-                    foreach (XmlNode node in xn.SelectNodes("//allow"))
-                    {
-                        if (node.Attributes["host"] != null && node.Attributes["host"].Value == hostname)
+					XmlNode[] NodesToRemove = 
+						(new List<XmlNode>(xn.SelectNodes("//allow").OfType<XmlNode>())).ToArray();
+					for (int j = 0; j < NodesToRemove.Length; j++)
+					{
+                        if (NodesToRemove[j].Attributes["host"] != null && NodesToRemove[j].Attributes["host"].Value == hostname)
                         {
-                            xn.RemoveChild(node);
+                            xn.RemoveChild(NodesToRemove[j]);
                             inserted = true;
                         }
-                    }
+					}
                 }
 
                 if (inserted)

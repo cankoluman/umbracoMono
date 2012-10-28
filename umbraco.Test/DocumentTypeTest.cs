@@ -24,7 +24,16 @@ namespace umbraco.Test
     [TestFixture]
     public class DocumentTypeTest
     {
-        [Test]
+        
+
+		[TestFixtureSetUp]
+		public void InitTestFixture()
+		{
+			ConfigurationManagerService.ConfigManager = new ConfigurationManagerTest(SetUpUtilities.GetAppSettings());
+			m_User = new User(0);
+		}
+
+		[Test]
         public void DocumentType_Delete_Doc_Type_With_Content()
         {
             var dt = CreateNewDocType();
@@ -744,7 +753,7 @@ namespace umbraco.Test
 
         #region Private properties and methods
         
-        private User m_User = new User(0);
+        private User m_User;
 
         /// <summary>
         /// before each test starts, this object is created so it can be used for testing.
@@ -808,7 +817,9 @@ namespace umbraco.Test
         /// <summary>
         /// Remove the created document type
         /// </summary>
-        [TearDown]
+
+        
+		[TearDown]
         public void MyTestCleanup()
         {
             DeleteDocType(m_NewDocType);
