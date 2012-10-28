@@ -139,7 +139,7 @@ namespace umbraco.editorControls.tags
         {
             base.OnInit(e);
 
-            ClientDependencyLoader.Instance.RegisterDependency("Application/jQuery/jquery.autocomplete.js", "UmbracoClient", ClientDependencyType.Javascript);
+            ClientDependencyLoader.Instance.RegisterDependency("Application/JQuery/jquery.autocomplete.js", "UmbracoClient", ClientDependencyType.Javascript);
             ClientDependencyLoader.Instance.RegisterDependency("css/umbracoGui.css", "UmbracoRoot", ClientDependencyType.Css);
 
             string _alias = ((umbraco.cms.businesslogic.datatype.DefaultData)_data).PropertyId.ToString();

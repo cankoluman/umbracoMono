@@ -15,8 +15,8 @@ namespace umbraco.uicontrols
 {
 
 
-    [ClientDependency(ClientDependencyType.Javascript, "panel/javascript.js", "UmbracoClient")]
-    [ClientDependency(ClientDependencyType.Css, "panel/style.css", "UmbracoClient")]
+    [ClientDependency(ClientDependencyType.Javascript, "Panel/javascript.js", "UmbracoClient")]
+    [ClientDependency(ClientDependencyType.Css, "Panel/style.css", "UmbracoClient")]
     public class UmbracoPanel : System.Web.UI.WebControls.Panel
     {
         private ScrollingMenu _menu = new ScrollingMenu();

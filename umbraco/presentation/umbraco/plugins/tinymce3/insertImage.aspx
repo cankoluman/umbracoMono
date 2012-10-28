@@ -15,7 +15,7 @@
     <ui:UmbracoClientDependencyLoader runat="server" id="ClientLoader" />
 	
 	<umb:JsInclude ID="JsInclude3" runat="server" FilePath="ui/jquery.js" PathNameAlias="UmbracoClient" Priority="0" />
-	<umb:JsInclude ID="JsInclude9" runat="server" FilePath="Application/jQuery/jquery.noconflict-invoke.js" PathNameAlias="UmbracoClient" Priority="1" />
+	<umb:JsInclude ID="JsInclude9" runat="server" FilePath="Application/JQuery/jquery.noconflict-invoke.js" PathNameAlias="UmbracoClient" Priority="1" />
 	<umb:JsInclude ID="JsInclude8" runat="server" FilePath="ui/default.js" PathNameAlias="UmbracoClient" Priority="4" />
 	<umb:JsInclude ID="JsInclude4" runat="server" FilePath="tinymce3/tiny_mce_popup.js" PathNameAlias="UmbracoClient" Priority="100" />
 	<umb:JsInclude ID="JsInclude5" runat="server" FilePath="tinymce3/utils/mctabs.js" PathNameAlias="UmbracoClient" Priority="101" />
