@@ -1,5 +1,6 @@
 ﻿using umbraco.BusinessLogic;
 using NUnit.Framework;
+using NMock2;
 using System;
 using umbraco.interfaces;
 using System.Collections.Generic;

@@ -197,7 +197,8 @@ namespace umbraco.IO
                 System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase.Substring(8));
             m_rootDir = baseDirectory.Substring(0, baseDirectory.LastIndexOf("bin") - 1);
 
-            return m_rootDir;
+			//changed for tests ck, 9/9/12
+            return "/" + m_rootDir;
 
         }
 

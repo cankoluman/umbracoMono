@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Security;
 using System.Reflection;
@@ -949,8 +950,10 @@ namespace umbraco
                         currentNode = macroXML.ImportNode(umbracoXML.GetElementById(currentID.ToString()), true);
 
                     // remove all sub content nodes
-                    foreach (XmlNode n in currentNode.SelectNodes("./node"))
-                        currentNode.RemoveChild(n);
+					XmlNode[] NodesToRemove = 
+						(new List<XmlNode>(currentNode.SelectNodes("./node").OfType<XmlNode>())).ToArray();
+					for (int i = 0; i < NodesToRemove.Length; i++)
+		                currentNode.RemoveChild(NodesToRemove[i]);
 
                     macroXmlNode.AppendChild(currentNode);
 

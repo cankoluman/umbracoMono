@@ -389,9 +389,13 @@ namespace umbraco
             }
 
             // Find the document in the xml cache
-            //XmlNode x = xmlContentCopy.GetElementById(id.ToString());
-			XmlNode x = xmlContentCopy.SelectSingleNode(String.Format ("//*[@isDoc][@id='{0}']", id.ToString()));
-            // Find the parent (used for sortering and maybe creation of new node)
+			//Deal with IsRooted being false in mono for the published node
+			string xpathId = UmbracoSettings.UseLegacyXmlSchema ? 
+				String.Format ("//node[@id = '{0}'], id.ToString()") : 
+				String.Format ("//*[@isDoc][@id='{0}']", id.ToString());
+			XmlNode x = xmlContentCopy.SelectSingleNode(xpathId);
+            
+			// Find the parent (used for sortering and maybe creation of new node)
             XmlNode parentNode;
             if (level == 1)
                 parentNode = xmlContentCopy.DocumentElement;
@@ -448,8 +452,10 @@ namespace umbraco
 
             // remove all children from original node
             string xpath = UmbracoSettings.UseLegacyXmlSchema ? "./node" : "./* [@id]";
-            foreach (XmlNode child in parentNode.SelectNodes(xpath))
-                parentNode.RemoveChild(child);
+			XmlNode[] NodesToRemove = 
+				(new List<XmlNode>(parentNode.SelectNodes(xpath).OfType<XmlNode>())).ToArray();
+			for (int i = 0; i < NodesToRemove.Length; i++)
+                parentNode.RemoveChild(NodesToRemove[i]);
 
 
             XPathNavigator nav = n.CreateNavigator();

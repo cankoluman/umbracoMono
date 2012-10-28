@@ -35,12 +35,21 @@ namespace umbraco.Test
     {
 
 		[TestFixtureSetUp]
-		public void Teste()
+		public void InitTestFixture()
 		{
-			try{}
-			catch (Exception e)
-			{}
+			ConfigurationManagerService.ConfigManager = new ConfigurationManagerTest(SetUpUtilities.GetAppSettings());
+			m_User = new User(0);
 		}
+
+        /// <summary>
+        /// Creates a new root document to use for each test if required
+        /// </summary>
+        [SetUp]
+        public void Init()
+        {
+            m_ExistingDocType = GetExistingDocType();
+            m_NewRootDoc = CreateNewUnderRoot(m_ExistingDocType);
+        }
 
         /// <summary>
         /// Creates a bunch of nodes in a heirarchy, then deletes the top most node (moves to the recycle bin
@@ -818,7 +827,7 @@ namespace umbraco.Test
         /// <summary>
         /// The user to be used to create stuff
         /// </summary>
-        private static User m_User = new User(0);
+        private static User m_User;
 
         /// <summary>
         /// Used for each test initialization. Before each test is run a new root doc is created.
@@ -983,16 +992,6 @@ namespace umbraco.Test
         //}
         //
         
-        
-        /// <summary>
-        /// Creates a new root document to use for each test if required
-        /// </summary>
-        [SetUp]
-        public void Init()
-        {
-            m_ExistingDocType = GetExistingDocType();
-            m_NewRootDoc = CreateNewUnderRoot(m_ExistingDocType);
-        }
         
         /// <summary>
         /// Makes sure the root doc is deleted

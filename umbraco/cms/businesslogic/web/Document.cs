@@ -1443,8 +1443,10 @@ namespace umbraco.cms.businesslogic.web
         public void XmlNodeRefresh(XmlDocument xd, ref XmlNode x)
         {
             x.Attributes.RemoveAll();
-            foreach (XmlNode xDel in x.SelectNodes("./data"))
-                x.RemoveChild(xDel);
+			XmlNode[] NodesToRemove = 
+				(new List<XmlNode>(x.SelectNodes("./data").OfType<XmlNode>())).ToArray();
+			for (int i = 0; i < NodesToRemove.Length; i++)
+                x.RemoveChild(NodesToRemove[i]);
 
             XmlPopulate(xd, ref x, false);
         }
