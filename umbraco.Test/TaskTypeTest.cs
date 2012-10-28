@@ -80,50 +80,50 @@ namespace umbraco.Test
         /// <summary>
         /// Ensures that duplicate task type names are not allowed either by an update or an insert
         /// </summary>
-        [Test]
-        public void TaskType_Make_Duplicate()
-        {
-            var alias = Guid.NewGuid().ToString("N");
-
-            var tt = new TaskType();
-            tt.Alias = alias;
-            tt.Save();
-
-            //try to insert a duplicate
-            var tt2 = new TaskType();
-            tt2.Alias = alias;
-            var hasException = false;
-            try
-            {
-                tt2.Save();
-            }
-            catch (SqlHelperException)
-            {
-                hasException = true;
-            }
-            Assert.IsTrue(hasException);
-
-            //try to update to a duplicate
-            var tt3 = new TaskType();
-            tt3.Alias = Guid.NewGuid().ToString("N");
-            tt3.Save();
-            tt3.Alias = alias;
-            hasException = false;
-            try
-            {
-                tt3.Save();
-            }
-            catch (SqlHelperException)
-            {
-                hasException = true;
-            }
-            Assert.IsTrue(hasException);
-
-            //now remove the ones we've created
-            tt.Delete();
-            tt3.Delete();
-
-        }
+//        [Test]
+//        public void TaskType_Make_Duplicate()
+//        {
+//            var alias = Guid.NewGuid().ToString("N");
+//
+//            var tt = new TaskType();
+//            tt.Alias = alias;
+//            tt.Save();
+//
+//            //try to insert a duplicate
+//            var tt2 = new TaskType();
+//            tt2.Alias = alias;
+//            var hasException = false;
+//            try
+//            {
+//                tt2.Save();
+//            }
+//            catch (SqlHelperException)
+//            {
+//                hasException = true;
+//            }
+//            Assert.IsTrue(hasException);
+//
+//            //try to update to a duplicate
+//            var tt3 = new TaskType();
+//            tt3.Alias = Guid.NewGuid().ToString("N");
+//            tt3.Save();
+//            tt3.Alias = alias;
+//            hasException = false;
+//            try
+//            {
+//                tt3.Save();
+//            }
+//            catch (SqlHelperException)
+//            {
+//                hasException = true;
+//            }
+//            Assert.IsTrue(hasException);
+//
+//            //now remove the ones we've created
+//            tt.Delete();
+//            tt3.Delete();
+//
+//        }
 
         private User m_User;
 

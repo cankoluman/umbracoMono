@@ -51,7 +51,7 @@ namespace umbraco.Test
         {
             SetUpUtilities.AddUmbracoConfigFileToHttpCache();
 			m_ExistingDocType = GetExistingDocType();
-            m_NewRootDoc = CreateNewUnderRoot(m_ExistingDocType);
+            m_NewRootDoc = CreateNewUnderRoot(m_ExistingDocType, m_User);
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace umbraco.Test
         [Test]
         public void Document_Assign_Domain()
         {
-            var d = CreateNewUnderRoot(GetExistingDocType());
+            var d = CreateNewUnderRoot(GetExistingDocType(), m_User);
 
             var languages = Language.getAll.ToList();
             Assert.IsTrue(languages.Count > 0);
@@ -283,10 +283,11 @@ namespace umbraco.Test
             var versionCount = doc.GetVersions().Count();
 
             //save
-            //wait a sec so that there's a time delay between the update time and version time
-            Thread.Sleep(1000);
-            doc.Save();
+            //wait a sec so that there's a time delay between the update time and version timeZ
+            Thread.Sleep(3000);
+			doc.Save();
             Assert.IsTrue(doc.HasPendingChanges());
+			Thread.Sleep(3000);
 
             //publish and create new version
             doc.Publish(m_User);
@@ -965,11 +966,11 @@ namespace umbraco.Test
         /// Creates a new node based on an existing doc type
         /// </summary>
         /// <returns></returns>
-        internal static Document CreateNewUnderRoot(DocumentType dt)
+        internal static Document CreateNewUnderRoot(DocumentType dt, User user)
         {
             string Name = "TEST-" + Guid.NewGuid().ToString("N");            
             int ParentId = -1;
-            Document actual = Document.MakeNew(Name, dt, m_User, ParentId);
+            Document actual = Document.MakeNew(Name, dt, user, ParentId);
             var id = actual.Id;
             Assert.IsTrue(actual.Id > 0);
             return actual;
