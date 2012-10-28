@@ -109,7 +109,6 @@
     </ProjectReference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\LinqToUmbraco\src\umbraco.Linq\Solution Items\SolutionInfo.cs">
@@ -178,10 +177,10 @@
     <Compile Include="xmlHelper.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ConfigurationManager\ConfigurationManagerFactory.cs" />
-    <Compile Include="ConfigurationManager\ConfigurationManagerService.cs" />
     <Compile Include="IO\MultiPlatformHelper.cs" />
     <Compile Include="ConfigurationManager\ConfigurationManagerDefault.cs" />
+    <Compile Include="ConfigurationManager\ConfigurationManagerFactory.cs" />
+    <Compile Include="ConfigurationManager\ConfigurationManagerService.cs" />
     <Compile Include="ConfigurationManager\ConfigurationManagerTest.cs" />
   </ItemGroup>
   <ItemGroup>

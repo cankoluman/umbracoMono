@@ -28,7 +28,8 @@ namespace umbraco.MacroEngines
         {
             if (xpni != null)
             {
-                if (xpni.Current != null)
+				xpni.MoveNext();
+				if (xpni.Current != null)
                 {
                     var xml = xpni.Current.OuterXml;
                     var baseElement = XElement.Parse(xml);
