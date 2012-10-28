@@ -19,7 +19,13 @@ namespace umbraco.Test
     public class PropertyTypeTest
     {
 
-        /// <summary>
+		[TestFixtureSetUp]
+		public void InitTestFixture()
+		{
+			SetUpUtilities.InitConfigurationManager();
+		}        
+
+		/// <summary>
         ///A test for MakeNew
         ///</summary>
         [Test]

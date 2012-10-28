@@ -7,6 +7,7 @@ using umbraco.BusinessLogic;
 using System.Collections;
 using umbraco.cms.businesslogic.web;
 
+
 namespace umbraco.Test
 {
     
@@ -19,13 +20,20 @@ namespace umbraco.Test
     public class TemplateTest
     {
 
-        /// <summary>
+		[TestFixtureSetUp]
+		public void InitTestFixture()
+		{
+			SetUpUtilities.InitConfigurationManager();
+			m_User = new User(0);
+			SetUpUtilities.InitAppDomainDynamicBase();
+		}       
+
+		/// <summary>
         /// create a new template
         ///</summary>
         [Test]
         public void Template_Make_New()
         {
-
             var t = Template.MakeNew(Guid.NewGuid().ToString("N"), m_User);
             Assert.IsTrue(t.Id > 0);
             Assert.IsInstanceOf<Template>(t);
@@ -132,7 +140,7 @@ namespace umbraco.Test
             Assert.IsFalse(Template.IsNode(t.Id));
         }
 
-        private User m_User = new User(0);
+        private User m_User;
 
         #region Tests to write
         ///// <summary>
@@ -575,6 +583,20 @@ namespace umbraco.Test
         //{
         //}
         //
+
+        [SetUp]
+        public void MyTestInitialize()
+        {
+			SetUpUtilities.AddUmbracoConfigFileToHttpCache();
+
+        }
+
+		[TearDown]
+        public void MyTestCleanup()
+        {
+			SetUpUtilities.RemoveUmbracoConfigFileFromHttpCache();
+        }
+
         #endregion
     }
 }

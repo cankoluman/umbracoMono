@@ -6,6 +6,10 @@ using umbraco.BusinessLogic.Actions;
 using umbraco.cms.businesslogic.web;
 using System.Linq;
 
+using System.Xml;
+using System.Web;
+using System.Web.Caching;
+
 namespace umbraco.Test
 {
     
@@ -18,7 +22,17 @@ namespace umbraco.Test
     public class PermissionTest
     {
         
-        /// <summary>
+        
+		[TestFixtureSetUp]
+		public void InitTestFixture()
+		{
+			SetUpUtilities.InitConfigurationManager();
+			m_User = new User(0);
+			SetUpUtilities.InitAppDomainDynamicBase();
+
+		}
+
+		/// <summary>
         /// Create a new permission and delete it
         /// </summary>
         [Test]
@@ -88,7 +102,7 @@ namespace umbraco.Test
 
         }
 
-        private User m_User = new User(0);
+        private User m_User;
 
         #region Tests to write
 
@@ -170,6 +184,25 @@ namespace umbraco.Test
         //{
         //}
         //
+
+        [SetUp]
+        public void MyTestInitialize()
+        {
+			SetUpUtilities.AddUmbracoConfigFileToHttpCache();
+
+        }
+        
+        /// <summary>
+        /// Remove the created document type
+        /// </summary>
+
+        
+		[TearDown]
+        public void MyTestCleanup()
+        {
+			SetUpUtilities.RemoveUmbracoConfigFileFromHttpCache();
+        }
+
         #endregion
     }
 }

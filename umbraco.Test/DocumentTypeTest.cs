@@ -11,6 +11,9 @@ using umbraco.cms.businesslogic.datatype;
 using System.Data.SqlClient;
 using umbraco.cms.businesslogic;
 
+using System.Web;
+using System.Web.Caching;
+
 namespace umbraco.Test
 {
     
@@ -31,6 +34,7 @@ namespace umbraco.Test
 		{
 			ConfigurationManagerService.ConfigManager = new ConfigurationManagerTest(SetUpUtilities.GetAppSettings());
 			m_User = new User(0);
+			AppDomain.CurrentDomain.SetDynamicBase("/tmp/kol3-temp-aspnet-0");
 		}
 
 		[Test]
@@ -811,7 +815,8 @@ namespace umbraco.Test
         [SetUp]
         public void MyTestInitialize()
         {
-            m_NewDocType = CreateNewDocType();
+			SetUpUtilities.AddUmbracoConfigFileToHttpCache();
+			m_NewDocType = CreateNewDocType();
         }
         
         /// <summary>
@@ -823,6 +828,7 @@ namespace umbraco.Test
         public void MyTestCleanup()
         {
             DeleteDocType(m_NewDocType);
+			SetUpUtilities.RemoveUmbracoConfigFileFromHttpCache();
         }
         
         #endregion

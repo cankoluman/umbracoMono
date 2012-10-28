@@ -10,10 +10,13 @@ using umbraco.cms.businesslogic.datatype;
 using umbraco.cms.businesslogic;
 using umbraco.cms.businesslogic.property;
 
+using System.Xml;
+using System.Web;
+using System.Web.Caching;
+
 namespace umbraco.Test
 {
-    
-    
+
     /// <summary>
     /// This will test the Media data layer.
     /// These test assume the following criteria, if this criteria is not met, these tests will fail:
@@ -22,7 +25,16 @@ namespace umbraco.Test
     [TestFixture]
     public class MediaTest
     {
-        /// <summary>
+        
+		[TestFixtureSetUp]
+		public void InitTestFixture()
+		{
+			SetUpUtilities.InitConfigurationManager();
+			m_User = new User(0);
+			SetUpUtilities.InitAppDomainDynamicBase();
+		}
+
+		/// <summary>
         ///A test for making a new media and deleting it which actuall first moves it to the recycle bin
         ///and then deletes it.
         ///</summary>
@@ -327,7 +339,7 @@ namespace umbraco.Test
         /// <summary>
         /// The user to be used to create stuff
         /// </summary>
-        private User m_User = new User(0);
+        private User m_User;
 
         /// <summary>
         /// Used for each test initialization. Before each test is run a new root media is created.
@@ -470,7 +482,9 @@ namespace umbraco.Test
         [SetUp]
         public void MyTestInitialize()
         {
-            m_ExistingMediaType = GetExistingMediaType();
+			SetUpUtilities.AddUmbracoConfigFileToHttpCache();
+
+			m_ExistingMediaType = GetExistingMediaType();
             m_NewRootMedia = CreateNewUnderRoot(m_ExistingMediaType);
         }
 
@@ -481,6 +495,7 @@ namespace umbraco.Test
         public void MyTestCleanup()
         {
             RecycleAndDelete(m_NewRootMedia);
+			SetUpUtilities.RemoveUmbracoConfigFileFromHttpCache();
         }
         #endregion
 

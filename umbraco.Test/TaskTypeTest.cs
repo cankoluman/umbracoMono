@@ -19,7 +19,15 @@ namespace umbraco.Test
     public class TaskTypeTest
     {
 
-        /// <summary>
+        
+		[TestFixtureSetUp]
+		public void InitTestFixture()
+		{
+			SetUpUtilities.InitConfigurationManager();
+			m_User = new User(0);
+		}
+
+		/// <summary>
         /// Test the constructor to throw an exception when the object is not found by id
         ///</summary>
         [Test]
@@ -117,7 +125,7 @@ namespace umbraco.Test
 
         }
 
-        private User m_User = new User(0);
+        private User m_User;
 
         #region Tests to write
 

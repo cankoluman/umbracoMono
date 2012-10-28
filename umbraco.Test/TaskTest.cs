@@ -6,6 +6,10 @@ using umbraco.cms.businesslogic;
 using System.Linq;
 using umbraco.cms.businesslogic.web;
 
+using System.Xml;
+using System.Web;
+using System.Web.Caching;
+
 namespace umbraco.Test
 {
     
@@ -18,8 +22,15 @@ namespace umbraco.Test
     public class TaskTest
     {
 
-
-        /// <summary>
+		[TestFixtureSetUp]
+		public void InitTestFixture()
+		{
+			SetUpUtilities.InitConfigurationManager();
+			m_User = new User(0);
+			SetUpUtilities.InitAppDomainDynamicBase();
+		}
+        
+		/// <summary>
         /// Test the constructor to throw an exception when the object is not found by id
         ///</summary>
         [Test]
@@ -104,7 +115,7 @@ namespace umbraco.Test
             Assert.IsFalse(Document.IsNode(d.Id));
         }
 
-        private User m_User = new User(0);
+        private User m_User;
 
         #region Tests to write
         
@@ -308,6 +319,25 @@ namespace umbraco.Test
         //{
         //}
         //
+
+        [SetUp]
+        public void MyTestInitialize()
+        {
+			SetUpUtilities.AddUmbracoConfigFileToHttpCache();
+
+        }
+        
+        /// <summary>
+        /// Remove the created document type
+        /// </summary>
+
+        
+		[TearDown]
+        public void MyTestCleanup()
+        {
+			SetUpUtilities.RemoveUmbracoConfigFileFromHttpCache();
+        }
+
         #endregion
     }
 }

@@ -28,8 +28,9 @@ namespace umbraco.Test
 		[TestFixtureSetUp]
 		public void InitTestFixture()
 		{
-			ConfigurationManagerService.ConfigManager = new ConfigurationManagerTest(SetUpUtilities.GetAppSettings());
+			SetUpUtilities.InitConfigurationManager();
 			m_User = new User(0); 
+			SetUpUtilities.InitAppDomainDynamicBase();
 		}        
 
 		/// <summary>
