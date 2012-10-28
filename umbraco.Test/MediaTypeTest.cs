@@ -17,7 +17,15 @@ namespace umbraco.Test
     [TestFixture]
     public class MediaTypeTest
     {
-        /// <summary>
+        
+		[TestFixtureSetUp]
+		public void InitTestFixture()
+		{
+			SetUpUtilities.InitConfigurationManager();
+			m_User = new User(0);
+		}
+
+		/// <summary>
         ///A test for GetAll
         ///</summary>
         [Test]
@@ -211,7 +219,7 @@ namespace umbraco.Test
 
         #region Private properties and methods
 
-        private User m_User = new User(0);
+        private User m_User;
 
         /// <summary>
         /// before each test starts, this object is created so it can be used for testing.
@@ -267,7 +275,9 @@ namespace umbraco.Test
         [SetUp]
         public void MyTestInitialize()
         {
-            m_NewMediaType = CreateNewMediaType();
+            SetUpUtilities.AddUmbracoConfigFileToHttpCache();
+			m_NewMediaType = CreateNewMediaType();
+			SetUpUtilities.InitAppDomainDynamicBase();
         }
 
         /// <summary>
@@ -277,6 +287,7 @@ namespace umbraco.Test
         public void MyTestCleanup()
         {
             DeleteMediaType(m_NewMediaType);
+			SetUpUtilities.RemoveUmbracoConfigFileFromHttpCache();
         }
         #endregion
 

@@ -39,6 +39,8 @@ namespace umbraco.Test
 		{
 			ConfigurationManagerService.ConfigManager = new ConfigurationManagerTest(SetUpUtilities.GetAppSettings());
 			m_User = new User(0);
+			SetUpUtilities.InitConfigurationManager();
+			SetUpUtilities.InitAppDomainDynamicBase();
 		}
 
         /// <summary>
@@ -47,7 +49,8 @@ namespace umbraco.Test
         [SetUp]
         public void Init()
         {
-            m_ExistingDocType = GetExistingDocType();
+            SetUpUtilities.AddUmbracoConfigFileToHttpCache();
+			m_ExistingDocType = GetExistingDocType();
             m_NewRootDoc = CreateNewUnderRoot(m_ExistingDocType);
         }
 
@@ -1000,6 +1003,7 @@ namespace umbraco.Test
         public void Cleanup()
         {
             RecycleAndDelete(m_NewRootDoc);
+			SetUpUtilities.RemoveUmbracoConfigFileFromHttpCache();
         }
         
         #endregion

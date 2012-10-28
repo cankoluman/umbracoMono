@@ -198,7 +198,10 @@ namespace umbraco.IO
             m_rootDir = baseDirectory.Substring(0, baseDirectory.LastIndexOf("bin") - 1);
 
 			//changed for tests ck, 9/9/12
-            return "/" + m_rootDir;
+			if (MultiPlatformHelper.IsUnix && !m_rootDir.StartsWith(IOHelper.DirSepChar.ToString()))
+				m_rootDir = IOHelper.DirSepChar + m_rootDir;
+
+            return m_rootDir;
 
         }
 

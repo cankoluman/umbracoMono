@@ -6,6 +6,9 @@ using umbraco.BusinessLogic;
 using System.Xml;
 using System.Linq;
 
+using System.Web;
+using System.Web.Caching;
+
 namespace umbraco.Test
 {
     
@@ -18,7 +21,16 @@ namespace umbraco.Test
     public class MemberTest
     {
 
-        /// <summary>
+		[TestFixtureSetUp]
+		public void InitTestFixture()
+		{
+			SetUpUtilities.InitConfigurationManager();
+			m_User = new User(0);
+
+		}        
+
+
+		/// <summary>
         /// Creates a new member type and member, then deletes it
         ///</summary>
         [Test]
@@ -78,7 +90,7 @@ namespace umbraco.Test
         }
 
         #region Private members
-        private User m_User = new User(0); 
+        private User m_User; 
         #endregion
 
         #region Test to write
@@ -621,6 +633,26 @@ namespace umbraco.Test
         //{
         //}
         //
+
+		private string m_umbracoConfigFile = "/home/kol3/Development/umbraco/290912/u4.7.2/umbraco/presentation/config/umbracoSettings.config";
+        [SetUp]
+        public void MyTestInitialize()
+        {
+			SetUpUtilities.AddUmbracoConfigFileToHttpCache();
+
+        }
+        
+        /// <summary>
+        /// Remove the created document type
+        /// </summary>
+
+        
+		[TearDown]
+        public void MyTestCleanup()
+        {
+			SetUpUtilities.RemoveUmbracoConfigFileFromHttpCache();
+        }
+
         #endregion
 
     }

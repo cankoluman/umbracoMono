@@ -158,7 +158,7 @@ namespace umbraco.cms.businesslogic.language
             {
                 return GetAllAsList()
                         .Where(x => x.CultureAlias == cultureCode)
-                        .SingleOrDefault();
+                        .FirstOrDefault();
             }
 
             return null;

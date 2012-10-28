@@ -22,8 +22,8 @@ namespace umbraco.Test
 		[TestFixtureSetUp]
 		public void InitTestFixture()
 		{
-			ConfigurationManagerService.ConfigManager = new ConfigurationManagerTest(SetUpUtilities.GetAppSettings());
-		}
+			SetUpUtilities.InitConfigurationManager();
+		}   
 
         /// <summary>
         /// Create a new member with the provider, then re-get them with the provider and make sure they are the same
@@ -587,7 +587,10 @@ namespace umbraco.Test
         [SetUp]
         public void MyTestInitialize()
         {
-            //need to create a member type for the provider
+            
+			SetUpUtilities.AddUmbracoConfigFileToHttpCache();
+
+			//need to create a member type for the provider
             m_MemberType = MemberType.MakeNew(User.GetUser(0), Guid.NewGuid().ToString("N"));
 
             m_Provider = new UmbracoMembershipProvider(); // TODO: Initialize to an appropriate value
@@ -610,6 +613,8 @@ namespace umbraco.Test
         {
             //remove the member type
             m_MemberType.delete();
+
+			SetUpUtilities.RemoveUmbracoConfigFileFromHttpCache();
         }
         
         #endregion

@@ -7,6 +7,9 @@ using System.Xml;
 using umbraco.cms.businesslogic.datatype;
 using System.Linq;
 
+using System.Web;
+using System.Web.Caching;
+
 namespace umbraco.Test
 {
     
@@ -19,7 +22,16 @@ namespace umbraco.Test
     public class MemberTypeTest
     {
 
-        [Test]
+        
+		[TestFixtureSetUp]
+		public void InitTestFixture()
+		{
+			SetUpUtilities.InitConfigurationManager();
+			m_User = new User(0);
+
+		}
+
+		[Test]
         public void MemberType_Make_New_Add_Remove_Properties()
         {
             var m = MemberType.MakeNew(m_User, "TEST" + Guid.NewGuid().ToString("N"));
@@ -224,7 +236,7 @@ namespace umbraco.Test
 
         #region Private methods
 
-        private User m_User = new User(0); 
+        private User m_User; 
         
         #endregion
 
@@ -256,6 +268,25 @@ namespace umbraco.Test
         //{
         //}
         //
+
+        [SetUp]
+        public void MyTestInitialize()
+        {
+			SetUpUtilities.AddUmbracoConfigFileToHttpCache();
+
+        }
+        
+        /// <summary>
+        /// Remove the created document type
+        /// </summary>
+
+        
+		[TearDown]
+        public void MyTestCleanup()
+        {
+			SetUpUtilities.RemoveUmbracoConfigFileFromHttpCache();
+        }
+
         #endregion
     }
 }

@@ -5,6 +5,10 @@ using umbraco.BusinessLogic;
 using System.Collections;
 using System.Linq;
 
+using System.Xml;
+using System.Web;
+using System.Web.Caching;
+
 namespace umbraco.Test
 {
     
@@ -17,7 +21,16 @@ namespace umbraco.Test
     public class MemberGroupTest
     {
 
-        /// <summary>
+        
+		[TestFixtureSetUp]
+		public void InitTestFixture()
+		{
+			SetUpUtilities.InitConfigurationManager();
+			m_User = new User(0);
+
+		}
+
+		/// <summary>
         /// Make a new member group and delete it
         ///</summary>
         [Test]
@@ -70,7 +83,7 @@ namespace umbraco.Test
             Assert.IsFalse(MemberType.IsNode(mt.Id));
         }
 
-        private User m_User = new User(0);
+        private User m_User;
 
         #region Tests to write
 
@@ -254,6 +267,27 @@ namespace umbraco.Test
         //{
         //}
         //
+
+		private string m_umbracoConfigFile = "/home/kol3/Development/umbraco/290912/u4.7.2/umbraco/presentation/config/umbracoSettings.config";
+        [SetUp]
+        public void MyTestInitialize()
+        {
+			SetUpUtilities.AddUmbracoConfigFileToHttpCache();
+
+        }
+        
+        /// <summary>
+        /// Remove the created document type
+        /// </summary>
+
+        
+		[TearDown]
+        public void MyTestCleanup()
+        {
+			SetUpUtilities.RemoveUmbracoConfigFileFromHttpCache();
+        }
+
+
         #endregion
     }
 }

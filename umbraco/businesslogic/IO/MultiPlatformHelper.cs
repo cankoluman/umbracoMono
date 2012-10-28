@@ -43,7 +43,7 @@ namespace umbraco.IO
 			if (filePath.StartsWith("~"))
 				filePath = IOHelper.ResolveUrl(filePath);
 
-			filePath = IOHelper.MapPath(filePath, true);
+			filePath = IOHelper.MapPath(filePath, System.Web.HttpContext.Current != null);
 
 			return filePath;
 		}

@@ -16,7 +16,14 @@ namespace umbraco.Test
     public class MacroTest
     {
 
-        /// <summary>
+        
+		[TestFixtureSetUp]
+		public void InitTestFixture()
+		{
+			SetUpUtilities.InitConfigurationManager();
+		}
+
+		/// <summary>
         /// Test the constructor to throw an exception when the object is not found by id
         ///</summary>
         [Test]

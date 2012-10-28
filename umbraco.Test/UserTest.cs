@@ -16,7 +16,15 @@ namespace umbraco.Test
     public class UserTest
     {
 
-        /// <summary>
+        
+		[TestFixtureSetUp]
+		public void InitTestFixture()
+		{
+			ConfigurationManagerService.ConfigManager = new ConfigurationManagerTest(SetUpUtilities.GetAppSettings());
+
+		}   
+
+		/// <summary>
         /// Make sure that the admin account cannot be deleted
         /// </summary>
         [Test]

@@ -16,7 +16,15 @@ namespace umbraco.Test
     public class StyleSheetTest
     {
 
-        /// <summary>
+        
+		[TestFixtureSetUp]
+		public void InitTestFixture()
+		{
+			SetUpUtilities.InitConfigurationManager();
+			m_User = new User(0);
+		}
+
+		/// <summary>
         ///A test for MakeNew
         ///</summary>
         [Test]
@@ -55,7 +63,7 @@ namespace umbraco.Test
 
         }
 
-        private User m_User = new User(0);
+        private User m_User;
 
         #region Tests to write
         ///// <summary>
