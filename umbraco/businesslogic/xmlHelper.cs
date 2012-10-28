@@ -110,7 +110,8 @@ namespace umbraco
 		{
 			if (xpi != null)
 			{
-				if (xpi.MoveNext())
+				xpi.MoveNext();
+				if (xpi.Current != null)
 					return ((IHasXmlNode)xpi.Current).GetNode();
 			}
 

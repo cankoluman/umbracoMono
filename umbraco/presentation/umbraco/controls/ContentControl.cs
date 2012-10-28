@@ -269,7 +269,7 @@ namespace umbraco.controls
         {
             MenuImageButton menuSave = tp.Menu.NewImageButton();
             menuSave.ID = tp.ID + "_save";
-            menuSave.ImageUrl = _UmbracoPath + "/images/editor/save.gif";
+            menuSave.ImageUrl = _UmbracoPath + "/images/editor/Save.GIF";
             menuSave.Click += new ImageClickEventHandler(saveClick);
             menuSave.OnClickCommand = "invokeSaveHandlers();";
             menuSave.AltText = ui.Text("buttons", "save", null);
@@ -277,7 +277,7 @@ namespace umbraco.controls
             {
                 MenuImageButton menuPublish = tp.Menu.NewImageButton();
                 menuPublish.ID = tp.ID + "_publish";
-                menuPublish.ImageUrl = _UmbracoPath + "/images/editor/saveAndPublish.gif";
+                menuPublish.ImageUrl = _UmbracoPath + "/images/editor/SaveAndPublish.gif";
                 menuPublish.OnClickCommand = "invokeSaveHandlers();";
                 menuPublish.Click += new ImageClickEventHandler(savePublish);
                 menuPublish.AltText = ui.Text("buttons", "saveAndPublish", null);
@@ -444,7 +444,7 @@ namespace umbraco.controls
             }
 
             // RegExp Validation
-            if (p.PropertyType.ValidationRegExp != "")
+            if (p.PropertyType.ValidationRegExp != null && p.PropertyType.ValidationRegExp != "")
             {
                 try
                 {
