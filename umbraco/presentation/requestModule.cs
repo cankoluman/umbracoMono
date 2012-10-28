@@ -123,9 +123,9 @@ namespace umbraco.presentation
 			{
 				// zb-00017 #29930 : do not change url casing when rewriting
 				string requestPath = context.Request.Path; // not lowercased
-				int asmxPos = path.IndexOf(".asmx/");
+				int asmxPos = requestPath.IndexOf(".asmx/");
 				if (asmxPos >= 0)
-					context.RewritePath(path.Substring(0, asmxPos + 5),
+					context.RewritePath(requestPath.Substring(0, asmxPos + 5),
 										requestPath.Substring(asmxPos + 5),
 										context.Request.QueryString.ToString());
 			}

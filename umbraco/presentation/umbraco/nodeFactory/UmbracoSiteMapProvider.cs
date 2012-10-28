@@ -36,6 +36,7 @@ namespace umbraco.presentation.nodeFactory {
             }
             if (config["securityTrimmingEnabled"] != null) {
                 m_enableSecurityTrimming = bool.Parse(config["securityTrimmingEnabled"]);
+				config.Remove("securityTrimmingEnabled");
             }
 
             base.Initialize(name, config);

@@ -29,8 +29,7 @@ namespace umbraco.settings
 
         override protected void OnInit(EventArgs e)
         {
-			//ContentTypeControlNew1.InfoTabPage.Controls.Remove(tmpPane);
-			ContentTypeControlNew1.InfoTabPage.Controls.Add(tmpPane);
+            ContentTypeControlNew1.InfoTabPage.Controls.Add(tmpPane);
             base.OnInit(e);
         }
 
@@ -118,6 +117,8 @@ namespace umbraco.settings
 
 					ArrayList tmp = new ArrayList();
 
+					setCheckBoxStates(templateList);
+
 					foreach (ListItem li in templateList.Items) {
 						if (li.Selected) tmp.Add(new cms.businesslogic.template.Template(int.Parse(li.Value)));
 					}
@@ -156,6 +157,23 @@ namespace umbraco.settings
 			}
 		}
 
+        //mono fix for lost checkboxlist states
+		private void setCheckBoxStates(CheckBoxList cbl)
+		{
+			if (IsPostBack)
+			{
+				string cblFormID = cbl.ClientID.Replace("_","$");
+				int i = 0;
+				foreach (var item in cbl.Items)
+				{
+					string itemSelected = Request.Form[cblFormID + "$" + i];
+					if (itemSelected != null && itemSelected != String.Empty)
+						((ListItem)item).Selected = true;
+					i++;
+				}
+			}
+		}
 
+		
 	}
 }
