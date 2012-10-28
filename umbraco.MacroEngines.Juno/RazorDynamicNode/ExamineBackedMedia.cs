@@ -44,11 +44,12 @@ namespace umbraco.MacroEngines
 
             }
 
-            var media = umbraco.library.GetMedia(id, true);
-            if (media != null && media.Current != null)
+            XPathNodeIterator media = umbraco.library.GetMedia(id, true);
+            if (media != null)
             {
-                media.MoveNext();
-                return new ExamineBackedMedia(media.Current);
+				media.MoveNext();
+				if (media.Current != null)
+					return new ExamineBackedMedia(media.Current);
             }
 
             return null;
@@ -59,20 +60,23 @@ namespace umbraco.MacroEngines
             if (xpath == null) throw new ArgumentNullException("xpath");
             Name = xpath.GetAttribute("nodeName", "");
             Values = new Dictionary<string, string>();
-            var result = xpath.SelectChildren(XPathNodeType.Element);
+
+			XPathNodeIterator xpi = xpath.Select(".");
             //add the attributes e.g. id, parentId etc
-            if (result.Current.HasAttributes)
-            {
-                if (result.Current.MoveToFirstAttribute())
-                {
-                    Values.Add(result.Current.Name, result.Current.Value);
-                    while (result.Current.MoveToNextAttribute())
-                    {
-                        Values.Add(result.Current.Name, result.Current.Value);
-                    }
-                    result.Current.MoveToParent();
-                }
-            }
+			xpi.MoveNext ();
+			if (xpi.Current != null)
+	            if (xpi.Current.HasAttributes)
+	            {
+	                if (xpi.Current.MoveToFirstAttribute())
+	                {
+	                    Values.Add(xpi.Current.Name, xpi.Current.Value);
+	                    while (xpi.Current.MoveToNextAttribute())
+	                    {
+	                        Values.Add(xpi.Current.Name, xpi.Current.Value);
+	                    }
+	                }
+	            }
+			XPathNodeIterator result = xpath.SelectChildren(XPathNodeType.Element);
             while (result.MoveNext())
             {
                 if (result.Current != null && !result.Current.HasAttributes)
@@ -104,28 +108,31 @@ namespace umbraco.MacroEngines
             //custom property, not loaded from examine
             //have to do a getmedia and get it that way, but then add it to the cache
             var media = umbraco.library.GetMedia(this.Id, true);
-            if (media != null && media.Current != null)
+            if (media != null)
             {
-                media.MoveNext();
-                XPathNavigator xpath = media.Current;
-                var result = xpath.SelectChildren(XPathNodeType.Element);
-                while (result.MoveNext())
-                {
-                    if (result.Current != null && !result.Current.HasAttributes)
-                    {
-                        if (string.Equals(result.Current.Name, alias))
-                        {
-                            string value = result.Current.Value;
-                            if (string.IsNullOrEmpty(value))
-                            {
-                                value = result.Current.OuterXml;
-                            }
-                            Values.Add(result.Current.Name, value);
-                            propertyExists = true;
-                            return new PropertyResult(alias, value, Guid.Empty);
-                        }
-                    }
-                }
+				media.MoveNext();
+				if (media.Current != null)
+				{
+					XPathNavigator xpath = media.Current;
+	                var result = xpath.SelectChildren(XPathNodeType.Element);
+	                while (result.MoveNext())
+	                {
+	                    if (result.Current != null && !result.Current.HasAttributes)
+	                    {
+	                        if (string.Equals(result.Current.Name, alias))
+	                        {
+	                            string value = result.Current.Value;
+	                            if (string.IsNullOrEmpty(value))
+	                            {
+	                                value = result.Current.OuterXml;
+	                            }
+	                            Values.Add(result.Current.Name, value);
+	                            propertyExists = true;
+	                            return new PropertyResult(alias, value, Guid.Empty);
+	                        }
+	                    }
+	                }
+				}
             }
             propertyExists = false;
             return null;
@@ -367,32 +374,35 @@ namespace umbraco.MacroEngines
             }
 
             var media = umbraco.library.GetMedia(ParentId, true);
-            if (media != null && media.Current != null)
+            if (media != null)
             {
-                media.MoveNext();
-                var children = media.Current.SelectChildren(XPathNodeType.Element);
-                List<ExamineBackedMedia> mediaList = new List<ExamineBackedMedia>();
-                while (children != null && children.Current != null)
-                {
-                    if (children.MoveNext())
-                    {
-                        if (children.Current.Name != "contents")
-                        {
-                            //make sure it's actually a node, not a property 
-                            if (!string.IsNullOrEmpty(children.Current.GetAttribute("path", "")) &&
-                                !string.IsNullOrEmpty(children.Current.GetAttribute("id", "")) &&
-                                !string.IsNullOrEmpty(children.Current.GetAttribute("version", "")))
-                            {
-                                mediaList.Add(new ExamineBackedMedia(children.Current));
-                            }
-                        }
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                return mediaList;
+				media.MoveNext();
+				if (media.Current != null)
+				{
+					var children = media.Current.SelectChildren(XPathNodeType.Element);
+	                List<ExamineBackedMedia> mediaList = new List<ExamineBackedMedia>();
+	                while (children != null && children.Current != null)
+	                {
+	                    if (children.MoveNext())
+	                    {
+	                        if (children.Current.Name != "contents")
+	                        {
+	                            //make sure it's actually a node, not a property 
+	                            if (!string.IsNullOrEmpty(children.Current.GetAttribute("path", "")) &&
+	                                !string.IsNullOrEmpty(children.Current.GetAttribute("id", "")) &&
+	                                !string.IsNullOrEmpty(children.Current.GetAttribute("version", "")))
+	                            {
+	                                mediaList.Add(new ExamineBackedMedia(children.Current));
+	                            }
+	                        }
+	                    }
+	                    else
+	                    {
+	                        break;
+	                    }
+	                }
+	                return mediaList;
+				}
             }
 
             return null;
