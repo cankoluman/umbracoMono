@@ -103,7 +103,7 @@ namespace umbraco.Test
             IDataType dt = new TextFieldDataType();
             dtd.DataType = dt;
             Assert.AreEqual(dt.Id, dtd.DataType.Id);
-            Assert.IsInstanceOfType(dtd.DataType.GetType(), dt.GetType());
+            Assert.IsInstanceOf<TextFieldDataType>(dtd.DataType);
 
             //create new doc type
             var docType = DocumentType.MakeNew(m_User, "TEST" + Guid.NewGuid().ToString("N"));
@@ -362,6 +362,18 @@ namespace umbraco.Test
         //{
         //}
         //
+
+        [SetUp]
+        public void Init()
+        {
+            SetUpUtilities.AddUmbracoConfigFileToHttpCache();
+        }
+
+        [TearDown]
+        public void Cleanup()
+        {
+			SetUpUtilities.RemoveUmbracoConfigFileFromHttpCache();
+        }
         #endregion
     }
 }

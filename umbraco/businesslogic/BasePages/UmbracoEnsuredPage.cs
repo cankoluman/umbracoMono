@@ -108,7 +108,7 @@ namespace umbraco.BasePages
                 if (RedirectToUmbraco)
                     Response.Redirect(SystemDirectories.Umbraco + "/logout.aspx?", true);
                 else
-                    Response.Redirect(SystemDirectories.Umbraco + "/logout.aspx?redir=" + Server.UrlEncode(Request.RawUrl), true);
+                    Response.Redirect(SystemDirectories.Umbraco + "/logout.aspx?redir=" + Server.UrlEncode(Request.Url.AbsoluteUri), true);
             }
 
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(ui.Culture(this.getUser()));

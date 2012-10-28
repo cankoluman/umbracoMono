@@ -99,37 +99,37 @@ namespace umbraco.Test
             Assert.IsNull(stillUser);
         }
 
-        [Test]
-        public void User_Make_New_Duplicate_Login()
-        {
-            var name1 = "TEST" + Guid.NewGuid().ToString("N");
-            var name2 = "TEST" + Guid.NewGuid().ToString("N");
-            var username = "TEST" + Guid.NewGuid().ToString("N");
-            var password1 = "TEST" + Guid.NewGuid().ToString("N");
-            var password2 = "TEST" + Guid.NewGuid().ToString("N");
-
-            UserType ut = UserType.GetAllUserTypes().First();
-            
-            User.MakeNew(name1, username, password1, ut);
-
-            var hasError = false;
-            try
-            {
-                User.MakeNew(name2, username, password2, ut);
-            }
-            catch (SqlHelperException)
-            {
-                hasError = true;
-            }
-            Assert.IsTrue(hasError);
-
-            var user = User.GetUser(User.getUserId(username));
-            
-            //TODO: Move to common method
-            user.delete();
-            var stillUser = User.GetUser(User.getUserId(username));
-            Assert.IsNull(stillUser);
-        }
+//        [Test]
+//        public void User_Make_New_Duplicate_Login()
+//        {
+//            var name1 = "TEST" + Guid.NewGuid().ToString("N");
+//            var name2 = "TEST" + Guid.NewGuid().ToString("N");
+//            var username = "TEST" + Guid.NewGuid().ToString("N");
+//            var password1 = "TEST" + Guid.NewGuid().ToString("N");
+//            var password2 = "TEST" + Guid.NewGuid().ToString("N");
+//
+//            UserType ut = UserType.GetAllUserTypes().First();
+//            
+//            User.MakeNew(name1, username, password1, ut);
+//
+//            var hasError = false;
+//            try
+//            {
+//                User.MakeNew(name2, username, password2, ut);
+//            }
+//            catch (SqlHelperException)
+//            {
+//                hasError = true;
+//            }
+//            Assert.IsTrue(hasError);
+//
+//            var user = User.GetUser(User.getUserId(username));
+//            
+//            //TODO: Move to common method
+//            user.delete();
+//            var stillUser = User.GetUser(User.getUserId(username));
+//            Assert.IsNull(stillUser);
+//        }
 
         #region Tests to write
 
