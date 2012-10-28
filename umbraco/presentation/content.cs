@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Xml;
@@ -286,8 +287,11 @@ namespace umbraco
             // Remove all attributes and data nodes from the published node
             PublishedNode.Attributes.RemoveAll();
             string xpath = UmbracoSettings.UseLegacyXmlSchema ? "./data" : "./* [not(@id)]";
-            foreach (XmlNode n in PublishedNode.SelectNodes(xpath))
-                PublishedNode.RemoveChild(n);
+            
+			XmlNode[] NodesToRemove = 
+				(new List<XmlNode>(PublishedNode.SelectNodes(xpath).OfType<XmlNode>())).ToArray();
+			for (int i = 0; i < NodesToRemove.Length; i++)
+                PublishedNode.RemoveChild(NodesToRemove[i]);
 
             // Append all attributes and datanodes from the documentnode to the publishednode
             foreach (XmlAttribute att in DocumentNode.Attributes)
@@ -311,7 +315,8 @@ namespace umbraco
             if (d.Published)
             {
                 int parentId = d.Level == 1 ? -1 : d.Parent.Id;
-                AppendDocumentXml(d.Id, d.Level, parentId, getPreviewOrPublishedNode(d, xmlContentCopy, false),
+				XmlNode previewOrPublishedNode = getPreviewOrPublishedNode(d, xmlContentCopy, false);
+                AppendDocumentXml(d.Id, d.Level, parentId, previewOrPublishedNode,
                                   xmlContentCopy);
 
                 // update sitemapprovider
@@ -345,8 +350,8 @@ namespace umbraco
             }
 
             // Find the document in the xml cache
-            XmlNode x = xmlContentCopy.GetElementById(id.ToString());
-
+            //XmlNode x = xmlContentCopy.GetElementById(id.ToString());
+			XmlNode x = xmlContentCopy.SelectSingleNode(String.Format ("//*[@isDoc][@id='{0}']", id.ToString()));
             // Find the parent (used for sortering and maybe creation of new node)
             XmlNode parentNode;
             if (level == 1)

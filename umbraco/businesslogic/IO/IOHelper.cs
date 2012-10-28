@@ -46,7 +46,7 @@ namespace umbraco.IO
             if (virtualPath.StartsWith("~"))
                 return virtualPath.Replace("~", SystemDirectories.Root).Replace("//", "/");
             else
-                return VirtualPathUtility.ToAbsolute(virtualPath, SystemDirectories.Root);
+                return VirtualPathUtility.ToAbsolute(virtualPath, MultiPlatformHelper.EnsureRootAppPath(SystemDirectories.Root));
         }
 
 
@@ -122,7 +122,7 @@ namespace umbraco.IO
         public static string MapPath(string path)
         {
 
-			if (IO.MultiPlatformHelper.IsWindows())
+			if (IO.MultiPlatformHelper.IsWindows)
 				return MapPath(path, true);            
 
 			return IO.MultiPlatformHelper.MapUnixPath(path);

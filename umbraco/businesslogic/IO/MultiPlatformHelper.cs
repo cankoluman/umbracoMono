@@ -20,14 +20,20 @@ namespace umbraco.IO
 			}
 		}
 
-		public static bool IsWindows()
+		public static bool IsWindows
 		{
-			return OSPlatform.Contains(PLATFORM_WIN);
+			get
+			{
+				return OSPlatform.Contains(PLATFORM_WIN);
+			}
 		}
 
-		public static bool IsUnix()
+		public static bool IsUnix
 		{
-			return OSPlatform.Contains(PLATFORM_UNIX);
+			get
+			{
+				return OSPlatform.Contains(PLATFORM_UNIX);
+			}
 		}
 
 		public static string MapUnixPath(string path)
@@ -45,6 +51,13 @@ namespace umbraco.IO
 		public static string ConvertPathFromUnixToWin(string path)
 		{
 			return path.Replace(MultiPlatformHelper.UNIX_DIRSEP, MultiPlatformHelper.WIN_DIRSEP);
+		}
+
+		public static string EnsureRootAppPath (string path)
+		{
+			if (IsUnix && (path == String.Empty))
+				return "/";
+			return path;
 		}
 
 	}
