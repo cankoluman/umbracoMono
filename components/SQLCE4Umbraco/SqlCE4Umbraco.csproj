@@ -10,6 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SQLCE4Umbraco</RootNamespace>
     <AssemblyName>SQLCE4Umbraco</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>
     </SccProjectName>
@@ -67,7 +68,7 @@
     <Compile Include="SqlCEUtility.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="sql\total.sql" />
+    <Content Include="Sql\Total.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SqlCEResources.resx">

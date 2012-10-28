@@ -51,11 +51,9 @@
 <body id="umbracoMainPageBody">
     <form id="Form1" method="post" runat="server" style="margin: 0px; padding: 0px">
     <asp:ScriptManager runat="server" ID="umbracoScriptManager" ScriptMode="Release">
-        <CompositeScript ScriptMode="Release">
             <Scripts>
-                <asp:ScriptReference Path="js/dualSelectBox.js" />
+                <asp:ScriptReference Path="js/dualSelectBox.js" ScriptMode="Release"  />
             </Scripts>
-        </CompositeScript>
         <Services>
             <asp:ServiceReference Path="webservices/legacyAjaxCalls.asmx" />
             <asp:ServiceReference Path="webservices/nodeSorter.asmx" />

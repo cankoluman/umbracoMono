@@ -25,7 +25,7 @@ namespace umbraco.controls
     [ClientDependency(ClientDependencyType.Css, "Tree/treeIcons.css", "UmbracoClient")]
     [ClientDependency(ClientDependencyType.Css, "Tree/Themes/umbraco/style.css", "UmbracoClient")]
     [ClientDependency(ClientDependencyType.Css, "GenericProperty/genericproperty.css", "UmbracoClient")]
-    [ClientDependency(ClientDependencyType.Javascript, "GenericProperty/genericproperty.js", "UmbracoClient")]
+    [ClientDependency(ClientDependencyType.Javascript, "GenericProperty/genericProperty.js", "UmbracoClient")]
     [ClientDependency(ClientDependencyType.Javascript, "js/UmbracoCasingRules.aspx", "UmbracoRoot")]
     public partial class ContentTypeControlNew : System.Web.UI.UserControl
     {
@@ -179,7 +179,7 @@ namespace umbraco.controls
             ImageButton Save = InfoTabPage.Menu.NewImageButton();
             Save.Click += new System.Web.UI.ImageClickEventHandler(save_click);
 
-            Save.ImageUrl = UmbracoPath + "/images/editor/save.gif";
+            Save.ImageUrl = UmbracoPath + "/images/editor/Save.GIF";
             Save.AlternateText = ui.Text("save");
             Save.ID = "save";
             var listOfIcons = new List<ListItem>();
@@ -254,7 +254,7 @@ jQuery(function() { refreshDropDowns(); });
             tp.Style.Add("text-align", "center");
             ImageButton Save = tp.Menu.NewImageButton();
             Save.Click += new System.Web.UI.ImageClickEventHandler(save_click);
-            Save.ImageUrl = UmbracoPath + "/images/editor/save.gif";
+            Save.ImageUrl = UmbracoPath + "/images/editor/Save.GIF";
 
             int[] allowedIds = cType.AllowedChildContentTypeIDs;
             if (!Page.IsPostBack)
@@ -303,7 +303,7 @@ jQuery(function() { refreshDropDowns(); });
 
             ImageButton Save = GenericPropertiesTabPage.Menu.NewImageButton();
             Save.Click += new System.Web.UI.ImageClickEventHandler(save_click);
-            Save.ImageUrl = UmbracoPath + "/images/editor/save.gif";
+            Save.ImageUrl = UmbracoPath + "/images/editor/Save.GIF";
 
             //dlTabs.ItemCommand += new DataListCommandEventHandler(dlTabs_ItemCommand);
             bindDataGenericProperties(false);
@@ -758,7 +758,7 @@ jQuery(function() { refreshDropDowns(); });
             ImageButton Save = tp.Menu.NewImageButton();
             Save.Click += new System.Web.UI.ImageClickEventHandler(save_click);
             Save.ID = "SaveButton";
-            Save.ImageUrl = UmbracoPath + "/images/editor/save.gif";
+            Save.ImageUrl = UmbracoPath + "/images/editor/Save.GIF";
             bindTabs();
         }
 
