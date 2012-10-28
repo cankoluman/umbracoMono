@@ -30,9 +30,9 @@ namespace umbraco.cms.presentation.settings.scripts
 
         protected System.Web.UI.WebControls.Literal lttPath;
         protected System.Web.UI.WebControls.Literal editorJs;
-        protected umbraco.uicontrols.CodeArea editorSource;
-        protected umbraco.uicontrols.PropertyPanel pp_name;
-        protected umbraco.uicontrols.PropertyPanel pp_path;
+        protected global::umbraco.uicontrols.CodeArea editorSource;
+        protected global::umbraco.uicontrols.PropertyPanel pp_name;
+        protected global::umbraco.uicontrols.PropertyPanel pp_path;
 
         private string file;
 

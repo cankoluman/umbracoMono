@@ -6,8 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Web;
 
-using umbraco.BusinessLogic;
-
 namespace umbraco.IO
 {
     public class SystemFiles
@@ -57,7 +55,7 @@ namespace umbraco.IO
         {
             get
             {
-                return SystemDirectories.Config + "/xsltextensions.config";
+                return SystemDirectories.Config + "/xsltExtensions.config";
             }
         }
 
@@ -65,7 +63,7 @@ namespace umbraco.IO
         {
             get
             {
-                return SystemDirectories.Config + "/restextensions.config";
+                return SystemDirectories.Config + "/restExtensions.config";
             }
         }
 
