@@ -258,9 +258,14 @@ namespace umbraco
             // Check for language file in cache
             if (HttpRuntime.Cache[cacheKey] == null)
             {
-                using (XmlTextReader langReader =
-                    new XmlTextReader(
-                        IOHelper.MapPath(umbracoPath + "/config/lang/" + language + ".xml")))
+                
+				string langFilePath = umbracoPath + "/config/lang/" + language + ".xml";
+				langFilePath = IOHelper.MapFilePath(langFilePath);
+
+				XmlTextReader langReader =
+					new XmlTextReader(langFilePath);
+
+				using (langReader)
                 {
                     try
                     {
