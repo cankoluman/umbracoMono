@@ -19,8 +19,8 @@ UmbracoSpeechBubble.prototype.GenerateSpeechBubble = function() {
             '<img src="/umbraco/images/speechBubble/info.gif" alt="Info" width="30" height="30" id="' + this.id + 'IconSrc"></div>' +
             '    <div id="speechClose" style="left: 208px; position: absolute; top: 6px">' +
             '          <a href="javascript:UmbSpeechBubble.Hide(100)">' +
-            '                      <img src="/umbraco/images/speechbubble/speechBubble_close.gif" width="18" height="18" border="0" alt="Close"' +
-            '                        onmouseover="this.src = \'/umbraco/images/speechbubble/speechBubble_close_over.gif\';" onmouseout="this.src=\'images/speechbubble/speechBubble_close.gif\';"></a></div>' +
+            '                      <img src="/umbraco/images/speechbubble/speechbubble_close.gif" width="18" height="18" border="0" alt="Close"' +
+            '                        onmouseover="this.src = \'/umbraco/images/speechbubble/speechBubble_close_over.gif\';" onmouseout="this.src=\'images/speechbubble/speechbubble_close.gif\';"></a></div>' +
             '                  <div id="' + this.id + 'Header" style="font-family: Segoe UI; lucida sans; sans serif; font-size: 16px; font-weight: 100; color: #0033aa; left: 50px;' +
             '                    position: absolute; top: 6px">' +
             '                    Data gemt!</div>' +

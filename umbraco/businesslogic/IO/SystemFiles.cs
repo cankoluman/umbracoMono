@@ -47,7 +47,7 @@ namespace umbraco.IO
         {
             get
             {
-                return SystemDirectories.Config + "/dashboard.config";
+                return SystemDirectories.Config + "/Dashboard.config";
             }
         }
 

@@ -18,7 +18,7 @@ namespace umbraco.uicontrols
 
     [ClientDependency(ClientDependencyType.Javascript, "CodeArea/javascript.js", "UmbracoClient")]
     [ClientDependency(ClientDependencyType.Javascript, "CodeArea/UmbracoEditor.js", "UmbracoClient")]
-    [ClientDependency(ClientDependencyType.Javascript, "Application/jQuery/jquery-fieldselection.js", "UmbracoClient")]
+    [ClientDependency(ClientDependencyType.Javascript, "Application/JQuery/jquery-fieldselection.js", "UmbracoClient")]
     public class CodeArea : WebControl
     {
 
