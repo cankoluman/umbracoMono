@@ -140,7 +140,7 @@ namespace umbraco.IO
         //use a tilde character instead of the complete path
         public static string returnPath(string settingsKey, string standardPath, bool useTilde)
         {
-            string retval = ConfigurationManagerService.Instance.AppSettings[settingsKey];
+            string retval = ConfigurationManager.AppSettings[settingsKey];
 
             if (string.IsNullOrEmpty(retval))
                 retval = standardPath;

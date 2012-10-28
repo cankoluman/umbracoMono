@@ -109,7 +109,7 @@ namespace umbraco.IO
             get
             {
                 bool returnValue = false;
-                string configSetting = ConfigurationManagerService.Instance.AppSettings["umbracoContentXMLUseLocalTemp"];
+                string configSetting = ConfigurationManager.AppSettings["umbracoContentXMLUseLocalTemp"];
 
                 if (!string.IsNullOrEmpty(configSetting))
                     if(bool.TryParse(configSetting, out returnValue))
