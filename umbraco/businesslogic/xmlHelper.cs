@@ -1,5 +1,6 @@
 using System;
 using System.Xml;
+using System.Xml.XPath;
 using umbraco.IO;
 
 namespace umbraco
@@ -103,5 +104,17 @@ namespace umbraco
             }
             return value.Replace("<!--CDATAOPENTAG-->", "<![CDATA[").Replace("<!--CDATACLOSETAG-->", "]]>");
         }
+
+		//this is very mono specific at the moment
+		public static XmlNode GetCurrentNodeFromIterator(XPathNodeIterator xpi)
+		{
+			if (xpi != null)
+			{
+				if (xpi.MoveNext())
+					return ((IHasXmlNode)xpi.Current).GetNode();
+			}
+
+			return null;
+		}
     }
 }

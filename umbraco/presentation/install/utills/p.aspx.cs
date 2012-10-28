@@ -39,11 +39,11 @@ namespace umbraco.presentation.install.utills
                 if (feed == "developervids")
                     url = "http://umbraco.org/feeds/videos/developer-foundation-html";
 
-                string XmlResponse = library.GetXmlDocumentByUrl(url).Current.OuterXml;
+				string XmlResponse = xmlHelper.GetCurrentNodeFromIterator(library.GetXmlDocumentByUrl(url)).OuterXml;
 
                 if(!XmlResponse.Contains("System.Net.WebException"))
                 {
-                    Response.Write(library.GetXmlDocumentByUrl(url).Current.OuterXml);
+                    Response.Write(xmlHelper.GetCurrentNodeFromIterator(library.GetXmlDocumentByUrl(url)).OuterXml);
                 }
                 else
                 {
