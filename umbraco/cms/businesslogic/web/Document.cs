@@ -1881,7 +1881,7 @@ namespace umbraco.cms.businesslogic.web
         /// Raises the <see cref="E:BeforeSave"/> event.
         /// </summary>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        protected internal new virtual void FireBeforeSave(SaveEventArgs e)
+        public new virtual void FireBeforeSave(SaveEventArgs e)
         {
             if (BeforeSave != null)
             {
