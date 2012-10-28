@@ -61,6 +61,28 @@ namespace umbraco.cms.presentation.user
         private User u;
 
 
+        //mono fix for lost checkboxlist states
+		private void setCheckBoxStates()
+		{
+			if (IsPostBack)
+			{
+				string lappsFormID = lapps.ClientID.Replace("_","$");
+				int i = 0;
+				foreach (var item in lapps.Items)
+				{
+					string itemSelected = Request.Form[lappsFormID + "$" + i];
+					if (itemSelected != null && itemSelected != String.Empty)
+						((ListItem)item).Selected = true;
+					i++;
+				}
+			}
+		}
+
+		protected void Page_PreRender(object sender, EventArgs e)
+		{
+			setCheckBoxStates();
+		}
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -172,7 +194,7 @@ namespace umbraco.cms.presentation.user
             userInfo.HasMenu = true;
 
             ImageButton save = userInfo.Menu.NewImageButton();
-            save.ImageUrl = SystemDirectories.Umbraco + "/images/editor/save.gif";
+            save.ImageUrl = SystemDirectories.Umbraco + "/images/editor/Save.GIF";
             save.Click += new ImageClickEventHandler(saveUser_Click);
 
             sectionValidator.ServerValidate += new ServerValidateEventHandler(sectionValidator_ServerValidate);
@@ -188,11 +210,14 @@ namespace umbraco.cms.presentation.user
 					.SetActiveTreeType(TreeDefinitionCollection.Instance.FindTree<loadUsers>().Tree.Alias)
 					.SyncTree(UID.ToString(), false);
 			}
+
         }
 
 
         void sectionValidator_ServerValidate(object source, ServerValidateEventArgs args) {
             args.IsValid = false;
+
+			setCheckBoxStates();
 
             if (lapps.SelectedIndex >= 0)
                 args.IsValid = true;
@@ -283,7 +308,7 @@ namespace umbraco.cms.presentation.user
 
             channelInfo.HasMenu = true;
             ImageButton save = channelInfo.Menu.NewImageButton();
-            save.ImageUrl = SystemDirectories.Umbraco + "/images/editor/save.gif";
+            save.ImageUrl = SystemDirectories.Umbraco + "/images/editor/Save.GIF";
             save.Click += new ImageClickEventHandler(saveUser_Click);
             save.ID = "save";
             if (!IsPostBack)
@@ -384,7 +409,7 @@ namespace umbraco.cms.presentation.user
         /// <param name="e">The <see cref="System.Web.UI.ImageClickEventArgs"/> instance containing the event data.</param>
         private void saveUser_Click(object sender, ImageClickEventArgs e)
         {
-            if (base.IsValid) {
+			if (base.IsValid) {
                 try {
                     MembershipUser user = Membership.Providers[UmbracoSettings.DefaultBackofficeProvider].GetUser(u.LoginName, true);
 
