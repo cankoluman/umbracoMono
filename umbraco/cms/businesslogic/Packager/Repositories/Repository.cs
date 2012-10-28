@@ -206,7 +206,8 @@ namespace umbraco.cms.businesslogic.packager.repositories {
                 fs1.Close();
                 fs1 = null;
 
-                return "packages\\" + packageGuid + ".umb";
+                //return "packages\\" + packageGuid + ".umb";
+				return String.Format ("packages{0}{0}{1}.umb", Path.DirectorySeparatorChar, packageGuid);
 
             } else {
 

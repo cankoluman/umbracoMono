@@ -60,7 +60,7 @@ namespace umbraco.cms.presentation
                 _section = getUser().Applications[0].alias;
 
             XmlDocument dashBoardXml = new XmlDocument();
-            dashBoardXml.Load(IOHelper.MapFilePath(SystemFiles.DashboardConfig));
+            dashBoardXml.Load(IOHelper.MapPath(SystemFiles.DashboardConfig));
 
             // test for new tab interface
             foreach (XmlNode section in dashBoardXml.DocumentElement.SelectNodes("//section [areas/area = '" + _section.ToLower() + "']"))

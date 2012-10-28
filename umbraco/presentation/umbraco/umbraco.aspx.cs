@@ -102,7 +102,7 @@ namespace umbraco.cms.presentation
                 // Add scriptmanager version check
                 ScriptManager sm = ScriptManager.GetCurrent(Page);
 				string scriptPath = SystemDirectories.Umbraco + "/js/umbracoUpgradeChecker.js";
-				scriptPath = IO.IOHelper.ResolveUrl(scriptPath);
+				scriptPath = IOHelper.ResolveUrl(scriptPath);
 				ScriptReference scriptReference = new ScriptReference(scriptPath);
 
                 sm.Scripts.Add(scriptReference);
