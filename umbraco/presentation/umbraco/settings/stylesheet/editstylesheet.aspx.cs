@@ -38,7 +38,7 @@ namespace umbraco.cms.presentation.settings.stylesheet
             }
 
             MenuIconI save = Panel1.Menu.NewIcon();
-            save.ImageURL = SystemDirectories.Umbraco + "/images/editor/save.gif";
+            save.ImageURL = SystemDirectories.Umbraco + "/images/editor/Save.GIF";
             save.OnClickCommand = "doSubmit()";
             save.AltText = "Save stylesheet";
             save.ID = "save";

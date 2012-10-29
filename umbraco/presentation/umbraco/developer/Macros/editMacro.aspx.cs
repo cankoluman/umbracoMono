@@ -344,11 +344,11 @@ namespace umbraco.cms.presentation.developer
             Parameters.Controls.Add(Panel2);
 
             ImageButton save = InfoTabPage.Menu.NewImageButton();
-            save.ImageUrl = SystemDirectories.Umbraco + "/images/editor/save.gif";
+            save.ImageUrl = SystemDirectories.Umbraco + "/images/editor/Save.GIF";
             save.ID = "save";
 
             ImageButton save2 = Parameters.Menu.NewImageButton();
-            save2.ImageUrl = SystemDirectories.Umbraco + "/images/editor/save.gif";
+            save2.ImageUrl = SystemDirectories.Umbraco + "/images/editor/Save.GIF";
 
             base.OnInit(e);
         }

@@ -63,7 +63,7 @@ namespace umbraco.cms.presentation.developer
             base.OnInit(e);
 
             uicontrols.MenuIconI save = UmbracoPanel1.Menu.NewIcon();
-            save.ImageURL = SystemDirectories.Umbraco + "/images/editor/save.gif";
+            save.ImageURL = SystemDirectories.Umbraco + "/images/editor/Save.GIF";
             save.OnClickCommand = "doSubmit()";
             save.AltText = "Save scripting File";
             save.ID = "save";

@@ -36,7 +36,7 @@ namespace umbraco.cms.businesslogic.template
 
         #region Static members
 
-        public static readonly string UmbracoMasterTemplate = SystemDirectories.Umbraco + "/masterpages/default.master";
+        public static readonly string UmbracoMasterTemplate = SystemDirectories.Umbraco + "/masterpages/default.Master";
         private static Hashtable _templateAliases = new Hashtable();
         private static volatile bool _templateAliasesInitialized = false;
         private static object templateCacheSyncLock = new object();

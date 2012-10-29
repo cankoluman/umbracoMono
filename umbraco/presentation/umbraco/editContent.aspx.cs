@@ -483,7 +483,7 @@ namespace umbraco.cms.presentation
             menu.InsertSplitter(2);
             uicontrols.MenuIconI menuItem = menu.NewIcon(3);
             menuItem.AltText = ui.Text("buttons", "showPage", this.getUser());
-            menuItem.OnClickCommand = "window.open('dialogs/preview.aspx?id=" + id + "','umbPreview')";
+            menuItem.OnClickCommand = "window.open('dialogs/Preview.aspx?id=" + id + "','umbPreview')";
             menuItem.ImageURL = SystemDirectories.Umbraco + "/images/editor/vis.gif";
         }
 

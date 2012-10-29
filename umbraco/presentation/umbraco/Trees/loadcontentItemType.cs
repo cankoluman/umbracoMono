@@ -73,8 +73,8 @@ function openContentItemType(id) {
                 treeElement.SetAttribute("text", dt.Text);
                 treeElement.SetAttribute("action", "javascript:openContentItemType(" + dt.Id + ");");
                 treeElement.SetAttribute("src", "");
-                treeElement.SetAttribute("icon", "settingDataType.gif");
-                treeElement.SetAttribute("openIcon", "settingDataType.gif");
+                treeElement.SetAttribute("icon", "settingDatatype.gif");
+                treeElement.SetAttribute("openIcon", "settingDatatype.gif");
                 treeElement.SetAttribute("nodeType", "contentItemType");
                 root.AppendChild(treeElement);
             }
