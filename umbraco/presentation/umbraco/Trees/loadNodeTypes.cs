@@ -85,8 +85,8 @@ function openNodeType(id) {
                 xNode.NodeID = dt.Id.ToString();
                 xNode.Text = dt.Text;
                 xNode.Action = "javascript:openNodeType(" + dt.Id + ");";
-                xNode.Icon = "settingDataType.gif";
-                xNode.OpenIcon = "settingDataType.gif";
+                xNode.Icon = "settingDatatype.gif";
+                xNode.OpenIcon = "settingDatatype.gif";
 				xNode.Source = GetTreeServiceUrl(dt.Id);
 				xNode.HasChildren = dt.HasChildren;
                 if (dt.HasChildren) {                    

@@ -13,7 +13,7 @@ namespace umbraco.Test
 		public SetUpUtilities () {}
 
 		private const string _umbracoDbDSN = "server=127.0.0.1;database=umbraco_test;user id=umbracouser;password=P@ssword1;datalayer=MySql";
-		private const string _umbracoConfigFile = "/home/kol3/Development/umbraco/290912/u4.7.2/umbraco/presentation/config/umbracoSettings.config";
+		private const string _umbracoConfigFile = "/home/kol3/Development/umbraco/test/m57j75-umbraco-mono-9dda8e8/umbraco/presentation/config/umbracoSettings.config";
 		private const string _dynamicBase = "/tmp/kol3-temp-aspnet-0";
 		public static NameValueCollection GetAppSettings()
 		{

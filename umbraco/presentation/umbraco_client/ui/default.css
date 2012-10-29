@@ -624,7 +624,7 @@ guiEditor {
     margin-left:1.5em;
     margin-right:1.5em;
     padding:0;
-    list-style-image:url(/umbraco/images/listitemorange.gif);
+    list-style-image:url(/umbraco/images/listItemOrange.gif);
 }
 
 .dashboardColWrapper li

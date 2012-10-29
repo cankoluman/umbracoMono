@@ -67,7 +67,7 @@ namespace umbraco
                 if (System.IO.File.Exists(IOHelper.MapPath(VirtualPathUtility.ToAbsolute(path))))
                     return path;
                 else
-                    return SystemDirectories.Umbraco + "/masterPages/default.master";
+                    return SystemDirectories.Umbraco + "/masterPages/default.Master";
             }
         }
 
