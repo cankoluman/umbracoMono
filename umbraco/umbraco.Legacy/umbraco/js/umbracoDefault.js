@@ -228,7 +228,7 @@ return false;
 //				tree.webFXTreeHandler.all[nodeKey].src + '&rnd=' + Math.random() * 10;
 
 //            if (tree.webFXTreeHandler.all[nodeKey].parentNode) {
-//                // Hvis punktet er lukket, skal det åbnes
+//                // Hvis punktet er lukket, skal det Ã¥bnes
 //                if (tree.webFXTreeHandler.all[nodeKey].childNodes.length > 0) {
 //                    if (!tree.webFXTreeHandler.all[nodeKey].open)
 //                        tree.webFXTreeHandler.all[nodeKey].expand();
@@ -258,10 +258,10 @@ return false;
 //function assignDomain() {
 //    if (nodeID != '-1' && nodeType != '') {
 
-//        openModal("dialogs/assignDomain.aspx?id=" + nodeID, uiKeys['actions_assignDomain'], 420, 500);
+//        openModal("dialogs/AssignDomain.aspx?id=" + nodeID, uiKeys['actions_assignDomain'], 420, 500);
 //        return false;
 
-//        //		newName = window.open("dialogs/assignDomain.aspx?id="+nodeID, "assignDomain", 'width=500,height=450,scrollbars=yes');
+//        //		newName = window.open("dialogs/AssignDomain.aspx?id="+nodeID, "assignDomain", 'width=500,height=450,scrollbars=yes');
 
 //    }
 //}
@@ -298,7 +298,7 @@ return false;
 //        // task.document.dataForm.nodeType.value = nodeType;
 //        //openDialog("Sort", "sort.aspx?id="+nodeID + '&app=' + currentApp + '&rnd='+returnRandom(), 600, 450,',scrollbars=yes');
 //        /*
-//        // læg variable i form
+//        // lÃ¦g variable i form
 //        if (newName != 'undefined' && newName != null) {
 //        task.document.dataForm.task.value = "sort";
 //        task.document.dataForm.parameterName.value = newName;
@@ -462,7 +462,7 @@ umbracoStartXmlRequest('webservices/aspx_ajax_calls/delete.aspx?nodeId=' + tempI
 //}
 
 //function rollback() {
-//    openModal('dialogs/rollback.aspx?nodeID=' + nodeID + '&rnd=' + returnRandom(), uiKeys['actions_rollback'], 550, 600);
+//    openModal('dialogs/rollBack.aspx?nodeID=' + nodeID + '&rnd=' + returnRandom(), uiKeys['actions_rollback'], 550, 600);
 //    return false;
 //}
 

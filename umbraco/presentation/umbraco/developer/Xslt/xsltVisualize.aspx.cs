@@ -47,7 +47,7 @@ namespace umbraco.presentation.umbraco.developer.Xslt
             {
                 System.IO.StreamReader xsltFile =
                 System.IO.File.OpenText(
-                    IOHelper.MapPath(SystemDirectories.Umbraco + "/xslt/templates/clean.xslt")
+                    IOHelper.MapPath(SystemDirectories.Umbraco + "/xslt/templates/Clean.xslt")
                 );
 
                 xslt = xsltFile.ReadToEnd();

@@ -44,7 +44,7 @@ namespace umbraco.presentation.settings {
             string style = "style='padding-left: " + level * 10 + "px;'"; 
 
             foreach (cms.businesslogic.Dictionary.DictionaryItem di in items) {
-                lt_table.Text += "<tr><th " + style + "><a href='editDictionaryItem.aspx?id=" + di.id.ToString() + "'>" + di.key + "</a></th>";
+                lt_table.Text += "<tr><th " + style + "><a href='EditDictionaryItem.aspx?id=" + di.id.ToString() + "'>" + di.key + "</a></th>";
                 foreach (cms.businesslogic.language.Language lang in languages) {
                     lt_table.Text += "<td>";
 

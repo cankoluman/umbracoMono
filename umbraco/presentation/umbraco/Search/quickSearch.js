@@ -72,7 +72,7 @@
                           url = "editContent.aspx";
                           break;
                       case "Member":
-                          url = "members/editMember.aspx";
+                          url = "members/EditMember.aspx";
                           break;
                       default:
                           url = "editContent.aspx";

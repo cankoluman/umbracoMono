@@ -44,7 +44,7 @@ namespace umbraco
         {
 
             int id = cms.businesslogic.web.StyleSheet.MakeNew(BusinessLogic.User.GetUser(_userID), Alias, "", "").Id;
-            m_returnUrl = string.Format("settings/stylesheet/editStylesheet.aspx?id={0}", id);
+            m_returnUrl = string.Format("settings/stylesheet/editstylesheet.aspx?id={0}", id);
             return true;
         }
 

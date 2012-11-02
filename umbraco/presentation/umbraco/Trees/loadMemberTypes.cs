@@ -56,7 +56,7 @@ namespace umbraco
             Javascript.Append(
                 @"
 function openMemberType(id) {
-	UmbClientMgr.contentFrame('members/editMemberType.aspx?id=' + id);
+	UmbClientMgr.contentFrame('members/EditMemberType.aspx?id=' + id);
 }
 ");
         }
@@ -93,8 +93,8 @@ function openMemberType(id) {
                 treeElement.SetAttribute("text", MemberTypes[i].Text);
                 treeElement.SetAttribute("action", "javascript:openMemberType(" + MemberTypes[i].Id + ");");
                 treeElement.SetAttribute("src", "");
-                treeElement.SetAttribute("icon", "membertype.gif");
-                treeElement.SetAttribute("openIcon", "membertype.gif");
+                treeElement.SetAttribute("icon", "memberType.gif");
+                treeElement.SetAttribute("openIcon", "memberType.gif");
                 treeElement.SetAttribute("nodeType", "memberType");
                 root.AppendChild(treeElement);
             }
