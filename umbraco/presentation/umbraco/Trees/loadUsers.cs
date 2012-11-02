@@ -47,7 +47,7 @@ namespace umbraco
             Javascript.Append(
                 @"
 function openUser(id) {
-	UmbClientMgr.contentFrame('users/editUser.aspx?id=' + id);
+	UmbClientMgr.contentFrame('users/EditUser.aspx?id=' + id);
 }
 ");
         }

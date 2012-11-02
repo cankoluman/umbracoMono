@@ -103,7 +103,7 @@ h3
 .propertyuicontrols .Pane, .propertyPane 
 {
 	border: 1px solid #BABABA;
-	background-image: url(../propertyPane/images/propertyBackground.gif);
+	background-image: url(../propertypane/images/propertyBackground.gif);
 	margin: 10px;
 	display: block;
 }
@@ -127,7 +127,7 @@ tr.propertyContent td, td.propertyContent
 div.propertyDiv 
 {
 	border: 1px solid #BABABA;
-	background-image: url(../propertyPane/images/propertyBackground.gif);
+	background-image: url(../propertypane/images/propertyBackground.gif);
 	display: block;
 	padding: 7px;
 	margin-bottom: 10px;

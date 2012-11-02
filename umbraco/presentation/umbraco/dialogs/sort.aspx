@@ -8,7 +8,7 @@
     #sortableFrame{height: 270px; overflow: auto; border: 1px solid #ccc;}
     #sortableNodes{padding: 4px; display: block}
     #sortableNodes thead tr th{border-bottom:1px solid #ccc; padding: 4px; padding-right: 25px;
-                                background-image: url(<%= umbraco.IO.IOHelper.ResolveUrl(umbraco.IO.SystemDirectories.Umbraco_client) %>/tableSorting/img/bg.gif);     
+                                background-image: url(<%= umbraco.IO.IOHelper.ResolveUrl(umbraco.IO.SystemDirectories.Umbraco_client) %>/tablesorting/img/bg.gif);     
                                 cursor: pointer; 
                                 font-weight: bold; 
                                 background-repeat: no-repeat; 
@@ -16,11 +16,11 @@
                                }
     
     #sortableNodes thead tr th.headerSortDown { 
-      background-image: url(<%= umbraco.IO.IOHelper.ResolveUrl(umbraco.IO.SystemDirectories.Umbraco_client) %>/tableSorting/img/desc.gif); 
+      background-image: url(<%= umbraco.IO.IOHelper.ResolveUrl(umbraco.IO.SystemDirectories.Umbraco_client) %>/tablesorting/img/desc.gif); 
     }
      
     #sortableNodes thead tr th.headerSortUp { 
-      background-image: url(<%= umbraco.IO.IOHelper.ResolveUrl(umbraco.IO.SystemDirectories.Umbraco_client) %>/tableSorting/img/asc.gif); 
+      background-image: url(<%= umbraco.IO.IOHelper.ResolveUrl(umbraco.IO.SystemDirectories.Umbraco_client) %>/tablesorting/img/asc.gif); 
     } 
     
     #sortableNodes tbody tr td{border-bottom:1px solid #efefef}
@@ -112,7 +112,7 @@
             var _this = this;
             $.ajax({
                 type: "POST",
-                url: "<%= umbraco.IO.IOHelper.ResolveUrl(umbraco.IO.SystemDirectories.Umbraco)%>/WebServices/NodeSorter.asmx/UpdateSortOrder?app=<%=umbraco.helper.Request("app")%>",
+                url: "<%= umbraco.IO.IOHelper.ResolveUrl(umbraco.IO.SystemDirectories.Umbraco)%>/webservices/nodeSorter.asmx/UpdateSortOrder?app=<%=umbraco.helper.Request("app")%>",
                 data: '{ "ParentId": ' + parseInt(<%=umbraco.helper.Request("ID")%>) + ', "SortOrder": "' + sortOrder + '"}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",

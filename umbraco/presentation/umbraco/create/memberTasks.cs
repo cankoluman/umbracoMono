@@ -84,7 +84,7 @@ namespace umbraco
                 NewMemberUIEventArgs e = new NewMemberUIEventArgs();
                 this.OnNewMember(e, password, m);
 
-                _returnUrl = "members/editMember.aspx?id=" + m.Id.ToString();
+                _returnUrl = "members/EditMember.aspx?id=" + m.Id.ToString();
             }
             else
             {
@@ -94,7 +94,7 @@ namespace umbraco
                 {
                     throw new Exception("Error creating Member: " + mc.ToString());
                 }
-                _returnUrl = "members/editMember.aspx?id=" + System.Web.HttpContext.Current.Server.UrlEncode(name);
+                _returnUrl = "members/EditMember.aspx?id=" + System.Web.HttpContext.Current.Server.UrlEncode(name);
             }
 
             return true;
