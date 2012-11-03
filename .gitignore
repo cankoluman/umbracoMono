@@ -14,7 +14,6 @@ bin/
 obj/
 test-results/
 umbraco/presentation/App_Data/*
-umbraco/presentation/masterpages/
 umbraco/presentation/~/
 
 # OS generated files #
