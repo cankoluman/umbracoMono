@@ -13,23 +13,23 @@ namespace umbraco.cms.presentation.developer {
 	
 	public partial class editDatatype {
 		
-		protected umbraco.uicontrols.UmbracoPanel Panel1;
+		protected global::umbraco.uicontrols.UmbracoPanel Panel1;
 		
-		protected umbraco.uicontrols.Pane pane_control;
+		protected global::umbraco.uicontrols.Pane pane_control;
 		
-		protected umbraco.uicontrols.PropertyPanel pp_name;
+		protected global::umbraco.uicontrols.PropertyPanel pp_name;
 		
 		protected System.Web.UI.WebControls.TextBox txtName;
 		
-		protected umbraco.uicontrols.PropertyPanel pp_renderControl;
+		protected global::umbraco.uicontrols.PropertyPanel pp_renderControl;
 		
 		protected System.Web.UI.WebControls.DropDownList ddlRenderControl;
 		
-		protected umbraco.uicontrols.PropertyPanel pp_guid;
+		protected global::umbraco.uicontrols.PropertyPanel pp_guid;
 		
 		protected System.Web.UI.WebControls.Literal litGuid;
 		
-		protected umbraco.uicontrols.Pane pane_settings;
+		protected global::umbraco.uicontrols.Pane pane_settings;
 		
 		protected System.Web.UI.WebControls.PlaceHolder plcEditorPrevalueControl;
 	}

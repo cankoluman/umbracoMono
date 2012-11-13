@@ -13,25 +13,25 @@ namespace umbraco.controls {
 	
 	public partial class ContentTypeControlNew {
 		
-		protected umbraco.uicontrols.TabView TabView1;
+		protected global::umbraco.uicontrols.TabView TabView1;
 		
 		protected System.Web.UI.WebControls.Panel pnlGeneral;
 		
 		protected System.Web.UI.WebControls.Panel pnlTab;
 		
-		protected umbraco.uicontrols.Pane PaneTabsInherited;
+		protected global::umbraco.uicontrols.Pane PaneTabsInherited;
 		
 		protected System.Web.UI.WebControls.Literal tabsMasterContentTypeName;
 		
-		protected umbraco.uicontrols.Pane Pane2;
+		protected global::umbraco.uicontrols.Pane Pane2;
 		
-		protected umbraco.uicontrols.PropertyPanel pp_newTab;
+		protected global::umbraco.uicontrols.PropertyPanel pp_newTab;
 		
 		protected System.Web.UI.WebControls.TextBox txtNewTab;
 		
 		protected System.Web.UI.WebControls.Button btnNewTab;
 		
-		protected umbraco.uicontrols.Pane Pane1;
+		protected global::umbraco.uicontrols.Pane Pane1;
 		
 		protected System.Web.UI.WebControls.DataGrid dgTabs;
 		
@@ -43,35 +43,35 @@ namespace umbraco.controls {
 		
 		protected System.Web.UI.WebControls.Panel pnlInfo;
 		
-		protected umbraco.uicontrols.Pane Pane3;
+		protected global::umbraco.uicontrols.Pane Pane3;
 		
-		protected umbraco.uicontrols.PropertyPanel pp_name;
+		protected global::umbraco.uicontrols.PropertyPanel pp_name;
 		
 		protected System.Web.UI.WebControls.TextBox txtName;
 		
 		protected System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
 		
-		protected umbraco.uicontrols.PropertyPanel pp_alias;
+		protected global::umbraco.uicontrols.PropertyPanel pp_alias;
 		
 		protected System.Web.UI.WebControls.TextBox txtAlias;
 		
-		protected umbraco.uicontrols.PropertyPanel pp_icon;
+		protected global::umbraco.uicontrols.PropertyPanel pp_icon;
 		
 		protected System.Web.UI.WebControls.DropDownList ddlIcons;
 		
-		protected umbraco.uicontrols.PropertyPanel pp_thumbnail;
+		protected global::umbraco.uicontrols.PropertyPanel pp_thumbnail;
 		
 		protected System.Web.UI.WebControls.DropDownList ddlThumbnails;
 		
-		protected umbraco.uicontrols.PropertyPanel pp_description;
+		protected global::umbraco.uicontrols.PropertyPanel pp_description;
 		
 		protected System.Web.UI.WebControls.TextBox description;
 		
 		protected System.Web.UI.WebControls.Panel pnlStructure;
 		
-		protected umbraco.uicontrols.Pane Pane5;
+		protected global::umbraco.uicontrols.Pane Pane5;
 		
-		protected umbraco.uicontrols.PropertyPanel pp_allowedChildren;
+		protected global::umbraco.uicontrols.PropertyPanel pp_allowedChildren;
 		
 		protected System.Web.UI.WebControls.CheckBoxList lstAllowedContentTypes;
 		
@@ -79,11 +79,11 @@ namespace umbraco.controls {
 		
 		protected System.Web.UI.WebControls.Panel pnlProperties;
 		
-		protected umbraco.uicontrols.Pane PanePropertiesInherited;
+		protected global::umbraco.uicontrols.Pane PanePropertiesInherited;
 		
 		protected System.Web.UI.WebControls.Literal propertiesMasterContentTypeName;
 		
-		protected umbraco.uicontrols.Pane Pane4;
+		protected global::umbraco.uicontrols.Pane Pane4;
 		
 		protected System.Web.UI.WebControls.PlaceHolder PropertyTypeNew;
 		

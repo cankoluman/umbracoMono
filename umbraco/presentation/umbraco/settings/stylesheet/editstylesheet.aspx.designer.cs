@@ -13,20 +13,20 @@ namespace umbraco.cms.presentation.settings.stylesheet {
 	
 	public partial class editstylesheet {
 		
-		protected umbraco.uicontrols.UmbracoPanel Panel1;
+		protected global::umbraco.uicontrols.UmbracoPanel Panel1;
 		
-		protected umbraco.uicontrols.Pane Pane7;
+		protected global::umbraco.uicontrols.Pane Pane7;
 		
-		protected umbraco.uicontrols.PropertyPanel pp_name;
+		protected global::umbraco.uicontrols.PropertyPanel pp_name;
 		
 		protected System.Web.UI.WebControls.TextBox NameTxt;
 		
-		protected umbraco.uicontrols.PropertyPanel pp_path;
+		protected global::umbraco.uicontrols.PropertyPanel pp_path;
 		
 		protected System.Web.UI.WebControls.Literal lttPath;
 		
-		protected umbraco.uicontrols.PropertyPanel pp_source;
+		protected global::umbraco.uicontrols.PropertyPanel pp_source;
 		
-		protected umbraco.uicontrols.CodeArea editorSource;
+		protected global::umbraco.uicontrols.CodeArea editorSource;
 	}
 }

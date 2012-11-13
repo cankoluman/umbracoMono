@@ -13,11 +13,11 @@ namespace umbraco.settings {
 	
 	public partial class editLanguage {
 		
-		protected umbraco.uicontrols.UmbracoPanel Panel1;
+		protected global::umbraco.uicontrols.UmbracoPanel Panel1;
 		
-		protected umbraco.uicontrols.Pane Pane7;
+		protected global::umbraco.uicontrols.Pane Pane7;
 		
-		protected umbraco.uicontrols.PropertyPanel pp_language;
+		protected global::umbraco.uicontrols.PropertyPanel pp_language;
 		
 		protected System.Web.UI.WebControls.DropDownList Cultures;
 	}

@@ -13,17 +13,17 @@ namespace umbraco.dialogs {
 	
 	public partial class AssignDomain {
 		
-		protected umbraco.uicontrols.Feedback FeedBackMessage;
+		protected global::umbraco.uicontrols.Feedback FeedBackMessage;
 		
-		protected umbraco.uicontrols.Pane pane_addnew;
+		protected global::umbraco.uicontrols.Pane pane_addnew;
 		
-		protected umbraco.uicontrols.PropertyPanel prop_domain;
+		protected global::umbraco.uicontrols.PropertyPanel prop_domain;
 		
 		protected System.Web.UI.WebControls.TextBox DomainName;
 		
 		protected System.Web.UI.WebControls.RequiredFieldValidator DomainValidator;
 		
-		protected umbraco.uicontrols.PropertyPanel prop_lang;
+		protected global::umbraco.uicontrols.PropertyPanel prop_lang;
 		
 		protected System.Web.UI.WebControls.RequiredFieldValidator LanguageValidator;
 		
@@ -31,7 +31,7 @@ namespace umbraco.dialogs {
 		
 		protected System.Web.UI.WebControls.Button ok;
 		
-		protected umbraco.uicontrols.Pane pane_edit;
+		protected global::umbraco.uicontrols.Pane pane_edit;
 		
 		protected System.Web.UI.WebControls.Literal allDomains;
 	}

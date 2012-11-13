@@ -15,10 +15,10 @@ namespace umbraco.cms.presentation {
 		
 		protected System.Web.UI.WebControls.Content ContentBody;
 		
-		protected umbraco.uicontrols.UmbracoPanel Panel2;
+		protected global::umbraco.uicontrols.UmbracoPanel Panel2;
 		
 		protected System.Web.UI.WebControls.PlaceHolder dashBoardContent;
 		
-		protected umbraco.uicontrols.TabView dashboardTabs;
+		protected global::umbraco.uicontrols.TabView dashboardTabs;
 	}
 }

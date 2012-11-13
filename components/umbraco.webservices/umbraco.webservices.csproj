@@ -48,6 +48,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="cp ${ProjectDir}/*.asmx  ${SolutionDir}/umbraco/presentation/umbraco/webservices/api/" workingdir="${ProjectDir}" externalConsole="true" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -158,6 +163,6 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>cp -a $(ProjectDir)*.asmx $(ProjectDir)..\..\umbraco\presentation\umbraco\webservices\api\</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(ProjectDir)*.asmx" "$(ProjectDir)..\..\umbraco\presentation\umbraco\webservices\api\" /Y</PostBuildEvent>
   </PropertyGroup>
 </Project>

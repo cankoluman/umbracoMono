@@ -71,7 +71,7 @@ namespace umbraco.BusinessLogic.Utils
                     typeof(TypeResolver).Assembly.GetName().Name,
                     typeof(TypeResolver).FullName);
 
-                return typeResolver.GetTypes(typeof(T), files);
+				return typeResolver.GetTypes(typeof(T), files);
             }
             catch (Exception ex)
             {

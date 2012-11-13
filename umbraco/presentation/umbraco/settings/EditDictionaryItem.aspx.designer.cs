@@ -13,6 +13,6 @@ namespace umbraco.settings {
 	
 	public partial class EditDictionaryItem {
 		
-		protected umbraco.uicontrols.UmbracoPanel Panel1;
+		protected global::umbraco.uicontrols.UmbracoPanel Panel1;
 	}
 }

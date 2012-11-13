@@ -18,7 +18,7 @@ namespace umbraco.uicontrols
 
 		public const string TREE_URL = "tree.aspx";
 		public const string INIT_URL = "treeinit.aspx";
-		public const string PICKER_URL = "treepicker.aspx";
+		public const string PICKER_URL = "treePicker.aspx";
 
 		private int? m_startNodeID;
 		private string m_treeType;

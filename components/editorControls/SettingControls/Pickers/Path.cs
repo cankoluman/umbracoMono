@@ -66,7 +66,7 @@ namespace umbraco.editorControls.SettingControls.Pickers
             tb.RenderControl(writer);
 
             writer.WriteLine(string.Format(" <a onclick=\"{0}\"href=\"javascript:void(0);\">Select</a>",
-                string.Format("javascript:UmbClientMgr.openModalWindow('developer/packages/directoryBrowser.aspx?target={0}', 'Choose a file or a folder', true, 400, 500, 0, 0); return false;", tb.ClientID)));
+                string.Format("javascript:UmbClientMgr.openModalWindow('developer/Packages/directoryBrowser.aspx?target={0}', 'Choose a file or a folder', true, 400, 500, 0, 0); return false;", tb.ClientID)));
 
         }
 

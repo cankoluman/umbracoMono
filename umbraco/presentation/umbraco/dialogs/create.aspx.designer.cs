@@ -15,15 +15,15 @@ namespace umbraco.dialogs {
 		
 		protected System.Web.UI.HtmlControls.HtmlInputHidden path;
 		
-		protected umbraco.uicontrols.Pane pane_chooseNode;
+		protected global::umbraco.uicontrols.Pane pane_chooseNode;
 		
 		protected umbraco.controls.Tree.TreeControl JTree;
 		
 		protected System.Web.UI.WebControls.Panel panel_buttons;
 		
-		protected umbraco.uicontrols.Feedback PageNameHolder;
+		protected global::umbraco.uicontrols.Feedback PageNameHolder;
 		
-		protected umbraco.uicontrols.Pane pane_chooseName;
+		protected global::umbraco.uicontrols.Pane pane_chooseName;
 		
 		protected System.Web.UI.WebControls.PlaceHolder phCreate;
 	}

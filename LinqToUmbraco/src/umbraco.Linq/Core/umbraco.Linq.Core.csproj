@@ -50,6 +50,12 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\umbraco.Linq.Core.xml</DocumentationFile>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="cp ${TargetDir}/umbraco.Linq.Core.dll  ${SolutionDir}/umbraco/presentation/bin/" workingdir="${TargetDir}" />
+        <Command type="AfterBuild" command="cp ${TargetDir}/umbraco.Linq.Core.dll.mdb  ${SolutionDir}/umbraco/presentation/bin/" workingdir="${TargetDir}" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -146,6 +152,6 @@
   <Target Name="AfterBuild">
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>cp -a $(TargetPath) $(SolutionDir)\umbraco\presentation\bin</PostBuildEvent>
+    <PostBuildEvent>XCOPY "$(TargetPath)" "$(SolutionDir)\umbraco\presentation\bin" /Y</PostBuildEvent>
   </PropertyGroup>
 </Project>

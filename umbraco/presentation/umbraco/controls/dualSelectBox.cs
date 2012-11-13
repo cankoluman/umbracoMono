@@ -121,7 +121,7 @@ namespace umbraco.controls
 			}
 
             // add js to buttons here to ensure full clientids
-            _add.Attributes.Add("onClick", "dualSelectBoxShift('" + this.ClientID + "');");
+			_add.Attributes.Add("onClick", "dualSelectBoxShift('" + this.ClientID + "');");
             _remove.Attributes.Add("onClick", "dualSelectBoxShift('" + this.ClientID + "');");
         }
 

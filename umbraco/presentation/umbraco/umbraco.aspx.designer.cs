@@ -13,7 +13,7 @@ namespace umbraco.cms.presentation {
 	
 	public partial class _umbraco {
 		
-		protected umbraco.uicontrols.UmbracoClientDependencyLoader ClientLoader;
+		protected global::umbraco.uicontrols.UmbracoClientDependencyLoader ClientLoader;
 		
 		protected ClientDependency.Core.Controls.CssInclude CssInclude1;
 		
@@ -61,11 +61,11 @@ namespace umbraco.cms.presentation {
 		
 		protected umbraco.presentation.Search.QuickSearch Search;
 		
-		protected umbraco.uicontrols.UmbracoPanel treeWindow;
+		protected global::umbraco.uicontrols.UmbracoPanel treeWindow;
 		
 		protected umbraco.controls.Tree.TreeControl JTree;
 		
-		protected umbraco.uicontrols.UmbracoPanel PlaceHolderAppIcons;
+		protected global::umbraco.uicontrols.UmbracoPanel PlaceHolderAppIcons;
 		
 		protected System.Web.UI.WebControls.Literal plcIcons;
 	}

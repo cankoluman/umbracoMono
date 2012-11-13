@@ -55,7 +55,7 @@ namespace umbraco
             Javascript.Append(
                 @"
 function openMacro(id) {
-	UmbClientMgr.contentFrame('developer/macros/editMacro.aspx?macroID=' + id);
+	UmbClientMgr.contentFrame('developer/Macros/editMacro.aspx?macroID=' + id);
 }
 ");
         }

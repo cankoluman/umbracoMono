@@ -60,7 +60,7 @@ namespace umbraco
             get
             {
 
-                string file = TemplateAlias.Replace(" ", "") + ".master";
+                string file = TemplateAlias.Replace(" ", "") + ".Master";
                 string path = SystemDirectories.Masterpages + "/" + file;
 
 
@@ -75,7 +75,7 @@ namespace umbraco
         //we will try to look for template files in another folder
         public string AlternateMasterPageFile(string templateFolder)
         {
-            string file = TemplateAlias.Replace(" ", "") + ".master";
+            string file = TemplateAlias.Replace(" ", "") + ".Master";
             string path = SystemDirectories.Masterpages + "/" + templateFolder + "/" + file;
 
             //if it doesn't exists then we return the normal file
