@@ -15,21 +15,21 @@ namespace umbraco.dialogs {
 		
 		protected ClientDependency.Core.Controls.JsInclude JsInclude1;
 		
-		protected umbraco.uicontrols.Feedback feedback;
+		protected global::umbraco.uicontrols.Feedback feedback;
 		
-		protected umbraco.uicontrols.Pane pane_form;
+		protected global::umbraco.uicontrols.Pane pane_form;
 		
 		protected umbraco.controls.Tree.TreeControl JTree;
 		
-		protected umbraco.uicontrols.PropertyPanel pp_relate;
+		protected global::umbraco.uicontrols.PropertyPanel pp_relate;
 		
 		protected System.Web.UI.WebControls.CheckBox RelateDocuments;
 		
 		protected System.Web.UI.WebControls.PlaceHolder pane_form_notice;
 		
-		protected umbraco.uicontrols.Pane pane_settings;
+		protected global::umbraco.uicontrols.Pane pane_settings;
 		
-		protected umbraco.uicontrols.PropertyPanel PropertyPanel1;
+		protected global::umbraco.uicontrols.PropertyPanel PropertyPanel1;
 		
 		protected System.Web.UI.WebControls.ListBox masterType;
 		

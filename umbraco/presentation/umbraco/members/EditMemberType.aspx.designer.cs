@@ -13,7 +13,7 @@ namespace umbraco.cms.presentation.members {
 	
 	public partial class EditMemberType {
 		
-		protected umbraco.uicontrols.Pane Pane1andmore;
+		protected global::umbraco.uicontrols.Pane Pane1andmore;
 		
 		protected System.Web.UI.WebControls.DataGrid dgEditExtras;
 		

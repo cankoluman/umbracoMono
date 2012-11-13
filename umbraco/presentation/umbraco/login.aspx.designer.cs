@@ -13,7 +13,7 @@ namespace umbraco.cms.presentation {
 	
 	public partial class login {
 		
-		protected umbraco.uicontrols.UmbracoClientDependencyLoader ClientLoader;
+		protected global::umbraco.uicontrols.UmbracoClientDependencyLoader ClientLoader;
 		
 		protected ClientDependency.Core.Controls.CssInclude CssInclude1;
 		
@@ -25,7 +25,7 @@ namespace umbraco.cms.presentation {
 		
 		protected System.Web.UI.HtmlControls.HtmlForm Form1;
 		
-		protected umbraco.uicontrols.UmbracoPanel Panel1;
+		protected global::umbraco.uicontrols.UmbracoPanel Panel1;
 		
 		protected System.Web.UI.WebControls.Literal TopText;
 		

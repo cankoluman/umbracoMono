@@ -13,23 +13,23 @@ namespace umbraco.cms.presentation.user {
 	
 	public partial class EditUserType {
 		
-		protected umbraco.uicontrols.UmbracoPanel pnlUmbraco;
+		protected global::umbraco.uicontrols.UmbracoPanel pnlUmbraco;
 		
-		protected umbraco.uicontrols.Pane pnl1;
+		protected global::umbraco.uicontrols.Pane pnl1;
 		
 		protected System.Web.UI.WebControls.HiddenField hidUserTypeID;
 		
-		protected umbraco.uicontrols.PropertyPanel pp_name;
+		protected global::umbraco.uicontrols.PropertyPanel pp_name;
 		
 		protected System.Web.UI.WebControls.TextBox txtUserTypeName;
 		
-		protected umbraco.uicontrols.PropertyPanel pp_alias;
+		protected global::umbraco.uicontrols.PropertyPanel pp_alias;
 		
 		protected System.Web.UI.WebControls.Label lblUserTypeAlias;
 		
-		protected umbraco.uicontrols.Pane pnl2;
+		protected global::umbraco.uicontrols.Pane pnl2;
 		
-		protected umbraco.uicontrols.PropertyPanel pp_rights;
+		protected global::umbraco.uicontrols.PropertyPanel pp_rights;
 		
 		protected System.Web.UI.WebControls.CheckBoxList cbl_rights;
 	}

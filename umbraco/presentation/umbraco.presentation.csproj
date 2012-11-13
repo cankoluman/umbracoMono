@@ -160,6 +160,21 @@
       <HintPath>..\..\foreign dlls\ClientDependency.Core.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\..\foreign dlls\WebPages\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\..\foreign dlls\WebPages\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment">
+      <HintPath>..\..\foreign dlls\WebPages\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor">
+      <HintPath>..\..\foreign dlls\WebPages\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages">
+      <HintPath>..\..\foreign dlls\WebPages\System.Web.WebPages.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\LinqToUmbraco\src\umbraco.Linq\Solution Items\SolutionInfo.cs">
@@ -585,13 +600,6 @@
     <Compile Include="umbraco\dashboard\StartupDashboardVideos.ascx.designer.cs">
       <DependentUpon>StartupDashboardVideos.ascx</DependentUpon>
     </Compile>
-    <Compile Include="umbraco\developer\Packages\StarterKits.aspx.cs">
-      <DependentUpon>StarterKits.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="umbraco\developer\Packages\StarterKits.aspx.designer.cs">
-      <DependentUpon>StarterKits.aspx</DependentUpon>
-    </Compile>
     <Compile Include="umbraco\dialogs\Preview.aspx.cs">
       <DependentUpon>Preview.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -871,48 +879,6 @@
     <Compile Include="umbraco\developer\Macros\editMacro.aspx.designer.cs">
       <DependentUpon>editMacro.aspx</DependentUpon>
     </Compile>
-    <Compile Include="umbraco\developer\Packages\BrowseRepository.aspx.cs">
-      <DependentUpon>BrowseRepository.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="umbraco\developer\Packages\BrowseRepository.aspx.designer.cs">
-      <DependentUpon>BrowseRepository.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="umbraco\developer\Packages\directoryBrowser.aspx.cs">
-      <DependentUpon>directoryBrowser.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="umbraco\developer\Packages\directoryBrowser.aspx.designer.cs">
-      <DependentUpon>directoryBrowser.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="umbraco\developer\Packages\editPackage.aspx.cs">
-      <DependentUpon>editPackage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="umbraco\developer\Packages\editPackage.aspx.designer.cs">
-      <DependentUpon>editPackage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="umbraco\developer\Packages\installedPackage.aspx.cs">
-      <DependentUpon>installedPackage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="umbraco\developer\Packages\installedPackage.aspx.designer.cs">
-      <DependentUpon>installedPackage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="umbraco\developer\Packages\LoadNitros.ascx.cs">
-      <DependentUpon>LoadNitros.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="umbraco\developer\Packages\LoadNitros.ascx.designer.cs">
-      <DependentUpon>LoadNitros.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="umbraco\developer\Packages\SubmitPackage.aspx.cs">
-      <DependentUpon>SubmitPackage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="umbraco\developer\Packages\SubmitPackage.aspx.designer.cs">
-      <DependentUpon>SubmitPackage.aspx</DependentUpon>
-    </Compile>
     <Compile Include="umbraco\developer\Python\editPython.aspx.cs">
       <DependentUpon>editPython.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1036,13 +1002,6 @@
     </Compile>
     <Compile Include="umbraco\dialogs\notifications.aspx.designer.cs">
       <DependentUpon>notifications.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="umbraco\developer\Packages\installer.aspx.cs">
-      <DependentUpon>installer.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="umbraco\developer\Packages\installer.aspx.designer.cs">
-      <DependentUpon>installer.aspx</DependentUpon>
     </Compile>
     <Compile Include="umbraco\dialogs\protectPage.aspx.cs">
       <DependentUpon>protectPage.aspx</DependentUpon>
@@ -2048,7 +2007,6 @@
     <Content Include="umbraco\dashboard\StartupDashboardIntro.ascx" />
     <Content Include="umbraco\dashboard\StartupDashboardKits.ascx" />
     <Content Include="umbraco\dashboard\StartupDashboardVideos.ascx" />
-    <Content Include="umbraco\developer\Packages\StarterKits.aspx" />
     <Content Include="umbraco\dialogs\TemplateSkinning.aspx" />
     <Content Include="umbraco\helpRedirect.aspx" />
     <Content Include="umbraco\images\aboutNew.png" />
@@ -2283,7 +2241,6 @@
     <Content Include="umbraco_client\Tree\Themes\umbraco\style.css" />
     <Content Include="umbraco_client\Tree\Themes\umbraco\throbber.gif" />
     <Content Include="umbraco\css\umbLiveEditing.css" />
-    <Content Include="umbraco\developer\Packages\proxy.htm" />
     <Content Include="umbraco\developer\Xslt\xsltVisualize.aspx" />
     <Content Include="umbraco\dialogs\empty.htm" />
     <Content Include="umbraco\dialogs\insertMasterpageContent.aspx" />
@@ -2416,12 +2373,6 @@
     <Content Include="umbraco\images\umbraco\repository.gif" />
     <Content Include="umbraco\images\umbraco\uploadpackage.gif" />
     <Content Include="umbraco_client\Application\JQuery\jquery.autocomplete.js" />
-    <Content Include="umbraco\developer\Packages\BrowseRepository.aspx" />
-    <Content Include="umbraco\developer\Packages\directoryBrowser.aspx" />
-    <Content Include="umbraco\developer\Packages\editPackage.aspx" />
-    <Content Include="umbraco\developer\Packages\installedPackage.aspx" />
-    <Content Include="umbraco\developer\Packages\LoadNitros.ascx" />
-    <Content Include="umbraco\developer\Packages\SubmitPackage.aspx" />
     <Content Include="umbraco\dialogs\about.aspx" />
     <Content Include="umbraco\dialogs\AssignDomain.aspx" />
     <Content Include="umbraco\dialogs\create.aspx" />
@@ -2435,7 +2386,6 @@
     <Content Include="umbraco\dialogs\insertTable.aspx" />
     <Content Include="umbraco\dialogs\moveOrCopy.aspx" />
     <Content Include="umbraco\dialogs\notifications.aspx" />
-    <Content Include="umbraco\developer\Packages\installer.aspx" />
     <Content Include="umbraco\dialogs\protectPage.aspx" />
     <Content Include="umbraco\dialogs\publish.aspx" />
     <Content Include="umbraco\dialogs\RegexWs.aspx" />
@@ -3188,6 +3138,63 @@
     <Content Include="web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="umbraco\developer\Packages\BrowseRepository.aspx" />
+    <Compile Include="umbraco\developer\Packages\BrowseRepository.aspx.cs">
+      <DependentUpon>BrowseRepository.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="umbraco\developer\Packages\BrowseRepository.aspx.designer.cs">
+      <DependentUpon>BrowseRepository.aspx</DependentUpon>
+    </Compile>
+    <Content Include="umbraco\developer\Packages\LoadNitros.ascx" />
+    <Compile Include="umbraco\developer\Packages\LoadNitros.ascx.cs">
+      <DependentUpon>LoadNitros.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="umbraco\developer\Packages\LoadNitros.ascx.designer.cs">
+      <DependentUpon>LoadNitros.ascx</DependentUpon>
+    </Compile>
+    <Content Include="umbraco\developer\Packages\StarterKits.aspx" />
+    <Compile Include="umbraco\developer\Packages\StarterKits.aspx.cs">
+      <DependentUpon>StarterKits.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="umbraco\developer\Packages\StarterKits.aspx.designer.cs">
+      <DependentUpon>StarterKits.aspx</DependentUpon>
+    </Compile>
+    <Content Include="umbraco\developer\Packages\SubmitPackage.aspx" />
+    <Compile Include="umbraco\developer\Packages\SubmitPackage.aspx.cs">
+      <DependentUpon>SubmitPackage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="umbraco\developer\Packages\SubmitPackage.aspx.designer.cs">
+      <DependentUpon>SubmitPackage.aspx</DependentUpon>
+    </Compile>
+    <Content Include="umbraco\developer\Packages\directoryBrowser.aspx" />
+    <Compile Include="umbraco\developer\Packages\directoryBrowser.aspx.cs">
+      <DependentUpon>directoryBrowser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="umbraco\developer\Packages\directoryBrowser.aspx.designer.cs">
+      <DependentUpon>directoryBrowser.aspx</DependentUpon>
+    </Compile>
+    <Content Include="umbraco\developer\Packages\editPackage.aspx" />
+    <Compile Include="umbraco\developer\Packages\editPackage.aspx.cs">
+      <DependentUpon>editPackage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="umbraco\developer\Packages\editPackage.aspx.designer.cs">
+      <DependentUpon>editPackage.aspx</DependentUpon>
+    </Compile>
+    <Content Include="umbraco\developer\Packages\installedPackage.aspx" />
+    <Compile Include="umbraco\developer\Packages\installedPackage.aspx.cs">
+      <DependentUpon>installedPackage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="umbraco\developer\Packages\installedPackage.aspx.designer.cs">
+      <DependentUpon>installedPackage.aspx</DependentUpon>
+    </Compile>
+    <Content Include="umbraco\developer\Packages\installer.aspx" />
+    <Compile Include="umbraco\developer\Packages\installer.aspx.cs">
+      <DependentUpon>installer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="umbraco\developer\Packages\installer.aspx.designer.cs">
+      <DependentUpon>installer.aspx</DependentUpon>
+    </Compile>
+    <Content Include="umbraco\developer\Packages\proxy.htm" />
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />
@@ -3213,10 +3220,13 @@
     <Folder Include="masterpages\" />
     <Folder Include="media\" />
     <Folder Include="umbraco\ActionHandlers\scripts\" />
+    <Folder Include="umbraco\imaging\" />
+    <Folder Include="umbraco\library\" />
     <Folder Include="umbraco\webservices\api\" />
     <Folder Include="umbraco_client\tagging\" />
     <Folder Include="usercontrols\" />
     <Folder Include="xslt\" />
+    <Folder Include="umbraco\developer\Packages\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(ProjectDir)..\..\foreign dlls\MSBuild\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" />

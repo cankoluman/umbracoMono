@@ -17,20 +17,20 @@ namespace umbraco.cms.presentation.developer {
 		
 		protected System.Web.UI.WebControls.Content cp1;
 		
-		protected umbraco.uicontrols.UmbracoPanel UmbracoPanel1;
+		protected global::umbraco.uicontrols.UmbracoPanel UmbracoPanel1;
 		
-		protected umbraco.uicontrols.Pane Pane1;
+		protected global::umbraco.uicontrols.Pane Pane1;
 		
-		protected umbraco.uicontrols.PropertyPanel pp_filename;
+		protected global::umbraco.uicontrols.PropertyPanel pp_filename;
 		
 		protected System.Web.UI.WebControls.TextBox pythonFileName;
 		
-		protected umbraco.uicontrols.PropertyPanel pp_testing;
+		protected global::umbraco.uicontrols.PropertyPanel pp_testing;
 		
 		protected System.Web.UI.WebControls.CheckBox SkipTesting;
 		
-		protected umbraco.uicontrols.PropertyPanel pp_errorMsg;
+		protected global::umbraco.uicontrols.PropertyPanel pp_errorMsg;
 		
-		protected umbraco.uicontrols.CodeArea pythonSource;
+		protected global::umbraco.uicontrols.CodeArea pythonSource;
 	}
 }

@@ -13,9 +13,9 @@ namespace umbraco.dialogs {
 	
 	public partial class notifications {
 		
-		protected umbraco.uicontrols.Feedback feedback;
+		protected global::umbraco.uicontrols.Feedback feedback;
 		
-		protected umbraco.uicontrols.Pane pane_form;
+		protected global::umbraco.uicontrols.Pane pane_form;
 		
 		protected System.Web.UI.WebControls.Panel pl_buttons;
 		

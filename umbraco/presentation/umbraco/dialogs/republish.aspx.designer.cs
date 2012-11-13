@@ -17,7 +17,7 @@ namespace umbraco.cms.presentation {
 		
 		protected System.Web.UI.WebControls.Button bt_go;
 		
-		protected umbraco.uicontrols.ProgressBar progbar;
+		protected global::umbraco.uicontrols.ProgressBar progbar;
 		
 		protected System.Web.UI.WebControls.Panel p_done;
 	}

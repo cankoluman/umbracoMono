@@ -2,7 +2,7 @@
 //    This File contains all standard javascript helpers for normal umbraco pages, 
 //    for resizing, event handling etc.
 //    All UI controls should expect this js file to be present.
-//    included in umbracoPage.master   
+//    included in umbracoPage.Master   
 //
 
 function addEvent(obj, evType, fn) {

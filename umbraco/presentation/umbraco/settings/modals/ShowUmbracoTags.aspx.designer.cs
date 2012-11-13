@@ -17,6 +17,6 @@ namespace umbraco.cms.presentation.settings.modal {
 		
 		protected System.Web.UI.WebControls.Content Content2;
 		
-		protected umbraco.uicontrols.Pane Pane7;
+		protected global::umbraco.uicontrols.Pane Pane7;
 	}
 }

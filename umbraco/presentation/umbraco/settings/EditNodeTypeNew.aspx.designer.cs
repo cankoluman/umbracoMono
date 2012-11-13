@@ -13,9 +13,13 @@ namespace umbraco.settings {
 	
 	public partial class EditContentTypeNew {
 		
-		protected umbraco.uicontrols.Pane tmpPane;
+		protected global::umbraco.uicontrols.Pane tmpPane;
+		
+		protected global::umbraco.uicontrols.PropertyPanel pp1;
 		
 		protected System.Web.UI.WebControls.CheckBoxList templateList;
+		
+		protected global::umbraco.uicontrols.PropertyPanel pp2;
 		
 		protected System.Web.UI.WebControls.DropDownList ddlTemplates;
 	}

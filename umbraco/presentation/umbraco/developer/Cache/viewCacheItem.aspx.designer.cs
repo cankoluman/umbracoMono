@@ -13,7 +13,7 @@ namespace umbraco.cms.presentation.developer {
 	
 	public partial class viewCacheItem {
 		
-		protected umbraco.uicontrols.UmbracoPanel Panel1;
+		protected global::umbraco.uicontrols.UmbracoPanel Panel1;
 		
 		protected System.Web.UI.WebControls.Label LabelCacheAlias;
 		

@@ -15,7 +15,7 @@ namespace umbraco.cms.presentation {
 		
 		protected System.Web.UI.HtmlControls.HtmlHead Head1;
 		
-		protected umbraco.uicontrols.UmbracoClientDependencyLoader ClientLoader;
+		protected global::umbraco.uicontrols.UmbracoClientDependencyLoader ClientLoader;
 		
 		protected ClientDependency.Core.Controls.CssInclude CssInclude1;
 		

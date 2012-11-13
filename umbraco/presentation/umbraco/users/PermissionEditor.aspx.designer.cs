@@ -19,9 +19,9 @@ namespace umbraco.cms.presentation.user {
 		
 		protected ClientDependency.Core.Controls.JsInclude JsInclude1;
 		
-		protected umbraco.uicontrols.UmbracoPanel pnlUmbraco;
+		protected global::umbraco.uicontrols.UmbracoPanel pnlUmbraco;
 		
-		protected umbraco.uicontrols.Pane pnl1;
+		protected global::umbraco.uicontrols.Pane pnl1;
 		
 		protected umbraco.controls.Tree.TreeControl JTree;
 		

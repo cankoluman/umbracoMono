@@ -327,7 +327,6 @@
     <Compile Include="userControlWrapper\usercontrolData.cs" />
     <Compile Include="wysiwyg\editorButton.cs" />
     <Compile Include="tinyMCE3\TinyMCE.cs" />
-    <Compile Include="tinyMCE3\tinyMCE3dataType.cs" />
     <Compile Include="tinyMCE3\webcontrol\plugin\ConfigSection.cs" />
     <Compile Include="tinyMCE3\webcontrol\plugin\GzipCompressor.cs" />
     <Compile Include="tinyMCE3\webcontrol\plugin\GzipModule.cs" />
@@ -368,6 +367,7 @@
       <DependentUpon>textFieldDataEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <Compile Include="tinyMCE3\tinymce3dataType.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

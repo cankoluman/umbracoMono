@@ -23,29 +23,29 @@ namespace umbraco.controls.GenericProperties {
 		
 		protected System.Web.UI.WebControls.TextBox tbName;
 		
-		protected umbraco.uicontrols.PropertyPanel PropertyPanel1;
+		protected global::umbraco.uicontrols.PropertyPanel PropertyPanel1;
 		
 		protected System.Web.UI.WebControls.TextBox tbAlias;
 		
-		protected umbraco.uicontrols.PropertyPanel PropertyPanel2;
+		protected global::umbraco.uicontrols.PropertyPanel PropertyPanel2;
 		
 		protected System.Web.UI.WebControls.DropDownList ddlTypes;
 		
-		protected umbraco.uicontrols.PropertyPanel PropertyPanel3;
+		protected global::umbraco.uicontrols.PropertyPanel PropertyPanel3;
 		
 		protected System.Web.UI.WebControls.DropDownList ddlTab;
 		
-		protected umbraco.uicontrols.PropertyPanel PropertyPanel4;
+		protected global::umbraco.uicontrols.PropertyPanel PropertyPanel4;
 		
 		protected System.Web.UI.WebControls.CheckBox checkMandatory;
 		
-		protected umbraco.uicontrols.PropertyPanel PropertyPanel5;
+		protected global::umbraco.uicontrols.PropertyPanel PropertyPanel5;
 		
 		protected System.Web.UI.WebControls.TextBox tbValidation;
 		
 		protected System.Web.UI.WebControls.HyperLink validationLink;
 		
-		protected umbraco.uicontrols.PropertyPanel PropertyPanel6;
+		protected global::umbraco.uicontrols.PropertyPanel PropertyPanel6;
 		
 		protected System.Web.UI.WebControls.TextBox tbDescription;
 	}

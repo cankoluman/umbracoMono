@@ -13,9 +13,9 @@ namespace umbraco.cms.presentation.settings.stylesheet {
 	
 	public partial class EditStyleSheetProperty {
 		
-		protected umbraco.uicontrols.UmbracoPanel Panel1;
+		protected global::umbraco.uicontrols.UmbracoPanel Panel1;
 		
-		protected umbraco.uicontrols.Pane Pane7;
+		protected global::umbraco.uicontrols.Pane Pane7;
 		
 		protected System.Web.UI.WebControls.TextBox NameTxt;
 		

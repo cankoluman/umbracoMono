@@ -13,9 +13,9 @@ namespace umbraco.dialogs {
 	
 	public partial class cruds {
 		
-		protected umbraco.uicontrols.Feedback feedback1;
+		protected global::umbraco.uicontrols.Feedback feedback1;
 		
-		protected umbraco.uicontrols.Pane pane_form;
+		protected global::umbraco.uicontrols.Pane pane_form;
 		
 		protected System.Web.UI.WebControls.PlaceHolder PlaceHolder1;
 		

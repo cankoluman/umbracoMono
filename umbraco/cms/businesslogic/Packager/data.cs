@@ -54,14 +54,14 @@ namespace umbraco.cms.businesslogic.packager
             if(reload)
                 Reload(dataSource);
 
-            return Source.SelectSingleNode("/packages/package [@id = '" + Id.ToString().ToUpper() + "']");
+            return Source.SelectSingleNode("/Packages/package [@id = '" + Id.ToString().ToUpper() + "']");
         }
 
         public static XmlNode GetFromGuid(string guid, string dataSource, bool reload) {
             if (reload)
                 Reload(dataSource);
 
-            return Source.SelectSingleNode("/packages/package [@packageGuid = '" + guid + "']");
+            return Source.SelectSingleNode("/Packages/package [@packageGuid = '" + guid + "']");
         }
 
         public static PackageInstance MakeNew(string Name, string dataSource)
@@ -74,7 +74,7 @@ namespace umbraco.cms.businesslogic.packager
 
                 int _maxId = 1;
                 // Find max id
-                foreach (XmlNode n in Source.SelectNodes("packages/package"))
+                foreach (XmlNode n in Source.SelectNodes("Packages/package"))
                 {
                     if (int.Parse(n.Attributes.GetNamedItem("id").Value) >= _maxId)
                         _maxId = int.Parse(n.Attributes.GetNamedItem("id").Value) + 1;
@@ -155,7 +155,7 @@ namespace umbraco.cms.businesslogic.packager
 
         public static List<PackageInstance> GetAllPackages(string dataSource) {
             Reload(dataSource);
-            XmlNodeList nList = data.Source.SelectNodes("packages/package");
+            XmlNodeList nList = data.Source.SelectNodes("Packages/package");
 
             List<PackageInstance> retVal = new List<PackageInstance>();
 

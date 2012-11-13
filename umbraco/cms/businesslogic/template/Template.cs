@@ -48,7 +48,7 @@ namespace umbraco.cms.businesslogic.template
 
         public string MasterPageFile
         {
-            get { return IOHelper.MapPath(SystemDirectories.Masterpages + "/" + Alias.Replace(" ", "") + ".master"); }
+            get { return IOHelper.MapPath(SystemDirectories.Masterpages + "/" + Alias.Replace(" ", "") + ".Master"); }
         }
 
         public static Hashtable TemplateAliases
@@ -577,7 +577,7 @@ namespace umbraco.cms.businesslogic.template
         private string currentMasterTemplateFileName()
         {
             if (MasterTemplate != 0)
-                return SystemDirectories.Masterpages + "/" + new Template(MasterTemplate).Alias.Replace(" ", "") + ".master";
+                return SystemDirectories.Masterpages + "/" + new Template(MasterTemplate).Alias.Replace(" ", "") + ".Master";
             else
                 return UmbracoMasterTemplate;
         }
@@ -636,7 +636,7 @@ namespace umbraco.cms.businesslogic.template
                 }
 
                 //then kill the old file.. 
-                string _oldFile = IOHelper.MapPath(SystemDirectories.Masterpages + "/" + _oldAlias.Replace(" ", "") + ".master");
+                string _oldFile = IOHelper.MapPath(SystemDirectories.Masterpages + "/" + _oldAlias.Replace(" ", "") + ".Master");
 
                 if (System.IO.File.Exists(_oldFile))
                     System.IO.File.Delete(_oldFile);

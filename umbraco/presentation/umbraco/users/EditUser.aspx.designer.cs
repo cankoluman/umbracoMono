@@ -13,6 +13,6 @@ namespace umbraco.cms.presentation.user {
 	
 	public partial class EditUser {
 		
-		protected umbraco.uicontrols.TabView UserTabs;
+		protected global::umbraco.uicontrols.TabView UserTabs;
 	}
 }
