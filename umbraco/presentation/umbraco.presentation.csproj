@@ -160,6 +160,9 @@
       <HintPath>..\..\foreign dlls\ClientDependency.Core.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="Microsoft.Web.Helpers">
+      <HintPath>..\..\foreign dlls\WebPages\Microsoft.Web.Helpers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Helpers">
       <HintPath>..\..\foreign dlls\WebPages\System.Web.Helpers.dll</HintPath>
     </Reference>
