@@ -31,7 +31,7 @@
     <CustomCommands>
       <CustomCommands>
         <Command type="AfterBuild" command="cp ${TargetDir}/umbraco.MacroEngines.dll  ${SolutionDir}/umbraco/presentation/bin/" workingdir="${TargetDir}" />
-        <Command type="AfterBuild" command="cp ${TargetDir}/umbraco.MacroEngines.dll.mdb  ${SolutionDir}/umbraco/presentation/bin/" workingdir="${TargetDir}" />
+        <Command type="AfterBuild" command="cp ${TargetDir}/umbraco.MacroEngines.dll.*  ${SolutionDir}/umbraco/presentation/bin/" workingdir="${TargetDir}" externalConsole="true" />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
