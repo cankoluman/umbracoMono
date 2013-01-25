@@ -15,6 +15,9 @@ You can find work on each ported (or porting) version of Umbraco
 as a branch, 
 e.g. 4.7.2 -> https://github.com/m57j75/umbracoMono/tree/u4.7.2
 
+# Branch notes
+This branch has just been added. It will not yet work, nor compile.
+
 
 # Working approach 
 This repository snapshots, umbraco release versions 
