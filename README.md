@@ -16,7 +16,20 @@ as a branch,
 e.g. 4.7.2 -> https://github.com/m57j75/umbracoMono/tree/u4.7.2
 
 # Branch notes
-This branch has just been added. It will not yet work, nor compile.
+rev 2fdbb90 - This branch should now compile in the Monodevelop (v 3.x) IDE, with mono
+v. 3.x
+
+>mono -V 
+Mono JIT compiler version 3.0.3 (master/a26a1f8 Sat Jan  5 12:49:42 GMT 2013)
+Copyright (C) 2002-2012 Novell, Inc, Xamarin Inc and Contributors. www.mono-project.com
+	TLS:           __thread
+	SIGSEGV:       altstack
+	Notifications: epoll
+	Architecture:  x86
+	Disabled:      none
+	Misc:          softdebug 
+	LLVM:          supported, not enabled.
+	GC:            Included Boehm (with typed GC and Parallel Mark)
 
 
 # Working approach 
