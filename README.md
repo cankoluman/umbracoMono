@@ -17,7 +17,7 @@ e.g. 4.7.2 -> https://github.com/m57j75/umbracoMono/tree/u4.7.2
 
 # Branch Notes
 Beta-1 release. Release comments can be found here:
-<a href="http://www.strawberryfin.co.uk/blog/2012/11/19/beta-1-release-now-available/" target="_blank">eta-1-release-now-available</a>
+<a href="http://www.strawberryfin.co.uk/blog/2012/11/19/beta-1-release-now-available/" target="_blank">Beta-1-release-now-available</a>
 
 # Working approach 
 This repository snapshots, umbraco release versions 
