@@ -2,8 +2,10 @@
 using System.Linq;
 using System.Threading;
 using System.Web;
+using System.Runtime.CompilerServices;
 using log4net;
 
+[assembly: InternalsVisibleTo("umbraco.DataLayer")]
 namespace Umbraco.Core.Logging
 {
 	///<summary>
