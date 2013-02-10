@@ -21,6 +21,12 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="mkdir ${TargetDir}/amd64;cp -Rvu &quot;${ProjectDir}&quot;/../../lib/SQLCE4/amd64/*.* &quot;${TargetDir}/amd64/&quot;" workingdir="${SolutionDir}" externalConsole="True" />
+        <Command type="AfterBuild" command="mkdir ${TargetDir}/x86;cp -Rvu &quot;${ProjectDir}&quot;/../../lib/SQLCE4/x86/*.* &quot;${TargetDir}/x86/&quot;" workingdir="${SolutionDir}" externalConsole="True" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
