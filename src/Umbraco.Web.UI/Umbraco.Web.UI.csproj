@@ -58,8 +58,8 @@
     <StartupObject />
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="mkdir ${TargetDir}/amd64;cp -Rvu &quot;${ProjectDir}&quot;/../../lib/SQLCE4/amd64/*.* &quot;${TargetDir}/amd64/&quot;" workingdir="${SolutionDir}" externalConsole="True" />
-        <Command type="AfterBuild" command="mkdir ${TargetDir}/x86;cp -Rvu &quot;${ProjectDir}&quot;/../../lib/SQLCE4/x86/*.* &quot;${TargetDir}/x86/&quot;" workingdir="${SolutionDir}" externalConsole="True" />
+        <Command type="AfterBuild" command="mkdir -p ${TargetDir}/amd64;cp -Rvu &quot;${ProjectDir}&quot;/../../lib/SQLCE4/amd64/*.* &quot;${TargetDir}/amd64/&quot;" workingdir="${SolutionDir}" externalConsole="True" />
+        <Command type="AfterBuild" command="mkdir -p ${TargetDir}/x86;cp -Rvu &quot;${ProjectDir}&quot;/../../lib/SQLCE4/x86/*.* &quot;${TargetDir}/x86/&quot;" workingdir="${SolutionDir}" externalConsole="True" />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -2320,18 +2320,18 @@
     <Folder Include="xslt\" />
   </ItemGroup>
   <PropertyGroup>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">9.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>xcopy "$(ProjectDir)"..\..\lib\SQLCE4\amd64\*.* "$(TargetDir)amd64\" /Y /F /E /D
-xcopy "$(ProjectDir)"..\..\lib\SQLCE4\x86\*.* "$(TargetDir)x86\" /Y /F /E /D</PostBuildEvent>
+    <PostBuildEvent>mkdir $(TargetDir)amd64;cp -Rvu "$(ProjectDir)..\..\lib\SQLCE4\amd64\"*.* "$(TargetDir)amd64\"
+mkdir $(TargetDir)x86;cp -Rvu "$(ProjectDir)"..\..\lib\SQLCE4\x86\*.* "$(TargetDir)x86\"</PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
@@ -2355,9 +2355,9 @@ xcopy "$(ProjectDir)"..\..\lib\SQLCE4\x86\*.* "$(TargetDir)x86\" /Y /F /E /D</Po
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
-  <Import Project="$(MSBuildStartupDirectory)\..\src\umbraco.presentation.targets" Condition="$(BuildingInsideVisualStudio) != true" />
+  <Import Project="..\umbraco.presentation.targets" Condition="$(BuildingInsideVisualStudio) != true" />
   <Import Project="$(SolutionDir)umbraco.presentation.targets" Condition="$(BuildingInsideVisualStudio) == true" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
   <PropertyGroup>
     <!--<PostBuildEvent>xcopy "$(ProjectDir)..\..\lib\*.dll" "$(TargetDir)*.dll" /Y</PostBuildEvent>-->
   </PropertyGroup>

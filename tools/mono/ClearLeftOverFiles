@@ -1,0 +1,18 @@
+#! /bin/bash
+# When switching from the xbuild to the monodevelop build environment or vice versa,
+# the build is not cleaned properly - this leads to '*.resource' files
+# not found errors and compilation fails. To fix this issue, run this script.
+# update PROJECT_PATH as needed
+
+PROJECT_PATH="/home/`echo $USER`/Development/umbraco/umbracomono/"
+
+rm -rf "$PROJECT_PATH"build/_BuildOutput
+
+rm -rf "$PROJECT_PATH"src/umbraco.datalayer/{bin,obj}
+rm -rf "$PROJECT_PATH"src/SQLCE4Umbraco/{bin,obj}
+rm -rf "$PROJECT_PATH"src/umbraco.cms/{bin,obj}
+rm -rf "$PROJECT_PATH"src/umbraco.controls/{bin,obj}
+rm -rf "$PROJECT_PATH"src/Umbraco.Web/{bin,obj}
+rm -rf "$PROJECT_PATH"src/Umbraco.Web.UI/{bin,obj}
+
+
