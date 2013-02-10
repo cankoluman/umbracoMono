@@ -148,9 +148,11 @@
        SkipUnchangedFiles="false" />
 
    <!-- Copy WebPages -->
+   <!--
    <CreateItem Include="..\lib\WebPages\*.dll" Exclude="..\lib\WebPages\Microsoft.Web.Infrastructure.dll">
      <Output TaskParameter="Include" ItemName="WebPageFiles" />
-   </CreateItem>      
+   </CreateItem>
+   -->      
 
    <Copy SourceFiles="@(WebPageFiles)"
        DestinationFiles="@(WebPageFiles->'$(SolutionBinFolder)%(RecursiveDir)%(Filename)%(Extension)')"
