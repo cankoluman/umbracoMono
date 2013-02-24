@@ -160,7 +160,7 @@ namespace umbraco.cms.businesslogic.packager.standardPackageActions
         ///         <area>content</area>
         ///         </areas>
         ///	        <tab caption="Last Edits">
-        ///             <control>/usercontrols/dashboard/latestEdits.ascx</control>
+        ///             <control>/usercontrols/dashboard/LatestEdits.ascx</control>
         ///             <control>/usercontrols/umbracoBlog/dashboardBlogPostCreate.ascx</control>
         ///         </tab>
         ///         <tab caption="Create blog post">

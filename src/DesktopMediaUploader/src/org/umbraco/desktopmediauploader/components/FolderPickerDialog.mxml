@@ -10,8 +10,8 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import org.umbraco.desktopmediauploader.events.*;
-			import org.umbraco.desktopmediauploader.net.*;
+			import org.umbraco.DesktopMediaUploader.events.*;
+			import org.umbraco.DesktopMediaUploader.net.*;
 			
 			import mx.controls.Alert;
 			import mx.events.CloseEvent;

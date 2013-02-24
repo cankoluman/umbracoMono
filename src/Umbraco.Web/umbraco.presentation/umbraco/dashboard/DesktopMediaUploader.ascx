@@ -18,7 +18,7 @@
                 <asp:Panel ID="Panel2" runat="server">
                     <p>
                         <div id="dmu-badge">
-                            Download <a href="<%= FullyQualifiedAppPath %>umbraco/dashboard/air/desktopmediauploader.air">Desktop Media Uploader</a> now.<br /><br /><span id="Span1">This application requires Adobe&#174;&nbsp;AIR&#8482; to be installed for <a href="http://airdownload.adobe.com/air/mac/download/latest/AdobeAIR.dmg">Mac OS</a> or <a href="http://airdownload.adobe.com/air/win/download/latest/AdobeAIRInstaller.exe">Windows</a>.
+                            Download <a href="<%= FullyQualifiedAppPath %>umbraco/dashboard/air/DesktopMediaUploader.air">Desktop Media Uploader</a> now.<br /><br /><span id="Span1">This application requires Adobe&#174;&nbsp;AIR&#8482; to be installed for <a href="http://airdownload.adobe.com/air/mac/download/latest/AdobeAIR.dmg">Mac OS</a> or <a href="http://airdownload.adobe.com/air/win/download/latest/AdobeAIRInstaller.exe">Windows</a>.
                         </div>
                     </p>
                     <script type="text/javascript">
@@ -27,7 +27,7 @@
                             appid: "org.umbraco.DesktopMediaUploader",
                             appname: "Desktop Media Uploader",
                             appversion: "v2.1.0",
-                            appurl: "<%= FullyQualifiedAppPath %>umbraco/dashboard/air/desktopmediauploader.air",
+                            appurl: "<%= FullyQualifiedAppPath %>umbraco/dashboard/air/DesktopMediaUploader.air",
                             applauncharg: "<%= AppLaunchArg %>",
                             image: "/umbraco/dashboard/images/dmu-badge.jpg?2.1.0",
                             airversion: "2.0"

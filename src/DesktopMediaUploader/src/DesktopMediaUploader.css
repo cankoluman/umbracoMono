@@ -47,7 +47,7 @@ mx|Tree
 
 .header s|DropDownList
 {
-	skinClass: ClassReference('org.umbraco.desktopmediauploader.skins.HeaderDropDownListSkin');
+	skinClass: ClassReference('org.umbraco.DesktopMediaUploader.skins.HeaderDropDownListSkin');
 	color: #ffffff;
 	content-background-color: #7a7a7a;
 	roll-over-color: #f36f22;
@@ -81,10 +81,10 @@ mx|Tree
 
 .signOutButton
 {	
-	skinClass: ClassReference('org.umbraco.desktopmediauploader.skins.SignOutButtonSkin');
+	skinClass: ClassReference('org.umbraco.DesktopMediaUploader.skins.SignOutButtonSkin');
 }
 
 .removeButton
 {	
-	skinClass: ClassReference('org.umbraco.desktopmediauploader.skins.RemoveButtonSkin');
+	skinClass: ClassReference('org.umbraco.DesktopMediaUploader.skins.RemoveButtonSkin');
 }

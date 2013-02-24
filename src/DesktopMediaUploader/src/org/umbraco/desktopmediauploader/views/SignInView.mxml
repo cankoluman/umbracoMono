@@ -11,9 +11,9 @@
 
 	<fx:Script>
 		<![CDATA[
-			import org.umbraco.desktopmediauploader.events.*;
-			import org.umbraco.desktopmediauploader.net.*;
-			import org.umbraco.desktopmediauploader.util.*;
+			import org.umbraco.DesktopMediaUploader.events.*;
+			import org.umbraco.DesktopMediaUploader.net.*;
+			import org.umbraco.DesktopMediaUploader.util.*;
 			
 			import mx.controls.Alert;
 			import mx.managers.*;
@@ -182,7 +182,7 @@
 	</fx:Script>
 
 	<fx:Metadata>
-		[Event(name="signedIn", type="org.umbraco.desktopmediauploader.events.SignedInEvent")]
+		[Event(name="signedIn", type="org.umbraco.DesktopMediaUploader.events.SignedInEvent")]
 	</fx:Metadata>
 	
 	<fx:Declarations>

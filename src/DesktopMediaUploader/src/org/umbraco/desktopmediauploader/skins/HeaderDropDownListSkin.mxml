@@ -71,7 +71,7 @@ is defined by the DropDownListButtonSkin class.
 				<!---  
 				The container for the data items in the drop-down list.
 				-->
-				<s:DataGroup id="dataGroup" itemRenderer="org.umbraco.desktopmediauploader.skins.DefaultItemRenderer">
+				<s:DataGroup id="dataGroup" itemRenderer="org.umbraco.DesktopMediaUploader.skins.DefaultItemRenderer">
 					<s:layout>
 						<s:VerticalLayout gap="0" horizontalAlign="contentJustify"/>
 					</s:layout>
@@ -82,7 +82,7 @@ is defined by the DropDownListButtonSkin class.
 	
 	<!--- The anchor button used by the DropDownList. The default skin is DropDownListButtonSkin. -->
 	<s:Button id="openButton" left="0" right="0" top="0" bottom="0" focusEnabled="false"
-			  skinClass="org.umbraco.desktopmediauploader.skins.HeaderDropDownListButtonSkin" />  
+			  skinClass="org.umbraco.DesktopMediaUploader.skins.HeaderDropDownListButtonSkin" />  
 	
 	<!--- The prompt area of the DropDownList. -->
 	<s:Label id="labelDisplay" verticalAlign="middle" maxDisplayedLines="1" 

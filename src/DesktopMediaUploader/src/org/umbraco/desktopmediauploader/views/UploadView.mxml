@@ -2,7 +2,7 @@
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
 		 xmlns:mx="library://ns.adobe.com/flex/mx" 
-		 xmlns:components="org.umbraco.desktopmediauploader.components.*"
+		 xmlns:components="org.umbraco.DesktopMediaUploader.components.*"
 		 width="100%" height="100%" 
 		 creationComplete="vwUpload_CreationCompleteHandler(event)" 
 		 show="vwUpload_ShowHandler(event);">
@@ -13,10 +13,10 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import org.umbraco.desktopmediauploader.components.*;
-			import org.umbraco.desktopmediauploader.events.*;
-			import org.umbraco.desktopmediauploader.net.*;
-			import org.umbraco.desktopmediauploader.util.*;
+			import org.umbraco.DesktopMediaUploader.components.*;
+			import org.umbraco.DesktopMediaUploader.events.*;
+			import org.umbraco.DesktopMediaUploader.net.*;
+			import org.umbraco.DesktopMediaUploader.util.*;
 			
 			import flash.desktop.*;
 			import flash.events.*;
@@ -282,7 +282,7 @@
 	</fx:Script>
 	
 	<fx:Metadata>
-		[Event(name="signedOut", type="org.umbraco.desktopmediauploader.events.SignedOutEvent")]
+		[Event(name="signedOut", type="org.umbraco.DesktopMediaUploader.events.SignedOutEvent")]
 	</fx:Metadata>
 	
 	<fx:Declarations>

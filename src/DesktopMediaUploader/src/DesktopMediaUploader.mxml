@@ -2,9 +2,9 @@
 <s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
 					   xmlns:s="library://ns.adobe.com/flex/spark" 
 					   xmlns:mx="library://ns.adobe.com/flex/mx"
-					   skinClass="org.umbraco.desktopmediauploader.skins.ApplicationSkin" 
+					   skinClass="org.umbraco.DesktopMediaUploader.skins.ApplicationSkin" 
 					   width="330" height="600" showStatusBar="false" 
-					   xmlns:views="org.umbraco.desktopmediauploader.views.*"
+					   xmlns:views="org.umbraco.DesktopMediaUploader.views.*"
 					   windowComplete="init();" >
 	
 	<fx:Style source="DesktopMediaUploader.css"/>
@@ -12,8 +12,8 @@
 	<fx:Script>
 		<![CDATA[
 			
-			import org.umbraco.desktopmediauploader.events.*;
-			import org.umbraco.desktopmediauploader.util.*;
+			import org.umbraco.DesktopMediaUploader.events.*;
+			import org.umbraco.DesktopMediaUploader.util.*;
 			
 			import mx.controls.Alert;
 			
