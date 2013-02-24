@@ -242,11 +242,14 @@ namespace Umbraco.Core.ObjectResolution
 			using (var l = new WriteLock(_lock))
 			{
 				EnsureCorrectType(value);
+				/*
 				if (InstanceTypes.Contains(value))
 				{
-					throw new InvalidOperationException("The Type " + value + " already exists in the collection");
+						throw new InvalidOperationException("The Type " + value + " already exists in the collection");
 				};
-				InstanceTypes.Add(value);
+				*/
+				if (!InstanceTypes.Contains(value))
+					InstanceTypes.Add(value);
 			}
 		}
 
