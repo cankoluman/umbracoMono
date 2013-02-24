@@ -161,6 +161,7 @@
     <Compile Include="WriteLock.cs" />
     <Compile Include="XmlExtensions.cs" />
     <Compile Include="XmlHelper.cs" />
+    <Compile Include="IO\MultiPlatformHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

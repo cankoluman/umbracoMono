@@ -82,7 +82,7 @@ namespace Umbraco.Core.IO
             return text;
         }
 
-        public static string MapPath(string path, bool useHttpContext)
+        public static string MapPathBase(string path, bool useHttpContext)
         {
             // Check if the path is already mapped
             if ((path.Length >= 2 && path[1] == Path.VolumeSeparatorChar) || path.StartsWith("\\"))
@@ -109,6 +109,15 @@ namespace Umbraco.Core.IO
         	var retval = root + IOHelper.DirSepChar.ToString() + newPath;
 
         	return retval;
+        }
+
+        public static string MapPath(string path, bool useHttpContext)
+        {
+
+			if (IO.MultiPlatformHelper.IsWindows)
+				return MapPathBase(path, useHttpContext);            
+
+			return IO.MultiPlatformHelper.MapUnixPath(path, useHttpContext);
         }
 
         public static string MapPath(string path)
