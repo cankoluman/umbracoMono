@@ -199,7 +199,9 @@
     <Reference Include="System.Data.SqlServerCe.Entity">
       <HintPath>..\..\lib\SQLCE4\System.Data.SqlServerCe.Entity.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.WebPages.Razor" />
+    <Reference Include="System.Web.WebPages.Razor">
+      <HintPath>..\..\..\..\..\..\..\opt\mono\lib\mono\gac\System.Web.WebPages.Razor\2.0.0.0__31bf3856ad364e35\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="UmbracoExamine">
       <HintPath>..\..\lib\UmbracoExamine.dll</HintPath>
     </Reference>
@@ -210,8 +212,12 @@
       <HintPath>..\..\..\..\..\..\..\opt\mono\lib\mono\gac\System.Web.Mvc\3.0.0.0__31bf3856ad364e35\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Razor" />
-    <Reference Include="System.Web.WebPages" />
-    <Reference Include="System.Web.WebPages.Deployment" />
+    <Reference Include="System.Web.WebPages">
+      <HintPath>..\..\..\..\..\..\..\opt\mono\lib\mono\gac\System.Web.WebPages\2.0.0.0__31bf3856ad364e35\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment">
+      <HintPath>..\..\..\..\..\..\..\opt\mono\lib\mono\gac\System.Web.WebPages.Deployment\2.0.0.0__31bf3856ad364e35\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Helpers">
       <HintPath>..\..\lib\WebPages\System.Web.Helpers\2.0.0.0\System.Web.Helpers.dll</HintPath>
     </Reference>
@@ -2359,7 +2365,7 @@ mkdir $(TargetDir)x86;cp -Rvu "$(ProjectDir)"..\..\lib\SQLCE4\x86\*.* "$(TargetD
   </ProjectExtensions>
   <Import Project="..\umbraco.presentation.targets" Condition="$(BuildingInsideVisualStudio) != true" />
   <Import Project="$(SolutionDir)umbraco.presentation.targets" Condition="$(BuildingInsideVisualStudio) == true" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <PropertyGroup>
     <!--<PostBuildEvent>xcopy "$(ProjectDir)..\..\lib\*.dll" "$(TargetDir)*.dll" /Y</PostBuildEvent>-->
   </PropertyGroup>
