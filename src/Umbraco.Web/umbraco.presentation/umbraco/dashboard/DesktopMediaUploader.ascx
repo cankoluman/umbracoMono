@@ -40,7 +40,7 @@
                             style: "margin-bottom:10px;"
                         };
 
-                        swfobject.embedSWF("/umbraco/dashboard/swfs/airinstallbadge.swf", "dmu-badge", "215", "180", "9.0.115", "/umbraco/dashboard/swfs/expressinstall.swf", flashvars, params, attributes);
+                        swfobject.embedSWF("/umbraco/dashboard/swfs/AIRInstallBadge.swf", "dmu-badge", "215", "180", "9.0.115", "/umbraco/dashboard/swfs/expressinstall.swf", flashvars, params, attributes);
                     // ]]>
                     </script>
                 </asp:Panel>
