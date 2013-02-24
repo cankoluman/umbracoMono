@@ -33,7 +33,7 @@ html {
 #LiveEditingToolbar 
 {
 	font-family:"Trebuchet MS",verdana,arial;
-	background: url(../../../umbraco_client/tabView/images/background.gif) !important;
+	background: url(../../../umbraco_client/tabview/images/background.gif) !important;
 	position: fixed !important;
 	width: 100% !important;
 	height: 34px !important;
