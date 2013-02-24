@@ -417,7 +417,7 @@
         getDimensions: function () {
             var el = $(window);
 
-            // fix a jQuery/Opera bug with determining the window height
+            // fix a JQuery/Opera bug with determining the window height
             var h = $.browser.opera && $.browser.version > '9.5' && $.fn.jquery < '1.3'
 						|| $.browser.opera && $.browser.version < '9.5' && $.fn.jquery > '1.2.6'
 				? el[0].innerHeight : el.height();

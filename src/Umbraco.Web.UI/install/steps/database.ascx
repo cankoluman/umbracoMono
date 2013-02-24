@@ -322,7 +322,7 @@
                 if (data.Percentage == 100) {
                     clearInterval(intervalId);
                     jQuery(".btn-box").show();
-                    jQuery('.ui-progressbar-value').css("background-image", "url(../umbraco_client/installer/images/pbar.gif)");
+                    jQuery('.ui-progressbar-value').css("background-image", "url(../umbraco_client/Installer/images/pbar.gif)");
                 }
             });
         }

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using umbraco.DataLayer.Utility.Installer;
 using umbraco.DataLayer;
+using System.Xml.XPath;
 
 namespace umbraco.presentation.install.utills
 {
@@ -39,11 +40,14 @@ namespace umbraco.presentation.install.utills
                 if (feed == "developervids")
                     url = "http://umbraco.org/feeds/videos/developer-foundation-html";
 
-                string XmlResponse = library.GetXmlDocumentByUrl(url).Current.OuterXml;
+                
+				XPathNodeIterator feedXml =  library.GetXmlDocumentByUrl(url);
+				feedXml.MoveNext();
+				string XmlResponse = feedXml.Current.OuterXml;
 
                 if (!XmlResponse.Contains("System.Net.WebException"))
                 {
-                    Response.Write(library.GetXmlDocumentByUrl(url).Current.OuterXml);
+					Response.Write(XmlResponse);
                 }
                 else
                 {

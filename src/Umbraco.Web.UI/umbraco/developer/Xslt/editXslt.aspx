@@ -71,7 +71,7 @@
         }
 		  
     </script>
-    <umb:JsInclude ID="JsInclude1" runat="server" FilePath="Application/jQuery/jquery-fieldselection.js"
+    <umb:JsInclude ID="JsInclude1" runat="server" FilePath="Application/JQuery/jquery-fieldselection.js"
         PathNameAlias="UmbracoClient" />
 </asp:Content>
 <asp:Content ContentPlaceHolderID="body" runat="server" ID="cp1">
