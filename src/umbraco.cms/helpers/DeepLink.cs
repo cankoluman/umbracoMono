@@ -66,7 +66,7 @@ namespace umbraco.cms.helpers
                     break;
                 case DeepLinkType.DocumentType:
                     section = "settings";
-                    editorUrl = "settings/editNodeTypeNew.aspx";
+                    editorUrl = "settings/EditNodeTypeNew.aspx";
                     idKey = "id";
                     break;
                 case DeepLinkType.Javascript:

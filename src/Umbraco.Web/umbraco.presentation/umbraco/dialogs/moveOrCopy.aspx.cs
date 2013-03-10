@@ -209,7 +209,7 @@ namespace umbraco.dialogs
                             }
                         }
 
-                        string returnUrl = SystemDirectories.Umbraco + "/settings/editNodeTypeNew.aspx?id=" + dt.Id.ToString();
+                        string returnUrl = SystemDirectories.Umbraco + "/settings/EditNodeTypeNew.aspx?id=" + dt.Id.ToString();
                 
                 dt.Save();
 

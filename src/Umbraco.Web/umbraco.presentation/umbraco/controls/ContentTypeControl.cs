@@ -52,27 +52,27 @@ namespace umbraco.controls
 			uicontrols.MenuImageButton Save = Panel1.Menu.NewImageButton();
 			Save.Click += new System.Web.UI.ImageClickEventHandler(save_click);
 			Save.ID = "Panel1Save";
-			Save.ImageUrl = UmbracoPath + "/images/editor/save.gif";
+			Save.ImageUrl = UmbracoPath + "/images/editor/Save.GIF";
 		
 
 			Panel2 = this.NewTabPage("Faneblade");
 			Save = Panel2.Menu.NewImageButton();
 			Save.ID = "Panel2Save";
 			Save.Click += new System.Web.UI.ImageClickEventHandler(save_click);
-			Save.ImageUrl = UmbracoPath + "/images/editor/save.gif";
+			Save.ImageUrl = UmbracoPath + "/images/editor/Save.GIF";
 
 
 			Panel3 = this.NewTabPage("Struktur");
 			Save = Panel3.Menu.NewImageButton();
 			Save.ID = "Panel3Save";
 			Save.Click += new System.Web.UI.ImageClickEventHandler(save_click);
-			Save.ImageUrl = UmbracoPath + "/images/editor/save.gif";
+			Save.ImageUrl = UmbracoPath + "/images/editor/Save.GIF";
 			
 			Panel4 = this.NewTabPage("Generiske egenskaber");
 			Save = Panel4.Menu.NewImageButton();
 			Save.ID = "Panel4Save";
 			Save.Click += new System.Web.UI.ImageClickEventHandler(save_click);
-			Save.ImageUrl = UmbracoPath + "/images/editor/save.gif";
+			Save.ImageUrl = UmbracoPath + "/images/editor/Save.GIF";
 
 			Panel1.Attributes.Add("align","center");
 			Panel2.Attributes.Add("align","center");
@@ -483,7 +483,7 @@ namespace umbraco.controls
 				{
 					e.save();
 				}
-				return "2 egenskabstyper ændret";
+				return "2 egenskabstyper ï¿½ndret";
 			}
 
 			

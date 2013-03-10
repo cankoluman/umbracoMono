@@ -178,7 +178,7 @@ namespace umbraco.cms.presentation.user
             userInfo.HasMenu = true;
 
             ImageButton save = userInfo.Menu.NewImageButton();
-            save.ImageUrl = SystemDirectories.Umbraco + "/images/editor/save.gif";
+            save.ImageUrl = SystemDirectories.Umbraco + "/images/editor/Save.GIF";
             save.Click += new ImageClickEventHandler(saveUser_Click);
 
             sectionValidator.ServerValidate += new ServerValidateEventHandler(sectionValidator_ServerValidate);
@@ -288,7 +288,7 @@ namespace umbraco.cms.presentation.user
 
             channelInfo.HasMenu = true;
             ImageButton save = channelInfo.Menu.NewImageButton();
-            save.ImageUrl = SystemDirectories.Umbraco + "/images/editor/save.gif";
+            save.ImageUrl = SystemDirectories.Umbraco + "/images/editor/Save.GIF";
             save.Click += new ImageClickEventHandler(saveUser_Click);
             save.ID = "save";
             if (!IsPostBack)

@@ -52,7 +52,7 @@ namespace umbraco.cms.presentation.user
 
             ImageButton save = pnlUmbraco.Menu.NewImageButton();
             save.ID = "btnSave";
-            save.ImageUrl = SystemDirectories.Umbraco + "/images/editor/save.gif";
+            save.ImageUrl = SystemDirectories.Umbraco + "/images/editor/Save.GIF";
 			save.OnClientClick = "SavePermissions(); return false;";
 
             nodePermissions.UserID = Convert.ToInt32(Request.QueryString["id"]);

@@ -277,7 +277,7 @@ namespace umbraco.controls
         {
             MenuImageButton menuSave = tp.Menu.NewImageButton();
             menuSave.ID = tp.ID + "_save";
-            menuSave.ImageUrl = _UmbracoPath + "/images/editor/save.gif";
+            menuSave.ImageUrl = _UmbracoPath + "/images/editor/Save.GIF";
             menuSave.Click += new ImageClickEventHandler(saveClick);
             menuSave.OnClickCommand = "invokeSaveHandlers();";
             menuSave.AltText = ui.Text("buttons", "save", null);

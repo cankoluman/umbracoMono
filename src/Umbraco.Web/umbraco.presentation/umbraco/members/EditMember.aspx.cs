@@ -217,7 +217,7 @@ namespace umbraco.cms.presentation.members
                 m_MemberShipPanel.hasMenu = true;
                 umbraco.uicontrols.MenuImageButton menuSave = m_MemberShipPanel.Menu.NewImageButton();
                 menuSave.ID = m_MemberShipPanel.ID + "_save";
-                menuSave.ImageUrl = SystemDirectories.Umbraco + "/images/editor/save.gif";
+                menuSave.ImageUrl = SystemDirectories.Umbraco + "/images/editor/Save.GIF";
                 menuSave.Click += new ImageClickEventHandler(menuSave_Click);
                 menuSave.AltText = ui.Text("buttons", "save", null);
             

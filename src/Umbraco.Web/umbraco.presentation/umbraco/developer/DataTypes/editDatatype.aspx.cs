@@ -124,7 +124,7 @@ namespace umbraco.cms.presentation.developer
             save = Panel1.Menu.NewImageButton();
             save.ID = "save";
             save.Click += new System.Web.UI.ImageClickEventHandler(save_click);
-            save.ImageUrl = SystemDirectories.Umbraco + "/images/editor/save.gif";
+            save.ImageUrl = SystemDirectories.Umbraco + "/images/editor/Save.GIF";
 
             Panel1.hasMenu = true;
 

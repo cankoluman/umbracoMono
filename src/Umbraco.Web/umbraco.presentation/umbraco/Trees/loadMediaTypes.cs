@@ -55,8 +55,8 @@ function openMediaType(id) {
                 xNode.NodeID = dt.Id.ToString();
                 xNode.Text = dt.Text;
                 xNode.Action = string.Format("javascript:openMediaType({0});", dt.Id);
-                xNode.Icon = "settingDataType.gif";
-                xNode.OpenIcon = "settingDataType.gif";
+                xNode.Icon = "settingDatatype.gif";
+                xNode.OpenIcon = "settingDatatype.gif";
 
                 OnBeforeNodeRender(ref tree, ref xNode, EventArgs.Empty);
                 if (xNode != null)
