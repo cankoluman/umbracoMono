@@ -54,7 +54,7 @@ namespace umbraco
             Javascript.Append(
                 @"
 			function openDictionaryItem(id) {
-				UmbClientMgr.contentFrame('settings/editDictionaryItem.aspx?id=' + id);
+				UmbClientMgr.contentFrame('settings/EditDictionaryItem.aspx?id=' + id);
 			}
 			");
         }

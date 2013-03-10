@@ -58,12 +58,12 @@ namespace umbraco
             if (ParentID > 0)
             {
                 int id = cms.businesslogic.Dictionary.DictionaryItem.addKey(Alias, "", new cms.businesslogic.Dictionary.DictionaryItem(ParentID).key);
-                m_returnUrl = string.Format("settings/editDictionaryItem.aspx?id={0}", id);
+                m_returnUrl = string.Format("settings/EditDictionaryItem.aspx?id={0}", id);
             }
             else
             {
                 int id = cms.businesslogic.Dictionary.DictionaryItem.addKey(Alias, "");
-                m_returnUrl = string.Format("settings/editDictionaryItem.aspx?id={0}", id);
+                m_returnUrl = string.Format("settings/EditDictionaryItem.aspx?id={0}", id);
             }
             return true;
         }

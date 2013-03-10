@@ -86,7 +86,7 @@ namespace umbraco.cms.helpers
                     break;
                 case DeepLinkType.MediaType:
                     section = "settings";
-                    editorUrl = "settings/editMediaType.aspx";
+                    editorUrl = "settings/EditMediaType.aspx";
                     idKey = "id";
                     break;
                 case DeepLinkType.RazorScript:
