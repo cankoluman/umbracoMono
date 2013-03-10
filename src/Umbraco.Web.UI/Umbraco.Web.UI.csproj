@@ -211,7 +211,9 @@
     <Reference Include="System.Web.Mvc">
       <HintPath>..\..\..\..\..\..\..\opt\mono\lib\mono\gac\System.Web.Mvc\3.0.0.0__31bf3856ad364e35\System.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Razor" />
+    <Reference Include="System.Web.Razor">
+			<HintPath>..\..\..\..\..\..\..\opt\mono\lib\mono\gac\System.Web.Razor\2.0.0.0__31bf3856ad364e35\System.Web.Razor.dll</HintPath>		
+		</Reference>
     <Reference Include="System.Web.WebPages">
       <HintPath>..\..\..\..\..\..\..\opt\mono\lib\mono\gac\System.Web.WebPages\2.0.0.0__31bf3856ad364e35\System.Web.WebPages.dll</HintPath>
     </Reference>

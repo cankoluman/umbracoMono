@@ -168,10 +168,18 @@
     <Reference Include="System.Web.Mvc">
       <HintPath>..\..\..\..\..\..\..\opt\mono\lib\mono\gac\System.Web.Mvc\3.0.0.0__31bf3856ad364e35\System.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Razor" />
-    <Reference Include="System.Web.WebPages" />
-    <Reference Include="System.Web.WebPages.Deployment" />
-    <Reference Include="System.Web.WebPages.Razor" />
+    <Reference Include="System.Web.Razor">
+			<HintPath>..\..\..\..\..\..\..\opt\mono\lib\mono\gac\System.Web.Razor\2.0.0.0__31bf3856ad364e35\System.Web.Razor.dll</HintPath>		
+		</Reference>
+    <Reference Include="System.Web.WebPages">
+			<HintPath>..\..\..\..\..\..\..\opt\mono\lib\mono\gac\System.Web.WebPages\2.0.0.0__31bf3856ad364e35\System.Web.WebPages.dll</HintPath>
+		</Reference>
+    <Reference Include="System.Web.WebPages.Deployment">
+			<HintPath>..\..\..\..\..\..\..\opt\mono\lib\mono\gac\System.Web.WebPages.Deployment\2.0.0.0__31bf3856ad364e35\System.Web.WebPages.Deployment.dll</HintPath>
+		</Reference>
+    <Reference Include="System.Web.WebPages.Razor">
+			<HintPath>..\..\..\..\..\..\..\opt\mono\lib\mono\gac\System.Web.WebPages.Razor\2.0.0.0__31bf3856ad364e35\System.Web.WebPages.Razor.dll</HintPath>
+		</Reference>
     <Reference Include="UmbracoExamine">
       <HintPath>..\..\lib\UmbracoExamine.dll</HintPath>
     </Reference>
