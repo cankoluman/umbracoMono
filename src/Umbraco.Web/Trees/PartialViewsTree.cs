@@ -29,7 +29,7 @@
 //			Javascript.Append(
 //				@"
 //                 function openView(id) {
-//                    UmbClientMgr.contentFrame('settings/views/editView.aspx?templateID=' + id);
+//                    UmbClientMgr.contentFrame('settings/views/EditView.aspx?templateID=' + id);
 //			    }
 //                ");
 //		}

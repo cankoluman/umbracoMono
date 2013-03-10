@@ -12,6 +12,6 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyProduct("")]
 
 
-[assembly: InternalsVisibleTo("umbraco", AllInternalsVisible=true)]
+[assembly: InternalsVisibleTo("umbraco")]
 [assembly: InternalsVisibleTo("Umbraco.LegacyTests")]
 [assembly: InternalsVisibleTo("Umbraco.Tests")]
