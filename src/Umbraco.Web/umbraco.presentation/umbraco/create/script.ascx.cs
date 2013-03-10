@@ -37,10 +37,11 @@ namespace umbraco.presentation.umbraco.create
 				if (scriptType.SelectedValue == "")
 					createFolder = 1;
 
+				char c = '\u00A4';
 				string returnUrl = presentation.create.dialogHandler_temp.Create(
 					helper.Request("nodeType"),
 					createFolder,
-                    relativepath + "¤" + rename.Text + "¤" + scriptType.SelectedValue);
+                    relativepath + c.ToString() + rename.Text + c.ToString() + scriptType.SelectedValue);
 
 				BasePage.Current.ClientTools
 					.ChangeContentFrameUrl(returnUrl)

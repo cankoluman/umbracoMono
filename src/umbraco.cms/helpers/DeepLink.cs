@@ -56,7 +56,7 @@ namespace umbraco.cms.helpers
                     break;
                 case DeepLinkType.Css:
                     section = "settings";
-                    editorUrl = "settings/stylesheet/editStylesheet.aspx";
+                    editorUrl = "settings/stylesheet/editstylesheet.aspx";
                     idKey = "id";
                     break;
                 case DeepLinkType.DataType:
