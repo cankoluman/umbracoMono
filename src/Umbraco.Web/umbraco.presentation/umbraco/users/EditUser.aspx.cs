@@ -61,6 +61,28 @@ namespace umbraco.cms.presentation.user
         private User u;
 
 
+        //mono fix for lost checkboxlist states
+		private void setCheckBoxStates(CheckBoxList cbl)
+		{
+			if (IsPostBack)
+			{
+				string cblFormID = cbl.ClientID.Replace("_","$");
+				int i = 0;
+				foreach (var item in cbl.Items)
+				{
+					string itemSelected = Request.Form[cblFormID + "$" + i];
+					if (itemSelected != null && itemSelected != String.Empty)
+						((ListItem)item).Selected = true;
+					i++;
+				}
+			}
+		}
+
+		protected void Page_PreRender(object sender, EventArgs e)
+		{
+			setCheckBoxStates(lapps);
+		}
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -198,6 +220,8 @@ namespace umbraco.cms.presentation.user
         void sectionValidator_ServerValidate(object source, ServerValidateEventArgs args)
         {
             args.IsValid = false;
+
+			setCheckBoxStates(lapps);
 
             if (lapps.SelectedIndex >= 0)
                 args.IsValid = true;

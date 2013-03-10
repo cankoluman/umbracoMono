@@ -279,6 +279,9 @@ jQuery(document).ready(function() {{ refreshDropDowns(); }});
         private void SaveAllowedChildTypes()
         {
             ArrayList tmp = new ArrayList();
+
+			setCheckBoxStates(lstAllowedContentTypes);
+
             foreach (ListItem li in lstAllowedContentTypes.Items)
             {
                 if (li.Selected)
@@ -903,6 +906,23 @@ Umbraco.Controls.TabView.onActiveTabChange(function(tabviewid, tabid, tabs) {
         }
 
         #endregion
+
+        //mono fix for lost checkboxlist states
+		private void setCheckBoxStates(CheckBoxList cbl)
+		{
+			if (IsPostBack)
+			{
+				string cblFormID = cbl.ClientID.Replace("_","$");
+				int i = 0;
+				foreach (var item in cbl.Items)
+				{
+					string itemSelected = Request.Form[cblFormID + "$" + i];
+					if (itemSelected != null && itemSelected != String.Empty)
+						((ListItem)item).Selected = true;
+					i++;
+				}
+			}
+		}
 
     }
 }

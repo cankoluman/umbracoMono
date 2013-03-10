@@ -107,10 +107,11 @@ namespace umbraco.settings
 
                     ArrayList tmp = new ArrayList();
 
-                    foreach (ListItem li in templateList.Items)
-                    {
-                        if (li.Selected) tmp.Add(new cms.businesslogic.template.Template(int.Parse(li.Value)));
-                    }
+					setCheckBoxStates(templateList);
+
+					foreach (ListItem li in templateList.Items) {
+						if (li.Selected) tmp.Add(new cms.businesslogic.template.Template(int.Parse(li.Value)));
+					}
 
                     cms.businesslogic.template.Template[] tt = new cms.businesslogic.template.Template[tmp.Count];
                     for (int i = 0; i < tt.Length; i++)
@@ -147,6 +148,23 @@ namespace umbraco.settings
             }
         }
 
+        //mono fix for lost checkboxlist states
+		private void setCheckBoxStates(CheckBoxList cbl)
+		{
+			if (IsPostBack)
+			{
+				string cblFormID = cbl.ClientID.Replace("_","$");
+				int i = 0;
+				foreach (var item in cbl.Items)
+				{
+					string itemSelected = Request.Form[cblFormID + "$" + i];
+					if (itemSelected != null && itemSelected != String.Empty)
+						((ListItem)item).Selected = true;
+					i++;
+				}
+			}
+		}
 
-    }
+		
+	}
 }
