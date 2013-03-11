@@ -61,7 +61,7 @@ namespace umbraco.cms.helpers
                     break;
                 case DeepLinkType.DataType:
                     section = "developer";
-                    editorUrl = "developer/datatypes/editDataType.aspx";
+                    editorUrl = "developer/DataTypes/editDatatype.aspx";
                     idKey = "id";
                     break;
                 case DeepLinkType.DocumentType:
@@ -76,7 +76,7 @@ namespace umbraco.cms.helpers
                     break;
                 case DeepLinkType.Macro:
                     section = "developer";
-                    editorUrl = "developer/macros/editMacro.aspx";
+                    editorUrl = "developer/Macros/editMacro.aspx";
                     idKey = "macroID";
                     break;
                 case DeepLinkType.Media:
@@ -91,7 +91,7 @@ namespace umbraco.cms.helpers
                     break;
                 case DeepLinkType.RazorScript:
                     section = "developer";
-                    editorUrl = "developer/python/editPython.aspx";
+                    editorUrl = "developer/Python/editPython.aspx";
                     idKey = "file";
                     break;
                 case DeepLinkType.Template:
@@ -101,7 +101,7 @@ namespace umbraco.cms.helpers
                     break;
                 case DeepLinkType.XSLT:
                     section = "developer";
-                    editorUrl = "developer/xslt/editXslt.aspx";
+                    editorUrl = "developer/Xslt/editXslt.aspx";
                     idKey = "file";
                     break;
             }

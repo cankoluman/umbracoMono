@@ -64,7 +64,7 @@ namespace umbraco.cms.presentation.developer
 			UmbracoPanel1.Menu.InsertSplitter();
 
 			uicontrols.MenuIconI tmp = UmbracoPanel1.Menu.NewIcon();
-			tmp.ImageURL = umbraco.IO.IOHelper.ResolveUrl(umbraco.IO.SystemDirectories.Umbraco) + "/images/editor/insField.GIF";
+			tmp.ImageURL = umbraco.IO.IOHelper.ResolveUrl(umbraco.IO.SystemDirectories.Umbraco) + "/images/editor/insField.gif";
 			tmp.OnClickCommand = ClientTools.Scripts.OpenModalWindow(umbraco.IO.IOHelper.ResolveUrl(umbraco.IO.SystemDirectories.Umbraco) + "/developer/xslt/xsltinsertvalueof.aspx?objectId=" + editorSource.ClientID, "Insert value", 750, 250);
 			//"umbracoInsertField(document.getElementById('editorSource'), 'xsltInsertValueOf', '','felt', 750, 230, '');";
 			tmp.AltText = "Insert xslt:value-of";
@@ -72,33 +72,33 @@ namespace umbraco.cms.presentation.developer
 			UmbracoPanel1.Menu.InsertSplitter();
 
 			tmp = UmbracoPanel1.Menu.NewIcon();
-			tmp.ImageURL = SystemDirectories.Umbraco + "/images/editor/insMemberItem.GIF";
+			tmp.ImageURL = SystemDirectories.Umbraco + "/images/editor/insMemberItem.gif";
 			tmp.OnClickCommand = "UmbEditor.Insert('<xsl:variable name=\"\" select=\"', '\"/>\\n', '" + editorSource.ClientID + "'); return false;";
 			tmp.AltText = "Insert xsl:variable";
 
 			UmbracoPanel1.Menu.InsertSplitter();
 
 			tmp = UmbracoPanel1.Menu.NewIcon();
-			tmp.ImageURL = SystemDirectories.Umbraco + "/images/editor/insChildTemplateNew.GIF";
+			tmp.ImageURL = SystemDirectories.Umbraco + "/images/editor/insChildTemplateNew.gif";
 			tmp.OnClickCommand = "UmbEditor.Insert('<xsl:if test=\"CONDITION\">\\n', '\\n</xsl:if>\\n', '" + editorSource.ClientID + "'); return false;";
 			tmp.AltText = "Insert xsl:if";
 
 			tmp = UmbracoPanel1.Menu.NewIcon();
-			tmp.ImageURL = SystemDirectories.Umbraco + "/images/editor/insChildTemplateNew.GIF";
+			tmp.ImageURL = SystemDirectories.Umbraco + "/images/editor/insChildTemplateNew.gif";
 			tmp.OnClickCommand = "UmbEditor.Insert('<xsl:for-each select=\"QUERY\">\\n', '\\n</xsl:for-each>\\n', '" + editorSource.ClientID + "'); return false;";
 			tmp.AltText = "Insert xsl:for-each";
 
 			UmbracoPanel1.Menu.InsertSplitter();
 
 			tmp = UmbracoPanel1.Menu.NewIcon();
-			tmp.ImageURL = SystemDirectories.Umbraco + "/images/editor/insFieldByLevel.GIF";
+			tmp.ImageURL = SystemDirectories.Umbraco + "/images/editor/insFieldByLevel.gif";
 			tmp.OnClickCommand = "UmbEditor.Insert('<xsl:choose>\\n<xsl:when test=\"CONDITION\">\\n', '\\n</xsl:when>\\n<xsl:otherwise>\\n</xsl:otherwise>\\n</xsl:choose>\\n', '" + editorSource.ClientID + "'); return false;";
 			tmp.AltText = "Insert xsl:choose";
 
 			UmbracoPanel1.Menu.InsertSplitter();
 
 			tmp = UmbracoPanel1.Menu.NewIcon();
-			tmp.ImageURL = SystemDirectories.Umbraco + "/images/editor/xslVisualize.GIF";
+			tmp.ImageURL = SystemDirectories.Umbraco + "/images/editor/xslVisualize.gif";
 			tmp.OnClickCommand = "xsltVisualize();";
 			tmp.AltText = "Visualize XSLT";
 

@@ -63,7 +63,7 @@ namespace umbraco
             Javascript.Append(
                 @"
 function openCacheItem(id) {
-	UmbClientMgr.contentFrame('developer/cache/viewCacheItem.aspx?key=' + id);
+	UmbClientMgr.contentFrame('developer/Cache/viewCacheItem.aspx?key=' + id);
 }
 ");
         }

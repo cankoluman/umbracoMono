@@ -44,7 +44,7 @@ namespace umbraco
         {
 
             int id = cms.businesslogic.datatype.DataTypeDefinition.MakeNew(BusinessLogic.User.GetUser(_userID), Alias).Id;
-            m_returnUrl = string.Format("developer/datatypes/editDataType.aspx?id={0}", id);
+            m_returnUrl = string.Format("developer/DataTypes/editDatatype.aspx?id={0}", id);
             return true;
         }
 

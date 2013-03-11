@@ -112,7 +112,7 @@ namespace umbraco.cms.presentation.developer
 
             this.speechBubble(BasePages.BasePage.speechBubbleIcon.save, ui.Text("speechBubbles", "dataTypeSaved", null), "");
 
-            //Response.Redirect("editDataType.aspx?id=" + _id);
+            //Response.Redirect("editDatatype.aspx?id=" + _id);
         }
 
 
