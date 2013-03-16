@@ -297,7 +297,7 @@
     <Compile Include="umbraco.presentation\umbraco\developer\Macros\editMacro.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="umbraco.presentation\umbraco\developer\Packages\StarterKits.aspx.cs">
+    <Compile Include="umbraco.presentation\umbraco\developer\packages\StarterKits.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="umbraco.presentation\umbraco\developer\Xslt\editXslt.aspx.cs">
@@ -1037,46 +1037,46 @@
     <Compile Include="umbraco.presentation\umbraco\developer\DataTypes\editDatatype.aspx.designer.cs">
       <DependentUpon>editDatatype.aspx</DependentUpon>
     </Compile>
-    <Compile Include="umbraco.presentation\umbraco\developer\Packages\BrowseRepository.aspx.cs">
+    <Compile Include="umbraco.presentation\umbraco\developer\packages\BrowseRepository.aspx.cs">
       <DependentUpon>BrowseRepository.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="umbraco.presentation\umbraco\developer\Packages\BrowseRepository.aspx.designer.cs">
+    <Compile Include="umbraco.presentation\umbraco\developer\packages\BrowseRepository.aspx.designer.cs">
       <DependentUpon>BrowseRepository.aspx</DependentUpon>
     </Compile>
-    <Compile Include="umbraco.presentation\umbraco\developer\Packages\directoryBrowser.aspx.cs">
+    <Compile Include="umbraco.presentation\umbraco\developer\packages\directoryBrowser.aspx.cs">
       <DependentUpon>directoryBrowser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="umbraco.presentation\umbraco\developer\Packages\directoryBrowser.aspx.designer.cs">
+    <Compile Include="umbraco.presentation\umbraco\developer\packages\directoryBrowser.aspx.designer.cs">
       <DependentUpon>directoryBrowser.aspx</DependentUpon>
     </Compile>
-    <Compile Include="umbraco.presentation\umbraco\developer\Packages\editPackage.aspx.cs">
+    <Compile Include="umbraco.presentation\umbraco\developer\packages\editPackage.aspx.cs">
       <DependentUpon>editPackage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="umbraco.presentation\umbraco\developer\Packages\editPackage.aspx.designer.cs">
+    <Compile Include="umbraco.presentation\umbraco\developer\packages\editPackage.aspx.designer.cs">
       <DependentUpon>editPackage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="umbraco.presentation\umbraco\developer\Packages\installedPackage.aspx.cs">
+    <Compile Include="umbraco.presentation\umbraco\developer\packages\installedPackage.aspx.cs">
       <DependentUpon>installedPackage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="umbraco.presentation\umbraco\developer\Packages\installedPackage.aspx.designer.cs">
+    <Compile Include="umbraco.presentation\umbraco\developer\packages\installedPackage.aspx.designer.cs">
       <DependentUpon>installedPackage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="umbraco.presentation\umbraco\developer\Packages\LoadNitros.ascx.cs">
+    <Compile Include="umbraco.presentation\umbraco\developer\packages\LoadNitros.ascx.cs">
       <DependentUpon>LoadNitros.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="umbraco.presentation\umbraco\developer\Packages\LoadNitros.ascx.designer.cs">
+    <Compile Include="umbraco.presentation\umbraco\developer\packages\LoadNitros.ascx.designer.cs">
       <DependentUpon>LoadNitros.ascx</DependentUpon>
     </Compile>
-    <Compile Include="umbraco.presentation\umbraco\developer\Packages\SubmitPackage.aspx.cs">
+    <Compile Include="umbraco.presentation\umbraco\developer\packages\SubmitPackage.aspx.cs">
       <DependentUpon>SubmitPackage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="umbraco.presentation\umbraco\developer\Packages\SubmitPackage.aspx.designer.cs">
+    <Compile Include="umbraco.presentation\umbraco\developer\packages\SubmitPackage.aspx.designer.cs">
       <DependentUpon>SubmitPackage.aspx</DependentUpon>
     </Compile>
     <Compile Include="umbraco.presentation\umbraco\developer\Python\editPython.aspx.cs">
@@ -1196,11 +1196,11 @@
     <Compile Include="umbraco.presentation\umbraco\dialogs\notifications.aspx.designer.cs">
       <DependentUpon>notifications.aspx</DependentUpon>
     </Compile>
-    <Compile Include="umbraco.presentation\umbraco\developer\Packages\installer.aspx.cs">
+    <Compile Include="umbraco.presentation\umbraco\developer\packages\installer.aspx.cs">
       <DependentUpon>installer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="umbraco.presentation\umbraco\developer\Packages\installer.aspx.designer.cs">
+    <Compile Include="umbraco.presentation\umbraco\developer\packages\installer.aspx.designer.cs">
       <DependentUpon>installer.aspx</DependentUpon>
     </Compile>
     <Compile Include="umbraco.presentation\umbraco\dialogs\protectPage.aspx.cs">
@@ -1865,14 +1865,14 @@
     <Content Include="umbraco.presentation\umbraco\webservices\TreeClientService.asmx" />
     <Content Include="umbraco.presentation\umbraco\members\search.aspx" />
     <Content Include="umbraco.presentation\umbraco\translation\details.aspx" />
-    <Content Include="umbraco.presentation\umbraco\developer\Packages\BrowseRepository.aspx" />
-    <Content Include="umbraco.presentation\umbraco\developer\Packages\directoryBrowser.aspx">
+    <Content Include="umbraco.presentation\umbraco\developer\packages\BrowseRepository.aspx" />
+    <Content Include="umbraco.presentation\umbraco\developer\packages\directoryBrowser.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="umbraco.presentation\umbraco\developer\Packages\editPackage.aspx" />
-    <Content Include="umbraco.presentation\umbraco\developer\Packages\installedPackage.aspx" />
-    <Content Include="umbraco.presentation\umbraco\developer\Packages\LoadNitros.ascx" />
-    <Content Include="umbraco.presentation\umbraco\developer\Packages\SubmitPackage.aspx" />
+    <Content Include="umbraco.presentation\umbraco\developer\packages\editPackage.aspx" />
+    <Content Include="umbraco.presentation\umbraco\developer\packages\installedPackage.aspx" />
+    <Content Include="umbraco.presentation\umbraco\developer\packages\LoadNitros.ascx" />
+    <Content Include="umbraco.presentation\umbraco\developer\packages\SubmitPackage.aspx" />
     <Content Include="umbraco.presentation\umbraco\dialogs\about.aspx" />
     <Content Include="umbraco.presentation\umbraco\dialogs\AssignDomain.aspx">
       <SubType>ASPXCodeBehind</SubType>
@@ -1888,7 +1888,7 @@
     <Content Include="umbraco.presentation\umbraco\dialogs\insertTable.aspx" />
     <Content Include="umbraco.presentation\umbraco\dialogs\moveOrCopy.aspx" />
     <Content Include="umbraco.presentation\umbraco\dialogs\notifications.aspx" />
-    <Content Include="umbraco.presentation\umbraco\developer\Packages\installer.aspx" />
+    <Content Include="umbraco.presentation\umbraco\developer\packages\installer.aspx" />
     <Content Include="umbraco.presentation\umbraco\dialogs\protectPage.aspx" />
     <Content Include="umbraco.presentation\umbraco\dialogs\publish.aspx" />
     <Content Include="umbraco.presentation\umbraco\dialogs\RegexWs.aspx" />

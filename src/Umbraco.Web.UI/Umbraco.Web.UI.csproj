@@ -1578,11 +1578,11 @@
     <Compile Include="umbraco\developer\Macros\EditMacro.aspx.designer.cs">
       <DependentUpon>editMacro.aspx</DependentUpon>
     </Compile>
-    <Compile Include="umbraco\developer\Packages\StarterKits.aspx.cs">
+    <Compile Include="umbraco\developer\packages\StarterKits.aspx.cs">
       <DependentUpon>StarterKits.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="umbraco\developer\Packages\StarterKits.aspx.designer.cs">
+    <Compile Include="umbraco\developer\packages\StarterKits.aspx.designer.cs">
       <DependentUpon>StarterKits.aspx</DependentUpon>
     </Compile>
     <Compile Include="umbraco\masterpages\UmbracoDialog.master.cs">
@@ -1722,7 +1722,7 @@
     <Content Include="umbraco\dashboard\StartupDashboardIntro.ascx" />
     <Content Include="umbraco\dashboard\StartupDashboardKits.ascx" />
     <Content Include="umbraco\dashboard\StartupDashboardVideos.ascx" />
-    <Content Include="umbraco\developer\Packages\StarterKits.aspx" />
+    <Content Include="umbraco\developer\packages\StarterKits.aspx" />
     <Content Include="umbraco\dialogs\TemplateSkinning.aspx" />
     <Content Include="umbraco\helpRedirect.aspx" />
     <Content Include="umbraco\images\aboutNew.png" />
@@ -1805,7 +1805,7 @@
     <Content Include="umbraco\images\editor\spellchecker.gif" />
     <Content Include="umbraco\webservices\MacroContainerService.asmx" />
     <Content Include="umbraco\css\umbLiveEditing.css" />
-    <Content Include="umbraco\developer\Packages\proxy.htm" />
+    <Content Include="umbraco\developer\packages\proxy.htm" />
     <Content Include="umbraco\developer\Xslt\xsltVisualize.aspx" />
     <Content Include="umbraco\dialogs\empty.htm" />
     <Content Include="umbraco\dialogs\insertMasterpageContent.aspx" />
@@ -1858,12 +1858,12 @@
     <Content Include="umbraco\images\umbraco\package.gif" />
     <Content Include="umbraco\images\umbraco\repository.gif" />
     <Content Include="umbraco\images\umbraco\uploadpackage.gif" />
-    <Content Include="umbraco\developer\Packages\BrowseRepository.aspx" />
-    <Content Include="umbraco\developer\Packages\directoryBrowser.aspx" />
-    <Content Include="umbraco\developer\Packages\editPackage.aspx" />
-    <Content Include="umbraco\developer\Packages\installedPackage.aspx" />
-    <Content Include="umbraco\developer\Packages\LoadNitros.ascx" />
-    <Content Include="umbraco\developer\Packages\SubmitPackage.aspx" />
+    <Content Include="umbraco\developer\packages\BrowseRepository.aspx" />
+    <Content Include="umbraco\developer\packages\directoryBrowser.aspx" />
+    <Content Include="umbraco\developer\packages\editPackage.aspx" />
+    <Content Include="umbraco\developer\packages\installedPackage.aspx" />
+    <Content Include="umbraco\developer\packages\LoadNitros.ascx" />
+    <Content Include="umbraco\developer\packages\SubmitPackage.aspx" />
     <Content Include="umbraco\dialogs\about.aspx" />
     <Content Include="umbraco\dialogs\AssignDomain.aspx" />
     <Content Include="umbraco\dialogs\create.aspx" />
@@ -1877,7 +1877,7 @@
     <Content Include="umbraco\dialogs\insertTable.aspx" />
     <Content Include="umbraco\dialogs\moveOrCopy.aspx" />
     <Content Include="umbraco\dialogs\notifications.aspx" />
-    <Content Include="umbraco\developer\Packages\installer.aspx" />
+    <Content Include="umbraco\developer\packages\installer.aspx" />
     <Content Include="umbraco\dialogs\protectPage.aspx" />
     <Content Include="umbraco\dialogs\publish.aspx" />
     <Content Include="umbraco\dialogs\RegexWs.aspx" />
