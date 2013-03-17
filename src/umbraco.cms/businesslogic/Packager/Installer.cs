@@ -889,8 +889,11 @@ namespace umbraco.cms.businesslogic.packager
             Debug.Assert(path != null && path.Length >= 1);
             Debug.Assert(fileName != null && fileName.Length >= 1);
 
-            path = path.Replace('/', '\\');
-            fileName = fileName.Replace('/', '\\');
+			if (Path.DirectorySeparatorChar.ToString() == Umbraco.Core.IO.MultiPlatformHelper.WIN_DIRSEP)
+			{
+				path = Umbraco.Core.IO.MultiPlatformHelper.ConvertPathFromUnixToWin(path);
+				fileName = Umbraco.Core.IO.MultiPlatformHelper.ConvertPathFromUnixToWin(fileName);
+			}
 
             // Does filename start with a slash? Does path end with one?
             bool fileNameStartsWithSlash = (fileName[0] == Path.DirectorySeparatorChar);
@@ -1041,8 +1044,13 @@ namespace umbraco.cms.businesslogic.packager
             ZipEntry theEntry;
             while ((theEntry = s.GetNextEntry()) != null)
             {
-                string directoryName = Path.GetDirectoryName(theEntry.Name);
-                string fileName = Path.GetFileName(theEntry.Name);
+				string entryName = theEntry.Name;
+
+				if (Path.DirectorySeparatorChar.ToString() == Umbraco.Core.IO.MultiPlatformHelper.UNIX_DIRSEP)
+					entryName = entryName.Replace(Umbraco.Core.IO.MultiPlatformHelper.WIN_DIRSEP, Path.DirectorySeparatorChar.ToString());
+
+				string directoryName = Path.GetDirectoryName(entryName);
+                string fileName = Path.GetFileName(entryName);
 
                 if (fileName != String.Empty)
                 {

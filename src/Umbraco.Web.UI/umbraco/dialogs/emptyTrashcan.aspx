@@ -11,7 +11,7 @@
     			jQuery('#formDiv').hide();
     			jQuery('#buttons').hide(); 
 	    		jQuery('#animation').show(); 
-		    	jQuery('#anim').attr("src","<%=umbraco.GlobalSettings.ClientPath%>/images/progressBar.gif");
+		    	jQuery('#anim').attr("src","<%=umbraco.GlobalSettings.ClientPath%>/images/progressbar.gif");
 		    	
 		    	// call the empty trashcan webservice
 		    	umbraco.presentation.webservices.trashcan.EmptyTrashcan(recycleBinType);

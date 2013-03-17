@@ -27,6 +27,23 @@ namespace umbraco.presentation.developer.packages
         private cms.businesslogic.packager.InstalledPackage pack;
         private cms.businesslogic.packager.repositories.Repository repo = new global::umbraco.cms.businesslogic.packager.repositories.Repository();
 
+		//mono fix for lost checkboxlist states
+		private void setCheckBoxStates(CheckBoxList cbl)
+		{
+			if (IsPostBack)
+			{
+				string cblFormID = cbl.ClientID.Replace("_","$");
+				int i = 0;
+				foreach (var item in cbl.Items)
+				{
+					string itemSelected = Request.Form[cblFormID + "$" + i];
+					if (itemSelected != null && itemSelected != String.Empty)
+						((ListItem)item).Selected = true;
+					i++;
+				}
+			}
+		}
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -351,6 +368,8 @@ namespace umbraco.presentation.developer.packages
                     }
                 }
             }
+
+			setCheckBoxStates(files);
         }
 
         private void syncLists(List<string> list, List<string> removed)
