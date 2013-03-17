@@ -20,7 +20,7 @@
 
 <div class="dashboardWrapper">
 	<h2><%=umbraco.ui.Text("changePassword") %></h2>
-	<img src="./dashboard/images/membersearch.png" alt="Users" class="dashboardIcon" />
+	<img src="/umbraco/dashboard/images/membersearch.png" alt="Users" class="dashboardIcon" />
 	<asp:Panel ID="changeForm" Runat="server" Visible="true">
 		<p><%=umbraco.ui.Text("changePasswordDescription") %></p>
 		<asp:Panel ID="errorPane" runat="server" Visible="false">
