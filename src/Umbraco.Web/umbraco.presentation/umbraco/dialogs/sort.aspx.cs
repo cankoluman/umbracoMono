@@ -34,7 +34,7 @@ namespace umbraco.cms.presentation
         {
             base.OnPreRender(e);
 
-            ScriptManager.GetCurrent(Page).Services.Add(new ServiceReference("../webservices/nodesorter.asmx"));
+            ScriptManager.GetCurrent(Page).Services.Add(new ServiceReference("../webservices/nodeSorter.asmx"));
             ScriptManager.GetCurrent(Page).Services.Add(new ServiceReference("../webservices/legacyAjaxCalls.asmx"));
 
             int ParentId = 0;
