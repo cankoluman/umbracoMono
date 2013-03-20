@@ -25,6 +25,12 @@ namespace umbraco.cms.presentation.user
         {
             CurrentApp = BusinessLogic.DefaultApps.users.ToString();
         }
+
+		protected void Page_PreRender(object sender, EventArgs e)
+		{
+			setCheckBoxStates(cblRights);
+		}
+
         protected void Page_Load(object sender, EventArgs e)
         {
             pnlUmbraco.Text = umbraco.ui.Text("usertype", base.getUser());
@@ -56,13 +62,32 @@ namespace umbraco.cms.presentation.user
 
         }
 
+		//mono fix for lost checkboxlist states
+		private void setCheckBoxStates(CheckBoxList cbl)
+		{
+			if (IsPostBack)
+			{
+				string cblFormID = cbl.ClientID.Replace("_","$");
+				int i = 0;
+				foreach (var item in cbl.Items)
+				{
+					string itemSelected = Request.Form[cblFormID + "$" + i];
+					if (itemSelected != null && itemSelected != String.Empty)
+						((ListItem)item).Selected = true;
+					i++;
+				}
+			}
+		}
+
         void save_Click(object sender, ImageClickEventArgs e)
         {
             UserType userType = CurrentUserType;
             userType.Name = txtUserTypeName.Text;
             string actions = "";
 
-            foreach (ListItem li in cbl_rights.Items) {
+			//setCheckBoxStates(cblRights);
+
+            foreach (ListItem li in cblRights.Items) {
                 if (li.Selected)
                     actions += li.Value;
             }
@@ -109,7 +134,7 @@ namespace umbraco.cms.presentation.user
                 if(CurrentUserTypeActions.Contains(ai))
                     li.Selected = true;
 
-                cbl_rights.Items.Add(li);
+                cblRights.Items.Add(li);
             }
         }
 

@@ -15,7 +15,7 @@
         </cc2:Pane>
         <cc2:Pane ID="pnl2" Style="padding: 10px; text-align: left;" runat="server">
             <cc2:PropertyPanel ID="pp_rights" runat="server">
-                <asp:CheckBoxList ID="cbl_rights" runat="server" />
+                <asp:CheckBoxList ID="cblRights" runat="server" />
             </cc2:PropertyPanel>
         </cc2:Pane>
     </cc2:UmbracoPanel>
