@@ -1,5 +1,6 @@
 using System;
 using System.Xml;
+using System.Xml.XPath;
 using umbraco.IO;
 
 namespace umbraco
@@ -115,5 +116,11 @@ namespace umbraco
         {
 			return Umbraco.Core.XmlHelper.Split(xml, data, separator, rootName, elementName);
         }
+
+		//mono fix: gets current node
+		public static XmlNode GetCurrentNodeFromIterator(XPathNodeIterator xpi)
+		{
+			return Umbraco.Core.XmlHelper.GetCurrentNodeFromIterator(xpi);
+		}
     }
 }

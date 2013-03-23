@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
+using System.Xml.XPath;
 using Umbraco.Core.IO;
 
 namespace Umbraco.Core
@@ -182,6 +183,19 @@ namespace Umbraco.Core
 			// fix for issue 14862: return lowercase attributes for case insensitive matching
 			var d = m.Cast<Match>().ToDictionary(attributeSet => attributeSet.Groups["attributeName"].Value.ToString().ToLower(), attributeSet => attributeSet.Groups["attributeValue"].Value.ToString());
 			return d;
+		}
+
+		//mono fix: gets current node
+		internal static XmlNode GetCurrentNodeFromIterator(XPathNodeIterator xpi)
+		{
+			if (xpi != null)
+			{
+				xpi.MoveNext();
+				if (xpi.Current != null)
+					return ((IHasXmlNode)xpi.Current).GetNode();
+			}
+			
+			return null;
 		}
     }
 }

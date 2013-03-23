@@ -217,8 +217,8 @@ namespace umbraco.presentation.nodeFactory
 
         public Node()
         {
-            _pageXmlNode = ((IHasXmlNode)library.GetXmlNodeCurrent().Current).GetNode();
-            initializeStructure();
+			_pageXmlNode = xmlHelper.GetCurrentNodeFromIterator(library.GetXmlNodeCurrent());
+			initializeStructure();
             initialize();
         }
 
@@ -267,7 +267,7 @@ namespace umbraco.presentation.nodeFactory
         public Node(int NodeId)
         {
             if (NodeId != -1)
-                _pageXmlNode = ((IHasXmlNode)library.GetXmlNodeById(NodeId.ToString()).Current).GetNode();
+				_pageXmlNode = xmlHelper.GetCurrentNodeFromIterator(library.GetXmlNodeById(NodeId.ToString()));
             else
             {
                 _pageXmlNode = UmbracoContext.Current.GetXml().DocumentElement;
@@ -508,8 +508,8 @@ namespace umbraco.presentation.nodeFactory
 
         public static Node GetCurrent()
         {
-            XmlNode n = ((IHasXmlNode)library.GetXmlNodeCurrent().Current).GetNode();
-            if (n.Attributes == null || n.Attributes.GetNamedItem("id") == null)
+			XmlNode n = xmlHelper.GetCurrentNodeFromIterator(library.GetXmlNodeCurrent());
+			if (n.Attributes == null || n.Attributes.GetNamedItem("id") == null)
                 throw new ArgumentException("Current node is null. This might be due to previewing an unpublished node. As the NodeFactory works with published data, macros using the node factory won't work in preview mode.", "Current node is " + System.Web.HttpContext.Current.Items["pageID"].ToString());
 
             return new Node(int.Parse(n.Attributes.GetNamedItem("id").Value));

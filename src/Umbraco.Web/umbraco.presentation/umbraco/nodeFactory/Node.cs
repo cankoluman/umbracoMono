@@ -295,7 +295,7 @@ namespace umbraco.NodeFactory
 		public Node(int NodeId)
 		{
 			if (NodeId != -1)
-				_pageXmlNode = ((IHasXmlNode)library.GetXmlNodeById(NodeId.ToString()).Current).GetNode();
+				_pageXmlNode = xmlHelper.GetCurrentNodeFromIterator(library.GetXmlNodeById(NodeId.ToString()));
 			else
 			{
 				if (presentation.UmbracoContext.Current != null)
