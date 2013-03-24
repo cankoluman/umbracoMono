@@ -31,6 +31,7 @@
         Priority="10" />
     <umb:JsInclude ID="JsIncludeHotkeys" runat="server" FilePath="Application/JQuery/jquery.hotkeys.js" PathNameAlias="UmbracoClient"
         Priority="10" />
+    <umb:JsInclude id="jsIncludeMono" runat="server" FilePath="Application/JQuery/jquery.mono.textBoxFix.js" PathNameAlias="UmbracoClient" Priority="10" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>

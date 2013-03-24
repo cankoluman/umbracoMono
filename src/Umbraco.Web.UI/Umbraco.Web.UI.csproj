@@ -212,8 +212,8 @@
       <HintPath>..\..\..\..\..\..\..\opt\mono\lib\mono\gac\System.Web.Mvc\3.0.0.0__31bf3856ad364e35\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Razor">
-			<HintPath>..\..\..\..\..\..\..\opt\mono\lib\mono\gac\System.Web.Razor\2.0.0.0__31bf3856ad364e35\System.Web.Razor.dll</HintPath>		
-		</Reference>
+      <HintPath>..\..\..\..\..\..\..\opt\mono\lib\mono\gac\System.Web.Razor\2.0.0.0__31bf3856ad364e35\System.Web.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.WebPages">
       <HintPath>..\..\..\..\..\..\..\opt\mono\lib\mono\gac\System.Web.WebPages\2.0.0.0__31bf3856ad364e35\System.Web.WebPages.dll</HintPath>
     </Reference>
@@ -2314,6 +2314,7 @@
     <Content Include="umbraco\webservices\MediaUploader.ashx" />
     <Content Include="web.Template.mono.Debug.config" />
     <Content Include="web.Template.mono.config" />
+    <Content Include="umbraco_client\Application\JQuery\jquery.mono.textBoxFix.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
