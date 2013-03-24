@@ -161,7 +161,9 @@ namespace umbraco.cms.presentation
             Uri absoluteUri;
             if (Uri.TryCreate(url, UriKind.Absolute, out absoluteUri))
             {
-                return String.Equals(HttpContext.Current.Request.Url.Host, absoluteUri.Host,
+				var hostName = GetHostName(absoluteUri);
+
+				return String.Equals(HttpContext.Current.Request.Url.Host, hostName,
                             StringComparison.OrdinalIgnoreCase);
             }
 
@@ -186,5 +188,24 @@ namespace umbraco.cms.presentation
                 u.addApplication("content");
             }
         }
+
+		private string GetHostName(Uri absoluteUri)
+		{
+			if (MultiPlatformHelper.IsUnix)
+				return GetAbsoluteUriHostNameForMono(absoluteUri);
+
+			return absoluteUri.Host;
+		}
+
+		//mono: fix for absolute uri from absolute path
+		//has no host name
+		private string GetAbsoluteUriHostNameForMono(Uri uri)
+		{
+			if (uri.Scheme == Uri.UriSchemeFile)
+				return HttpContext.Current.Request.Url.Host;
+
+			return uri.Host;
+		}
     }
 }
+	

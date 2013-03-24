@@ -188,6 +188,7 @@
     <Compile Include="xmlHelper.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="IO\MultiPlatformHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
