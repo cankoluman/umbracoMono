@@ -19,7 +19,7 @@ namespace umbraco.presentation
             HttpContext.Current.Items["pageID"] = PageId;
 
             // setup page properties
-            page pageObject = new page(((System.Xml.IHasXmlNode) library.GetXmlNodeCurrent().Current).GetNode());
+			page pageObject = new page(xmlHelper.GetCurrentNodeFromIterator(library.GetXmlNodeCurrent()));
             System.Web.HttpContext.Current.Items.Add("pageElements", pageObject.Elements);
 
             base.OnPreInit(e);

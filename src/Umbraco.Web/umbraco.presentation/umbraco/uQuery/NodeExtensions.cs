@@ -401,7 +401,10 @@ namespace umbraco
         /// <returns>Returns an <c>XmlNode</c> for the selected Node</returns>
         public static XmlNode ToXml(this Node node)
         {
-            return ((IHasXmlNode)umbraco.library.GetXmlNodeById(node.Id.ToString()).Current).GetNode();
+			return xmlHelper.GetCurrentNodeFromIterator(
+				library
+				.GetXmlNodeById(node.Id.ToString())
+			);
         }
 
         /// <summary>

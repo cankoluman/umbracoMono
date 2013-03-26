@@ -95,7 +95,13 @@ namespace umbraco
 
         public library(int id)
         {
-            _page = new page(((System.Xml.IHasXmlNode)GetXmlNodeById(id.ToString()).Current).GetNode());
+			_page = new page(
+				xmlHelper
+				.GetCurrentNodeFromIterator(
+					library
+					.GetXmlNodeById(id.ToString())
+				)
+			);
         }
 
         /// <summary>
@@ -1078,8 +1084,15 @@ namespace umbraco
         {
             try
             {
-                page p = new page(((IHasXmlNode)GetXmlNodeById(PageId.ToString()).Current).GetNode());
-                template t = new template(p.Template);
+				page p = new page(
+					xmlHelper
+					.GetCurrentNodeFromIterator(
+						library
+						.GetXmlNodeById(PageId.ToString())
+					)
+				);
+
+				template t = new template(p.Template);
                 Control c = t.parseStringBuilder(new StringBuilder(Text), p);
 
                 StringWriter sw = new StringWriter();
@@ -1130,7 +1143,14 @@ namespace umbraco
             else
             {
 
-                var p = new page(((IHasXmlNode)GetXmlNodeById(PageId.ToString()).Current).GetNode());
+				var p = new page(
+					xmlHelper
+					.GetCurrentNodeFromIterator(
+						library
+						.GetXmlNodeById(PageId.ToString())
+					)
+				);
+
                 p.RenderPage(TemplateId);
                 var c = p.PageContentControl;
                 
