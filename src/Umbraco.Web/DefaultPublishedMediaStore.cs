@@ -122,24 +122,27 @@ namespace Umbraco.Web
 			}
 
 			var media = global::umbraco.library.GetMedia(id, true);
-			if (media != null && media.Current != null)
+			if (media != null)
 			{
 				media.MoveNext();
-				var moved = media.Current.MoveToFirstChild();
-				//first check if we have an error
-				if (moved)
+				if (media.Current != null)
 				{
-					if (media.Current.Name.InvariantEquals("error"))
+					var moved = media.Current.MoveToFirstChild();
+					//first check if we have an error
+					if (moved)
 					{
-						return null;
-					}	
+						if (media.Current.Name.InvariantEquals("error"))
+						{
+							return null;
+						}	
+					}
+					if (moved)
+					{
+						//move back to the parent and return
+						media.Current.MoveToParent();	
+					}
+					return ConvertFromXPathNavigator(media.Current);
 				}
-				if (moved)
-				{
-					//move back to the parent and return
-					media.Current.MoveToParent();	
-				}
-				return ConvertFromXPathNavigator(media.Current);
 			}
 
 			return null;
@@ -194,7 +197,8 @@ namespace Umbraco.Web
 				values.Add("nodeTypeAlias", xpath.Name);
 			}
 			
-			var result = xpath.SelectChildren(XPathNodeType.Element);
+			var result = xpath.Select(".");
+			result.MoveNext();
 			//add the attributes e.g. id, parentId etc
 			if (result.Current != null && result.Current.HasAttributes)
 			{
@@ -212,10 +216,10 @@ namespace Umbraco.Web
 							values.Add(result.Current.Name, result.Current.Value);
 						}						
 					}
-					result.Current.MoveToParent();
 				}
 			}
 			//add the user props
+			result = xpath.SelectChildren(XPathNodeType.Element);
 			while (result.MoveNext())
 			{
 				if (result.Current != null && !result.Current.HasAttributes)
@@ -274,11 +278,14 @@ namespace Umbraco.Web
 
 					//if we've made it here, that means it does exist on the content type but not in examine, we'll need to query the db :(
 					var media = global::umbraco.library.GetMedia(dd.Id, true);
-					if (media != null && media.Current != null)
+					if (media != null)
 					{
 						media.MoveNext();
-						var mediaDoc = ConvertFromXPathNavigator(media.Current);
-						return mediaDoc.Properties.FirstOrDefault(x => x.Alias.InvariantEquals(alias));
+						if (media.Current != null)
+						{
+							var mediaDoc = ConvertFromXPathNavigator(media.Current);
+							return mediaDoc.Properties.FirstOrDefault(x => x.Alias.InvariantEquals(alias));
+						}
 					}					
 				}							
 			}
