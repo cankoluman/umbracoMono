@@ -183,7 +183,9 @@ namespace umbraco.presentation.umbracobase
                             switch (myExtension.method.ReturnType.ToString())
                             {
                                 case "System.Xml.XPath.XPathNodeIterator":
-                                    return ((System.Xml.XPath.XPathNodeIterator)response).Current.OuterXml;
+									var responseNodeIterator = (System.Xml.XPath.XPathNodeIterator)response;
+									responseNodeIterator.MoveNext();
+									return responseNodeIterator.Current.OuterXml;
                                 case "System.Xml.Linq.XDocument":
                                     return response.ToString();
                                 case "System.Xml.XmlDocument":

@@ -129,7 +129,9 @@ namespace umbraco.editorControls.MultiNodeTreePicker
             var xPathType = this.GetXPathFilterTypeFromCookie(this.GetDataTypeId());
             var xDoc = new XmlDocument();
 
-            var xmlNode = umbraco.library.GetMedia(int.Parse(node.NodeID), false).Current.OuterXml;
+			var mediaNodeIterator = umbraco.library.GetMedia(int.Parse(node.NodeID), false);
+			mediaNodeIterator.MoveNext();
+			var xmlNode = mediaNodeIterator.Current.OuterXml;
 
             var xmlString = "<root>" + xmlNode + "</root>";
             var xml = XElement.Parse(xmlString);
