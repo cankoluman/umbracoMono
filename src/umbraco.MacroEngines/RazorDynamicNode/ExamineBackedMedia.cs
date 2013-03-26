@@ -64,18 +64,17 @@ namespace umbraco.MacroEngines
 			XPathNodeIterator xpi = xpath.Select(".");
             //add the attributes e.g. id, parentId etc
 			xpi.MoveNext ();
-			if (xpi.Current != null)
-	            if (xpi.Current.HasAttributes)
-	            {
-	                if (xpi.Current.MoveToFirstAttribute())
-	                {
-	                    Values.Add(xpi.Current.Name, xpi.Current.Value);
-	                    while (xpi.Current.MoveToNextAttribute())
-	                    {
-	                        Values.Add(xpi.Current.Name, xpi.Current.Value);
-	                    }
-	                }
-	            }
+			if (xpi.Current != null && xpi.Current.HasAttributes)
+            {
+                if (xpi.Current.MoveToFirstAttribute())
+                {
+                    Values.Add(xpi.Current.Name, xpi.Current.Value);
+                    while (xpi.Current.MoveToNextAttribute())
+                    {
+                        Values.Add(xpi.Current.Name, xpi.Current.Value);
+                    }
+                }
+            }
 			XPathNodeIterator result = xpath.SelectChildren(XPathNodeType.Element);
             while (result.MoveNext())
             {
