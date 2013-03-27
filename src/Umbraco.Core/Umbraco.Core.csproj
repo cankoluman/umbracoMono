@@ -162,6 +162,11 @@
     <Compile Include="XmlExtensions.cs" />
     <Compile Include="XmlHelper.cs" />
     <Compile Include="IO\MultiPlatformHelper.cs" />
+    <Compile Include="ConfigurationManager\ConfigurationManagerDefault.cs" />
+    <Compile Include="ConfigurationManager\ConfigurationManagerFactory.cs" />
+    <Compile Include="ConfigurationManager\ConfigurationManagerService.cs" />
+    <Compile Include="ConfigurationManager\ConfigurationManagerTest.cs" />
+    <Compile Include="ConfigurationManager\IConfigurationManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -181,4 +186,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="ConfigurationManager\" />
+  </ItemGroup>
 </Project>

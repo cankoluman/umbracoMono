@@ -151,8 +151,9 @@ namespace Umbraco.Core.Configuration
         {
             get
             {
-				return ConfigurationManager.AppSettings.ContainsKey("umbracoDbDSN")
-					? ConfigurationManager.AppSettings["umbracoDbDSN"]
+				var appSettings = ConfigurationManagerService.Instance.AppSettings;
+				return appSettings.ContainsKey("umbracoDbDSN")
+					? appSettings["umbracoDbDSN"]
 					: string.Empty;	          				
             }
             set

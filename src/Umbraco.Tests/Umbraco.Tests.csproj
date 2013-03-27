@@ -70,6 +70,9 @@
     <Reference Include="System.Data.SqlServerCe">
       <HintPath>..\..\lib\SQLCE4\System.Data.SqlServerCe.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\lib\MySql.Data.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogic\DictionaryTest.cs" />

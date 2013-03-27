@@ -137,6 +137,7 @@
     </Compile>
     <Compile Include="SqlHelpers\SqlServer\SqlServerHelper.cs" />
     <Compile Include="SqlHelpers\SqlServer\SqlServerParameter.cs" />
+    <Compile Include="SqlHelpers\MySql\MySqlTestHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
