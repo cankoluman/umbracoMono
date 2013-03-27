@@ -52,10 +52,10 @@ namespace Umbraco.Web
 			//TODO: need to get a ConvertFromMedia method but we'll just use this for now.
 			foreach (var media in rootMedia
 				.Select(m => global::umbraco.library.GetMedia(m.Id, true))
-				.Where(media => media != null && media.Current != null))
+				.Where(media => media != null))
 			{
-				media.MoveNext();
-				result.Add(ConvertFromXPathNavigator(media.Current));
+				if (media.MoveNext())
+					result.Add(ConvertFromXPathNavigator(media.Current));
 			}
 			return result;
 		}
@@ -123,9 +123,9 @@ namespace Umbraco.Web
 			}
 
 			var media = global::umbraco.library.GetMedia(id, true);
+			media.MoveNext();
 			if (media != null && media.Current != null)
 			{
-				media.MoveNext();
 				var moved = media.Current.MoveToFirstChild();
 				//first check if we have an error
 				if (moved)
