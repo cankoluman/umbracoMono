@@ -12,6 +12,7 @@ using Umbraco.Core.Dynamics;
 using Umbraco.Core.Models;
 using umbraco;
 using umbraco.cms.businesslogic;
+using System.Xml;
 
 namespace Umbraco.Web
 {
@@ -194,7 +195,9 @@ namespace Umbraco.Web
 				values.Add("nodeTypeAlias", xpath.Name);
 			}
 			
-			var result = xpath.SelectChildren(XPathNodeType.Element);
+			var result = xpath.Select(".");
+			result.MoveNext();
+			XmlNode node = ((IHasXmlNode) result.Current).GetNode();
 			//add the attributes e.g. id, parentId etc
 			if (result.Current != null && result.Current.HasAttributes)
 			{
@@ -212,10 +215,11 @@ namespace Umbraco.Web
 							values.Add(result.Current.Name, result.Current.Value);
 						}						
 					}
-					result.Current.MoveToParent();
+					//result.Current.MoveToParent();
 				}
 			}
 			//add the user props
+			result = xpath.SelectChildren(XPathNodeType.Element);
 			while (result.MoveNext())
 			{
 				if (result.Current != null && !result.Current.HasAttributes)
@@ -334,6 +338,7 @@ namespace Umbraco.Web
 
 			//The xpath might be the whole xpath including the current ones ancestors so we need to select the current node
 			var item = xpath.Select("//*[@id='" + parentId + "']");
+			item.MoveNext();
 			if (item.Current == null)
 			{
 				return null;
