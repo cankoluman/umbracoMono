@@ -7,13 +7,13 @@ namespace Umbraco.Core.Configuration
 {
 	public class ConfigurationManagerTest : IConfigurationManager
 	{
+		private NameValueCollection _appSettings;
+
 		public ConfigurationManagerTest(NameValueCollection appSettings)
 		{
 			_appSettings = new NameValueCollection();
 			_appSettings.Add(appSettings);
 		}
-
-		private NameValueCollection _appSettings;
 
 		public NameValueCollection AppSettings
 		{
@@ -21,6 +21,16 @@ namespace Umbraco.Core.Configuration
 			{
 				return MergeAppSettings(ConfigurationManager.AppSettings);
 			}
+		}
+
+		public void SetAppSetting(string key, string val)
+		{
+			_appSettings.Set(key, val);
+		}
+
+		public void ClearAppSetting(string key)
+		{
+			_appSettings.Set(key, String.Empty);
 		}
 
 		public Object GetSection(string SectionName)

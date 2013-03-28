@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
@@ -7,6 +8,7 @@ using Umbraco.Tests.TestHelpers;
 using umbraco.cms.businesslogic.web;
 using umbraco.cms.businesslogic.language;
 using Umbraco.Web.Routing;
+using Umbraco.Core.Configuration;
 using System.Configuration;
 
 namespace Umbraco.Tests.Routing
@@ -22,8 +24,8 @@ namespace Umbraco.Tests.Routing
 		[Test]
 		public void DoNotPolluteCache()
 		{
-			ConfigurationManager.AppSettings.Set("umbracoUseDirectoryUrls", "true");
-			ConfigurationManager.AppSettings.Set("umbracoHideTopLevelNodeFromPath", "false"); // ignored w/domains
+			ConfigManager.SetAppSetting("umbracoUseDirectoryUrls", "true");
+			ConfigManager.SetAppSetting("umbracoHideTopLevelNodeFromPath", "false"); // ignored w/domains
 			Umbraco.Core.Configuration.UmbracoSettings.UseDomainPrefixes = false;
 
 			InitializeLanguagesAndDomains();
@@ -66,11 +68,10 @@ namespace Umbraco.Tests.Routing
 
 		public override void TearDown()
 		{
+			ConfigManager.ClearAppSetting("umbracoUseDirectoryUrls");
+			ConfigManager.ClearAppSetting("umbracoHideTopLevelNodeFromPath"); // ignored w/domains
+
 			base.TearDown();
-
-			ConfigurationManager.AppSettings.Set("umbracoUseDirectoryUrls", "");
-			ConfigurationManager.AppSettings.Set("umbracoHideTopLevelNodeFromPath", "");
-
 		}
 
 		internal override IRoutesCache GetRoutesCache()

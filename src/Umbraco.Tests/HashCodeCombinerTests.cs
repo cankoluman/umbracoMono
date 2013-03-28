@@ -140,12 +140,12 @@ namespace Umbraco.Tests
 
 			Assert.AreNotEqual(combiner1.GetCombinedHashCode(), combiner3.GetCombinedHashCode());
 		}
-
+		
 		public override void TestSetup()
 		{
 			
 		}
-
+		
 		public override void TestTearDown()
 		{
 			

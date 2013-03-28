@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Specialized;
 using System.IO;
 using System.Web.Routing;
 using System.Xml;
@@ -13,22 +14,30 @@ using Umbraco.Web.Routing;
 using umbraco.BusinessLogic;
 using umbraco.cms.businesslogic.cache;
 using umbraco.cms.businesslogic.template;
+using GlobalSettings = umbraco.GlobalSettings;
 
 namespace Umbraco.Tests.TestHelpers
 {
 	[TestFixture, RequiresSTA]
 	public abstract class BaseWebTest
 	{
+		private const string _umbracoDbDsn = @"server=127.0.0.1;database=umbraco411_test;user id=umbracouser;password=P@ssword1;datalayer=MySqlTest";
+
+		protected IConfigurationManager ConfigManager {get; private set;}	
 
 		[SetUp]
 		public virtual void Initialize()
 		{
 			TestHelper.SetupLog4NetForTests();
+			ConfigManager = TestHelper.GetTestConfigManager();
 
 			AppDomain.CurrentDomain.SetData("DataDirectory", TestHelper.CurrentAssemblyDirectory);
 
 			if (RequiresDbSetup)
-				TestHelper.InitializeDatabase();
+			{
+				ConfigManager.SetAppSetting("umbracoDbDSN", _umbracoDbDsn);
+				TestHelper.InitializeDatabase(GlobalSettings.DbDSN);
+			}
 			Resolution.Freeze();
 			ApplicationContext = new ApplicationContext() { IsReady = true };
 			//we need to clear out all currently created template files
@@ -46,13 +55,16 @@ namespace Umbraco.Tests.TestHelpers
 			ApplicationContext.Current = null;
 			Resolution.IsFrozen = false;
 			if (RequiresDbSetup)
-				TestHelper.ClearDatabase();
+				TestHelper.ClearDatabase(GlobalSettings.DbDSN);
 
             AppDomain.CurrentDomain.SetData("DataDirectory", null);
 
 			Cache.ClearAllCache();
 
 			UmbracoSettings.ResetSetters();
+
+			ConfigManager.ClearAppSetting("umbracoDbDSN");
+			ConfigManager = null;
 		}	
 
 		/// <summary>

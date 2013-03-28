@@ -34,6 +34,8 @@ namespace Umbraco.Core.Configuration
         private static string _reservedPathsCache;
         private static StartsWithContainer _reservedList = new StartsWithContainer();
 
+	
+
         #endregion
 
     	/// <summary>
@@ -44,8 +46,9 @@ namespace Umbraco.Core.Configuration
         {
             get
             {
-            	return ConfigurationManager.AppSettings.ContainsKey("umbracoReservedUrls") 
-					? ConfigurationManager.AppSettings["umbracoReservedUrls"] 
+				var appSettings = ConfigurationManagerService.Instance.AppSettings;
+				return appSettings.ContainsKey("umbracoReservedUrls") 
+					? appSettings["umbracoReservedUrls"] 
 					: string.Empty;
             }
         }
@@ -58,8 +61,9 @@ namespace Umbraco.Core.Configuration
         {
             get
             {
-	            return ConfigurationManager.AppSettings.ContainsKey("umbracoReservedPaths")
-		                   ? ConfigurationManager.AppSettings["umbracoReservedPaths"]
+				var appSettings = ConfigurationManagerService.Instance.AppSettings;
+				return appSettings.ContainsKey("umbracoReservedPaths")
+		                   ? appSettings["umbracoReservedPaths"]
 		                   : string.Empty;
             }
         }
@@ -100,8 +104,9 @@ namespace Umbraco.Core.Configuration
         {
             get
             {
-				return ConfigurationManager.AppSettings.ContainsKey("umbracoPath")
-					? IOHelper.ResolveUrl(ConfigurationManager.AppSettings["umbracoPath"])
+				var appSettings = ConfigurationManagerService.Instance.AppSettings;
+				return appSettings.ContainsKey("umbracoPath")
+					? IOHelper.ResolveUrl(appSettings["umbracoPath"])
 					: string.Empty;	                
             }
         }
@@ -302,7 +307,8 @@ namespace Umbraco.Core.Configuration
             {
                 try
                 {
-                    return bool.Parse(ConfigurationManager.AppSettings["umbracoUseDirectoryUrls"]);
+					var appSettings = ConfigurationManagerService.Instance.AppSettings;
+					return bool.Parse(appSettings["umbracoUseDirectoryUrls"]);
                 }
                 catch
                 {
@@ -398,7 +404,8 @@ namespace Umbraco.Core.Configuration
             {
 				try
 				{
-					return bool.Parse(ConfigurationManager.AppSettings["umbracoHideTopLevelNodeFromPath"]);
+					var appSettings = ConfigurationManagerService.Instance.AppSettings;
+					return bool.Parse(appSettings["umbracoHideTopLevelNodeFromPath"]);
 				}
 				catch
 				{

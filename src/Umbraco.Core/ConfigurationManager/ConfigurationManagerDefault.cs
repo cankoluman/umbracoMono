@@ -26,6 +26,16 @@ namespace Umbraco.Core.Configuration
 		{
 			ConfigurationManager.RefreshSection(SectionName);
 		}
+
+		public void SetAppSetting(string key, string val)
+		{
+			ConfigurationManager.AppSettings.Set (key, val);
+		}
+
+		public void ClearAppSetting(string key)
+		{
+			ConfigurationManager.AppSettings.Set (key, String.Empty);
+		}
 	}
 }
 

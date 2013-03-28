@@ -18,10 +18,10 @@ namespace Umbraco.Tests.TestHelpers
 		}
 
 		public override void TearDown()
-		{			
-			base.TearDown();
+		{
+			ConfigManager.ClearAppSetting("umbracoHideTopLevelNodeFromPath");	
 
-			ConfigurationManager.AppSettings.Set("umbracoHideTopLevelNodeFromPath", "");					
+			base.TearDown();					
 		}
 
 		/// <summary>

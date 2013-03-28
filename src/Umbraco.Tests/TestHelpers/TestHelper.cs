@@ -18,33 +18,25 @@ namespace Umbraco.Tests.TestHelpers
 
 	public static class TestHelper
 	{
-		private const string _umbracoDbDsn = @"server=127.0.0.1;database=umbraco411_test;user id=umbracouser;password=P@ssword1;datalayer=MySqlTest";
-
 		/// <summary>
 		/// Clears an initialized database
 		/// </summary>
-		public static void ClearDatabase()
+		public static void ClearDatabase(string DbDSN)
 		{
-			var dataHelper = DataLayerHelper.CreateSqlHelper(GlobalSettings.DbDSN) as MySqlTestHelper;
+			var dataHelper = DataLayerHelper.CreateSqlHelper(DbDSN) as MySqlTestHelper;
 			if (dataHelper == null)
-				throw new InvalidOperationException("The sql helper for unit tests must be of type MySqlTestHelper, check the ensure the connection string used for this test is set to use MySql");
+				throw new InvalidOperationException("The sql helper for unit tests must be of type MySqlTestHelper, check the ensure the connection string used for this test is set to use MySqlTest");
 			dataHelper.ClearDatabase();
 		}
 
 		/// <summary>
 		/// Initializes a new database
 		/// </summary>
-		public static void InitializeDatabase()
+		public static void InitializeDatabase(string DbDSN)
 		{
-			NameValueCollection appSettings = new NameValueCollection()
-			{
-				{"umbracoDbDSN", _umbracoDbDsn}
-			};
-			ConfigurationManagerService.ConfigManager = new ConfigurationManagerTest(appSettings);
+			ClearDatabase(DbDSN);
 
-			ClearDatabase();
-
-			var dataHelper = DataLayerHelper.CreateSqlHelper(GlobalSettings.DbDSN);
+			var dataHelper = DataLayerHelper.CreateSqlHelper(DbDSN);
 			var installer = dataHelper.Utility.CreateInstaller();
 			if (installer.CanConnect)
 			{
@@ -83,6 +75,13 @@ namespace Umbraco.Tests.TestHelpers
 		public static void SetupLog4NetForTests()
 		{
 			XmlConfigurator.Configure(new FileInfo(MapPathForTest("~/unit-test-log4net.config")));
+		}
+
+		public static IConfigurationManager GetTestConfigManager()
+		{
+			ConfigurationManagerService.ConfigManager = new ConfigurationManagerTest(new NameValueCollection());
+			
+			return ConfigurationManagerService.Instance;
 		}
 	}
 }

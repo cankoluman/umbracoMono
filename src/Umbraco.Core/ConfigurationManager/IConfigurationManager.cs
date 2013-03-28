@@ -10,6 +10,9 @@ namespace Umbraco.Core.Configuration
 
 		Object GetSection(string SectionName);
 		void RefreshSection(string SectionName);
+
+		void SetAppSetting(string key, string val);
+		void ClearAppSetting(string key);
 	}
 }
 
