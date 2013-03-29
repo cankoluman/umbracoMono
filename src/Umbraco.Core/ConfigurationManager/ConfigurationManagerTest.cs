@@ -25,7 +25,10 @@ namespace Umbraco.Core.Configuration
 
 		public void SetAppSetting(string key, string val)
 		{
-			_appSettings.Set(key, val);
+			if (_appSettings.ContainsKey(key))
+				_appSettings.Set(key, val);
+			else
+				_appSettings.Add(key,val);
 		}
 
 		public void ClearAppSetting(string key)

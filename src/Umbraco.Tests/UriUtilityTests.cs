@@ -1,5 +1,6 @@
 using System;
 using System.Configuration;
+using System.Collections.Specialized;
 using NUnit.Framework;
 using Umbraco.Core.Configuration;
 using Umbraco.Web;
@@ -12,10 +13,33 @@ namespace Umbraco.Tests
 	public class UriUtilityTests
 	{
 
+		protected IConfigurationManager configManagerTest = null;
+		
+		[TestFixtureSetUp]
+		public void SetUp()
+		{
+			ConfigurationManagerService
+				.Instance
+					.SetManager(
+						new ConfigurationManagerTest(new NameValueCollection())
+						);
+			
+			configManagerTest = 
+				ConfigurationManagerService
+					.Instance
+					.GetConfigManager();
+		}
+
 		[TearDown]
 		public void TearDown()
 		{
 			UmbracoSettings.ResetSetters();
+			configManagerTest.ClearAppSetting("umbracoUseDirectoryUrls");
+		}
+
+		[SetUp]
+		public void Initialize()
+		{
 		}
 
 		// test normal urls
@@ -82,7 +106,7 @@ namespace Umbraco.Tests
 
 		public void Uri_From_Umbraco(string sourceUrl, string expectedUrl, bool directoryUrls, bool trailingSlash)
 		{
-			ConfigurationManager.AppSettings.Set("umbracoUseDirectoryUrls", directoryUrls ? "true" : "false");
+			configManagerTest.SetAppSetting("umbracoUseDirectoryUrls", directoryUrls ? "true" : "false");
 			Umbraco.Core.Configuration.UmbracoSettings.AddTrailingSlash = trailingSlash;
 			UriUtility.SetAppDomainAppVirtualPath("/");
 

@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
+using System.Collections.Specialized;
 using NUnit.Framework;
 using Umbraco.Core;
 using Umbraco.Tests.Stubs;
@@ -10,6 +11,7 @@ using Umbraco.Web.Mvc;
 using Umbraco.Web.Routing;
 using umbraco.BusinessLogic;
 using umbraco.cms.businesslogic.template;
+using Umbraco.Core.Configuration;
 
 namespace Umbraco.Tests.Routing
 {
@@ -20,7 +22,7 @@ namespace Umbraco.Tests.Routing
 		public override void Initialize()
 		{
 			base.Initialize();
-			System.Configuration.ConfigurationManager.AppSettings.Set("umbracoPath", "~/umbraco");
+			configManagerTest.SetAppSetting("umbracoPath", "~/umbraco");
 
 			SurfaceControllerResolver.Current = new SurfaceControllerResolver(
 				PluginManager.Current.ResolveSurfaceControllers());
@@ -36,7 +38,7 @@ namespace Umbraco.Tests.Routing
 		{
 			base.TearDown();
 			RouteTable.Routes.Clear();
-			System.Configuration.ConfigurationManager.AppSettings.Set("umbracoPath", "");
+			configManagerTest.SetAppSetting("umbracoPath", "");
 			SurfaceControllerResolver.Reset();
 		}
 

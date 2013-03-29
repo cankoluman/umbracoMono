@@ -8,35 +8,34 @@ namespace Umbraco.Core.Configuration
 	public sealed class ConfigurationManagerService
 	{
 
-		private static volatile IConfigurationManager _instance;
-		private static object _syncRoot = new Object(); 
+		private static ConfigurationManagerService _instance = null;
+		private static readonly object _syncRoot = new Object(); 
 
-		private static IConfigurationManager _configManager = null;
-		public static IConfigurationManager ConfigManager
+		private IConfigurationManager _configManager = null;
+
+		public IConfigurationManager GetConfigManager()
 		{
-			get {return _configManager;}
-			set
-			{
-				_configManager = value;
-			}
+			return ConfigurationManagerFactory.GetConfigManager(_configManager);
+		}
+
+		public void SetManager(IConfigurationManager configManager = null)
+		{
+			_configManager = configManager;
 		}
 
 		private ConfigurationManagerService (){}
 
-		public static IConfigurationManager Instance
+		public static ConfigurationManagerService Instance
 		{
 			get
 			{
-				if (_instance == null)
+				lock(_syncRoot)
 				{
-					lock(_syncRoot)
-					{
-						if (_instance == null)
-							_instance = ConfigurationManagerFactory.GetConfigManager(_configManager);
-					}
-				}
+					if (_instance == null)
+						_instance = new ConfigurationManagerService();
 
-				return _instance;
+					return _instance;
+				}
 			}
 		}
 

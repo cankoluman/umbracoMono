@@ -18,7 +18,23 @@ namespace Umbraco.Tests.BusinessLogic
 	[TestFixture, RequiresSTA]
     public abstract class BaseTest
     {
-		private const string _umbracoDbDsn = @"server=127.0.0.1;database=umbraco411_test;user id=umbracouser;password=P@ssword1;datalayer=MySqlTest";
+
+		protected IConfigurationManager configManagerTest = null;
+
+		[TestFixtureSetUp]
+		public void SetUp()
+		{
+			ConfigurationManagerService
+				.Instance
+				.SetManager(
+						new ConfigurationManagerTest(new NameValueCollection())
+                 );
+
+			configManagerTest = 
+				ConfigurationManagerService
+				.Instance
+				.GetConfigManager();
+		}
 
 		/// <summary>
         /// Removes any resources that were used for the test
@@ -27,7 +43,6 @@ namespace Umbraco.Tests.BusinessLogic
         public void Dispose()
         {
             ClearDatabase();
-			ConfigurationManagerService.ConfigManager = null;
         }
 
         /// <summary>
@@ -36,7 +51,9 @@ namespace Umbraco.Tests.BusinessLogic
         [SetUp]
         public void Initialize()
         {
-            InitializeDatabase();
+			configManagerTest.SetAppSetting("umbracoDbDSN", TestHelper.umbracoDbDsn);
+
+			InitializeDatabase();
             InitializeApps();
             InitializeAppConfigFile();
             InitializeTreeConfigFile();
@@ -54,11 +71,6 @@ namespace Umbraco.Tests.BusinessLogic
 
         private void InitializeDatabase()
         {
-			NameValueCollection appSettings = new NameValueCollection()
-			{
-				{"umbracoDbDSN", _umbracoDbDsn}
-			};
-			ConfigurationManagerService.ConfigManager = new ConfigurationManagerTest(appSettings);
 
 			ClearDatabase();
 

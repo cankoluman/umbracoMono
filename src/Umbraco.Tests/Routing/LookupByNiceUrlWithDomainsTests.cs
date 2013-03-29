@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
@@ -8,6 +9,7 @@ using Umbraco.Web.Routing;
 using umbraco.cms.businesslogic.web;
 using umbraco.cms.businesslogic.language;
 using System.Configuration;
+using Umbraco.Core.Configuration;
 
 namespace Umbraco.Tests.Routing
 {
@@ -154,7 +156,7 @@ namespace Umbraco.Tests.Routing
 		{
 			SetDomains3();
 
-			ConfigurationManager.AppSettings.Set("umbracoHideTopLevelNodeFromPath", "true");
+			configManagerTest.SetAppSetting("umbracoHideTopLevelNodeFromPath", "true");
 
 			var routingContext = GetRoutingContext(url);
 			var uri = routingContext.UmbracoContext.CleanedUmbracoUrl; //very important to use the cleaned up umbraco url
@@ -193,7 +195,7 @@ namespace Umbraco.Tests.Routing
 		{
 			SetDomains4();
 
-			ConfigurationManager.AppSettings.Set("umbracoHideTopLevelNodeFromPath", "true");
+			configManagerTest.SetAppSetting("umbracoHideTopLevelNodeFromPath", "true");
 
 			var routingContext = GetRoutingContext(url);
 			var uri = routingContext.UmbracoContext.CleanedUmbracoUrl; //very important to use the cleaned up umbraco url

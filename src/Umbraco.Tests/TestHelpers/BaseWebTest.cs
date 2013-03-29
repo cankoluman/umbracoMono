@@ -21,21 +21,34 @@ namespace Umbraco.Tests.TestHelpers
 	[TestFixture, RequiresSTA]
 	public abstract class BaseWebTest
 	{
-		private const string _umbracoDbDsn = @"server=127.0.0.1;database=umbraco411_test;user id=umbracouser;password=P@ssword1;datalayer=MySqlTest";
 
-		protected IConfigurationManager ConfigManager {get; private set;}	
+		protected IConfigurationManager configManagerTest = null;
+		
+		[TestFixtureSetUp]
+		public void SetUp()
+		{
+			ConfigurationManagerService
+				.Instance
+					.SetManager(
+						new ConfigurationManagerTest(new NameValueCollection())
+						);
+			
+			configManagerTest = 
+				ConfigurationManagerService
+					.Instance
+					.GetConfigManager();
+		}
 
 		[SetUp]
 		public virtual void Initialize()
 		{
 			TestHelper.SetupLog4NetForTests();
-			ConfigManager = TestHelper.GetTestConfigManager();
 
 			AppDomain.CurrentDomain.SetData("DataDirectory", TestHelper.CurrentAssemblyDirectory);
 
 			if (RequiresDbSetup)
 			{
-				ConfigManager.SetAppSetting("umbracoDbDSN", _umbracoDbDsn);
+				configManagerTest.SetAppSetting("umbracoDbDSN", TestHelper.umbracoDbDsn);
 				TestHelper.InitializeDatabase(GlobalSettings.DbDSN);
 			}
 			Resolution.Freeze();
@@ -63,8 +76,11 @@ namespace Umbraco.Tests.TestHelpers
 
 			UmbracoSettings.ResetSetters();
 
-			ConfigManager.ClearAppSetting("umbracoDbDSN");
-			ConfigManager = null;
+			if (RequiresDbSetup)
+			{
+				configManagerTest.ClearAppSetting("umbracoDbDSN");
+			}
+
 		}	
 
 		/// <summary>

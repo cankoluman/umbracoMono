@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
@@ -10,6 +11,7 @@ using Umbraco.Web;
 using Umbraco.Web.Routing;
 using umbraco.BusinessLogic;
 using umbraco.cms.businesslogic.template;
+using Umbraco.Core.Configuration;
 
 namespace Umbraco.Tests.Routing
 {
@@ -20,8 +22,8 @@ namespace Umbraco.Tests.Routing
 		{
 			base.TearDown();
 
-			ConfigurationManager.AppSettings.Set("umbracoUseDirectoryUrls", "");
-			ConfigurationManager.AppSettings.Set("umbracoHideTopLevelNodeFromPath", "");
+			configManagerTest.SetAppSetting("umbracoUseDirectoryUrls", "");
+			configManagerTest.SetAppSetting("umbracoHideTopLevelNodeFromPath", "");
 		}
 
 		internal override IRoutesCache GetRoutesCache()
@@ -71,8 +73,8 @@ namespace Umbraco.Tests.Routing
 		public void GetNodeIdByUrl_Not_Hiding_Top_Level_Absolute(int nodeId, string url)
 		{
 			
-			ConfigurationManager.AppSettings.Set("umbracoUseDirectoryUrls", "true");
-			ConfigurationManager.AppSettings.Set("umbracoHideTopLevelNodeFromPath", "false");
+			configManagerTest.SetAppSetting("umbracoUseDirectoryUrls", "true");
+			configManagerTest.SetAppSetting("umbracoHideTopLevelNodeFromPath", "false");
 			Umbraco.Core.Configuration.UmbracoSettings.UseDomainPrefixes = false;
 
 			Assert.AreEqual(nodeId, global::umbraco.uQuery.GetNodeIdByUrl("http://example.com" + url));
@@ -89,8 +91,8 @@ namespace Umbraco.Tests.Routing
 
 		public void GetNodeIdByUrl_Not_Hiding_Top_Level_Relative(int nodeId, string url)
 		{
-			ConfigurationManager.AppSettings.Set("umbracoUseDirectoryUrls", "true");
-			ConfigurationManager.AppSettings.Set("umbracoHideTopLevelNodeFromPath", "false");
+			configManagerTest.SetAppSetting("umbracoUseDirectoryUrls", "true");
+			configManagerTest.SetAppSetting("umbracoHideTopLevelNodeFromPath", "false");
 			Umbraco.Core.Configuration.UmbracoSettings.UseDomainPrefixes = false;
 
 			Assert.AreEqual(nodeId, global::umbraco.uQuery.GetNodeIdByUrl(url));

@@ -118,7 +118,8 @@ namespace Umbraco.Core
 			{
 				try
 				{
-					return ConfigurationManager.AppSettings["umbracoConfigurationStatus"];
+					var appSettings = ConfigurationManagerService.Instance.GetConfigManager().AppSettings;
+					return appSettings["umbracoConfigurationStatus"];
 				}
 				catch
 				{

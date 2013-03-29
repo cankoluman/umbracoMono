@@ -6,20 +6,23 @@ using Umbraco.Tests.Stubs;
 using Umbraco.Web;
 using Umbraco.Web.Routing;
 using umbraco.cms.businesslogic.template;
+using Umbraco.Core.Configuration;
 
 namespace Umbraco.Tests.TestHelpers
 {
 	[TestFixture, RequiresSTA]
 	public abstract class BaseRoutingTest : BaseWebTest
 	{		
+		[SetUp]
 		public override void Initialize()
 		{					
 			base.Initialize();
 		}
 
+		[TearDown]
 		public override void TearDown()
 		{
-			ConfigManager.ClearAppSetting("umbracoHideTopLevelNodeFromPath");	
+			configManagerTest.ClearAppSetting("umbracoHideTopLevelNodeFromPath");	
 
 			base.TearDown();					
 		}

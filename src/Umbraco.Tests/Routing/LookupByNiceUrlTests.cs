@@ -1,9 +1,11 @@
 using System.Configuration;
+using System.Collections.Specialized;
 using NUnit.Framework;
 using Umbraco.Tests.TestHelpers;
 using Umbraco.Web.Routing;
 using umbraco.BusinessLogic;
 using umbraco.cms.businesslogic.template;
+using Umbraco.Core.Configuration;
 
 namespace Umbraco.Tests.Routing
 {
@@ -17,11 +19,11 @@ namespace Umbraco.Tests.Routing
 		}
 
 		/// <summary>
-		/// We don't need a db for this test, will run faster without one
+		/// Needs DB set-up for: Domain.cs > GetDomains()
 		/// </summary>
 		protected override bool RequiresDbSetup
 		{
-			get { return false; }
+			get { return true; }
 		}
 
 		[TestCase("/", 1046)]
@@ -42,7 +44,7 @@ namespace Umbraco.Tests.Routing
 			var url = routingContext.UmbracoContext.CleanedUmbracoUrl; //very important to use the cleaned up umbraco url
 			var docreq = new PublishedContentRequest(url, routingContext);
 			var lookup = new LookupByNiceUrl();
-			ConfigurationManager.AppSettings.Set("umbracoHideTopLevelNodeFromPath", "true");
+			configManagerTest.SetAppSetting("umbracoHideTopLevelNodeFromPath", "true");
 
 			var result = lookup.TrySetDocument(docreq);
 

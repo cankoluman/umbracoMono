@@ -18,6 +18,8 @@ namespace Umbraco.Tests.TestHelpers
 
 	public static class TestHelper
 	{
+		public const string umbracoDbDsn = @"server=127.0.0.1;database=umbraco411_test;user id=umbracouser;password=P@ssword1;datalayer=MySqlTest";
+
 		/// <summary>
 		/// Clears an initialized database
 		/// </summary>
@@ -77,11 +79,13 @@ namespace Umbraco.Tests.TestHelpers
 			XmlConfigurator.Configure(new FileInfo(MapPathForTest("~/unit-test-log4net.config")));
 		}
 
+		/*
 		public static IConfigurationManager GetTestConfigManager()
 		{
 			ConfigurationManagerService.ConfigManager = new ConfigurationManagerTest(new NameValueCollection());
 			
 			return ConfigurationManagerService.Instance;
 		}
+		*/
 	}
 }

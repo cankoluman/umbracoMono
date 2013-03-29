@@ -9,11 +9,13 @@ namespace Umbraco.Tests.Routing
 	[TestFixture]
 	public class LookupByNiceUrlAndTemplateTests : BaseRoutingTest
 	{
+		[SetUp]
 		public override void Initialize()
 		{
 			base.Initialize();
 			Umbraco.Core.Configuration.UmbracoSettings.UseLegacyXmlSchema = false;
 		}
+	
 
 		[TestCase("/blah")]
 		[TestCase("/default.aspx/blah")] //this one is actually rather important since this is the path that comes through when we are running in pre-IIS 7 for the root document '/' !

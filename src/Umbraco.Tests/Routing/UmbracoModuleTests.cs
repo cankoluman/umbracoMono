@@ -1,5 +1,6 @@
 using System;
 using System.Configuration;
+using System.Collections.Specialized;
 using System.IO;
 using System.Threading;
 using System.Xml;
@@ -12,6 +13,7 @@ using umbraco.BusinessLogic;
 using umbraco.IO;
 using umbraco.cms.businesslogic.cache;
 using umbraco.cms.businesslogic.template;
+using Umbraco.Core.Configuration;
 
 namespace Umbraco.Tests.Routing
 {
@@ -57,9 +59,9 @@ namespace Umbraco.Tests.Routing
 			//create the module
 			_module = new UmbracoModule();
 
-			ConfigurationManager.AppSettings.Set("umbracoConfigurationStatus", Umbraco.Core.Configuration.GlobalSettings.CurrentVersion);
-			ConfigurationManager.AppSettings.Set("umbracoReservedPaths", "~/umbraco,~/install/");
-			ConfigurationManager.AppSettings.Set("umbracoReservedUrls", "~/config/splashes/booting.aspx,~/install/default.aspx,~/config/splashes/noNodes.aspx,~/VSEnterpriseHelper.axd");
+			configManagerTest.SetAppSetting("umbracoConfigurationStatus", Umbraco.Core.Configuration.GlobalSettings.CurrentVersion);
+			configManagerTest.SetAppSetting("umbracoReservedPaths", "~/umbraco,~/install/");
+			configManagerTest.SetAppSetting("umbracoReservedUrls", "~/config/splashes/booting.aspx,~/install/default.aspx,~/config/splashes/noNodes.aspx,~/VSEnterpriseHelper.axd");
 
 			//create the not found handlers config
 			using (var sw = File.CreateText(Umbraco.Core.IO.IOHelper.MapPath(Umbraco.Core.IO.SystemFiles.NotFoundhandlersConfig, false)))
@@ -80,9 +82,9 @@ namespace Umbraco.Tests.Routing
 			_module.DisposeIfDisposable();
 			
 			//reset the app config
-			ConfigurationManager.AppSettings.Set("umbracoConfigurationStatus", "");
-			ConfigurationManager.AppSettings.Set("umbracoReservedPaths", "");
-			ConfigurationManager.AppSettings.Set("umbracoReservedUrls", "");		
+			configManagerTest.SetAppSetting("umbracoConfigurationStatus", "");
+			configManagerTest.SetAppSetting("umbracoReservedPaths", "");
+			configManagerTest.SetAppSetting("umbracoReservedUrls", "");		
 		}
 
 		// do not test for /base here as it's handled before EnsureUmbracoRoutablePage is called

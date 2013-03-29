@@ -22,8 +22,6 @@ namespace Umbraco.Tests.BusinessLogic
 		public override void Initialize()
 		{
 			base.Initialize();
-
-			CreateNew();
 		}
 
         [Test()]

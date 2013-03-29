@@ -24,8 +24,8 @@ namespace Umbraco.Tests.Routing
 		[Test]
 		public void DoNotPolluteCache()
 		{
-			ConfigManager.SetAppSetting("umbracoUseDirectoryUrls", "true");
-			ConfigManager.SetAppSetting("umbracoHideTopLevelNodeFromPath", "false"); // ignored w/domains
+			configManagerTest.SetAppSetting("umbracoUseDirectoryUrls", "true");
+			configManagerTest.SetAppSetting("umbracoHideTopLevelNodeFromPath", "false"); // ignored w/domains
 			Umbraco.Core.Configuration.UmbracoSettings.UseDomainPrefixes = false;
 
 			InitializeLanguagesAndDomains();
@@ -68,8 +68,8 @@ namespace Umbraco.Tests.Routing
 
 		public override void TearDown()
 		{
-			ConfigManager.ClearAppSetting("umbracoUseDirectoryUrls");
-			ConfigManager.ClearAppSetting("umbracoHideTopLevelNodeFromPath"); // ignored w/domains
+			configManagerTest.ClearAppSetting("umbracoUseDirectoryUrls");
+			configManagerTest.ClearAppSetting("umbracoHideTopLevelNodeFromPath"); // ignored w/domains
 
 			base.TearDown();
 		}

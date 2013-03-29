@@ -46,7 +46,7 @@ namespace Umbraco.Core.Configuration
         {
             get
             {
-				var appSettings = ConfigurationManagerService.Instance.AppSettings;
+				var appSettings = ConfigurationManagerService.Instance.GetConfigManager().AppSettings;
 				return appSettings.ContainsKey("umbracoReservedUrls") 
 					? appSettings["umbracoReservedUrls"] 
 					: string.Empty;
@@ -61,7 +61,7 @@ namespace Umbraco.Core.Configuration
         {
             get
             {
-				var appSettings = ConfigurationManagerService.Instance.AppSettings;
+				var appSettings = ConfigurationManagerService.Instance.GetConfigManager().AppSettings;
 				return appSettings.ContainsKey("umbracoReservedPaths")
 		                   ? appSettings["umbracoReservedPaths"]
 		                   : string.Empty;
@@ -104,7 +104,7 @@ namespace Umbraco.Core.Configuration
         {
             get
             {
-				var appSettings = ConfigurationManagerService.Instance.AppSettings;
+				var appSettings = ConfigurationManagerService.Instance.GetConfigManager().AppSettings;
 				return appSettings.ContainsKey("umbracoPath")
 					? IOHelper.ResolveUrl(appSettings["umbracoPath"])
 					: string.Empty;	                
@@ -156,7 +156,7 @@ namespace Umbraco.Core.Configuration
         {
             get
             {
-				var appSettings = ConfigurationManagerService.Instance.AppSettings;
+				var appSettings = ConfigurationManagerService.Instance.GetConfigManager().AppSettings;
 				return appSettings.ContainsKey("umbracoDbDSN")
 					? appSettings["umbracoDbDSN"]
 					: string.Empty;	          				
@@ -307,7 +307,7 @@ namespace Umbraco.Core.Configuration
             {
                 try
                 {
-					var appSettings = ConfigurationManagerService.Instance.AppSettings;
+					var appSettings = ConfigurationManagerService.Instance.GetConfigManager().AppSettings;
 					return bool.Parse(appSettings["umbracoUseDirectoryUrls"]);
                 }
                 catch
@@ -404,7 +404,7 @@ namespace Umbraco.Core.Configuration
             {
 				try
 				{
-					var appSettings = ConfigurationManagerService.Instance.AppSettings;
+					var appSettings = ConfigurationManagerService.Instance.GetConfigManager().AppSettings;
 					return bool.Parse(appSettings["umbracoHideTopLevelNodeFromPath"]);
 				}
 				catch

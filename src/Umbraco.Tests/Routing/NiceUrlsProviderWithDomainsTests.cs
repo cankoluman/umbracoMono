@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Configuration;
@@ -8,6 +9,7 @@ using Umbraco.Tests.TestHelpers;
 using Umbraco.Web.Routing;
 using umbraco.cms.businesslogic.web;
 using umbraco.cms.businesslogic.language;
+using Umbraco.Core.Configuration;
 
 namespace Umbraco.Tests.Routing
 {
@@ -18,8 +20,8 @@ namespace Umbraco.Tests.Routing
 		{
 			base.TearDown();
 
-			ConfigurationManager.AppSettings.Set("umbracoUseDirectoryUrls", "");
-			ConfigurationManager.AppSettings.Set("umbracoHideTopLevelNodeFromPath", "");
+			configManagerTest.SetAppSetting("umbracoUseDirectoryUrls", "");
+			configManagerTest.SetAppSetting("umbracoHideTopLevelNodeFromPath", "");
 		}
 
 		internal override IRoutesCache GetRoutesCache()
@@ -196,8 +198,8 @@ namespace Umbraco.Tests.Routing
 		{
 			var routingContext = GetRoutingContext("/test", 1111);
 
-			ConfigurationManager.AppSettings.Set("umbracoUseDirectoryUrls", "true");
-			ConfigurationManager.AppSettings.Set("umbracoHideTopLevelNodeFromPath", "false"); // ignored w/domains
+			configManagerTest.SetAppSetting("umbracoUseDirectoryUrls", "true");
+			configManagerTest.SetAppSetting("umbracoHideTopLevelNodeFromPath", "false"); // ignored w/domains
 			Umbraco.Core.Configuration.UmbracoSettings.UseDomainPrefixes = false;
 
 			InitializeLanguagesAndDomains();
@@ -226,8 +228,8 @@ namespace Umbraco.Tests.Routing
 		{
 			var routingContext = GetRoutingContext("/test", 1111);
 
-			ConfigurationManager.AppSettings.Set("umbracoUseDirectoryUrls", "true");
-			ConfigurationManager.AppSettings.Set("umbracoHideTopLevelNodeFromPath", "false"); // ignored w/domains
+			configManagerTest.SetAppSetting("umbracoUseDirectoryUrls", "true");
+			configManagerTest.SetAppSetting("umbracoHideTopLevelNodeFromPath", "false"); // ignored w/domains
 			Umbraco.Core.Configuration.UmbracoSettings.UseDomainPrefixes = false;
 
 			InitializeLanguagesAndDomains();
@@ -248,8 +250,8 @@ namespace Umbraco.Tests.Routing
 		{
 			var routingContext = GetRoutingContext("/test", 1111);
 
-			ConfigurationManager.AppSettings.Set("umbracoUseDirectoryUrls", "true");
-			ConfigurationManager.AppSettings.Set("umbracoHideTopLevelNodeFromPath", "false"); // ignored w/domains
+			configManagerTest.SetAppSetting("umbracoUseDirectoryUrls", "true");
+			configManagerTest.SetAppSetting("umbracoHideTopLevelNodeFromPath", "false"); // ignored w/domains
 			Umbraco.Core.Configuration.UmbracoSettings.UseDomainPrefixes = false;
 
 			InitializeLanguagesAndDomains();
@@ -277,8 +279,8 @@ namespace Umbraco.Tests.Routing
 			var routingContext = GetRoutingContext("/test", 1111);
 			Umbraco.Core.Configuration.UmbracoSettings.UseDomainPrefixes = false;
 
-			ConfigurationManager.AppSettings.Set("umbracoUseDirectoryUrls", "true");
-			ConfigurationManager.AppSettings.Set("umbracoHideTopLevelNodeFromPath", "false"); // ignored w/domains
+			configManagerTest.SetAppSetting("umbracoUseDirectoryUrls", "true");
+			configManagerTest.SetAppSetting("umbracoHideTopLevelNodeFromPath", "false"); // ignored w/domains
 
 			InitializeLanguagesAndDomains();
 			SetDomains4();
@@ -293,8 +295,8 @@ namespace Umbraco.Tests.Routing
 		{
 			var routingContext = GetRoutingContext("/test", 1111);
 
-			ConfigurationManager.AppSettings.Set("umbracoUseDirectoryUrls", "true");
-			ConfigurationManager.AppSettings.Set("umbracoHideTopLevelNodeFromPath", "false"); // ignored w/domains
+			configManagerTest.SetAppSetting("umbracoUseDirectoryUrls", "true");
+			configManagerTest.SetAppSetting("umbracoHideTopLevelNodeFromPath", "false"); // ignored w/domains
 			Umbraco.Core.Configuration.UmbracoSettings.UseDomainPrefixes = false;
 
 			InitializeLanguagesAndDomains();
@@ -352,8 +354,8 @@ namespace Umbraco.Tests.Routing
 		{
 			var routingContext = GetRoutingContext("http://domain1.com/test", 1111);
 
-			ConfigurationManager.AppSettings.Set("umbracoUseDirectoryUrls", "true");
-			ConfigurationManager.AppSettings.Set("umbracoHideTopLevelNodeFromPath", "false");
+			configManagerTest.SetAppSetting("umbracoUseDirectoryUrls", "true");
+			configManagerTest.SetAppSetting("umbracoHideTopLevelNodeFromPath", "false");
 
 			InitializeLanguagesAndDomains();
 			SetDomains4();
@@ -377,8 +379,8 @@ namespace Umbraco.Tests.Routing
 		{
 			var routingContext = GetRoutingContext("http://domain1.com/test", 1111);
 
-			ConfigurationManager.AppSettings.Set("umbracoUseDirectoryUrls", "true");
-			ConfigurationManager.AppSettings.Set("umbracoHideTopLevelNodeFromPath", "false");
+			configManagerTest.SetAppSetting("umbracoUseDirectoryUrls", "true");
+			configManagerTest.SetAppSetting("umbracoHideTopLevelNodeFromPath", "false");
 
 			InitializeLanguagesAndDomains();
 			SetDomains5();
