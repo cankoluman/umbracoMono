@@ -30,7 +30,7 @@ namespace Umbraco.Core.IO
 
         public FileSystemProviderManager()
         {
-            _config = (FileSystemProvidersSection)ConfigurationManager.GetSection("FileSystemProviders");
+			_config = (FileSystemProvidersSection)ConfigurationManagerService.Instance.GetConfigManager().GetSection("FileSystemProviders");
         }
 
         #endregion

@@ -1,17 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
+using Rhino.Mocks;
 using Umbraco.Core.IO;
+using Umbraco.Core.Configuration;
 
 namespace Umbraco.Tests.IO
 {
+
     [TestFixture]
     public class FileSystemProviderManagerTests
     {
-        [Test]
+        
+		protected IConfigurationManager configManagerTest = null;
+		
+
+		[TestFixtureSetUp]
+		public void SetUp()
+		{
+			var mockedConfigManager = 
+				MockRepository
+				.GenerateStub<IConfigurationManager>();
+
+			var fileSystemProvider = new FileSystemProvidersSection();
+
+			mockedConfigManager.Expect(cm => cm.GetSection("FileSystemProviders")).Return(fileSystemProvider);
+
+			ConfigurationManagerService
+				.Instance
+				.SetManager(mockedConfigManager);
+			
+			configManagerTest = 
+				ConfigurationManagerService
+					.Instance
+					.GetConfigManager();
+
+		}
+
+		[Test]
         public void Can_Get_Base_File_System()
         {
             var fs = FileSystemProviderManager.Current.GetFileSystemProvider(FileSystemProvider.Media);

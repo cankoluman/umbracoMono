@@ -151,6 +151,7 @@
     <Compile Include="TestHelpers\FakeHttpContextFactory.cs" />
     <Compile Include="TypeFinderTests.cs" />
     <Compile Include="Routing\UmbracoModuleTests.cs" />
+    <Compile Include="PartialTrust\PartialTrustMockHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -159,6 +160,7 @@
     <None Include="unit-test-log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="web_mediumtrust.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SQLCE4Umbraco\SqlCE4Umbraco.csproj">
@@ -213,9 +215,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Masterpages\dummy.txt" />
     <Content Include="TestHelpers\ExamineHelpers\media.xml" />
     <Content Include="Views\dummy.txt" />
+    <Content Include="masterpages\dummy.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

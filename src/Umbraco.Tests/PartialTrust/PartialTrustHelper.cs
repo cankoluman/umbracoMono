@@ -7,6 +7,7 @@ using System.Security;
 using System.Xml;
 using System.Xml.Linq;
 using NUnit.Framework;
+using Rhino.Mocks;
 using Umbraco.Core;
 
 namespace Umbraco.Tests.PartialTrust
@@ -15,6 +16,9 @@ namespace Umbraco.Tests.PartialTrust
 		where T : class, new()
 	{
 		public const string PartialTrustAppDomainName = "Partial Trust AppDomain";
+
+		private const string _systemConfigurationFile = "../../";
+		private const string _mediumTrustWebConfig = "web_mediumtrust.config";
 
 		public static void RunInPartial(MethodInfo methodInfo)
 		{
@@ -284,8 +288,12 @@ namespace Umbraco.Tests.PartialTrust
 			/// <returns></returns>
 			public static string GetMediumTrustConfigPath()
 			{
-				var readFromDirectory = Path.GetDirectoryName(RuntimeEnvironment.SystemConfigurationFile);
-				var autoPath = Path.Combine(readFromDirectory, "web_mediumtrust.config");
+				var runtimeEnvironment = 
+					MockRepository.GenerateStub<IRunTimeEnvironment>();
+				runtimeEnvironment.SystemConfigurationFile = _systemConfigurationFile;
+
+				var readFromDirectory = Path.GetDirectoryName(runtimeEnvironment.SystemConfigurationFile);
+				var autoPath = Path.Combine(readFromDirectory, _mediumTrustWebConfig);
 				return autoPath;
 			}
 		}

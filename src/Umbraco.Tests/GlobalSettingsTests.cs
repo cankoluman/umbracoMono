@@ -70,8 +70,8 @@ namespace Umbraco.Tests
 		public void Is_Reserved_By_Route(string url, bool shouldMatch)
 		{
 			//reset the app config, we only want to test routes not the hard coded paths
-			ConfigurationManager.AppSettings.Set("umbracoReservedPaths", "");
-			ConfigurationManager.AppSettings.Set("umbracoReservedUrls", "");
+			configManagerTest.SetAppSetting("umbracoReservedPaths", "");
+			configManagerTest.SetAppSetting("umbracoReservedUrls", "");
 
 			var routes = new RouteCollection();
 
