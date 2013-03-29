@@ -17,16 +17,16 @@ namespace Umbraco.Tests
 		public override void Initialize()
 		{
 			base.Initialize();
-			ConfigurationManager.AppSettings.Set("umbracoReservedPaths", "~/umbraco,~/install/");
-			ConfigurationManager.AppSettings.Set("umbracoReservedUrls", "~/config/splashes/booting.aspx,~/install/default.aspx,~/config/splashes/noNodes.aspx,~/VSEnterpriseHelper.axd");
+			configManagerTest.SetAppSetting("umbracoReservedPaths", "~/umbraco,~/install/");
+			configManagerTest.SetAppSetting("umbracoReservedUrls", "~/config/splashes/booting.aspx,~/install/default.aspx,~/config/splashes/noNodes.aspx,~/VSEnterpriseHelper.axd");
 		}
 
 		public override void TearDown()
 		{
 			base.TearDown();
 			//reset the app config		
-			ConfigurationManager.AppSettings.Set("umbracoReservedPaths", "");
-			ConfigurationManager.AppSettings.Set("umbracoReservedUrls", "");
+			configManagerTest.SetAppSetting("umbracoReservedPaths", "");
+			configManagerTest.SetAppSetting("umbracoReservedUrls", "");
 		}
 
 		[TestCase("/umbraco/umbraco.aspx")]

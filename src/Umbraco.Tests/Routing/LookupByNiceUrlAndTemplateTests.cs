@@ -9,6 +9,7 @@ namespace Umbraco.Tests.Routing
 	[TestFixture]
 	public class LookupByNiceUrlAndTemplateTests : BaseRoutingTest
 	{
+
 		[SetUp]
 		public override void Initialize()
 		{

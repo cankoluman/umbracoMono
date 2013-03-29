@@ -19,7 +19,7 @@ namespace Umbraco.Core.Configuration
 		{
 			get
 			{
-				return MergeAppSettings(ConfigurationManager.AppSettings);
+				return _appSettings;
 			}
 		}
 
@@ -46,25 +46,6 @@ namespace Umbraco.Core.Configuration
 			ConfigurationManager.RefreshSection(SectionName);
 		}
 
-		private NameValueCollection MergeAppSettings(NameValueCollection appSettings)
-		{
-			NameValueCollection mergedAppSettings;
-			mergedAppSettings = new NameValueCollection();
-
-			if (appSettings.HasKeys())
-				foreach (string key in appSettings)
-				{
-					if (_appSettings[key] != null)
-						mergedAppSettings.Add(key.ToString(), _appSettings[key].ToString());
-					else
-						mergedAppSettings.Add(key.ToString(), appSettings[key].ToString());
-				}
-			else 
-				mergedAppSettings.Add(_appSettings);
-
-
-			return mergedAppSettings;
-		}
 	}
 }
 
