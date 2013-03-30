@@ -1,6 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using System.Web.Routing;
 using System.Collections.Specialized;
+using System.Collections.ObjectModel;
 using NUnit.Framework;
 using Umbraco.Core;
 using Umbraco.Tests.Stubs;
@@ -37,7 +39,10 @@ namespace Umbraco.Tests.Routing
 		public override void TearDown()
 		{
 			base.TearDown();
-			RouteTable.Routes.Clear();
+
+			while (RouteTable.Routes.Any())
+				RouteTable.Routes.RemoveAt(0);
+
 			configManagerTest.SetAppSetting("umbracoPath", "");
 			SurfaceControllerResolver.Reset();
 		}

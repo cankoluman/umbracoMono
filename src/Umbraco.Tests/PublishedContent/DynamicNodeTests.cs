@@ -67,11 +67,15 @@ namespace Umbraco.Tests.PublishedContent
 			//var ctx = GetUmbracoContext("/test", template.Id);
 			var ctx = GetUmbracoContext("/test", 1234);
 			var contentStore = new DefaultPublishedContentStore();
-			var node = new DynamicNode(
-				new DynamicBackingItem(
-					new Node(ctx.GetXml().SelectSingleNode("//*[@id='" + id + "' and @isDoc]"))));
+
+			var cmsNode = new Node(ctx.GetXml().SelectSingleNode("//*[@id='" + id + "' and @isDoc]"));
+			var dynamicBackingItem = new DynamicBackingItem(cmsNode);
+			var node = new DynamicNode(dynamicBackingItem);
+
 			Assert.IsNotNull(node);
-			return (dynamic) node;
+
+			dynamic dynamicNode = node;
+			return dynamicNode;
 		}
 	}
 }
