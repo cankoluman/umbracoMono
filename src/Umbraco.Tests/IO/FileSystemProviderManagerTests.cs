@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -22,18 +23,25 @@ namespace Umbraco.Tests.IO
 		[TestFixtureSetUp]
 		public void SetUp()
 		{
+			var testConfig = ConfigurationManager.OpenExeConfiguration(@"Umbraco.Tests.dll");
+
 			var mockedConfigManager = 
 				MockRepository
 				.GenerateStub<IConfigurationManager>();
 
 			var fileSystemProvider = new FileSystemProvidersSection();
 
-			mockedConfigManager.Expect(cm => cm.GetSection("FileSystemProviders")).Return(fileSystemProvider);
+			mockedConfigManager.Expect(cm => 
+				                           cm
+				                           .GetSection("FileSystemProviders")
+			                           )
+				.Return((FileSystemProvidersSection)testConfig.GetSection("FileSystemProviders"));
+
 
 			ConfigurationManagerService
 				.Instance
-				.SetManager(mockedConfigManager);
-			
+					.SetManager(mockedConfigManager);
+
 			configManagerTest = 
 				ConfigurationManagerService
 					.Instance

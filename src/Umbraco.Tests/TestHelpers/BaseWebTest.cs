@@ -68,19 +68,17 @@ namespace Umbraco.Tests.TestHelpers
 			ApplicationContext.Current = null;
 			Resolution.IsFrozen = false;
 			if (RequiresDbSetup)
+			{
 				TestHelper.ClearDatabase(GlobalSettings.DbDSN);
+				configManagerTest.ClearAppSetting("umbracoDbDSN");
+			}
+				
 
             AppDomain.CurrentDomain.SetData("DataDirectory", null);
 
 			Cache.ClearAllCache();
 
 			UmbracoSettings.ResetSetters();
-
-			if (RequiresDbSetup)
-			{
-				configManagerTest.ClearAppSetting("umbracoDbDSN");
-			}
-
 		}	
 
 		/// <summary>
