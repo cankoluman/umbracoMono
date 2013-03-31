@@ -5,6 +5,7 @@ using System.Linq;
 using NUnit.Framework;
 using Umbraco.Core;
 using Umbraco.Core.Models;
+using Umbraco.Core.PropertyEditors;
 using Umbraco.Tests.TestHelpers;
 using Umbraco.Web;
 
@@ -58,6 +59,26 @@ namespace Umbraco.Tests.PublishedContent
 		</ContentPage>
 	</Home>
 </root>";
+		}
+
+		public override void Initialize()
+		{
+			base.Initialize();
+			
+			PropertyEditorValueConvertersResolver.Current = new PropertyEditorValueConvertersResolver(
+				new[]
+				{
+				typeof(DatePickerPropertyEditorValueConverter),
+				typeof(TinyMcePropertyEditorValueConverter),
+				typeof(YesNoPropertyEditorValueConverter)
+			});
+		}
+
+		public override void TearDown()
+		{
+			base.TearDown();
+			
+			PropertyEditorValueConvertersResolver.Reset();
 		}
 
 		internal IPublishedContent GetNode(int id)
