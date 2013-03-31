@@ -1,5 +1,7 @@
 using System;
 using System.Reflection;
+using System.Security;
+using System.Security.Permissions;
 using NUnit.Framework;
 
 namespace Umbraco.Tests.PartialTrust
@@ -25,6 +27,9 @@ namespace Umbraco.Tests.PartialTrust
 				//LogHelper.TraceIfEnabled<FakeFixture>("In PartialTrustShouldFail, about to try to access a private field");
 				//using (DisposableTimer.TraceDuration<FakeFixture>("PartialTrustShouldFail", "PartialTrustShouldFail"))
 				//{
+				var _permissions = new ReflectionPermission(PermissionState.Unrestricted);
+				_permissions.Demand();
+
 				var fieldInfo = typeof(Int32).GetField("m_value", BindingFlags.Instance | BindingFlags.NonPublic);
 				var value = fieldInfo.GetValue(1);
 				//LogHelper.TraceIfEnabled<FakeFixture>("value: {0}", () => value);
@@ -43,6 +48,7 @@ namespace Umbraco.Tests.PartialTrust
 		[Test]
 		public void InPartialTrust_WhenMethodShouldNotSucceed_PartialTrustHelper_ReportsFailure()
 		{
+			Assert.Fail("CAS Support experimental in mono - cannot get this work yet. http://www.mono-project.com/CAS");
 			//LogHelper.TraceIfEnabled<PartialTrustHelperFixture>("In WhenTestShouldNotSucceed_InPartialTrust_PartialTrustHelper_ReportsFailure");
 			try
 			{
