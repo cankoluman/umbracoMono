@@ -84,7 +84,7 @@ namespace Umbraco.Core.Dynamics
 				                                args);
 				return new Attempt<TryInvokeMemberResult>(true, new TryInvokeMemberResult(result, TryInvokeMemberSuccessReason.FoundProperty));
 			}
-			catch (MissingMethodException)
+			catch (MissingMemberException)
 			{
 				try
 				{
@@ -99,7 +99,7 @@ namespace Umbraco.Core.Dynamics
 					                                args);
 					return new Attempt<TryInvokeMemberResult>(true, new TryInvokeMemberResult(result, TryInvokeMemberSuccessReason.FoundMethod));
 				}
-				catch (MissingMethodException)
+				catch (MissingMemberException)
 				{
 					if (findExtensionMethodsOnTypes != null)
 					{
