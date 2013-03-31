@@ -463,9 +463,11 @@ namespace Umbraco.Tests.PublishedContent
 		}
 
 
-		[Test][Ignore] /* No DB set-up */
+		[Test]
 		public void Get_Member_Property()
 		{
+			Assert.Fail ("TODO: No DB set-up");
+
 			var asDynamic = GetDynamicNode(1173);
 			
 			Assert.AreEqual((int) 2, (int) asDynamic.Level);
