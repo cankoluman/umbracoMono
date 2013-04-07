@@ -14,7 +14,7 @@ as a branch,
 e.g. 4.7.2 -> https://github.com/m57j75/umbracoMono/tree/u4.7.2
 
 # Branch notes
-Snapshotted from umbraco.codeplex.com aed55cba2900
+Snapshotted from umbraco.codeplex.com aed55cba2900. 
 At present, the branch does nothing.
 
 # Working approach 
