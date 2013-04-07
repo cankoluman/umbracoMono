@@ -240,7 +240,9 @@ namespace Umbraco.Core
 					"umbraco.webservices",
                     "Lucene.",
                     "Examine,",
-                    "Examine."
+                    "Examine.",
+					/* Mono */
+					"MonoDevelop.NUnit"
                 };
 
 		public static IEnumerable<Type> FindClassesOfTypeWithAttribute<T, TAttribute>()
