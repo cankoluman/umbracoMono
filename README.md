@@ -27,12 +27,7 @@ and 4.11.3 being newly added.
 
 Our changes are added on top of the existing commit history.
 
-There is also a corresponding fork on umbraco.codeplex:
-http://umbraco.codeplex.com/SourceControl/network/forks/m57j75/umbracoMono
-
-However, syncing the two repos is proving difficult for a variety of 
-reasons. And I may drop the mercurial fork in the near future as its 
-management is requiring a lot of time.
+The fork on umbraco.codeplex has now been deleted.
 
 
 
