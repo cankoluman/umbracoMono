@@ -426,7 +426,7 @@ namespace Umbraco.Tests.PublishedContent
 			Assert.AreEqual("<div>This is some content</div>", asDynamic.Content.ToString());
 		}
 
-		[Test]
+		[Test][Ignore("TODO: No DB set-up")]
 		public void Get_Children_With_Pluralized_Alias()
 		{
 			var asDynamic = GetDynamicNode(1173);
@@ -474,10 +474,9 @@ namespace Umbraco.Tests.PublishedContent
 		}
 
 
-		[Test]
+		[Test][Ignore("TODO: No DB set-up")]
 		public void Get_Member_Property()
 		{
-			Assert.Fail ("TODO: No DB set-up");
 
 			var asDynamic = GetDynamicNode(1173);
 			
