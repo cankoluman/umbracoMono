@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project ToolsVersion="4.0"
+	
+	xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+<Import Project="BuildEnvironment.props" Condition="'$(EnvironmentImported)' != 'true" />
+
+
+<UsingTask TaskName="XBuildExec" AssemblyFile="../MonoBuildTasks/MonoBuildTasks.dll" />
+
+<Target Name="NugetPackagesInstallerLauncher">
+
+	<Message Text="** Installing NuGet Packages **" />
+	
+	<CallTarget Targets="NugetPackageInstaller" />
+
+</Target>
+
+<Target Name="NugetPackageInstaller" 
+	Inputs="@(NugetPackageConfigFiles)" 
+	Outputs="%(NugetPackageConfigFiles.Identity).Dummy">
+
+	<Message Text="** Installing NuGet Packages in: %(NugetPackageConfigFiles.FullPath) **" />
+	
+	
+	<XBuildExec OS="$(OS)" Command="nuget install %(NugetPackageConfigFiles.FullPath) -Source @(PackageSource) -o @(NugetRepositoryFile->'%(RootDir)%(Directory)')" />
+
+
+</Target>
+
+</Project>

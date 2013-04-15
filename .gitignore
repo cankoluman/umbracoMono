@@ -92,3 +92,6 @@ src/Umbraco.Web.UI/[W]eb.config
 src/Umbraco.Web.UI/~/
 
 src/umbraco.userprefs
+
+#packages
+src/packages/
