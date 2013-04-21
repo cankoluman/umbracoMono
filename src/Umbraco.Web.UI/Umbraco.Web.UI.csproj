@@ -265,15 +265,14 @@
     </Compile>
     <Compile Include="install\Default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
-    </Compile> 
+    </Compile>
     <Compile Include="install\steps\Skinning\loadStarterKitDesigns.ascx.cs">
       <DependentUpon>loadStarterKitDesigns.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="install\steps\Skinning\loadStarterKitDesigns.ascx.designer.cs">
       <DependentUpon>loadStarterKitDesigns.ascx</DependentUpon>
-    </Compile>       
-    <Content Include="install\steps\Skinning\loadStarterKitDesigns.ascx" />
+    </Compile>
     <Compile Include="install\steps\Skinning\LoadStarterKits.ascx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>loadStarterKits.ascx</DependentUpon>
@@ -1409,7 +1408,6 @@
     <Content Include="install\steps\database.ascx" />
     <Content Include="install\steps\renaming.ascx" />
     <Content Include="install\steps\skinning.ascx" />
-    <Content Include="install\steps\Skinning\loadStarterKits.ascx" />
     <Content Include="install\Title.ascx" />
     <Content Include="install\utills\p.aspx" />
     <Content Include="umbraco\config\lang\ko.xml" />
@@ -2269,6 +2267,8 @@
     <Content Include="config\log4net.config" />
     <Content Include="config\FileSystemProviders.config" />
     <Content Include="config\EmbeddedMedia.config" />
+    <Content Include="install\steps\Skinning\loadStarterKitDesigns.ascx" />
+    <Content Include="install\steps\Skinning\loadStarterKits.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
