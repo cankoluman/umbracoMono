@@ -25,6 +25,11 @@ namespace Umbraco.Core.ObjectResolution
 	            applicationEventHandlers.Where(x => !TypeHelper.IsTypeAssignableFrom<IApplicationEventHandler>(x)));
 		}
 
+		public bool ContainsType(Type instanceType)
+		{
+			return InstanceTypes.IndexOf(instanceType) > -1;
+		}
+
         /// <summary>
         /// Override in order to only return types of IApplicationEventHandler and above, 
         /// do not include the legacy types of IApplicationStartupHandler

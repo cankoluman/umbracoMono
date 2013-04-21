@@ -13,26 +13,26 @@
 
     <link rel="icon" type="image/png" href="<%=umbraco.GlobalSettings.Path + "/images/pinnedIcons/umb.ico" %>" />
 
-    <link media="all" rel="stylesheet" href="../../umbraco_client/installer/css/jquery-ui-1.8.6.custom.css" />
+    <link media="all" rel="stylesheet" href="../../umbraco_client/Installer/css/jquery-ui-1.8.6.custom.css" />
     
-    <link media="all" type="text/css" rel="stylesheet" href="../../umbraco_client/installer/css/reset.css" />
+    <link media="all" type="text/css" rel="stylesheet" href="../../umbraco_client/Installer/css/reset.css" />
     
-    <link media="all" rel="stylesheet" href="../../umbraco_client/installer/css/all.css" />
+    <link media="all" rel="stylesheet" href="../../umbraco_client/Installer/css/all.css" />
     
-    <link media="all" type="text/css" rel="stylesheet" href="../../umbraco_client/installer/css/form.css" />
+    <link media="all" type="text/css" rel="stylesheet" href="../../umbraco_client/Installer/css/form.css" />
 
-	<script src="../../umbraco_client/installer/js/jquery.1.4.4.js" type="text/javascript"></script>
-	<script src="../../umbraco_client/installer/js/jquery.ui.selectmenu.js" type="text/javascript"></script>
-	<script src="../../umbraco_client/installer/js/jquery.main.js" type="text/javascript"></script>
+	<script src="../../umbraco_client/Installer/js/jquery.1.4.4.js" type="text/javascript"></script>
+	<script src="../../umbraco_client/Installer/js/jquery.ui.selectmenu.js" type="text/javascript"></script>
+	<script src="../../umbraco_client/Installer/js/jquery.main.js" type="text/javascript"></script>
 
     <script src="../../umbraco_client/passwordStrength/passwordstrength.js" type="text/javascript"></script>
 
 	<!--[if lt IE 9]>
-		<link media="all" rel="stylesheet" href="../../umbraco_client/installer/css/lt7.css" />
+		<link media="all" rel="stylesheet" href="../../umbraco_client/Installer/css/lt7.css" />
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 
-	<!--[if lt IE 7]><script type="text/javascript" src="../../umbraco_client/installer/js/ie-png.js"></script><![endif]-->
+	<!--[if lt IE 7]><script type="text/javascript" src="../../umbraco_client/Installer/js/ie-png.js"></script><![endif]-->
 
 
 

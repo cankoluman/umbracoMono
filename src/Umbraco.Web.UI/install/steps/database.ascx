@@ -341,7 +341,7 @@
                 
                     if (json.Success) {    
                         $(".btn-box").show();
-                        $('.ui-progressbar-value').css("background-image", "url(../umbraco_client/installer/images/pbar.gif)");
+                        $('.ui-progressbar-value').css("background-image", "url(../umbraco_client/Installer/images/pbar.gif)");
                         $(".result-status-container").show();
                         $(".progress-status-container").hide();
                     } else {

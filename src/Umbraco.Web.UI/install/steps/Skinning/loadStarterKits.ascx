@@ -4,7 +4,7 @@
 
 <asp:PlaceHolder ID="pl_loadStarterKits" runat="server">
     
-    <umb:JsInclude ID="JsInclude1" runat="server" FilePath="installer/js/PackageInstaller.js" PathNameAlias="UmbracoClient" />
+    <umb:JsInclude ID="JsInclude1" runat="server" FilePath="Installer/js/PackageInstaller.js" PathNameAlias="UmbracoClient" />
 
     <% if (!CannotConnect) { %>
     <script type="text/javascript">
@@ -61,7 +61,7 @@
 
             <li class="add-thanks">
                 <asp:LinkButton runat="server" class="single-tab declineStarterKits" ID="declineStarterKits" OnClientClick="return confirm('Are you sure you do not want to install a starter kit?');" OnClick="NextStep">
-            <img class="zoom-img" src="<%# umbraco.GlobalSettings.ClientPath + "/installer/images/btn-no-thanks.png" %>" alt="image description" width="150" height="204">
+            <img class="zoom-img" src="<%# umbraco.GlobalSettings.ClientPath + "/Installer/images/btn-no-thanks.png" %>" alt="image description" width="150" height="204">
                 </asp:LinkButton>
 
                 <em>&nbsp;</em>

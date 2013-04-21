@@ -165,10 +165,14 @@ namespace Umbraco.Web
                 lock (Locker)
                 {
                     //if running in a real HttpContext, this can only be set once
-                    if (System.Web.HttpContext.Current != null && Current != null)
-                    {
-                        throw new ApplicationException("The current httpContext can only be set once during a request.");
-                    }
+					//mono: not setting http context here, but mono comes here with
+					//Current not null right after app init. Disabling for now.
+					//Also, should we be throwing this exception when the context replace flag
+					//has been true in the previous call?
+                    //if (System.Web.HttpContext.Current != null && Current != null)
+                    //{
+                    //    throw new ApplicationException("The current httpContext can only be set once during a request.");
+                    //}
 
                     //if there is an HttpContext, return the item
                     if (System.Web.HttpContext.Current != null)
