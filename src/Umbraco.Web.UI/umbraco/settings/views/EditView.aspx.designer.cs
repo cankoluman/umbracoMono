@@ -39,13 +39,7 @@ namespace Umbraco.Web.UI.Umbraco.Settings.Views {
         /// </remarks>
         protected global::umbraco.uicontrols.Pane Pane7;
         
-        /// <summary>
-        /// pp_name control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
+
         protected global::umbraco.uicontrols.PropertyPanel pp_name;
         
         /// <summary>
