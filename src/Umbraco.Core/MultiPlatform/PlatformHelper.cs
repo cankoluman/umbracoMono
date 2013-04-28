@@ -46,6 +46,14 @@ namespace Umbraco.Core.MultiPlatform
 			}
 		}
 
+		public static bool IsMono
+		{
+			get
+			{
+				return Type.GetType ("Mono.Runtime") != null;
+			}
+		}
+
 		public static string MapUnixPath(string path)
 		{
 			string filePath = path;

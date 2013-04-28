@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Umbraco.Core.MultiPlatform;
 using Umbraco.Core.Persistence.DatabaseAnnotations;
 using Umbraco.Core.Persistence.DatabaseModelDefinitions;
 
@@ -321,7 +322,17 @@ namespace Umbraco.Core.Persistence.SqlSyntax
                 var lowerCaseTableNames = db.Fetch<int>("SELECT @@@@Global.lower_case_table_names");
                 
                 if(lowerCaseFileSystem.Any() && lowerCaseTableNames.Any())
-                    supportsCaseInsensitiveQueries = lowerCaseFileSystem.First() == 1 && lowerCaseTableNames.First() == 1;
+				{
+					if (PlatformHelper.IsUnix)
+					{
+						supportsCaseInsensitiveQueries = lowerCaseTableNames.First() == 1;
+					}
+					else
+					{
+						supportsCaseInsensitiveQueries = lowerCaseFileSystem.First() == 1 && lowerCaseTableNames.First() == 1;
+					}
+				}
+                    
             }
             catch(Exception ex)
             {

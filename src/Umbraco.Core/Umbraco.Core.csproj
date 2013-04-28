@@ -688,6 +688,7 @@
     <Compile Include="Xml\XmlNodeExtensions.cs" />
     <Compile Include="Xml\XPathVariable.cs" />
     <Compile Include="MultiPlatform\PlatformHelper.cs" />
+    <Compile Include="MultiPlatform\XmlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -20,7 +20,7 @@ namespace umbraco.presentation.install.steps.Definitions
 
        public override string UserControl
         {
-            get { return IO.SystemDirectories.Install + "/steps/defaultuser.ascx"; }
+            get { return IO.SystemDirectories.Install + "/steps/defaultUser.ascx"; }
         }
 
         public override bool Completed()

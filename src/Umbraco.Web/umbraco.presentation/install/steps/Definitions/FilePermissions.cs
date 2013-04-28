@@ -21,7 +21,7 @@ namespace umbraco.presentation.install.steps.Definitions
 
         public override string UserControl
         {
-            get { return SystemDirectories.Install + "/steps/validatepermissions.ascx"; }
+            get { return IO.SystemDirectories.Install + "/steps/validatePermissions.ascx"; }
         }
 
         public override bool HideFromNavigation {
