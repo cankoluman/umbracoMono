@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using Umbraco.Core.Configuration;
 using Umbraco.Core.Logging;
+using Umbraco.Core.MultiPlatform;
 
 namespace Umbraco.Core.IO
 {
@@ -83,7 +84,7 @@ namespace Umbraco.Core.IO
             return text;
         }
 
-        public static string MapPath(string path, bool useHttpContext)
+        public static string MapPathBase(string path, bool useHttpContext)
         {
             // Check if the path is already mapped
             if ((path.Length >= 2 && path[1] == Path.VolumeSeparatorChar)
@@ -112,6 +113,15 @@ namespace Umbraco.Core.IO
         	var retval = root + IOHelper.DirSepChar.ToString() + newPath;
 
         	return retval;
+        }
+
+        public static string MapPath(string path, bool useHttpContext)
+        {
+
+			if (PlatformHelper.IsWindows)
+				return MapPathBase(path, useHttpContext);            
+
+			return PlatformHelper.MapUnixPath(path, useHttpContext);
         }
 
         public static string MapPath(string path)
