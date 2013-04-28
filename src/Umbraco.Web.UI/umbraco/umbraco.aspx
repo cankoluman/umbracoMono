@@ -25,7 +25,7 @@
         Priority="0" />
     <umb:JsInclude ID="JsInclude3" runat="server" FilePath="ui/jqueryui.js" PathNameAlias="UmbracoClient"
         Priority="1" />
-    <umb:JsInclude ID="JsInclude14" runat="server" FilePath="Application/jQuery/jquery.ba-bbq.min.js"
+    <umb:JsInclude ID="JsInclude14" runat="server" FilePath="Application/JQuery/jquery.ba-bbq.min.js"
         PathNameAlias="UmbracoClient" Priority="2" />
     <umb:JsInclude ID="JsInclude5" runat="server" FilePath="Application/UmbracoApplicationActions.js"
         PathNameAlias="UmbracoClient" Priority="2" />
@@ -44,11 +44,11 @@
         Priority="10" />
     <umb:JsInclude ID="JsInclude17" runat="server" FilePath="modal/jquery.simplemodal.1.4.1.custom.js"
         PathNameAlias="UmbracoClient" Priority="10" />
-    <umb:JsInclude ID="JsInclude12" runat="server" FilePath="js/UmbracoSpeechBubbleBackend.js"
+    <umb:JsInclude ID="JsInclude12" runat="server" FilePath="js/UmbracoSpeechBubbleBackEnd.js"
         PathNameAlias="UmbracoRoot" />
-    <umb:JsInclude ID="JsInclude15" runat="server" FilePath="js/UmbracoSpeechBubbleBackend.js"
+    <umb:JsInclude ID="JsInclude15" runat="server" FilePath="js/UmbracoSpeechBubbleBackEnd.js"
         PathNameAlias="UmbracoRoot" />
-    <umb:JsInclude ID="JsInclude16" runat="server" FilePath="Application/jQuery/jquery.cookie.js"
+    <umb:JsInclude ID="JsInclude16" runat="server" FilePath="Application/JQuery/jquery.cookie.js"
         PathNameAlias="UmbracoClient" Priority="1" />
     <script type="text/javascript">
         this.name = 'umbracoMain';
@@ -57,11 +57,9 @@
 <body id="umbracoMainPageBody">
     <form id="Form1" method="post" runat="server" style="margin: 0px; padding: 0px">
     <asp:ScriptManager runat="server" ID="umbracoScriptManager" ScriptMode="Release">
-        <CompositeScript ScriptMode="Release">
-            <Scripts>
-                <asp:ScriptReference Path="js/dualSelectBox.js" />
-            </Scripts>
-        </CompositeScript>
+        <Scripts>
+            <asp:ScriptReference Path="js/dualSelectBox.js" />
+        </Scripts>
         <Services>
             <asp:ServiceReference Path="webservices/legacyAjaxCalls.asmx" />
             <asp:ServiceReference Path="webservices/nodeSorter.asmx" />

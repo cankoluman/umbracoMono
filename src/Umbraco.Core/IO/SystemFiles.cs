@@ -47,7 +47,7 @@ namespace Umbraco.Core.IO
         {
             get
             {
-                return SystemDirectories.Config + "/dashboard.config";
+                return SystemDirectories.Config + "/Dashboard.config";
             }
         }
 
@@ -63,7 +63,7 @@ namespace Umbraco.Core.IO
         {
             get
             {
-                return SystemDirectories.Config + "/restextensions.config";
+                return SystemDirectories.Config + "/restExtensions.config";
             }
         }
 
