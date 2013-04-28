@@ -45,7 +45,7 @@ namespace umbraco.presentation.install.utills
 
                 if (!XmlResponse.Contains("System.Net.WebException"))
                 {
-                    Response.Write(library.GetXmlDocumentByUrl(url).Current().OuterXml);
+					Response.Write(XmlResponse);
                 }
                 else
                 {

@@ -7,7 +7,7 @@ namespace Umbraco.Core.MultiPlatform
 	{
 		public static XPathNavigator Current(this XPathNodeIterator xpi)
 		{
-			if (PlatformHelper.IsMono)
+			if (xpi.Current == null && PlatformHelper.IsMono)
 				xpi.MoveNext();
 			return xpi.Current;
 		}
