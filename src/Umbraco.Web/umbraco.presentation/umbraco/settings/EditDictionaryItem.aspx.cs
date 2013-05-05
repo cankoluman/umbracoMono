@@ -41,7 +41,7 @@ namespace umbraco.settings
 			ImageButton save = Panel1.Menu.NewImageButton();
 			save.Click += new System.Web.UI.ImageClickEventHandler(save_click);
 			save.AlternateText = ui.Text("save");
-            save.ImageUrl = SystemDirectories.Umbraco + "/images/editor/save.gif";
+            save.ImageUrl = SystemDirectories.Umbraco + "/images/editor/Save.GIF";
 		    save.ID = "save";
 
             Literal txt = new Literal();

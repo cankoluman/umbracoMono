@@ -206,7 +206,7 @@ namespace umbraco.controls.GenericProperties
 				checkMandatory.Checked = true;
 
 			// validation
-			if (_pt != null && _pt.ValidationRegExp != "")
+			if (_pt != null && !String.IsNullOrEmpty(_pt.ValidationRegExp))
 				tbValidation.Text = _pt.ValidationRegExp;
 
 			// description

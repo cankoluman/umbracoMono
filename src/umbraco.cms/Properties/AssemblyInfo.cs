@@ -11,7 +11,8 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyProduct("Umbraco CMS")]
 
-[assembly: InternalsVisibleTo("umbraco", AllInternalsVisible=true)]
+//AllInternalsVisible = true breaks visibility in mono
+[assembly: InternalsVisibleTo("umbraco")]
 [assembly: InternalsVisibleTo("Umbraco.LegacyTests")]
 [assembly: InternalsVisibleTo("Umbraco.Tests")]
 [assembly: InternalsVisibleTo("umbraco.editorControls")]

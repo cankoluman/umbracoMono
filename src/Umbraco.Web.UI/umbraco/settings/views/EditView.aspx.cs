@@ -136,7 +136,7 @@ namespace Umbraco.Web.UI.Umbraco.Settings.Views
 			Panel1.hasMenu = true;
 
 			SaveButton = Panel1.Menu.NewIcon();
-			SaveButton.ImageURL = SystemDirectories.Umbraco + "/images/editor/save.gif";
+			SaveButton.ImageURL = SystemDirectories.Umbraco + "/images/editor/Save.GIF";
 			SaveButton.AltText = ui.Text("save");
 			SaveButton.ID = "save";
 

@@ -193,7 +193,7 @@ namespace umbraco.cms.presentation.developer.RelationTypes
 			MenuImageButton saveMenuImageButton = relationTypeTabPage.Menu.NewImageButton();
 			saveMenuImageButton.AlternateText = "save relation type";
 			saveMenuImageButton.Click += new ImageClickEventHandler(this.SaveMenuImageButton_Click);
-			saveMenuImageButton.ImageURL = "/umbraco/images/editor/save.gif";
+			saveMenuImageButton.ImageURL = "/umbraco/images/editor/Save.GIF";
 			saveMenuImageButton.CausesValidation = true;
 			saveMenuImageButton.ValidationGroup = "RelationType";
 
