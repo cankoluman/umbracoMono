@@ -6,6 +6,8 @@ namespace Umbraco.Core.MultiPlatform
 {
 	public class WebFormsHelper
 	{
+		public const char CurrencyChar = '\u00A4';
+
 		public static void SetCheckBoxStates(CheckBoxList cbl, NameValueCollection formData)
 		{
 			var cblFormID = cbl.ClientID.Replace("_","$");

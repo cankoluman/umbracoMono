@@ -11,6 +11,7 @@ using System.Web.UI.HtmlControls;
 using umbraco.cms.helpers;
 using umbraco.BasePages;
 using umbraco.IO;
+using Umbraco.Core.MultiPlatform;
 
 namespace umbraco.presentation.umbraco.create
 {
@@ -40,7 +41,7 @@ namespace umbraco.presentation.umbraco.create
 				string returnUrl = presentation.create.dialogHandler_temp.Create(
 					helper.Request("nodeType"),
 					createFolder,
-                    relativepath + "¤" + rename.Text + "¤" + scriptType.SelectedValue);
+					relativepath + WebFormsHelper.CurrencyChar.ToString() + rename.Text + WebFormsHelper.CurrencyChar.ToString() + scriptType.SelectedValue);
 
 				BasePage.Current.ClientTools
 					.ChangeContentFrameUrl(returnUrl)

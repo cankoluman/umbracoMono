@@ -56,7 +56,7 @@ namespace umbraco.cms.helpers
                     break;
                 case DeepLinkType.Css:
                     section = "settings";
-                    editorUrl = "settings/stylesheet/editStylesheet.aspx";
+                    editorUrl = "settings/stylesheet/editstylesheet.aspx";
                     idKey = "id";
                     break;
                 case DeepLinkType.DataType:
@@ -66,7 +66,7 @@ namespace umbraco.cms.helpers
                     break;
                 case DeepLinkType.DocumentType:
                     section = "settings";
-                    editorUrl = "settings/editNodeTypeNew.aspx";
+                    editorUrl = "settings/EditNodeTypeNew.aspx";
                     idKey = "id";
                     break;
                 case DeepLinkType.Javascript:
@@ -86,7 +86,7 @@ namespace umbraco.cms.helpers
                     break;
                 case DeepLinkType.MediaType:
                     section = "settings";
-                    editorUrl = "settings/editMediaType.aspx";
+                    editorUrl = "settings/EditMediaType.aspx";
                     idKey = "id";
                     break;
                 case DeepLinkType.RazorScript:

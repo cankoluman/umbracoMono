@@ -175,7 +175,7 @@ namespace umbraco.dialogs
                 }
             }
 
-            var returnUrl = string.Format("{0}/settings/editNodeTypeNew.aspx?id={1}", SystemDirectories.Umbraco, newDocumentType.Id);
+            var returnUrl = string.Format("{0}/settings/EditNodeTypeNew.aspx?id={1}", SystemDirectories.Umbraco, newDocumentType.Id);
 
             newDocumentType.Save();
 

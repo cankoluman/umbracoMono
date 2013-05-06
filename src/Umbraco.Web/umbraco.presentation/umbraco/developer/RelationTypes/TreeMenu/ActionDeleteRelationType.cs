@@ -1,4 +1,5 @@
 ﻿using umbraco.interfaces;
+using Umbraco.Core.MultiPlatform;
 
 namespace umbraco.cms.presentation.developer.RelationTypes.TreeMenu
 {
@@ -35,7 +36,7 @@ namespace umbraco.cms.presentation.developer.RelationTypes.TreeMenu
 		/// </summary>
 		public char Letter
 		{
-			get { return '¤'; }
+			get { return WebFormsHelper.CurrencyChar; }
 		}
 
 		/// <summary>

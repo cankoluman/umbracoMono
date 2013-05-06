@@ -169,7 +169,7 @@ namespace umbraco.controls.GenericProperties
 				DeleteButton2.Visible = false;
 			}
             validationLink.NavigateUrl = "#";
-            validationLink.Attributes["onclick"] = ClientTools.Scripts.OpenModalWindow("dialogs/regexWs.aspx?target=" + tbValidation.ClientID, "Search for regular expression", 600, 500) + ";return false;";
+            validationLink.Attributes["onclick"] = ClientTools.Scripts.OpenModalWindow("dialogs/RegexWs.aspx?target=" + tbValidation.ClientID, "Search for regular expression", 600, 500) + ";return false;";
 
 			// Data type definitions
 			if (_dataTypeDefinitions != null) 

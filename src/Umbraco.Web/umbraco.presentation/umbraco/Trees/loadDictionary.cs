@@ -54,7 +54,7 @@ namespace umbraco
             Javascript.Append(
                 @"
 			function openDictionaryItem(id) {
-				UmbClientMgr.contentFrame('settings/editDictionaryItem.aspx?id=' + id);
+				UmbClientMgr.contentFrame('settings/EditDictionaryItem.aspx?id=' + id);
 			}
 			");
         }
@@ -74,8 +74,8 @@ namespace umbraco
                 xNode.NodeID = di.id.ToString(); //dictionary_ + id.. 
                 xNode.Text = di.key;
                 xNode.Action = string.Format("javascript:openDictionaryItem({0});", di.id);
-                xNode.Icon = "settingDataType.gif";
-                xNode.OpenIcon = "settingDataType.gif";
+                xNode.Icon = "settingDatatype.gif";
+                xNode.OpenIcon = "settingDatatype.gif";
                 xNode.NodeType = "DictionaryItem"; //this shouldn't be like this, it should be this.TreeAlias but the ui.config file points to this name.
                 xNode.Source = this.GetTreeServiceUrl(di.id);
 				xNode.HasChildren = di.hasChildren;

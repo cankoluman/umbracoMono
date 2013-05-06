@@ -1476,10 +1476,6 @@
     <Compile Include="umbraco.presentation\umbraco\settings\EditMediaType.aspx.designer.cs">
       <DependentUpon>EditMediaType.aspx</DependentUpon>
     </Compile>
-    <Compile Include="umbraco.presentation\umbraco\settings\EditNodeTypeNew.aspx.cs">
-      <DependentUpon>EditNodeTypeNew.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="umbraco.presentation\umbraco\settings\EditNodeTypeNew.aspx.designer.cs">
       <DependentUpon>EditNodeTypeNew.aspx</DependentUpon>
     </Compile>
@@ -2152,6 +2148,10 @@
       <DependentUpon>EditUserType.aspx</DependentUpon>
     </Compile>
     <Content Include="umbraco.presentation\umbraco\users\EditUserType.aspx" />
+    <Compile Include="umbraco.presentation\umbraco\settings\EditNodeTypeNew.aspx.cs">
+      <DependentUpon>EditNodeTypeNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />

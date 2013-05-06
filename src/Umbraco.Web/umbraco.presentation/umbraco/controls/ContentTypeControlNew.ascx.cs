@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 using ClientDependency.Core;
 using Umbraco.Core;
 using Umbraco.Core.Models;
+using Umbraco.Core.MultiPlatform;
 using umbraco.cms.businesslogic.propertytype;
 using umbraco.cms.businesslogic.web;
 using umbraco.cms.helpers;
@@ -365,6 +366,9 @@ jQuery(document).ready(function() {{ refreshDropDowns(); }});
         private int[] SaveAllowedChildTypes()
         {
             var tmp = new ArrayList();
+
+			SetCheckBoxStates(lstAllowedContentTypes);
+
             foreach (ListItem li in lstAllowedContentTypes.Items)
             {
                 if (li.Selected)
@@ -1061,5 +1065,14 @@ Umbraco.Controls.TabView.onActiveTabChange(function(tabviewid, tabid, tabs) {
         }
 
         #endregion
+
+		//mono fix for lost checkboxlist states
+		private void SetCheckBoxStates(CheckBoxList cbl)
+		{
+			if (IsPostBack)
+			{
+				WebFormsHelper.SetCheckBoxStates(cbl, Request.Form);
+			}
+		}
     }
 }

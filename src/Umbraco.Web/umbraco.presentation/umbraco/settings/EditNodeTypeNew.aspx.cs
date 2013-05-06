@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 using umbraco.cms.presentation.Trees;
 using umbraco.cms.businesslogic.web;
 using System.Linq;
+using Umbraco.Core.MultiPlatform;
 
 namespace umbraco.settings
 {
@@ -68,37 +69,48 @@ namespace umbraco.settings
             }
         }
 
-        private DocumentType UpdateAllowedTemplates(DocumentType documentType)
-        {
-            var tmp = new ArrayList();
+		private DocumentType UpdateAllowedTemplates(DocumentType documentType)
+		{
+			var tmp = new ArrayList();
 
-            foreach (ListItem li in templateList.Items)
-            {
-                if (li.Selected)
-                    tmp.Add(new cms.businesslogic.template.Template(int.Parse(li.Value)));
-            }
+			SetCheckBoxStates(templateList);
 
-            var tt = new cms.businesslogic.template.Template[tmp.Count];
-            for (int i = 0; i < tt.Length; i++)
-            {
-                tt[i] = (cms.businesslogic.template.Template)tmp[i];
-            }
+			foreach (ListItem li in templateList.Items)
+			{
+				if (li.Selected)
+					tmp.Add(new cms.businesslogic.template.Template(int.Parse(li.Value)));
+			}
 
-            documentType.allowedTemplates = tt;
+			var tt = new cms.businesslogic.template.Template[tmp.Count];
+			for (int i = 0; i < tt.Length; i++)
+			{
+				tt[i] = (cms.businesslogic.template.Template)tmp[i];
+			}
 
-            if (documentType.allowedTemplates.Length > 0 && ddlTemplates.SelectedIndex >= 0)
-            {
-                documentType.DefaultTemplate = int.Parse(ddlTemplates.SelectedValue);
-            }
-            else
-            {
-                documentType.RemoveDefaultTemplate();
-            }
+			documentType.allowedTemplates = tt;
 
-            _dt = documentType;
+			if (documentType.allowedTemplates.Length > 0 && ddlTemplates.SelectedIndex >= 0)
+			{
+				documentType.DefaultTemplate = int.Parse(ddlTemplates.SelectedValue);
+			}
+			else
+			{
+				documentType.RemoveDefaultTemplate();
+			}
 
-            return documentType;
-        }
+			_dt = documentType;
+
+			return documentType;
+		}
+
+        //mono fix for lost checkboxlist states
+		private void SetCheckBoxStates(CheckBoxList cbl)
+		{
+			if (IsPostBack)
+			{
+				WebFormsHelper.SetCheckBoxStates(cbl, Request.Form);
+			}
+		}
 
         private void BindTemplates()
         {

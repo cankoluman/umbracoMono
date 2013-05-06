@@ -30,7 +30,7 @@ namespace Umbraco.Web.Trees
 			javascript.Append(
 				@"
 		                 function openPartialView(id) {
-		                    UmbClientMgr.contentFrame('Settings/Views/EditView.aspx?file=Partials%2f' + id);
+		                    UmbClientMgr.contentFrame('settings/views/EditView.aspx?file=Partials%2f' + id);
 					    }
 		                ");
 		}

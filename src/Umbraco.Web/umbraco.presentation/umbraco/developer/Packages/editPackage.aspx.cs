@@ -12,6 +12,7 @@ using umbraco.cms.businesslogic.template;
 using umbraco.cms.businesslogic.web;
 using umbraco.controls;
 using umbraco.IO;
+using Umbraco.Core.MultiPlatform;
 
 namespace umbraco.presentation.developer.packages
 {
@@ -330,13 +331,13 @@ namespace umbraco.presentation.developer.packages
             {
                 string tmpFFFF = ((TextBox)rItem.FindControl("packageFilePath")).Text;
                 if (tmpFFFF.Trim() != "")
-                    tmpFilePathString += tmpFFFF + "¤";
+					tmpFilePathString += tmpFFFF + WebFormsHelper.CurrencyChar.ToString();
             }
 
             cms.businesslogic.packager.CreatedPackage createdPackage = cms.businesslogic.packager.CreatedPackage.GetById(int.Parse(Request.QueryString["id"]));
             cms.businesslogic.packager.PackageInstance pack = createdPackage.Data;
           
-            pack.Files = new List<string>(tmpFilePathString.Trim('¤').Split('¤'));
+			pack.Files = new List<string>(tmpFilePathString.Trim(WebFormsHelper.CurrencyChar).Split(WebFormsHelper.CurrencyChar));
             pack.Files.TrimExcess();
 
             createdPackage.Save();

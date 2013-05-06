@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.Web.Security;
 using Umbraco.Core.Logging;
+using Umbraco.Core.MultiPlatform;
 using umbraco.BusinessLogic;
 using umbraco.DataLayer;
 using umbraco.BasePages;
@@ -42,7 +43,7 @@ namespace umbraco
 
         public bool Save()
         {
-            string[] scriptFileAr = _alias.Split('¤');
+			string[] scriptFileAr = _alias.Split(WebFormsHelper.CurrencyChar);
 
 
 
