@@ -55,7 +55,7 @@ namespace umbraco
             Javascript.Append(
                 @"
 function openMemberGroup(id) {
-	UmbClientMgr.contentFrame('members/editMemberGroup.aspx?id=' + id);
+	UmbClientMgr.contentFrame('members/EditMemberGroup.aspx?id=' + id);
 }
 ");
         }
@@ -71,8 +71,8 @@ function openMemberGroup(id) {
                 xNode.NodeID = role;
                 xNode.Text = role;
                 xNode.Action = "javascript:openMemberGroup('" + HttpContext.Current.Server.UrlEncode(role.Replace("'", "\\'")) + "');";
-                xNode.Icon = "membergroup.gif";
-                xNode.OpenIcon = "membergroup.gif";
+                xNode.Icon = "memberGroup.gif";
+                xNode.OpenIcon = "memberGroup.gif";
                 if (!Member.IsUsingUmbracoRoles())
                 {
                     xNode.Menu = null;
