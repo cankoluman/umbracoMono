@@ -14,7 +14,7 @@ Filename (without .cshtml):
 <%--<div>
     Choose a template:<br />
     <asp:ListBox ID="PartialViewTemplate" runat="server" Rows="1" SelectionMode="Single">
-        <asp:ListItem Value="clean.xslt">Clean</asp:ListItem>
+        <asp:ListItem Value="Clean.xslt">Clean</asp:ListItem>
     </asp:ListBox>
 </div>--%>
 

@@ -54,6 +54,17 @@ namespace Umbraco.Core.MultiPlatform
 			}
 		}
 
+		public static string DirSepChar
+		{
+			get
+			{
+				if (IsUnix)
+					return UNIX_DIRSEP;
+				else
+					return WIN_DIRSEP;
+			}
+		}
+
 		public static string MapUnixPath(string path)
 		{
 			string filePath = path;

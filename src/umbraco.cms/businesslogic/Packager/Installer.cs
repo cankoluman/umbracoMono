@@ -9,6 +9,7 @@ using System.Linq;
 using ICSharpCode.SharpZipLib.Zip;
 using Umbraco.Core;
 using Umbraco.Core.Logging;
+using Umbraco.Core.MultiPlatform;
 using umbraco.cms.businesslogic.web;
 using umbraco.cms.businesslogic.propertytype;
 using umbraco.BusinessLogic;
@@ -910,7 +911,7 @@ namespace umbraco.cms.businesslogic.packager
                 "http://" + UmbracoSettings.PackageServer + "/fetch?package=" + Package.ToString(),
                 IOHelper.MapPath(SystemDirectories.Packages + "/" + Package.ToString() + ".umb"));
 
-            return "packages\\" + Package.ToString() + ".umb";
+			return "packages" + PlatformHelper.DirSepChar + Package.ToString() + ".umb";
         }
         
         #endregion
@@ -1196,7 +1197,13 @@ namespace umbraco.cms.businesslogic.packager
             ZipEntry theEntry;
             while ((theEntry = s.GetNextEntry()) != null)
             {
-                string fileName = Path.GetFileName(theEntry.Name);
+				string entryName = theEntry.Name;
+
+				if (Path.DirectorySeparatorChar.ToString() == PlatformHelper.UNIX_DIRSEP)
+					entryName = entryName.Replace(PlatformHelper.WIN_DIRSEP, Path.DirectorySeparatorChar.ToString());
+
+				string directoryName = Path.GetDirectoryName(entryName);
+                string fileName = Path.GetFileName(entryName);
 
                 if (fileName != String.Empty)
                 {

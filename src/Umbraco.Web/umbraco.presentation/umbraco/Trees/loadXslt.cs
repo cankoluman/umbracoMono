@@ -52,7 +52,7 @@ namespace umbraco
             Javascript.Append(
                 @"
 function openXslt(id) {
-	UmbClientMgr.contentFrame('developer/xslt/editXslt.aspx?file=' + id);
+	UmbClientMgr.contentFrame('developer/Xslt/editXslt.aspx?file=' + id);
 }
 ");
         }

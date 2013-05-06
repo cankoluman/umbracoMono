@@ -5,6 +5,7 @@ using System.Xml;
 using System.IO;
 using System.Net;
 using Umbraco.Core.Logging;
+using Umbraco.Core.MultiPlatform;
 using umbraco.IO;
 
 namespace umbraco.cms.businesslogic.packager.repositories {
@@ -209,7 +210,7 @@ namespace umbraco.cms.businesslogic.packager.repositories {
                 fs1.Close();
                 fs1 = null;
 
-                return "packages\\" + packageGuid + ".umb";
+                return "packages" + PlatformHelper.DirSepChar + packageGuid + ".umb";
 
             } else {
 

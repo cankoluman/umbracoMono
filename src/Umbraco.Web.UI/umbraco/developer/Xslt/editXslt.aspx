@@ -70,7 +70,7 @@
                 //                alert('Please select the xslt to visualize');
             }
 
-            UmbClientMgr.openModalWindow('<%= umbraco.IO.IOHelper.ResolveUrl(umbraco.IO.SystemDirectories.Umbraco) %>/developer/xslt/xsltVisualize.aspx', 'Visualize XSLT', true, 550, 650);
+            UmbClientMgr.openModalWindow('<%= umbraco.IO.IOHelper.ResolveUrl(umbraco.IO.SystemDirectories.Umbraco) %>/developer/Xslt/xsltVisualize.aspx', 'Visualize XSLT', true, 550, 650);
 
         }
 		  
