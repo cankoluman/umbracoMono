@@ -1146,8 +1146,11 @@ namespace umbraco.cms.businesslogic.packager
             Debug.Assert(path != null && path.Length >= 1);
             Debug.Assert(fileName != null && fileName.Length >= 1);
 
-            path = path.Replace('/', '\\');
-            fileName = fileName.Replace('/', '\\');
+			if (Path.DirectorySeparatorChar.ToString() == PlatformHelper.WIN_DIRSEP)
+			{
+				path = PlatformHelper.ConvertPathFromUnixToWin(path);
+				fileName = PlatformHelper.ConvertPathFromUnixToWin(fileName);
+			}
 
             // Does filename start with a slash? Does path end with one?
             bool fileNameStartsWithSlash = (fileName[0] == Path.DirectorySeparatorChar);
