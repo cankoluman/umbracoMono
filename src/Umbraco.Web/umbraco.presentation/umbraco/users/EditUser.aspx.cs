@@ -8,6 +8,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Xml;
 using Umbraco.Core.Logging;
+using Umbraco.Core.MultiPlatform;
 using umbraco.BasePages;
 using umbraco.BusinessLogic;
 using umbraco.cms.businesslogic.media;
@@ -60,6 +61,20 @@ namespace umbraco.cms.presentation.user
 
         private User u;
 
+
+        //mono fix for lost checkboxlist states
+		private void setCheckBoxStates(CheckBoxList cbl)
+		{
+			if (IsPostBack)
+			{
+				WebFormsHelper.SetCheckBoxStates(cbl, Request.Form);
+			}
+		}
+
+		protected void Page_PreRender(object sender, EventArgs e)
+		{
+			setCheckBoxStates(lapps);
+		}
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -198,6 +213,8 @@ namespace umbraco.cms.presentation.user
         void sectionValidator_ServerValidate(object source, ServerValidateEventArgs args)
         {
             args.IsValid = false;
+
+			setCheckBoxStates(lapps);
 
             if (lapps.SelectedIndex >= 0)
                 args.IsValid = true;
