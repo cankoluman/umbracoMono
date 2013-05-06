@@ -351,7 +351,7 @@ namespace umbraco.controls
             {
                 MenuImageButton menuPublish = tp.Menu.NewImageButton();
                 menuPublish.ID = tp.ID + "_publish";
-                menuPublish.ImageUrl = _UmbracoPath + "/images/editor/saveAndPublish.gif";
+                menuPublish.ImageUrl = _UmbracoPath + "/images/editor/SaveAndPublish.gif";
                 menuPublish.OnClickCommand = "invokeSaveHandlers();";
                 menuPublish.Click += new ImageClickEventHandler(DoSaveAndPublish);
                 menuPublish.AltText = ui.Text("buttons", "saveAndPublish", null);
