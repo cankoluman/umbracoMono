@@ -5,13 +5,28 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using Umbraco.Core.IO;
+using Umbraco.Core.Configuration;
 
 namespace Umbraco.Tests.IO
 {
     [TestFixture]
     public class FileSystemProviderManagerTests
     {
-        [Test]
+        
+		protected IConfigurationManager configManagerTest = null;
+		
+
+		[TestFixtureSetUp]
+		public void SetUp()
+		{
+			configManagerTest = 
+				ConfigurationManagerProvider
+					.Instance
+					.GetConfigManager();
+
+		}
+
+		[Test]
         public void Can_Get_Base_File_System()
         {
             var fs = FileSystemProviderManager.Current.GetFileSystemProvider(FileSystemProvider.Media);

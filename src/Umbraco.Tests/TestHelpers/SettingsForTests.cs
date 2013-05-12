@@ -57,19 +57,19 @@ namespace Umbraco.Tests.TestHelpers
         public static bool HideTopLevelNodeFromPath
         {
             get { return GlobalSettings.HideTopLevelNodeFromPath; }
-            set { ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings.Set("umbracoHideTopLevelNodeFromPath", value ? "true" : "false"); }
+            set { ConfigurationManagerProvider.Instance.GetConfigManager().SetAppSetting("umbracoHideTopLevelNodeFromPath", value ? "true" : "false"); }
         }
 
         public static bool UseDirectoryUrls
         {
             get { return GlobalSettings.UseDirectoryUrls; }
-            set { ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings.Set("umbracoUseDirectoryUrls", value ? "true" : "false"); }
+            set { ConfigurationManagerProvider.Instance.GetConfigManager().SetAppSetting("umbracoUseDirectoryUrls", value ? "true" : "false"); }
         }
 
         public static string UmbracoPath
         {
             get { return GlobalSettings.Path; }
-            set { ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings.Set("umbracoPath", value); }
+            set { ConfigurationManagerProvider.Instance.GetConfigManager().SetAppSetting("umbracoPath", value); }
         }
 
         public static string ReservedPaths
@@ -87,7 +87,7 @@ namespace Umbraco.Tests.TestHelpers
         public static string ConfigurationStatus
         {
             get { return GlobalSettings.ConfigurationStatus; }
-            set { ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings.Set("umbracoConfigurationStatus", value); }
+            set { ConfigurationManagerProvider.Instance.GetConfigManager().SetAppSetting("umbracoConfigurationStatus", value); }
         }
 
         // reset & defaults
@@ -102,7 +102,7 @@ namespace Umbraco.Tests.TestHelpers
             UmbracoSettings.ResetSetters();
             GlobalSettings.ResetCache();
             foreach (var kvp in SavedAppSettings)
-                ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings.Set(kvp.Key, kvp.Value);
+                ConfigurationManagerProvider.Instance.GetConfigManager().SetAppSetting(kvp.Key, kvp.Value);
 
             // set some defaults that are wrong in the config file?!
             // this is annoying, really

@@ -1,5 +1,7 @@
 using System;
 using System.Reflection;
+using System.Security;
+using System.Security.Permissions;
 using NUnit.Framework;
 
 namespace Umbraco.Tests.PartialTrust
@@ -25,6 +27,9 @@ namespace Umbraco.Tests.PartialTrust
 				//LogHelper.TraceIfEnabled<FakeFixture>("In PartialTrustShouldFail, about to try to access a private field");
 				//using (DisposableTimer.TraceDuration<FakeFixture>("PartialTrustShouldFail", "PartialTrustShouldFail"))
 				//{
+				var _permissions = new ReflectionPermission(PermissionState.Unrestricted);
+				_permissions.Demand();
+
 				var fieldInfo = typeof(Int32).GetField("m_value", BindingFlags.Instance | BindingFlags.NonPublic);
 				var value = fieldInfo.GetValue(1);
 				//LogHelper.TraceIfEnabled<FakeFixture>("value: {0}", () => value);

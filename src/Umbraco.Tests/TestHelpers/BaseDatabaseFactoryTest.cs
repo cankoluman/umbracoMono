@@ -41,49 +41,6 @@ namespace Umbraco.Tests.TestHelpers
             string path = TestHelper.CurrentAssemblyDirectory;
             AppDomain.CurrentDomain.SetData("DataDirectory", path);
 
-            //Ensure that any database connections from a previous test is disposed. This is really just double safety as its also done in the TearDown.
-            if(ApplicationContext != null && DatabaseContext != null)
-                DatabaseContext.Database.Dispose();
-            SqlCeContextGuardian.CloseBackgroundConnection();
-			
-            try
-            {
-                //Delete database file before continueing
-                string filePath = string.Concat(path, "\\UmbracoPetaPocoTests.sdf");
-                if (File.Exists(filePath))
-                {
-                    File.Delete(filePath);
-                }
-            }
-            catch (Exception)
-            {
-                //if this doesn't work we have to make sure everything is reset! otherwise
-                // well run into issues because we've already set some things up
-                TearDown();
-                throw;
-            }
-
-            RepositoryResolver.Current = new RepositoryResolver(
-                new RepositoryFactory());
-
-            SqlSyntaxProvidersResolver.Current = new SqlSyntaxProvidersResolver(
-                new List<Type>{ typeof(MySqlSyntaxProvider), typeof(SqlCeSyntaxProvider), typeof(SqlServerSyntaxProvider) }) { CanResolveBeforeFrozen = true};
-
-            //Get the connectionstring settings from config
-            var settings = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[Core.Configuration.GlobalSettings.UmbracoConnectionName];
-            ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings.Set(Core.Configuration.GlobalSettings.UmbracoConnectionName, @"datalayer=SQLCE4Umbraco.SqlCEHelper,SQLCE4Umbraco;data source=|DataDirectory|\UmbracoPetaPocoTests.sdf");
-            
-            //Create the Sql CE database
-            var engine = new SqlCeEngine(settings.ConnectionString);
-            engine.CreateDatabase();
-
-            Resolution.Freeze();
-            ApplicationContext.Current = new ApplicationContext(
-				//assign the db context
-				new DatabaseContext(new DefaultDatabaseFactory()),
-				//assign the service context
-				new ServiceContext(new PetaPocoUnitOfWorkProvider(), new FileUnitOfWorkProvider(), new PublishingStrategy())) { IsReady = true };
-
             InitializeDatabase();
 
             //ensure the configuration matches the current version for tests
@@ -92,7 +49,53 @@ namespace Umbraco.Tests.TestHelpers
 
         protected virtual void InitializeDatabase()
         {
-            //Configure the Database and Sql Syntax based on connection string set in config
+			//Ensure that any database connections from a previous test is disposed. This is really just double safety as its also done in the TearDown.
+			if(ApplicationContext != null && DatabaseContext != null)
+				DatabaseContext.Database.Dispose();
+			//            SqlCeContextGuardian.CloseBackgroundConnection();
+			//			
+			//            try
+			//            {
+			//                //Delete database file before continueing
+			//                string filePath = string.Concat(path, "\\UmbracoPetaPocoTests.sdf");
+			//                if (File.Exists(filePath))
+			//                {
+			//                    File.Delete(filePath);
+			//                }
+			//            }
+			//            catch (Exception)
+			//            {
+			//                //if this doesn't work we have to make sure everything is reset! otherwise
+			//                // well run into issues because we've already set some things up
+			//                TearDown();
+			//                throw;
+			//            }
+
+			RepositoryResolver.Reset();
+			RepositoryResolver.Current = new RepositoryResolver(
+				new RepositoryFactory());
+
+			SqlSyntaxProvidersResolver.Current = new SqlSyntaxProvidersResolver(
+				new List<Type>{ typeof(MySqlSyntaxProvider), typeof(SqlCeSyntaxProvider), typeof(SqlServerSyntaxProvider) }) { CanResolveBeforeFrozen = true};
+
+			//Get the connectionstring settings from config
+			var dbDsn = TestHelper.umbracoDbDsn;
+			ConfigurationManagerProvider.Instance.GetConfigManager().SetAppSetting(Core.Configuration.GlobalSettings.UmbracoConnectionName, dbDsn);
+
+			//Create the Sql CE database
+			//            var engine = new SqlCeEngine(settings.ConnectionString);
+			//            engine.CreateDatabase();
+
+			Resolution.Freeze();
+
+			var dbContext = new DatabaseContext(new DefaultDatabaseFactory());
+			ApplicationContext.Current = new ApplicationContext(
+				//assign the db context
+				dbContext,
+				//assign the service context
+				new ServiceContext(new PetaPocoUnitOfWorkProvider(), new FileUnitOfWorkProvider(), new PublishingStrategy())) { IsReady = true };            
+
+			//Configure the Database and Sql Syntax based on connection string set in config
             DatabaseContext.Initialize();
             //Create the umbraco database and its base data
             DatabaseContext.Database.CreateDatabaseSchema(false);
@@ -101,7 +104,11 @@ namespace Umbraco.Tests.TestHelpers
         [TearDown]
         public virtual void TearDown()
         {
-            if (ApplicationContext != null)
+			string path = TestHelper.CurrentAssemblyDirectory;
+
+			ClearSettingsAndDirectories();
+
+			if (ApplicationContext != null)
             {
                 if (DatabaseContext != null && DatabaseContext.Database != null)
                 {
@@ -121,14 +128,6 @@ namespace Umbraco.Tests.TestHelpers
 			RepositoryResolver.Reset();
             SqlSyntaxProvidersResolver.Reset();
 
-            TestHelper.CleanContentDirectories();
-			
-            string path = TestHelper.CurrentAssemblyDirectory;
-            AppDomain.CurrentDomain.SetData("DataDirectory", null);
-
-            SettingsForTests.Reset();
-            UmbracoSettings.ResetSetters();
-
             try
             {
                 string filePath = string.Concat(path, "\\UmbracoPetaPocoTests.sdf");
@@ -145,6 +144,16 @@ namespace Umbraco.Tests.TestHelpers
             }
 
         }
+
+		protected void ClearSettingsAndDirectories()
+		{
+			TestHelper.CleanContentDirectories();
+
+			AppDomain.CurrentDomain.SetData("DataDirectory", null);
+
+			SettingsForTests.Reset();
+			UmbracoSettings.ResetSetters();
+		}
 
 	    protected ApplicationContext ApplicationContext
 	    {

@@ -4,6 +4,8 @@ using NUnit.Framework;
 using Umbraco.Core;
 using Umbraco.Core.PropertyEditors;
 using Umbraco.Tests.TestHelpers;
+using System.Threading;
+using System.Globalization;
 
 namespace Umbraco.Tests.PropertyEditors
 {
@@ -22,6 +24,8 @@ namespace Umbraco.Tests.PropertyEditors
 		[TestCase("", false)]
 		public void CanConvertDatePickerPropertyEditor(string date, bool expected)
 		{
+			Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-GB");
+
 			var converter = new DatePickerPropertyEditorValueConverter();
 			var dateTime = new DateTime(2012, 11, 10, 13, 14, 15);
 			var result = converter.ConvertPropertyValue(date);

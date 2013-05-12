@@ -3,6 +3,7 @@ using System.Configuration;
 using System.IO;
 using System.Reflection;
 using SqlCE4Umbraco;
+using umbraco.DataLayer.SqlHelpers.MySqlTest;
 using Umbraco.Core;
 using Umbraco.Core.Configuration;
 using Umbraco.Core.IO;
@@ -17,31 +18,30 @@ namespace Umbraco.Tests.TestHelpers
 	/// </summary>
 	public static class TestHelper
 	{
-		public const string umbracoDbDsn = @"server=127.0.0.1;database=umbraco411_test;user id=umbracouser;password=P@ssword1;datalayer=MySqlTest";
+		public const string umbracoDbDsn = @"server=127.0.0.1;database=umbraco6_test;user id=umbracouser;password=P@ssword1;datalayer=MySqlTest";
+
+		private static MySqlTestHelper GetDataHelper()
+		{
+			var databaseSettings = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[Core.Configuration.GlobalSettings.UmbracoConnectionName];
+			var dataHelper = DataLayerHelper.CreateSqlHelper(databaseSettings.ConnectionString, true) as MySqlTestHelper;
+
+			if (dataHelper == null)
+				throw new InvalidOperationException("The sql helper for unit tests must be of type MySqlTestHelper, check the ensure the connection string used for this test is set to use MySqlTest");
+		
+			return dataHelper;
+		}
 
 		/// <summary>
 		/// Clears an initialized database
-		/// </summary>
+		/// </summary>		
 		public static void ClearDatabase()
 		{
-            var databaseSettings = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[Core.Configuration.GlobalSettings.UmbracoConnectionName];
-            var dataHelper = DataLayerHelper.CreateSqlHelper(databaseSettings.ConnectionString, false) as SqlCEHelper;
-			
-			if (dataHelper == null)
-				throw new InvalidOperationException("The sql helper for unit tests must be of type SqlCEHelper, check the ensure the connection string used for this test is set to use SQLCE");
-
-			dataHelper.ClearDatabase();
+			GetDataHelper().ClearDatabase();
 		}
 
         public static void DropForeignKeys(string table)
         {
-            var databaseSettings = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[Core.Configuration.GlobalSettings.UmbracoConnectionName];
-            var dataHelper = DataLayerHelper.CreateSqlHelper(databaseSettings.ConnectionString, false) as SqlCEHelper;
-
-            if (dataHelper == null)
-                throw new InvalidOperationException("The sql helper for unit tests must be of type SqlCEHelper, check the ensure the connection string used for this test is set to use SQLCE");
-
-            dataHelper.DropForeignKeys(table);
+			GetDataHelper().DropForeignKeys(table);
         }
 
 		/// <summary>
@@ -49,12 +49,9 @@ namespace Umbraco.Tests.TestHelpers
 		/// </summary>
 		public static void InitializeDatabase()
 		{
-            ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings.Set(Core.Configuration.GlobalSettings.UmbracoConnectionName, @"datalayer=SQLCE4Umbraco.SqlCEHelper,SQLCE4Umbraco;data source=|DataDirectory|\UmbracoPetaPocoTests.sdf");
+			var dataHelper = GetDataHelper();
 
-			ClearDatabase();
-            
-            var databaseSettings = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[Core.Configuration.GlobalSettings.UmbracoConnectionName];
-            var dataHelper = DataLayerHelper.CreateSqlHelper(databaseSettings.ConnectionString, false);
+			dataHelper.ClearDatabase();
 
 			var installer = dataHelper.Utility.CreateInstaller();
 			if (installer.CanConnect)

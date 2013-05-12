@@ -39,7 +39,7 @@ namespace Umbraco.Tests.TestHelpers
         [TearDown]
         public override void TearDown()
         {
-            base.TearDown();
+			ClearSettingsAndDirectories();
         }
         
         /// <summary>

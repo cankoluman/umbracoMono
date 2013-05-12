@@ -27,6 +27,7 @@ namespace Umbraco.Tests
 			        this.GetType().Assembly
 			    };
 
+			DataTypesResolver.Reset();
 			DataTypesResolver.Current = new DataTypesResolver(
 				() => PluginManager.Current.ResolveDataTypes());
 

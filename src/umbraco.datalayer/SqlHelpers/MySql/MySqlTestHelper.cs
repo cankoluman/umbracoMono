@@ -60,6 +60,11 @@ namespace umbraco.DataLayer.SqlHelpers.MySqlTest
 			}
 		}
 
+		public void DropForeignKeys(string table)
+		{
+			throw new NotImplementedException();
+		}
+
 
 	}
 }

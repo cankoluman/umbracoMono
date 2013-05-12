@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Configuration;
 using NUnit.Framework;
 using umbraco.DataLayer.SqlHelpers.MySqlTest;
@@ -19,28 +20,28 @@ namespace Umbraco.Tests.BusinessLogic
 
 		protected IConfigurationManager configManagerTest = null;
 
-//		[TestFixtureSetUp]
-//		public void SetUp()
-//		{
-//			ConfigurationManagerService
-//				.Instance
-//				.SetManager(
-//						new ConfigurationManagerTest(new NameValueCollection())
-//                 );
-//
-//			configManagerTest = 
-//				ConfigurationManagerService
-//				.Instance
-//				.GetConfigManager();
-//		}
+		[TestFixtureSetUp]
+		public void SetUp()
+		{
+			ConfigurationManagerProvider
+				.Instance
+				.SetManager(
+						new ConfigurationManagerTest(new NameValueCollection())
+                 );
+
+			configManagerTest = 
+				ConfigurationManagerProvider
+				.Instance
+				.GetConfigManager();
+		}
         /// <summary>
         /// Removes any resources that were used for the test
         /// </summary>
         [TearDown]
         public void Dispose()
         {
-            ClearDatabase();
-            ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings.Set(Core.Configuration.GlobalSettings.UmbracoConnectionName, "");
+            //ClearDatabase();
+			ConfigurationManagerProvider.Instance.GetConfigManager().ClearAppSetting(Core.Configuration.GlobalSettings.UmbracoConnectionName);
         }
 
         /// <summary>
@@ -59,32 +60,33 @@ namespace Umbraco.Tests.BusinessLogic
 
         private void ClearDatabase()
         {
-            var databaseSettings = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[Core.Configuration.GlobalSettings.UmbracoConnectionName];
-            var dataHelper = DataLayerHelper.CreateSqlHelper(databaseSettings.ConnectionString, false) as MySqlTestHelper;
-			
-            if (dataHelper == null)
-				throw new InvalidOperationException("The sql helper for unit tests must be of type MySqlTestHelper, check the ensure the connection string used for this test is set to use MySqlTest");
-            dataHelper.ClearDatabase();
+			var databaseSettings = TestHelper.umbracoDbDsn;
+			var dataHelper = DataLayerHelper.CreateSqlHelper(databaseSettings, true) as MySqlTestHelper;
 
-            AppDomain.CurrentDomain.SetData("DataDirectory", null);
-        }
+			if (dataHelper == null)
+				throw new InvalidOperationException("The sql helper for unit tests must be of type MySqlTestHelper, check the ensure the connection string used for this test is set to use MySqlTest");
+
+			dataHelper.ClearDatabase();
+
+			AppDomain.CurrentDomain.SetData("DataDirectory", null);
+		}
 
         private void InitializeDatabase()
         {
-            ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings.Set(Core.Configuration.GlobalSettings.UmbracoConnectionName, @"datalayer=SQLCE4Umbraco.SqlCEHelper,SQLCE4Umbraco;data source=|DataDirectory|\UmbracoPetaPocoTests.sdf");
+			ConfigurationManagerProvider.Instance.GetConfigManager().SetAppSetting(Core.Configuration.GlobalSettings.UmbracoConnectionName, TestHelper.umbracoDbDsn);
 
 			ClearDatabase();
 
-            AppDomain.CurrentDomain.SetData("DataDirectory", TestHelper.CurrentAssemblyDirectory);
+			AppDomain.CurrentDomain.SetData("DataDirectory", TestHelper.CurrentAssemblyDirectory);
 
-            var databaseSettings = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[Core.Configuration.GlobalSettings.UmbracoConnectionName];
-            var dataHelper = DataLayerHelper.CreateSqlHelper(databaseSettings.ConnectionString, false) as MySqlTestHelper;
-			
-            var installer = dataHelper.Utility.CreateInstaller();
-            if (installer.CanConnect)
-            {
-                installer.Install();
-            }
+			var databaseSettings = TestHelper.umbracoDbDsn;
+			var dataHelper = DataLayerHelper.CreateSqlHelper(databaseSettings, true) as MySqlTestHelper;
+
+			var installer = dataHelper.Utility.CreateInstaller();
+			if (installer.CanConnect)
+			{
+				installer.Install();
+			}
         }
 
         private void InitializeApps()
