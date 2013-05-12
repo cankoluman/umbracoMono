@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Xml.Linq;
 using Umbraco.Core;
+using Umbraco.Core.Configuration;
 using Umbraco.Core.Persistence;
 using umbraco.BusinessLogic.Utils;
 using umbraco.DataLayer;
@@ -23,7 +24,7 @@ namespace umbraco.BusinessLogic
                 {
                     try
                     {
-                        var databaseSettings = ConfigurationManager.ConnectionStrings[Umbraco.Core.Configuration.GlobalSettings.UmbracoConnectionName];
+                        var databaseSettings = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[Umbraco.Core.Configuration.GlobalSettings.UmbracoConnectionName];
                         _sqlHelper = DataLayerHelper.CreateSqlHelper(databaseSettings.ConnectionString, false);
                     }
                     catch { }

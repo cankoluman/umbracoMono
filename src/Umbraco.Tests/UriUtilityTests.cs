@@ -82,7 +82,7 @@ namespace Umbraco.Tests
 
 		public void Uri_From_Umbraco(string sourceUrl, string expectedUrl, bool directoryUrls, bool trailingSlash)
 		{
-			ConfigurationManager.AppSettings.Set("umbracoUseDirectoryUrls", directoryUrls ? "true" : "false");
+			ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings.Set("umbracoUseDirectoryUrls", directoryUrls ? "true" : "false");
 			Umbraco.Core.Configuration.UmbracoSettings.AddTrailingSlash = trailingSlash;
 			UriUtility.SetAppDomainAppVirtualPath("/");
 

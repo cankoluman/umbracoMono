@@ -4,6 +4,7 @@ using System.IO;
 using System.Reflection;
 using SqlCE4Umbraco;
 using Umbraco.Core;
+using Umbraco.Core.Configuration;
 using Umbraco.Core.IO;
 using log4net.Config;
 using umbraco.DataLayer;
@@ -16,13 +17,14 @@ namespace Umbraco.Tests.TestHelpers
 	/// </summary>
 	public static class TestHelper
 	{
+		public const string umbracoDbDsn = @"server=127.0.0.1;database=umbraco411_test;user id=umbracouser;password=P@ssword1;datalayer=MySqlTest";
 
 		/// <summary>
 		/// Clears an initialized database
 		/// </summary>
 		public static void ClearDatabase()
 		{
-            var databaseSettings = ConfigurationManager.ConnectionStrings[Core.Configuration.GlobalSettings.UmbracoConnectionName];
+            var databaseSettings = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[Core.Configuration.GlobalSettings.UmbracoConnectionName];
             var dataHelper = DataLayerHelper.CreateSqlHelper(databaseSettings.ConnectionString, false) as SqlCEHelper;
 			
 			if (dataHelper == null)
@@ -33,7 +35,7 @@ namespace Umbraco.Tests.TestHelpers
 
         public static void DropForeignKeys(string table)
         {
-            var databaseSettings = ConfigurationManager.ConnectionStrings[Core.Configuration.GlobalSettings.UmbracoConnectionName];
+            var databaseSettings = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[Core.Configuration.GlobalSettings.UmbracoConnectionName];
             var dataHelper = DataLayerHelper.CreateSqlHelper(databaseSettings.ConnectionString, false) as SqlCEHelper;
 
             if (dataHelper == null)
@@ -47,11 +49,11 @@ namespace Umbraco.Tests.TestHelpers
 		/// </summary>
 		public static void InitializeDatabase()
 		{
-            ConfigurationManager.AppSettings.Set(Core.Configuration.GlobalSettings.UmbracoConnectionName, @"datalayer=SQLCE4Umbraco.SqlCEHelper,SQLCE4Umbraco;data source=|DataDirectory|\UmbracoPetaPocoTests.sdf");
+            ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings.Set(Core.Configuration.GlobalSettings.UmbracoConnectionName, @"datalayer=SQLCE4Umbraco.SqlCEHelper,SQLCE4Umbraco;data source=|DataDirectory|\UmbracoPetaPocoTests.sdf");
 
 			ClearDatabase();
             
-            var databaseSettings = ConfigurationManager.ConnectionStrings[Core.Configuration.GlobalSettings.UmbracoConnectionName];
+            var databaseSettings = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[Core.Configuration.GlobalSettings.UmbracoConnectionName];
             var dataHelper = DataLayerHelper.CreateSqlHelper(databaseSettings.ConnectionString, false);
 
 			var installer = dataHelper.Utility.CreateInstaller();

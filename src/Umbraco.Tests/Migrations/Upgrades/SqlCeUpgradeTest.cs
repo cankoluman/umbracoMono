@@ -3,6 +3,7 @@ using System.Data.SqlServerCe;
 using System.IO;
 using NUnit.Framework;
 using SQLCE4Umbraco;
+using Umbraco.Core.Configuration;
 using Umbraco.Core.Persistence;
 using Umbraco.Core.Persistence.SqlSyntax;
 
@@ -21,7 +22,7 @@ namespace Umbraco.Tests.Migrations.Upgrades
             }
 
             //Get the connectionstring settings from config
-            var settings = ConfigurationManager.ConnectionStrings[Core.Configuration.GlobalSettings.UmbracoConnectionName];
+            var settings = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[Core.Configuration.GlobalSettings.UmbracoConnectionName];
 
             //Create the Sql CE database
             var engine = new SqlCeEngine(settings.ConnectionString);

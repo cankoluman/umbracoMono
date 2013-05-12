@@ -11,6 +11,8 @@ using System.Configuration;
 using System.Data.Common;
 using System.Reflection;
 
+using Umbraco.Core.Configuration;
+
 namespace umbraco.DataLayer
 {
     /// <summary>
@@ -72,7 +74,7 @@ namespace umbraco.DataLayer
                 throw new ArgumentException("Bad connection string.", "connectionString", ex);
             }
 
-            var connectionStringSettings = ConfigurationManager.ConnectionStrings[Umbraco.Core.Configuration.GlobalSettings.UmbracoConnectionName];
+            var connectionStringSettings = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[Umbraco.Core.Configuration.GlobalSettings.UmbracoConnectionName];
             
             if (forceLegacyConnection == false && connectionStringSettings != null)
                 SetDataHelperNames(connectionStringSettings);

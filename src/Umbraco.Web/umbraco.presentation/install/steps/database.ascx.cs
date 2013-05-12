@@ -4,6 +4,7 @@ using System.Data.Common;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using Umbraco.Core;
+using Umbraco.Core.Configuration;
 using Umbraco.Core.Logging;
 using System.IO;
 using Umbraco.Core.Persistence;
@@ -24,7 +25,7 @@ namespace umbraco.presentation.install.steps
         {
             get
             {
-                var databaseSettings = ConfigurationManager.ConnectionStrings[Umbraco.Core.Configuration.GlobalSettings.UmbracoConnectionName];
+                var databaseSettings = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[Umbraco.Core.Configuration.GlobalSettings.UmbracoConnectionName];
                 var configuredDatabaseIsEmbedded = databaseSettings != null && databaseSettings.ProviderName.ToLower().Contains("SqlServerCe".ToLower());
 
                 return Request["database"] == "embedded" || configuredDatabaseIsEmbedded;
@@ -73,7 +74,7 @@ namespace umbraco.presentation.install.steps
             if (settings.Visible && !Page.IsPostBack)
             {
                 //If the connection string is already present in web.config we don't need to show the settings page and we jump to installing/upgrading.
-                var databaseSettings = ConfigurationManager.ConnectionStrings[Umbraco.Core.Configuration.GlobalSettings.UmbracoConnectionName];
+                var databaseSettings = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[Umbraco.Core.Configuration.GlobalSettings.UmbracoConnectionName];
 
                 var dbIsSqlCe = false;
                 if(databaseSettings != null && databaseSettings.ProviderName != null)
@@ -135,7 +136,7 @@ namespace umbraco.presentation.install.steps
             // Parse the connection string
             var connectionStringBuilder = new DbConnectionStringBuilder();
 
-            var databaseSettings = ConfigurationManager.ConnectionStrings[Umbraco.Core.Configuration.GlobalSettings.UmbracoConnectionName];
+            var databaseSettings = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[Umbraco.Core.Configuration.GlobalSettings.UmbracoConnectionName];
             if (databaseSettings != null && string.IsNullOrWhiteSpace(databaseSettings.ConnectionString) == false)
             {
                 var dataHelper = DataLayerHelper.CreateSqlHelper(databaseSettings.ConnectionString, false);

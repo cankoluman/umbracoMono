@@ -7,6 +7,7 @@ using System.Xml;
 using System.IO;
 
 using Umbraco.Core;
+using Umbraco.Core.Configuration;
 using Umbraco.Core.IO;
 using umbraco.cms.businesslogic.member;
 
@@ -86,7 +87,7 @@ namespace Umbraco.Web.BaseRest
 			const string ExtensionXPath = "/RestExtensions/ext [@alias='{0}']";
 			const string MethodXPath = "./permission [@method='{0}']";
 
-			var config = (Configuration.BaseRestSection)System.Configuration.ConfigurationManager.GetSection("BaseRestExtensions");
+			var config = ConfigurationManagerProvider.Instance.GetConfigManager().GetSection<Configuration.BaseRestSection>("BaseRestExtensions");
 
 			if (config == null)
 				return null; // does not exist
@@ -139,7 +140,7 @@ namespace Umbraco.Web.BaseRest
 		//
 		static RestExtensionMethodInfo GetFromConfiguration(string extensionAlias, string methodName)
 		{
-			var config = (Configuration.BaseRestSection)System.Configuration.ConfigurationManager.GetSection("BaseRestExtensions");
+			var config = ConfigurationManagerProvider.Instance.GetConfigManager().GetSection<Configuration.BaseRestSection>("BaseRestExtensions");
 
 			if (config == null)
 				return null; // does not exist

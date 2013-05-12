@@ -79,7 +79,7 @@ namespace umbraco
         /// Gets the database connection string
         /// </summary>
         /// <value>The database connection string.</value>
-        [Obsolete("Use System.ConfigurationManager.ConnectionStrings to get the connection with the key Umbraco.Core.Configuration.GlobalSettings.UmbracoConnectionName instead")]
+        [Obsolete("Use System.ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings to get the connection with the key Umbraco.Core.Configuration.GlobalSettings.UmbracoConnectionName instead")]
         public static string DbDSN
         {
 			get { return Umbraco.Core.Configuration.GlobalSettings.DbDsn; }
@@ -117,7 +117,7 @@ namespace umbraco
 					if (trustLevel == AspNetHostingPermissionLevel.High || trustLevel == AspNetHostingPermissionLevel.Unrestricted)
 						return false;
 					else
-						return bool.Parse(ConfigurationManager.AppSettings["umbracoUseMediumTrust"]);
+						return bool.Parse(ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings["umbracoUseMediumTrust"]);
 				}
 				catch
 				{
@@ -199,8 +199,8 @@ namespace umbraco
         {
 			get
 			{
-				return ConfigurationManager.AppSettings.ContainsKey("umbracoUrlForbittenCharacters")
-					? ConfigurationManager.AppSettings["umbracoUrlForbittenCharacters"]
+				return ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings.ContainsKey("umbracoUrlForbittenCharacters")
+					? ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings["umbracoUrlForbittenCharacters"]
 					: string.Empty;
 			}
         }
@@ -214,8 +214,8 @@ namespace umbraco
         {
 			get
 			{
-				return ConfigurationManager.AppSettings.ContainsKey("umbracoUrlSpaceCharacter")
-					? ConfigurationManager.AppSettings["umbracoUrlSpaceCharacter"]
+				return ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings.ContainsKey("umbracoUrlSpaceCharacter")
+					? ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings["umbracoUrlSpaceCharacter"]
 					: string.Empty;
 			}
         }
@@ -231,12 +231,12 @@ namespace umbraco
 			{
 				try
 				{
-					var mailSettings = ConfigurationManager.GetSection("system.net/mailSettings") as System.Net.Configuration.MailSettingsSectionGroup;
+					var mailSettings = ConfigurationManagerProvider.Instance.GetConfigManager().GetSection<System.Net.Configuration.MailSettingsSectionGroup>("system.net/mailSettings");
 
 					if (mailSettings != null)
 						return mailSettings.Smtp.Network.Host;
 					else
-						return ConfigurationManager.AppSettings["umbracoSmtpServer"];
+						return ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings["umbracoSmtpServer"];
 				}
 				catch
 				{
@@ -386,7 +386,7 @@ namespace umbraco
         {
 			get
 			{
-                var databaseSettings = ConfigurationManager.ConnectionStrings[Umbraco.Core.Configuration.GlobalSettings.UmbracoConnectionName];
+                var databaseSettings = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[Umbraco.Core.Configuration.GlobalSettings.UmbracoConnectionName];
                 var dataHelper = DataLayerHelper.CreateSqlHelper(databaseSettings.ConnectionString, false);
 
 				if (HttpContext.Current != null)

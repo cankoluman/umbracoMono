@@ -3,6 +3,8 @@ using System.Reflection;
 using System.Web;
 using System.Web.UI;
 
+using Umbraco.Core.Configuration;
+
 namespace umbraco.BusinessLogic
 {
     /// <summary>
@@ -383,7 +385,7 @@ namespace umbraco.BusinessLogic
 
                 static Cookie()
                 {
-                    var appSettings = System.Configuration.ConfigurationManager.AppSettings;
+                    var appSettings = ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings;
                     _ext = appSettings[cookiesExtensionConfigKey] == null ? "" : "_" + (string)appSettings[cookiesExtensionConfigKey];
                 }
 

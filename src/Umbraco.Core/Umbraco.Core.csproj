@@ -690,6 +690,10 @@
     <Compile Include="MultiPlatform\PlatformHelper.cs" />
     <Compile Include="MultiPlatform\XmlHelper.cs" />
     <Compile Include="MultiPlatform\WebFormsHelper.cs" />
+    <Compile Include="ConfigurationManager\IConfigurationManager.cs" />
+    <Compile Include="ConfigurationManager\ConfigurationManagerDefault.cs" />
+    <Compile Include="ConfigurationManager\ConfigurationManagerTest.cs" />
+    <Compile Include="ConfigurationManager\ConfigurationManagerProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -711,5 +715,6 @@
   -->
   <ItemGroup>
     <Folder Include="MultiPlatform\" />
+    <Folder Include="ConfigurationManager\" />
   </ItemGroup>
 </Project>
