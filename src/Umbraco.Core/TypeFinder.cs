@@ -245,7 +245,10 @@ namespace Umbraco.Core
                     "HtmlAgilityPack.",
                     "TidyNet.",
                     "ICSharpCode.",
-                    "CookComputing."
+                    "CookComputing.",
+
+					/* Mono */
+					"MonoDevelop.NUnit"
                 };
 
 		public static IEnumerable<Type> FindClassesOfTypeWithAttribute<T, TAttribute>()
