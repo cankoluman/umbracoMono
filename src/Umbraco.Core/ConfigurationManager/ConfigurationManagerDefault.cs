@@ -20,6 +20,7 @@ namespace Umbraco.Core.Configuration
 		}
 
 		public T GetSection<T>(string SectionName)
+			where T : class
 		{
 			return (T)ConfigurationManager.GetSection(SectionName);
 		}

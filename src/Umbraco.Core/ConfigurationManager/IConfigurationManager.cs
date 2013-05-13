@@ -8,7 +8,7 @@ namespace Umbraco.Core.Configuration
 	{
 		NameValueCollection AppSettings {get;}
 
-		T GetSection<T>(string SectionName);
+		T GetSection<T>(string SectionName) where T : class;
 		void RefreshSection(string SectionName);
 
 		void SetAppSetting(string key, string val);

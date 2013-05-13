@@ -6,6 +6,7 @@ using System.Xml;
 using Examine;
 using NUnit.Framework;
 using Umbraco.Core;
+using Umbraco.Core.Configuration;
 using Umbraco.Core.Models;
 using Umbraco.Tests.PublishedContent;
 using Umbraco.Tests.TestHelpers;
@@ -17,8 +18,16 @@ namespace Umbraco.Tests.ContentStores
 	[TestFixture]
     public class PublishMediaStoreTests : PublishedContentTestBase
 	{
+		IConfigurationManager _configManager;
+
+		[SetUp]
 		public override void Initialize()
 		{
+
+			ConfigurationManagerProvider
+				.Instance
+				.SetManager(new ConfigurationManagerFromExeConfig());
+
 			base.Initialize();
             
             var currDir = new DirectoryInfo(TestHelper.CurrentAssemblyDirectory);
@@ -32,6 +41,7 @@ namespace Umbraco.Tests.ContentStores
 
 		}
 
+		[TearDown]
 		public override void TearDown()
 		{
 			base.TearDown();

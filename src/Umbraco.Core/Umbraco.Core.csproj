@@ -694,6 +694,7 @@
     <Compile Include="ConfigurationManager\ConfigurationManagerDefault.cs" />
     <Compile Include="ConfigurationManager\ConfigurationManagerTest.cs" />
     <Compile Include="ConfigurationManager\ConfigurationManagerProvider.cs" />
+    <Compile Include="ConfigurationManager\ConfigurationManagerFromExeConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
