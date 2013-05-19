@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
+using Umbraco.Core.Configuration;
 using Umbraco.Tests.TestHelpers;
 using Umbraco.Web.Routing;
 using umbraco.cms.businesslogic.web;
@@ -16,12 +17,23 @@ namespace Umbraco.Tests.Routing
 	{
 		public override void Initialize()
 		{
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());
+
 			base.Initialize();
 
             // ensure we can create them although the content is not in the database
             TestHelper.DropForeignKeys("umbracoDomains");
             
             InitializeLanguagesAndDomains();
+		}
+
+		
+		[TearDown]
+		public override void TearDown()
+		{
+			base.TearDown();
 		}
 
 		void InitializeLanguagesAndDomains()

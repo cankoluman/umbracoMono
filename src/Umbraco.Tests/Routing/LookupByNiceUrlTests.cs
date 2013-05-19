@@ -13,6 +13,10 @@ namespace Umbraco.Tests.Routing
 	{
         public override void Initialize()
         {
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());
+
             base.Initialize();            
         }
 
@@ -26,7 +30,7 @@ namespace Umbraco.Tests.Routing
 		/// </summary>
 		protected override bool RequiresDbSetup
 		{
-			get { return false; }
+			get { return true; }
 		}
 
         

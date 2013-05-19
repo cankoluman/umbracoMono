@@ -23,6 +23,10 @@ namespace Umbraco.Tests.Routing
 
 		public override void Initialize()
 		{
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig()); 
+
 			base.Initialize();
 			
 			//the module requires that the singleton is setup

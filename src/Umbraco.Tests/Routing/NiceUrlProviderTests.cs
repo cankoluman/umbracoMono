@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using NUnit.Framework;
+using Umbraco.Core.Configuration;
 using Umbraco.Tests.TestHelpers;
 using Umbraco.Web.Routing;
 
@@ -14,6 +15,10 @@ namespace Umbraco.Tests.Routing
 	{
 		public override void Initialize()
 		{
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig()); 
+
 			base.Initialize();
 
             var currDir = new DirectoryInfo(TestHelper.CurrentAssemblyDirectory);
@@ -26,6 +31,12 @@ namespace Umbraco.Tests.Routing
                 true);
 
             SettingsForTests.SettingsFilePath = Core.IO.IOHelper.MapPath(Core.IO.SystemDirectories.Config + Path.DirectorySeparatorChar, false);
+		}
+
+		[TearDown]
+		public override void TearDown()
+		{
+			base.TearDown();
 		}
 
 		internal override IRoutesCache GetRoutesCache()

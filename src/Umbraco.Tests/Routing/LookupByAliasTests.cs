@@ -1,18 +1,36 @@
 using NUnit.Framework;
 using Umbraco.Tests.TestHelpers;
 using Umbraco.Web.Routing;
+using Umbraco.Core.Configuration;
 
 namespace Umbraco.Tests.Routing
 {
+
 	[TestFixture]
 	public class LookupByAliasTests : BaseRoutingTest
 	{
-        /// <summary>
+		[SetUp]
+		public override void Initialize()
+		{
+			ConfigurationManagerProvider
+				.Instance
+				.SetManager(new ConfigurationManagerFromExeConfig());
+
+			base.Initialize();
+		}
+
+		[TearDown]
+		public override void TearDown()
+		{
+			base.TearDown();
+		}
+
+		/// <summary>
 		/// We don't need a db for this test, will run faster without one
 		/// </summary>
 		protected override bool RequiresDbSetup
 		{
-			get { return false; }
+			get { return true; }
 		}
 
 		[TestCase("/this/is/my/alias", 1046)]

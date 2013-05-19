@@ -6,6 +6,7 @@ using NUnit.Framework;
 using Umbraco.Tests.Stubs;
 using Umbraco.Tests.TestHelpers;
 using System.Configuration;
+using Umbraco.Core.Configuration;
 using Umbraco.Web;
 using Umbraco.Web.Routing;
 using umbraco.BusinessLogic;
@@ -23,6 +24,10 @@ namespace Umbraco.Tests.Routing
 
 		public override void Initialize()
 		{
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig()); 
+
 			base.Initialize();
 
 			var url = "/test";
@@ -50,6 +55,11 @@ namespace Umbraco.Tests.Routing
 			Umbraco.Web.UmbracoContext.Current = routingContext.UmbracoContext;
 		}
 
+		[TearDown]
+		public override void TearDown()
+		{
+			base.TearDown();
+		}
 
 		[TestCase(1046, "/home")]
 		[TestCase(1173, "/home/sub1")]

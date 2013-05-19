@@ -23,7 +23,7 @@ namespace Umbraco.Tests.TestHelpers
 		private static MySqlTestHelper GetDataHelper()
 		{
 			var databaseSettings = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[Core.Configuration.GlobalSettings.UmbracoConnectionName];
-			var dataHelper = DataLayerHelper.CreateSqlHelper(databaseSettings.ConnectionString, true) as MySqlTestHelper;
+			var dataHelper = DataLayerHelper.CreateSqlHelper(umbracoDbDsn, true) as MySqlTestHelper;
 
 			if (dataHelper == null)
 				throw new InvalidOperationException("The sql helper for unit tests must be of type MySqlTestHelper, check the ensure the connection string used for this test is set to use MySqlTest");

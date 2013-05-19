@@ -62,7 +62,16 @@ namespace umbraco.DataLayer.SqlHelpers.MySqlTest
 
 		public void DropForeignKeys(string table)
 		{
-			throw new NotImplementedException();
+			var constraints = new List<string>();
+			using (var reader = ExecuteReader("select constraint_name from information_schema.key_column_usage where constraint_name != 'PRIMARY' and table_name ='" + table + "' order by constraint_name;",  (MSC.MySqlParameter[])null))
+			{
+				while (reader.Read()) constraints.Add(reader.GetString("constraint_name").Trim());
+			}
+			foreach (var constraint in constraints)
+			{
+				// SQL may need "[dbo].[table]"
+				ExecuteNonQuery("alter table `" + table + "` drop key `" + constraint + "`;",  (MSC.MySqlParameter[])null);
+			}
 		}
 
 

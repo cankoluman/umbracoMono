@@ -20,12 +20,11 @@ namespace Umbraco.Tests.Routing
 			base.Initialize();
 		}
 
-		[SetUp]
+		[TearDown]
 		public override void TearDown()
 		{
 			base.TearDown();
 		}
-
 
 		[TestCase("/blah")]
 		[TestCase("/default.aspx/blah")] //this one is actually rather important since this is the path that comes through when we are running in pre-IIS 7 for the root document '/' !

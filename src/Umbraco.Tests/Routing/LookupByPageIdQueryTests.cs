@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using Rhino.Mocks;
 using Umbraco.Tests.TestHelpers;
+using Umbraco.Core.Configuration;
 using Umbraco.Web.Routing;
 using umbraco.BusinessLogic;
 using umbraco.cms.businesslogic.template;
@@ -10,12 +11,28 @@ namespace Umbraco.Tests.Routing
 	[TestFixture]
 	public class LookupByPageIdQueryTests : BaseRoutingTest
 	{
+		[SetUp]
+		public override void Initialize()
+		{
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());  
+
+			base.Initialize();
+		}
+
+		[TearDown]
+		public override void TearDown()
+		{
+			base.TearDown();
+		}
+
 		/// <summary>
 		/// We don't need a db for this test, will run faster without one
 		/// </summary>
 		protected override bool RequiresDbSetup
 		{
-			get { return false; }
+			get { return true; }
 		}
 
 		[TestCase("/?umbPageId=1046", 1046)]

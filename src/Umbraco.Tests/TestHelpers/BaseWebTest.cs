@@ -27,7 +27,7 @@ namespace Umbraco.Tests.TestHelpers
         [SetUp]
         public override void Initialize()
         {
-            base.Initialize();            
+			base.Initialize();          
         }
 
         [TearDown]
