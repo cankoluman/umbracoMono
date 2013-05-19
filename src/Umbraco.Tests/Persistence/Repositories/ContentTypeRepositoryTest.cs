@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+using Umbraco.Core.Configuration;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.EntityBase;
 using Umbraco.Core.Persistence;
@@ -18,7 +19,11 @@ namespace Umbraco.Tests.Persistence.Repositories
         [SetUp]
         public override void Initialize()
         {
-            base.Initialize();
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());              
+
+			base.Initialize();
 
             CreateTestData();
         }

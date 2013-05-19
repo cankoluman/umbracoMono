@@ -26,7 +26,7 @@ namespace Umbraco.Tests.PublishedContent
 
         protected override bool RequiresDbSetup
         {
-            get { return false; }
+            get { return true; }
         }
 
         protected override string GetXmlContent(int templateId)

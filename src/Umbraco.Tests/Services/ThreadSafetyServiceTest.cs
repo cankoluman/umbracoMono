@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading;
 using NUnit.Framework;
 using Umbraco.Core;
+using Umbraco.Core.Configuration;
 using Umbraco.Core.Models;
 using Umbraco.Core.Persistence;
 using Umbraco.Core.Persistence.UnitOfWork;
@@ -27,6 +28,10 @@ namespace Umbraco.Tests.Services
 		[SetUp]
 		public override void Initialize()
 		{
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig()); 
+
             //NOTE The DataTypesResolver is only necessary because we are using the Save method in the MediaService
             //this ensures its reset
             PluginManager.Current = new PluginManager();

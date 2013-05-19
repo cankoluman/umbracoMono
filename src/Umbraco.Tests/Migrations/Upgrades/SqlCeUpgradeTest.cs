@@ -10,6 +10,7 @@ using Umbraco.Core.Persistence.SqlSyntax;
 namespace Umbraco.Tests.Migrations.Upgrades
 {
     [TestFixture]
+	[Ignore ("Does not run under mono")]
     public class SqlCeUpgradeTest : BaseUpgradeTest
     {
         public override void DatabaseSpecificSetUp()

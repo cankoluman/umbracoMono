@@ -40,7 +40,7 @@ namespace Umbraco.Tests.BusinessLogic
         [TearDown]
         public void Dispose()
         {
-            //ClearDatabase();
+            ClearDatabase();
 			ConfigurationManagerProvider.Instance.GetConfigManager().ClearAppSetting(Core.Configuration.GlobalSettings.UmbracoConnectionName);
         }
 

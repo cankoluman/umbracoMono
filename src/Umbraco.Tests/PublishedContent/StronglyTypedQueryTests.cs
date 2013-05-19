@@ -19,7 +19,11 @@ namespace Umbraco.Tests.PublishedContent
 	{
         public override void Initialize()
         {
-            base.Initialize();
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());
+
+			base.Initialize();
         }
 
         public override void TearDown()
@@ -29,7 +33,7 @@ namespace Umbraco.Tests.PublishedContent
 
 		protected override bool RequiresDbSetup
 		{
-			get { return false; }
+			get { return true; }
 		}
 
 		protected override string GetXmlContent(int templateId)

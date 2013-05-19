@@ -23,7 +23,6 @@ namespace Umbraco.Tests.ContentStores
 		[SetUp]
 		public override void Initialize()
 		{
-
 			ConfigurationManagerProvider
 				.Instance
 				.SetManager(new ConfigurationManagerFromExeConfig());

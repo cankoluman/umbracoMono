@@ -291,7 +291,7 @@ namespace Umbraco.Tests.PartialTrust
 				var runtimeEnvironment = 
 					MockRepository.GenerateStub<IRunTimeEnvironment>();
 				runtimeEnvironment.SystemConfigurationFile = _systemConfigurationFile;
-				var readFromDirectory = Path.GetDirectoryName(RuntimeEnvironment.SystemConfigurationFile);
+				var readFromDirectory = Path.GetDirectoryName(runtimeEnvironment.SystemConfigurationFile);
 				var autoPath = Path.Combine(readFromDirectory, _mediumTrustWebConfig);
 				return autoPath;
 			}

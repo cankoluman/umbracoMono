@@ -2,6 +2,7 @@
 using System.Xml.Linq;
 using NUnit.Framework;
 using Umbraco.Core;
+using Umbraco.Core.Configuration;
 using Umbraco.Core.Models;
 using Umbraco.Tests.TestHelpers;
 using Umbraco.Tests.TestHelpers.Entities;
@@ -16,7 +17,11 @@ namespace Umbraco.Tests.Models
         [SetUp]
         public override void Initialize()
         {
-            //this ensures its reset
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());              
+
+			//this ensures its reset
             PluginManager.Current = new PluginManager();
 
             //for testing, we'll specify which assemblies are scanned for the PluginTypeResolver

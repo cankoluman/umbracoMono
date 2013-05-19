@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using NUnit.Framework;
+using Umbraco.Core.Configuration;
 using Umbraco.Core.Models;
 using Umbraco.Core.Persistence;
 using Umbraco.Core.Persistence.Repositories;
@@ -23,7 +24,11 @@ namespace Umbraco.Tests.Services
         [SetUp]
         public override void Initialize()
         {
-	        base.Initialize();
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());  
+
+			base.Initialize();
         }
 		
 		[TearDown]

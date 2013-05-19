@@ -15,6 +15,7 @@ using Umbraco.Tests.TestHelpers;
 namespace Umbraco.Tests.Migrations.Upgrades
 {
     [TestFixture]
+	[Ignore ("Do not test in mono until mysql test is done")]
     public class ValidateOlderSchemaTest
     {
         /// <summary>Regular expression that finds multiline block comments.</summary>

@@ -1,5 +1,6 @@
 using System.Linq;
 using NUnit.Framework;
+using Umbraco.Core.Configuration;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 using Umbraco.Web.Models;
@@ -11,6 +12,10 @@ namespace Umbraco.Tests.PublishedContent
 	{
 		public override void Initialize()
 		{
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());
+
 			base.Initialize();
 		}
 

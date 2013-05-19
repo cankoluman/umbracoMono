@@ -2,6 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 using Umbraco.Core;
+using Umbraco.Core.Configuration;
 using Umbraco.Core.Models;
 using Umbraco.Core.Persistence.Caching;
 using Umbraco.Core.Persistence.Querying;
@@ -20,6 +21,9 @@ namespace Umbraco.Tests.Persistence.Repositories
         [SetUp]
         public override void Initialize()
         {
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());  
             //NOTE The DataTypesResolver is only necessary because we are using the Save method in the ContentService
             //this ensures its reset
             PluginManager.Current = new PluginManager();

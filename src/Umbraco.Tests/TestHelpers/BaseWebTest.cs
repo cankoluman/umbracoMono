@@ -30,12 +30,6 @@ namespace Umbraco.Tests.TestHelpers
             base.Initialize();            
         }
 
-        protected override void InitializeDatabase()
-        {
-            if (RequiresDbSetup)
-                base.InitializeDatabase();
-        }
-
         [TearDown]
         public override void TearDown()
         {

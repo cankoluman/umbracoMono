@@ -33,6 +33,10 @@ namespace Umbraco.Tests.PublishedContent
 		
 		public override void Initialize()
 		{
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());
+
 			base.Initialize();
             UmbracoSettings.ForceSafeAliases = true;
             UmbracoSettings.UmbracoLibraryCacheDuration = 1800;
