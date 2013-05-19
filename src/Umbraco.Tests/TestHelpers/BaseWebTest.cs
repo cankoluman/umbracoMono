@@ -40,6 +40,9 @@ namespace Umbraco.Tests.TestHelpers
         public override void TearDown()
         {
 			ClearSettingsAndDirectories();
+
+			if (RequiresDbSetup)
+				base.TearDown();
         }
         
         /// <summary>

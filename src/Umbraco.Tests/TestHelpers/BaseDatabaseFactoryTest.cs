@@ -71,7 +71,6 @@ namespace Umbraco.Tests.TestHelpers
 			//                throw;
 			//            }
 
-			RepositoryResolver.Reset();
 			RepositoryResolver.Current = new RepositoryResolver(
 				new RepositoryFactory());
 
@@ -128,20 +127,20 @@ namespace Umbraco.Tests.TestHelpers
 			RepositoryResolver.Reset();
             SqlSyntaxProvidersResolver.Reset();
 
-            try
-            {
-                string filePath = string.Concat(path, "\\UmbracoPetaPocoTests.sdf");
-                if (File.Exists(filePath))
-                {
-                    File.Delete(filePath);
-                }
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Error<BaseDatabaseFactoryTest>("Could not remove the old database file", ex);
-
-                //We will swallow this exception! That's because a sub class might require further teardown logic.
-            }
+//            try
+//            {
+//                string filePath = string.Concat(path, "\\UmbracoPetaPocoTests.sdf");
+//                if (File.Exists(filePath))
+//                {
+//                    File.Delete(filePath);
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                LogHelper.Error<BaseDatabaseFactoryTest>("Could not remove the old database file", ex);
+//
+//                //We will swallow this exception! That's because a sub class might require further teardown logic.
+//            }
 
         }
 
