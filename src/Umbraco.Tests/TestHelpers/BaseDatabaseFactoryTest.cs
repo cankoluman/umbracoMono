@@ -21,6 +21,8 @@ using Umbraco.Tests.Stubs;
 using Umbraco.Web;
 using Umbraco.Web.Routing;
 using umbraco.BusinessLogic;
+using umbraco.DataLayer;
+using umbraco.DataLayer.SqlHelpers.MySqlTest;
 
 namespace Umbraco.Tests.TestHelpers
 {
@@ -52,6 +54,9 @@ namespace Umbraco.Tests.TestHelpers
 			//Ensure that any database connections from a previous test is disposed. This is really just double safety as its also done in the TearDown.
 			if(ApplicationContext != null && DatabaseContext != null)
 				DatabaseContext.Database.Dispose();
+
+			ClearDatabase();
+
 			//            SqlCeContextGuardian.CloseBackgroundConnection();
 			//			
 			//            try
@@ -127,6 +132,8 @@ namespace Umbraco.Tests.TestHelpers
 			RepositoryResolver.Reset();
             SqlSyntaxProvidersResolver.Reset();
 
+			ClearDatabase();
+
 //            try
 //            {
 //                string filePath = string.Concat(path, "\\UmbracoPetaPocoTests.sdf");
@@ -143,6 +150,19 @@ namespace Umbraco.Tests.TestHelpers
 //            }
 
         }
+
+		private void ClearDatabase()
+		{
+			var databaseSettings = TestHelper.umbracoDbDsn;
+			var dataHelper = DataLayerHelper.CreateSqlHelper(databaseSettings, true) as MySqlTestHelper;
+
+			if (dataHelper == null)
+				throw new InvalidOperationException("The sql helper for unit tests must be of type MySqlTestHelper, check the ensure the connection string used for this test is set to use MySqlTest");
+
+			dataHelper.ClearDatabase();
+
+			AppDomain.CurrentDomain.SetData("DataDirectory", null);
+		}
 
 		protected void ClearSettingsAndDirectories()
 		{

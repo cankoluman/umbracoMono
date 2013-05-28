@@ -12,6 +12,7 @@ using System.Collections.Specialized;
 using System.Xml;
 using umbraco;
 using umbraco.cms.businesslogic.member;
+using Umbraco.Core.MultiPlatform;
 using System.Web.SessionState;
 
 namespace umbraco.presentation.umbracobase
@@ -183,7 +184,7 @@ namespace umbraco.presentation.umbracobase
                             switch (myExtension.method.ReturnType.ToString())
                             {
                                 case "System.Xml.XPath.XPathNodeIterator":
-                                    return ((System.Xml.XPath.XPathNodeIterator)response).Current.OuterXml;
+                                    return ((System.Xml.XPath.XPathNodeIterator)response).Current().OuterXml;
                                 case "System.Xml.Linq.XDocument":
                                     return response.ToString();
                                 case "System.Xml.XmlDocument":

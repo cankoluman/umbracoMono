@@ -15,7 +15,8 @@ namespace Umbraco.Tests.Routing
 	[TestFixture]
 	public class NiceUrlsProviderWithDomainsTests : BaseRoutingTest
 	{
-        public override void Initialize()
+        [SetUp]
+		public override void Initialize()
         {
 			ConfigurationManagerProvider
 				.Instance

@@ -15,6 +15,7 @@ namespace Umbraco.Tests.Routing
 	[TestFixture]
 	public class LookupByNiceUrlWithDomainsTests : BaseRoutingTest
 	{
+		[SetUp]
 		public override void Initialize()
 		{
 			ConfigurationManagerProvider
