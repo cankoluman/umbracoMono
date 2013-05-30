@@ -13,15 +13,21 @@ namespace Umbraco.Tests
 	{
 		protected override bool RequiresDbSetup
 		{
-			get { return false; }
+			get { return true; }
 		}
 
+		[SetUp]
 		public override void Initialize()
-		{            
+		{    
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());
+
 			base.Initialize();
             SettingsForTests.UmbracoPath = "~/umbraco";
 		}
 
+		[TearDown]
 		public override void TearDown()
 		{
             //ensure this is reset

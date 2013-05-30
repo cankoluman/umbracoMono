@@ -18,6 +18,7 @@ namespace Umbraco.Tests
 	[TestFixture]
 	public class LibraryTests : BaseRoutingTest
 	{
+		[SetUp]
 		public override void Initialize()
 		{
 			ConfigurationManagerProvider
@@ -45,6 +46,7 @@ namespace Umbraco.Tests
             Core.Configuration.UmbracoSettings.SettingsFilePath = Core.IO.IOHelper.MapPath(Core.IO.SystemDirectories.Config + Path.DirectorySeparatorChar, false);
 		}
 
+		[TearDown]
 		public override void TearDown()
 		{
 			base.TearDown();

@@ -6,6 +6,7 @@ using NUnit.Framework;
 using Umbraco.Tests.TestHelpers;
 using Umbraco.Web;
 using Umbraco.Web.Mvc;
+using Umbraco.Core.Configuration;
 
 namespace Umbraco.Tests.Surface
 {
@@ -14,7 +15,23 @@ namespace Umbraco.Tests.Surface
 	{
 		protected override bool RequiresDbSetup
 		{
-			get { return false; }
+			get { return true; }
+		}
+
+		[SetUp]
+		public override void Initialize()
+		{
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());
+
+			base.Initialize();            
+		}
+
+		[TearDown]
+		public override void TearDown()
+		{
+			base.TearDown();
 		}
 
 		[Test]

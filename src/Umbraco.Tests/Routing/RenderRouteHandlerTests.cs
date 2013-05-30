@@ -44,7 +44,10 @@ namespace Umbraco.Tests.Routing
 		public override void TearDown()
 		{
 			base.TearDown();
-			RouteTable.Routes.Clear();
+
+			for (var i = RouteTable.Routes.Count - 1; i > -1; i--)
+				RouteTable.Routes.RemoveAt(i);
+
 			SurfaceControllerResolver.Reset();
 		}
 
