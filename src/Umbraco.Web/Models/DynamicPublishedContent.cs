@@ -7,6 +7,7 @@ using System.Web;
 using Umbraco.Core.Configuration;
 using Umbraco.Core.Dynamics;
 using Umbraco.Core.Models;
+using Umbraco.Core.MultiPlatform;
 using Umbraco.Core;
 using Umbraco.Core.PropertyEditors;
 using System.Reflection;
@@ -380,12 +381,12 @@ namespace Umbraco.Web.Models
 					{
 						return new Attempt<object>(true,
 												   content.GetType().InvokeMember(memberAlias,
-																				  System.Reflection.BindingFlags.GetProperty |
-																				  System.Reflection.BindingFlags.Instance |
-																				  System.Reflection.BindingFlags.Public,
-																				  null,
-																				  content,
-																				  null));
+														ReflectionHelper.GetBindingFlagsCasingSafe(System.Reflection.BindingFlags.GetProperty |
+														System.Reflection.BindingFlags.Instance |
+														System.Reflection.BindingFlags.Public),
+														null,
+														content,
+														null));
 					}
 					catch (MissingMethodException ex)
 					{
