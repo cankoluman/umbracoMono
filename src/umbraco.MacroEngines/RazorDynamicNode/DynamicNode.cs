@@ -8,6 +8,7 @@ using System.Web;
 using Umbraco.Core;
 using Umbraco.Core.Dynamics;
 using Umbraco.Core.Logging;
+using Umbraco.Core.MultiPlatform;
 using umbraco.interfaces;
 using System.Collections;
 using System.Reflection;
@@ -641,7 +642,7 @@ namespace umbraco.MacroEngines
             }
             return true;
         }
-
+		
         private object GetReflectedProperty(string alias)
         {
             Func<string, Attempt<object>> getMember =
@@ -651,9 +652,10 @@ namespace umbraco.MacroEngines
                         {
                             return new Attempt<object>(true,
                                                        n.GetType().InvokeMember(memberAlias,
-                                                                                System.Reflection.BindingFlags.GetProperty |
-                                                                                System.Reflection.BindingFlags.Instance |
-                                                                                System.Reflection.BindingFlags.Public,
+					                         									ReflectionHelper.GetBindingFlagsCasingSafe(
+																					System.Reflection.BindingFlags.GetProperty |
+										                                           	System.Reflection.BindingFlags.Instance |
+										                                           	System.Reflection.BindingFlags.Public),
                                                                                 null,
                                                                                 n,
                                                                                 null));

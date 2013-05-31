@@ -179,7 +179,7 @@ namespace Umbraco.Tests.PublishedContent
 		[Test]
 		public void DescendantsOrSelf_With_Examine()
 		{
-			var newIndexFolder = new DirectoryInfo(Path.Combine("App_Data\\CWSIndexSetTest", Guid.NewGuid().ToString()));
+			var newIndexFolder = new DirectoryInfo(Path.Combine("App_Data","CWSIndexSetTest", Guid.NewGuid().ToString()));
 			var indexInit = new IndexInitializer();
 			var indexer = indexInit.GetUmbracoIndexer(newIndexFolder);
 			indexer.RebuildIndex();
