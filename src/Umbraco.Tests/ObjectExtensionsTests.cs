@@ -4,6 +4,8 @@ using NUnit.Framework;
 using Umbraco.Core;
 using Umbraco.Tests.PartialTrust;
 using Umbraco.Tests.TestHelpers;
+using System.Threading;
+using System.Globalization;
 
 namespace Umbraco.Tests
 {
@@ -85,6 +87,7 @@ namespace Umbraco.Tests
 		[TestOnlyInFullTrust]
 		public virtual void CanConvertStringToDateTime()
 		{
+			Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-GB");
 			var dateTime = new DateTime(2012, 11, 10, 13, 14, 15);
 			var testCases = new Dictionary<string, bool>
 			{
