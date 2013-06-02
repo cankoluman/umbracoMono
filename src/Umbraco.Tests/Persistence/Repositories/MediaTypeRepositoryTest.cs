@@ -1,28 +1,49 @@
 ﻿using System;
 using System.Linq;
 using NUnit.Framework;
+using Umbraco.Core;
 using Umbraco.Core.Configuration;
 using Umbraco.Core.Models;
+using Umbraco.Core.Models.EntityBase;
 using Umbraco.Core.Persistence;
 using Umbraco.Core.Persistence.Caching;
 using Umbraco.Core.Persistence.Repositories;
 using Umbraco.Core.Persistence.UnitOfWork;
 using Umbraco.Tests.TestHelpers;
 using Umbraco.Tests.TestHelpers.Entities;
+using umbraco.editorControls.tinyMCE3;
+using umbraco.interfaces;
 
 namespace Umbraco.Tests.Persistence.Repositories
 {
     [TestFixture]
     public class MediaTypeRepositoryTest : BaseDatabaseFactoryTest
     {
-        [SetUp]
-        public override void Initialize()
-        {
+		[SetUp]
+		public override void Initialize()
+		{
 			ConfigurationManagerProvider
 				.Instance
 					.SetManager(new ConfigurationManagerFromExeConfig());  
-            base.Initialize();
-        }
+
+			//NOTE The DataTypesResolver is only necessary because we are using the Save method in the MediaService
+			//this ensures its reset
+			PluginManager.Current = new PluginManager();
+
+			//for testing, we'll specify which assemblies are scanned for the PluginTypeResolver
+			PluginManager.Current.AssembliesToScan = new[]
+			{
+				typeof(IDataType).Assembly,
+				typeof(tinyMCE3dataType).Assembly
+			};
+
+			DataTypesResolver.Current = new DataTypesResolver(
+				() => PluginManager.Current.ResolveDataTypes());
+
+			base.Initialize();
+
+			CreateTestData();
+		}
 
         [Test]
         public void Can_Instantiate_Repository()
@@ -70,7 +91,7 @@ namespace Umbraco.Tests.Persistence.Repositories
             unitOfWork.Commit();
 
             // Act
-            var mediaType = repository.Get(1045);
+            var mediaType = repository.Get(1048);
 
             mediaType.Thumbnail = "Doc2.png";
             mediaType.PropertyGroups["Media"].PropertyTypes.Add(new PropertyType(new Guid(), DataTypeDatabaseType.Ntext)
@@ -183,12 +204,12 @@ namespace Umbraco.Tests.Persistence.Repositories
             unitOfWork.Commit();
 
             // Act
-            var mediaTypeV2 = repository.Get(1045);
+            var mediaTypeV2 = repository.Get(1048);
             mediaTypeV2.PropertyGroups["Media"].PropertyTypes.Remove("title");
             repository.AddOrUpdate(mediaTypeV2);
             unitOfWork.Commit();
 
-            var mediaTypeV3 = repository.Get(1045);
+            var mediaTypeV3 = repository.Get(1048);
 
             // Assert
             Assert.That(mediaTypeV3.PropertyTypes.Any(x => x.Alias == "title"), Is.False);
@@ -208,7 +229,7 @@ namespace Umbraco.Tests.Persistence.Repositories
             unitOfWork.Commit();
 
             // Act
-            var contentType = repository.Get(1045);
+            var contentType = repository.Get(1048);
 
             // Assert
             Assert.That(contentType.PropertyTypes.Count(), Is.EqualTo(2));
@@ -231,10 +252,38 @@ namespace Umbraco.Tests.Persistence.Repositories
             Assert.That(contentType.PropertyGroups.Count(), Is.EqualTo(1));
         }
 
-        [TearDown]
-        public override void TearDown()
-        {
-            base.TearDown();
-        }
+		[TearDown]
+		public override void TearDown()
+		{
+			//reset the app context
+			DataTypesResolver.Reset();
+
+			base.TearDown();
+		}
+
+		public void CreateTestData()
+		{
+			//Create and Save ContentType "umbTextpage" -> 1044
+			//Bring MySql table id value up so that we do not need to 
+			//update all other values
+			ContentType ignoreType = MockedContentTypes.CreateSimpleContentType("mysqlBuffer", "IgnorePage");
+			ignoreType.Key = new Guid("1D3A8E6E-0000-4CC1-0000-1AEE19821522");
+			ServiceContext.ContentTypeService.Save(ignoreType); 
+
+			//Create and Save folder-Media -> 1045
+			var folderMediaType = ServiceContext.ContentTypeService.GetMediaType(1031);
+			var folder = MockedMedia.CreateMediaFolder(folderMediaType, -1);
+			ServiceContext.MediaService.Save(folder, 0);
+
+			//Create and Save image-Media -> 1046
+			var imageMediaType = ServiceContext.ContentTypeService.GetMediaType(1032);
+			var image = MockedMedia.CreateMediaImage(imageMediaType, folder.Id);
+			ServiceContext.MediaService.Save(image, 0);
+
+			//Create and Save file-Media -> 1047
+			var fileMediaType = ServiceContext.ContentTypeService.GetMediaType(1033);
+			var file = MockedMedia.CreateMediaFile(fileMediaType, folder.Id);
+			ServiceContext.MediaService.Save(file, 0);
+		}
     }
 }

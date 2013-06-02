@@ -8,6 +8,7 @@ using umbraco.cms.businesslogic;
 using umbraco.cms.businesslogic.property;
 using umbraco.presentation.nodeFactory;
 using System.Data;
+using Umbraco.Core.MultiPlatform;
 
 namespace umbraco.MacroEngines
 {
@@ -139,10 +140,10 @@ namespace umbraco.MacroEngines
                                                       content,
                                                       null);
                         }
-                        catch (MissingMethodException)
-                        {
-
-                        }
+						catch (MemberAccessException ex)
+						{
+							if (!ReflectionHelper.IsMissingMemberExceptionSafe(ex)) throw ex;
+						}
                         if (result != null)
                         {
                             return new PropertyResult(alias, string.Format("{0}", result), Guid.Empty) { ContextAlias = content.NodeTypeAlias, ContextId = content.Id };
@@ -182,9 +183,11 @@ namespace umbraco.MacroEngines
                                                       content,
                                                       null);
                         }
-                        catch (MissingMethodException)
-                        {
-                        }
+						catch (MemberAccessException ex) 
+						{ 
+							if (!ReflectionHelper.IsMissingMemberExceptionSafe(ex))
+								throw ex;
+						}
                         if (result != null)
                         {
                             return new PropertyResult(alias, string.Format("{0}", result), Guid.Empty) { ContextAlias = content.NodeTypeAlias, ContextId = content.Id };

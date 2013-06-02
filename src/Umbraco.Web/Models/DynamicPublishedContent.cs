@@ -388,7 +388,7 @@ namespace Umbraco.Web.Models
 														content,
 														null));
 					}
-					catch (MissingMethodException ex)
+					catch (MissingMemberException ex)
 					{
 						return new Attempt<object>(ex);
 					}

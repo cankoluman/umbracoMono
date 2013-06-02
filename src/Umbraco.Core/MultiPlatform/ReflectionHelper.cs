@@ -12,6 +12,14 @@ namespace Umbraco.Core.MultiPlatform
 
 			return bindingFlags;
 		}
+
+		public static bool IsMissingMemberExceptionSafe(Exception ex)
+		{
+			if (PlatformHelper.IsMono)
+				return (ex is MissingMemberException);
+
+			return (ex is MissingMethodException); 
+		}
 	}
 }
 

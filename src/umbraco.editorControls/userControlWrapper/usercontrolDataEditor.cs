@@ -1,6 +1,7 @@
 using System;
 using System.Web.UI;
 using Umbraco.Core.IO;
+using Umbraco.Core.MultiPlatform;
 using umbraco.cms.businesslogic.property;
 using umbraco.cms.businesslogic.datatype;
 using System.Collections.Generic;
@@ -69,7 +70,11 @@ namespace umbraco.editorControls.userControlGrapper
                         }
 
                     }
-                    catch (MissingMethodException) { }
+					catch (MemberAccessException ex) 
+					{ 
+						if (!ReflectionHelper.IsMissingMemberExceptionSafe(ex))
+							throw ex;
+					}
                 }
                 
             }

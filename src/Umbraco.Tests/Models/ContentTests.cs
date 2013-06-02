@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using NUnit.Framework;
 using Rhino.Mocks;
+using Umbraco.Core.Configuration;
 using Umbraco.Core.Models;
 using Umbraco.Tests.TestHelpers.Entities;
 
@@ -13,7 +14,8 @@ namespace Umbraco.Tests.Models
     [TestFixture]
     public class ContentTests
     {
-        [Test]
+
+		[Test]
         public void Can_Verify_Mocked_Content()
         {
             // Arrange
@@ -61,7 +63,11 @@ namespace Umbraco.Tests.Models
         [Test]
         public void Can_Set_Property_Value_As_HttpPostedFileBase()
         {
-            // Arrange
+			ConfigurationManagerProvider
+				.Instance
+				.SetManager(new ConfigurationManagerFromExeConfig());
+
+			// Arrange
             var contentType = MockedContentTypes.CreateTextpageContentType();
             var content = MockedContent.CreateTextpageContent(contentType, "Textpage", -1);
 

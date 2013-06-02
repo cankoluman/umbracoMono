@@ -321,9 +321,12 @@ namespace umbraco.MacroEngines
                                                   args);
                 return true;
             }
-            catch (MissingMethodException)
+			catch (MemberAccessException ex)
             {
-                try
+                if (!ReflectionHelper.IsMissingMemberExceptionSafe(ex))
+					throw ex;
+
+				try
                 {
                     //Static or Instance Method?
                     result = typeof(DynamicNode).InvokeMember(binder.Name,
@@ -336,9 +339,12 @@ namespace umbraco.MacroEngines
                                                   args);
                     return true;
                 }
-                catch (MissingMethodException)
+				catch (MemberAccessException ex1)
                 {
-                    try
+					if (!ReflectionHelper.IsMissingMemberExceptionSafe(ex1))
+						throw ex1;
+
+					try
                     {
                         result = ExecuteExtensionMethod(args, binder.Name, false);
                         return true;
@@ -383,7 +389,10 @@ namespace umbraco.MacroEngines
             }
             else
             {
-                throw new MissingMethodException();
+				if (PlatformHelper.IsMono)
+					throw new MissingMemberException();
+
+				throw new MissingMethodException();
             }
             if (result != null)
             {
@@ -660,9 +669,9 @@ namespace umbraco.MacroEngines
                                                                                 n,
                                                                                 null));
                         }
-                        catch (MissingMethodException ex)
+						catch (MissingMemberException ex)
                         {
-                            return new Attempt<object>(ex);
+							return new Attempt<object>(ex);
                         }
                     };
 

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Umbraco.Core.Logging;
+using Umbraco.Core.MultiPlatform;
 
 namespace Umbraco.Core.Dynamics
 {
@@ -84,8 +85,11 @@ namespace Umbraco.Core.Dynamics
 				                                args);
 				return new Attempt<TryInvokeMemberResult>(true, new TryInvokeMemberResult(result, TryInvokeMemberSuccessReason.FoundProperty));
 			}
-			catch (MissingMethodException)
+			catch (MemberAccessException ex)
 			{
+				if (!ReflectionHelper.IsMissingMemberExceptionSafe(ex))
+					throw ex;
+
 				try
 				{
 					//Static or Instance Method?
@@ -99,8 +103,11 @@ namespace Umbraco.Core.Dynamics
 					                                args);
 					return new Attempt<TryInvokeMemberResult>(true, new TryInvokeMemberResult(result, TryInvokeMemberSuccessReason.FoundMethod));
 				}
-				catch (MissingMethodException)
+				catch (Exception ex1)
 				{
+					if (!ReflectionHelper.IsMissingMemberExceptionSafe(ex1))
+						throw ex1;
+
 					if (findExtensionMethodsOnTypes != null)
 					{
 						try
@@ -114,7 +121,7 @@ namespace Umbraco.Core.Dynamics
 							//this exception occurs.
 							return new Attempt<TryInvokeMemberResult>(ext);
 						}
-						catch (Exception ex)
+						catch (Exception ex2)
 						{
 							var sb = new StringBuilder("An error occurred finding an executing an extension method for type ");
 							sb.Append(typeof (T));
@@ -123,8 +130,8 @@ namespace Umbraco.Core.Dynamics
 							{
 								sb.Append(t + ",");
 							}
-							LogHelper.Error<DynamicInstanceHelper>(sb.ToString(), ex);
-							return new Attempt<TryInvokeMemberResult>(ex);
+							LogHelper.Error<DynamicInstanceHelper>(sb.ToString(), ex2);
+							return new Attempt<TryInvokeMemberResult>(ex2);
 						}	
 					}
 					return Attempt<TryInvokeMemberResult>.False;
@@ -169,6 +176,9 @@ namespace Umbraco.Core.Dynamics
 			}
 			else
 			{
+				if (PlatformHelper.IsMono)
+					throw new MissingMemberException();
+
 				throw new MissingMethodException();
 			}			
 			return result;
