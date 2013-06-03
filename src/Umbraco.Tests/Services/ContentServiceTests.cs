@@ -197,7 +197,7 @@ namespace Umbraco.Tests.Services
             var root = contentService.GetById(1046);
             contentService.SaveAndPublish(root);
             var content = contentService.GetById(1048);
-            content.ExpireDate = DateTime.Now.AddSeconds(1);
+            content.ExpireDate = DateTime.Now.AddSeconds(600);
             contentService.SaveAndPublish(content);
 
             // Act
@@ -207,6 +207,7 @@ namespace Umbraco.Tests.Services
             // Assert
             Assert.That(DateTime.Now.AddMinutes(-5) <= DateTime.Now);
             Assert.That(contents, Is.Not.Null);
+
             Assert.That(contents.Any(), Is.True);
             Assert.That(contents.Count(), Is.EqualTo(1));
         }

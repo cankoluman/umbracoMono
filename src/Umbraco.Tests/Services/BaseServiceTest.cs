@@ -48,6 +48,13 @@ namespace Umbraco.Tests.Services
 		{
 			//NOTE Maybe not the best way to create/save test data as we are using the services, which are being tested.
 
+			//Create and Save ContentType "umbTextpage" -> 1044
+			//Bring MySql table id value up so that we do not need to 
+			//update all other values
+			ContentType ignoreType = MockedContentTypes.CreateSimpleContentType("mysqlBuffer", "IgnorePage");
+			ignoreType.Key = new Guid("1D3A8E6E-0000-4CC1-0000-1AEE19821522");
+			ServiceContext.ContentTypeService.Save(ignoreType); 
+
 			//Create and Save ContentType "umbTextpage" -> 1045
 			ContentType contentType = MockedContentTypes.CreateSimpleContentType("umbTextpage", "Textpage");
 			contentType.Key = new Guid("1D3A8E6E-2EA9-4CC1-B229-1AEE19821522");
