@@ -197,7 +197,7 @@ namespace Umbraco.Tests.Services
             var root = contentService.GetById(1046);
             contentService.SaveAndPublish(root);
             var content = contentService.GetById(1048);
-            content.ExpireDate = DateTime.Now.AddSeconds(600);
+            content.ExpireDate = DateTime.Now.AddSeconds(1);
             contentService.SaveAndPublish(content);
 
             // Act
