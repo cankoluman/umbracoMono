@@ -71,7 +71,7 @@ namespace Umbraco.Tests.PublishedContent
 		[Test]
 	    public void Ensure_Children_Sorted_With_Examine()
 	    {
-            var newIndexFolder = new DirectoryInfo(Path.Combine("App_Data\\CWSIndexSetTest", Guid.NewGuid().ToString()));
+            var newIndexFolder = new DirectoryInfo(Path.Combine("App_DataCWSIndexSetTest", Guid.NewGuid().ToString()));
             var indexInit = new IndexInitializer();
             var indexer = indexInit.GetUmbracoIndexer(newIndexFolder);
             indexer.RebuildIndex();
@@ -98,7 +98,7 @@ namespace Umbraco.Tests.PublishedContent
 	    [Test]
 	    public void Do_Not_Find_In_Recycle_Bin()
 	    {
-            var newIndexFolder = new DirectoryInfo(Path.Combine("App_Data\\CWSIndexSetTest", Guid.NewGuid().ToString()));
+            var newIndexFolder = new DirectoryInfo(Path.Combine("App_Data","CWSIndexSetTest", Guid.NewGuid().ToString()));
             var indexInit = new IndexInitializer();
             var indexer = indexInit.GetUmbracoIndexer(newIndexFolder);	        
             indexer.RebuildIndex();
@@ -135,7 +135,7 @@ namespace Umbraco.Tests.PublishedContent
 	    [Test]
 		public void Children_With_Examine()
 		{
-			var newIndexFolder = new DirectoryInfo(Path.Combine("App_Data\\CWSIndexSetTest", Guid.NewGuid().ToString()));
+			var newIndexFolder = new DirectoryInfo(Path.Combine("App_Data","CWSIndexSetTest", Guid.NewGuid().ToString()));
 			var indexInit = new IndexInitializer();
 			var indexer = indexInit.GetUmbracoIndexer(newIndexFolder);
 			indexer.RebuildIndex();
@@ -157,7 +157,7 @@ namespace Umbraco.Tests.PublishedContent
 		[Test]
 		public void Descendants_With_Examine()
 		{
-			var newIndexFolder = new DirectoryInfo(Path.Combine("App_Data\\CWSIndexSetTest", Guid.NewGuid().ToString()));
+			var newIndexFolder = new DirectoryInfo(Path.Combine("App_Data","CWSIndexSetTest", Guid.NewGuid().ToString()));
 			var indexInit = new IndexInitializer();
 			var indexer = indexInit.GetUmbracoIndexer(newIndexFolder);
 			indexer.RebuildIndex();
@@ -201,7 +201,7 @@ namespace Umbraco.Tests.PublishedContent
 		[Test]
 		public void Ancestors_With_Examine()
 		{
-			var newIndexFolder = new DirectoryInfo(Path.Combine("App_Data\\CWSIndexSetTest", Guid.NewGuid().ToString()));
+			var newIndexFolder = new DirectoryInfo(Path.Combine("App_Data","CWSIndexSetTest", Guid.NewGuid().ToString()));
 			var indexInit = new IndexInitializer();
 			var indexer = indexInit.GetUmbracoIndexer(newIndexFolder);
 			indexer.RebuildIndex();
@@ -219,7 +219,7 @@ namespace Umbraco.Tests.PublishedContent
 		[Test]
 		public void AncestorsOrSelf_With_Examine()
 		{
-			var newIndexFolder = new DirectoryInfo(Path.Combine("App_Data\\CWSIndexSetTest", Guid.NewGuid().ToString()));
+			var newIndexFolder = new DirectoryInfo(Path.Combine("App_Data","CWSIndexSetTest", Guid.NewGuid().ToString()));
 			var indexInit = new IndexInitializer();
 			var indexer = indexInit.GetUmbracoIndexer(newIndexFolder);
 			indexer.RebuildIndex();
