@@ -696,6 +696,7 @@
     <Compile Include="ConfigurationManager\ConfigurationManagerProvider.cs" />
     <Compile Include="ConfigurationManager\ConfigurationManagerFromExeConfig.cs" />
     <Compile Include="MultiPlatform\ReflectionHelper.cs" />
+    <Compile Include="MultiPlatform\UriHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
