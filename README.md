@@ -14,8 +14,7 @@ as a branch,
 e.g. 4.7.2 -> https://github.com/m57j75/umbracoMono/tree/u4.7.2
 
 # Branch notes
-Snapshotted from umbraco.codeplex.com aed55cba2900. 
-At present, the branch does nothing.
+This branch is now closed. 6.0.x development has been moved to 6.0.6.
 
 # Working approach 
 This repository snapshots, umbraco release versions 
