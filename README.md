@@ -14,6 +14,8 @@ as a branch,
 e.g. 4.7.2 -> https://github.com/m57j75/umbracoMono/tree/u4.7.2
 
 # Branch notes
+u6.0.3 works except for Lucene, and an intermittent Xml Cache issue.
+However, due to its security issues u6.0.3 is not recommended for production.
 This branch is now closed. 6.0.x development has been moved to 6.0.6.
 
 # Working approach 
