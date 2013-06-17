@@ -1,0 +1,4 @@
+/home/kol3/Development/umbraco/main/Umbraco-CMS-6.0.3-cloned/tools/Mono/MonoBuildTasks/src/MonoBuildTasks/MonoBuildTasks/bin/Debug/MonoBuildTasks.dll.mdb
+/home/kol3/Development/umbraco/main/Umbraco-CMS-6.0.3-cloned/tools/Mono/MonoBuildTasks/src/MonoBuildTasks/MonoBuildTasks/bin/Debug/MonoBuildTasks.dll
+/home/kol3/Development/umbraco/main/Umbraco-CMS-6.0.3-cloned/tools/Mono/MonoBuildTasks/src/MonoBuildTasks/MonoBuildTasks/obj/Debug/MonoBuildTasks.dll
+/home/kol3/Development/umbraco/main/Umbraco-CMS-6.0.3-cloned/tools/Mono/MonoBuildTasks/src/MonoBuildTasks/MonoBuildTasks/obj/Debug/MonoBuildTasks.dll.mdb

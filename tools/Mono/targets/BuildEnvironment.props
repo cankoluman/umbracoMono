@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+<PropertyGroup>
+	<EnvironmentImported>true</EnvironmentImported>
+	<ProjectRootDir>$(MSBuildProjectDirectory)/../../../</ProjectRootDir>
+	<SolutionDir Condition="'$(SolutionDir)' == ''">$(ProjectRootDir)src</SolutionDir>
+	<MSBuildCommunityDir Condition="'$(MSBuildCommunityDir)' == ''">$(ProjectRootDir)tools/MSBuildCommunityTasks</MSBuildCommunityDir>
+	<PackagesDir>$(SolutionDir)/packages</PackagesDir>
+	<NugetRepositoryFilePath>$(PackagesDir)/repositories.config</NugetRepositoryFilePath>
+	<Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+</PropertyGroup>
+
+<ItemGroup>
+	<PackageSource Include="https://nuget.org/api/v2/" />
+	<PackageSource Include="http://www.myget.org/F/umbracocore/" />
+</ItemGroup>
+
+<ItemGroup>
+	<ProjectSolution Include="$(SolutionDir)umbraco.sln" />
+	<NugetRepositoryFile Include="$(NugetRepositoryFilePath)" />
+	<NugetPackageConfigFiles Include="$(SolutionDir)/**/packages.config" 
+		Exclude="$(SolutionDir)/SQLCE4Umbraco/packages.config"/>
+</ItemGroup>
+
+
+</Project>
