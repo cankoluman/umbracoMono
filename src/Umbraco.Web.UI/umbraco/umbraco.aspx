@@ -44,9 +44,9 @@
         Priority="10" />
     <umb:JsInclude ID="JsInclude17" runat="server" FilePath="modal/jquery.simplemodal.1.4.1.custom.js"
         PathNameAlias="UmbracoClient" Priority="10" />
-    <umb:JsInclude ID="JsInclude12" runat="server" FilePath="js/UmbracoSpeechBubbleBackend.js"
+    <umb:JsInclude ID="JsInclude12" runat="server" FilePath="js/UmbracoSpeechBubbleBackEnd.js"
         PathNameAlias="UmbracoRoot" />
-    <umb:JsInclude ID="JsInclude15" runat="server" FilePath="js/UmbracoSpeechBubbleBackend.js"
+    <umb:JsInclude ID="JsInclude15" runat="server" FilePath="js/UmbracoSpeechBubbleBackEnd.js"
         PathNameAlias="UmbracoRoot" />
     <umb:JsInclude ID="JsInclude16" runat="server" FilePath="Application/JQuery/jquery.cookie.js"
         PathNameAlias="UmbracoClient" Priority="1" />

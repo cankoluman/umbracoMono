@@ -101,7 +101,9 @@ namespace umbraco.cms.presentation
 
                 // Add scriptmanager version check
                 ScriptManager sm = ScriptManager.GetCurrent(Page);
-                sm.Scripts.Add(new ScriptReference(SystemDirectories.Umbraco + "/js/umbracoUpgradeChecker.js"));
+				var scriptPath = IOHelper.ResolveUrl(SystemDirectories.Umbraco + "/js/umbracoUpgradeChecker.js");
+				sm.Scripts.Add(new ScriptReference(scriptPath));
+                
                 sm.Services.Add(new ServiceReference(SystemDirectories.Webservices + "/CheckForUpgrade.asmx"));
 
                 Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "upgradeChecker", "jQuery(document).ready(function() {umbraco.presentation.webservices.CheckForUpgrade.CallUpgradeService(umbracoCheckUpgrade);});", true);
