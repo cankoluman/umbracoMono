@@ -4,7 +4,7 @@ using System.Data;
 using umbraco.DataLayer;
 using umbraco.BusinessLogic;
 using System.Collections.Generic;
-
+using Umbraco.Core.MultiPlatform;
 
 namespace umbraco.cms.businesslogic.datatype
 {
@@ -157,7 +157,11 @@ namespace umbraco.cms.businesslogic.datatype
                     this.GetType().InvokeMember(setting.Key, System.Reflection.BindingFlags.SetProperty, null, this, new object[] { setting.Value });
 
                 }
-                catch (MissingMethodException) { }
+				catch (MemberAccessException ex) 
+				{ 
+					if (!ReflectionHelper.IsMissingMemberExceptionSafe(ex))
+						throw ex;
+				}
             }
         }
 

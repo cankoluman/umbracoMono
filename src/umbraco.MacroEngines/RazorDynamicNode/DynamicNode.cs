@@ -8,6 +8,7 @@ using System.Web;
 using Umbraco.Core;
 using Umbraco.Core.Dynamics;
 using Umbraco.Core.Logging;
+using Umbraco.Core.MultiPlatform;
 using umbraco.interfaces;
 using System.Collections;
 using System.Reflection;
@@ -320,9 +321,12 @@ namespace umbraco.MacroEngines
                                                   args);
                 return true;
             }
-            catch (MissingMethodException)
+			catch (MemberAccessException ex)
             {
-                try
+                if (!ReflectionHelper.IsMissingMemberExceptionSafe(ex))
+					throw ex;
+
+				try
                 {
                     //Static or Instance Method?
                     result = typeof(DynamicNode).InvokeMember(binder.Name,
@@ -335,9 +339,12 @@ namespace umbraco.MacroEngines
                                                   args);
                     return true;
                 }
-                catch (MissingMethodException)
+				catch (MemberAccessException ex1)
                 {
-                    try
+					if (!ReflectionHelper.IsMissingMemberExceptionSafe(ex1))
+						throw ex1;
+
+					try
                     {
                         result = ExecuteExtensionMethod(args, binder.Name, false);
                         return true;
@@ -382,7 +389,10 @@ namespace umbraco.MacroEngines
             }
             else
             {
-                throw new MissingMethodException();
+				if (PlatformHelper.IsMono)
+					throw new MissingMemberException();
+
+				throw new MissingMethodException();
             }
             if (result != null)
             {
@@ -641,7 +651,7 @@ namespace umbraco.MacroEngines
             }
             return true;
         }
-
+		
         private object GetReflectedProperty(string alias)
         {
             Func<string, Attempt<object>> getMember =
@@ -651,16 +661,17 @@ namespace umbraco.MacroEngines
                         {
                             return new Attempt<object>(true,
                                                        n.GetType().InvokeMember(memberAlias,
-                                                                                System.Reflection.BindingFlags.GetProperty |
-                                                                                System.Reflection.BindingFlags.Instance |
-                                                                                System.Reflection.BindingFlags.Public,
+					                         									ReflectionHelper.GetBindingFlagsCasingSafe(
+																					System.Reflection.BindingFlags.GetProperty |
+										                                           	System.Reflection.BindingFlags.Instance |
+										                                           	System.Reflection.BindingFlags.Public),
                                                                                 null,
                                                                                 n,
                                                                                 null));
                         }
-                        catch (MissingMethodException ex)
+						catch (MissingMemberException ex)
                         {
-                            return new Attempt<object>(ex);
+							return new Attempt<object>(ex);
                         }
                     };
 
@@ -790,11 +801,11 @@ namespace umbraco.MacroEngines
             if (result != null)
             {
                 //a really rough check to see if this may be valid xml
-                if (XmlHelper.CouldItBeXml(sResult))
+                if (Umbraco.Core.XmlHelper.CouldItBeXml(sResult))
                 {
                     try
                     {
-                        XElement e = XElement.Parse(XmlHelper.StripDashesInElementOrAttributeNames(sResult), LoadOptions.None);
+						XElement e = XElement.Parse(Umbraco.Core.XmlHelper.StripDashesInElementOrAttributeNames(sResult), LoadOptions.None);
                         if (e != null)
                         {
                             //check that the document element is not one of the disallowed elements

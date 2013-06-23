@@ -3,6 +3,7 @@ using System.Xml;
 using System.Xml.Linq;
 using umbraco.cms.businesslogic.media;
 using umbraco.cms.presentation.Trees;
+using Umbraco.Core.MultiPlatform;
 
 namespace umbraco.editorControls.MultiNodeTreePicker
 {
@@ -129,7 +130,7 @@ namespace umbraco.editorControls.MultiNodeTreePicker
             var xPathType = this.GetXPathFilterTypeFromCookie(this.GetDataTypeId());
             var xDoc = new XmlDocument();
 
-            var xmlNode = umbraco.library.GetMedia(int.Parse(node.NodeID), false).Current.OuterXml;
+            var xmlNode = umbraco.library.GetMedia(int.Parse(node.NodeID), false).Current().OuterXml;
 
             var xmlString = "<root>" + xmlNode + "</root>";
             var xml = XElement.Parse(xmlString);

@@ -8,6 +8,7 @@ using System.IO;
 
 using Umbraco.Core;
 using Umbraco.Core.IO;
+using Umbraco.Core.MultiPlatform;
 using umbraco.cms.businesslogic.member;
 
 namespace Umbraco.Web.BaseRest
@@ -371,7 +372,7 @@ namespace Umbraco.Web.BaseRest
 					switch (_method.ReturnType.ToString())
 					{
 						case "System.Xml.XPath.XPathNodeIterator":
-							return ((System.Xml.XPath.XPathNodeIterator)response).Current.OuterXml;
+							return ((System.Xml.XPath.XPathNodeIterator)response).Current().OuterXml;
 						case "System.Xml.Linq.XDocument":
 							return response.ToString();
 						case "System.Xml.XmlDocument":

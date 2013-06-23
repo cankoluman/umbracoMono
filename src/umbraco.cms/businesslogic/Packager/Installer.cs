@@ -9,6 +9,7 @@ using System.Linq;
 using ICSharpCode.SharpZipLib.Zip;
 using Umbraco.Core;
 using Umbraco.Core.Logging;
+using Umbraco.Core.MultiPlatform;
 using umbraco.cms.businesslogic.web;
 using umbraco.cms.businesslogic.propertytype;
 using umbraco.BusinessLogic;
@@ -919,7 +920,7 @@ namespace umbraco.cms.businesslogic.packager
                 "http://" + UmbracoSettings.PackageServer + "/fetch?package=" + Package.ToString(),
                 IOHelper.MapPath(SystemDirectories.Packages + "/" + Package.ToString() + ".umb"));
 
-            return "packages\\" + Package.ToString() + ".umb";
+			return "packages" + PlatformHelper.DirSepChar + Package.ToString() + ".umb";
         }
         
         #endregion
@@ -973,8 +974,11 @@ namespace umbraco.cms.businesslogic.packager
             Debug.Assert(path != null && path.Length >= 1);
             Debug.Assert(fileName != null && fileName.Length >= 1);
 
-            path = path.Replace('/', '\\');
-            fileName = fileName.Replace('/', '\\');
+			if (Path.DirectorySeparatorChar.ToString() == PlatformHelper.WIN_DIRSEP)
+			{
+				path = PlatformHelper.ConvertPathFromUnixToWin(path);
+				fileName = PlatformHelper.ConvertPathFromUnixToWin(fileName);
+			}
 
             // Does filename start with a slash? Does path end with one?
             bool fileNameStartsWithSlash = (fileName[0] == Path.DirectorySeparatorChar);
@@ -1024,7 +1028,13 @@ namespace umbraco.cms.businesslogic.packager
             ZipEntry theEntry;
             while ((theEntry = s.GetNextEntry()) != null)
             {
-                string fileName = Path.GetFileName(theEntry.Name);
+				string entryName = theEntry.Name;
+
+				if (Path.DirectorySeparatorChar.ToString() == PlatformHelper.UNIX_DIRSEP)
+					entryName = entryName.Replace(PlatformHelper.WIN_DIRSEP, Path.DirectorySeparatorChar.ToString());
+
+				string directoryName = Path.GetDirectoryName(entryName);
+                string fileName = Path.GetFileName(entryName);
 
                 if (fileName != String.Empty)
                 {

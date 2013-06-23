@@ -50,10 +50,11 @@ namespace umbraco.MacroEngines
             }
 
             var media = umbraco.library.GetMedia(id, true);
-            if (media != null && media.Current != null)
+            if (media != null)
             {
-                media.MoveNext();
-                return new ExamineBackedMedia(media.Current);
+				media.MoveNext();
+				if (media.Current != null)
+                	return new ExamineBackedMedia(media.Current);
             }
 
             return null;
@@ -64,9 +65,10 @@ namespace umbraco.MacroEngines
             if (xpath == null) throw new ArgumentNullException("xpath");
             Name = xpath.GetAttribute("nodeName", "");
             Values = new Dictionary<string, string>();
-            var result = xpath.SelectChildren(XPathNodeType.Element);
+            var result = xpath.Select(".");
             //add the attributes e.g. id, parentId etc
-            if (result.Current.HasAttributes)
+			result.MoveNext();
+            if (result.Current != null && result.Current.HasAttributes)
             {
                 if (result.Current.MoveToFirstAttribute())
                 {
@@ -75,9 +77,11 @@ namespace umbraco.MacroEngines
                     {
                         Values.Add(result.Current.Name, result.Current.Value);
                     }
-                    result.Current.MoveToParent();
+
                 }
             }
+
+			result = xpath.SelectChildren(XPathNodeType.Element);
             while (result.MoveNext())
             {
                 if (result.Current != null && !result.Current.HasAttributes)
@@ -123,28 +127,31 @@ namespace umbraco.MacroEngines
             //custom property, not loaded from examine
             //have to do a getmedia and get it that way, but then add it to the cache
             var media = umbraco.library.GetMedia(this.Id, true);
-            if (media != null && media.Current != null)
+            if (media != null)
             {
-                media.MoveNext();
-                XPathNavigator xpath = media.Current;
-                var result = xpath.SelectChildren(XPathNodeType.Element);
-                while (result.MoveNext())
-                {
-                    if (result.Current != null && !result.Current.HasAttributes)
-                    {
-                        if (string.Equals(result.Current.Name, alias))
-                        {
-                            string value = result.Current.Value;
-                            if (string.IsNullOrEmpty(value))
-                            {
-                                value = result.Current.OuterXml;
-                            }
-                            Values.Add(result.Current.Name, value);
-                            propertyExists = true;
-                            return new PropertyResult(alias, value, Guid.Empty);
-                        }
-                    }
-                }
+				media.MoveNext();
+				if (media.Current != null)
+				{
+					XPathNavigator xpath = media.Current;
+	                var result = xpath.SelectChildren(XPathNodeType.Element);
+	                while (result.MoveNext())
+	                {
+	                    if (result.Current != null && !result.Current.HasAttributes)
+	                    {
+	                        if (string.Equals(result.Current.Name, alias))
+	                        {
+	                            string value = result.Current.Value;
+	                            if (string.IsNullOrEmpty(value))
+	                            {
+	                                value = result.Current.OuterXml;
+	                            }
+	                            Values.Add(result.Current.Name, value);
+	                            propertyExists = true;
+	                            return new PropertyResult(alias, value, Guid.Empty);
+	                        }
+	                    }
+	                }
+				}
             }
             propertyExists = false;
             return null;
@@ -427,9 +434,11 @@ namespace umbraco.MacroEngines
             }
 
             var media = umbraco.library.GetMedia(parentId, true);
-            if (media != null && media.Current != null)
+            if (media != null)
             {
                 media.MoveNext();
+				if (media.Current != null)
+				{
                 var children = media.Current.SelectChildren(XPathNodeType.Element);
                 var mediaList = new List<ExamineBackedMedia>();
                 while (children != null && children.Current != null)
@@ -453,6 +462,7 @@ namespace umbraco.MacroEngines
                     }
                 }
                 return mediaList;
+				}
             }
 
             return null;

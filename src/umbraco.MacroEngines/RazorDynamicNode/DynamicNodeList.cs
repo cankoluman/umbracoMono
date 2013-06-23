@@ -11,7 +11,7 @@ using System.Runtime.CompilerServices;
 using System.Web.Compilation;
 using System.Linq.Expressions;
 using System.Linq.Dynamic;
-using Umbraco.Core;
+using Umbraco.Core.MultiPlatform;
 namespace umbraco.MacroEngines
 {
     public class DynamicNodeList : DynamicObject, IEnumerable<DynamicNode>
@@ -249,9 +249,12 @@ namespace umbraco.MacroEngines
                                                   args);
                 return true;
             }
-            catch (MissingMethodException)
+			catch (MemberAccessException ex)
             {
-                try
+                if (!ReflectionHelper.IsMissingMemberExceptionSafe(ex))
+					throw ex;
+
+				try
                 {
                     //Static or Instance Method?
                     result = Items.GetType().InvokeMember(binder.Name,
@@ -264,8 +267,10 @@ namespace umbraco.MacroEngines
                                                   args);
                     return true;
                 }
-                catch (MissingMethodException)
+				catch (MemberAccessException ex1)
                 {
+					if (!ReflectionHelper.IsMissingMemberExceptionSafe(ex1))
+						throw ex1;
 
                     try
                     {
@@ -467,7 +472,10 @@ namespace umbraco.MacroEngines
             }
             else
             {
-                throw new MissingMethodException();
+                if (PlatformHelper.IsMono)
+					throw new MissingMemberException();
+
+				throw new MissingMethodException();
             }
             if (result != null)
             {
