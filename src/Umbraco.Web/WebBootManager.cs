@@ -93,7 +93,13 @@ namespace Umbraco.Web
         protected override void InitializeApplicationEventsResolver()
         {
             base.InitializeApplicationEventsResolver();
-            ApplicationEventsResolver.Current.AddType<CacheHelperExtensions.CacheHelperApplicationEventListener>();
+
+			if (!ApplicationEventsResolver.Current
+			    .ContainsType(typeof(CacheHelperExtensions.CacheHelperApplicationEventListener)))
+			{
+				ApplicationEventsResolver.Current.AddType<CacheHelperExtensions.CacheHelperApplicationEventListener>();
+			}
+            
             ApplicationEventsResolver.Current.AddType<LegacyScheduledTasks>();
         }
 
