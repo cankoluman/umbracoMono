@@ -72,7 +72,7 @@
     jQuery(function () {
         jQuery.ajax({
             type: 'GET',
-            url: 'dashboard/feedproxy.aspx?url=http://umbraco.org/feeds/videos/getting-started',
+            url: 'dashboard/FeedProxy.aspx?url=http://umbraco.org/feeds/videos/getting-started',
             dataType: 'xml',
             success: function (xml) {
                 var html = "<div class='tvList'>";
@@ -98,7 +98,7 @@
 </script>
 <div class="dashboardWrapper">
     <h2>Watch and learn</h2>
-    <img src="./dashboard/images/tv.png" alt="Videos" class="dashboardIcon" />
+    <img src="./dashboard/images/TV.png" alt="Videos" class="dashboardIcon" />
     <h3>Hours of Umbraco training videos are only a click away</h3>
     <p>Want to master Umbraco? Spend a couple of minutes learning some best practices by watching one of these videos about using Umbraco. And visit <a href="http://umbraco.tv" target="_blank">umbraco.tv</a> for even more Umbraco videos</p>
     <h3>To get you started:</h3>
