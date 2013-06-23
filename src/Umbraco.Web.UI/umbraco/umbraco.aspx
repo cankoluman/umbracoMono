@@ -25,7 +25,7 @@
         Priority="0" />
     <umb:JsInclude ID="JsInclude3" runat="server" FilePath="ui/jqueryui.js" PathNameAlias="UmbracoClient"
         Priority="1" />
-    <umb:JsInclude ID="JsInclude14" runat="server" FilePath="Application/jQuery/jquery.ba-bbq.min.js"
+    <umb:JsInclude ID="JsInclude14" runat="server" FilePath="Application/JQuery/jquery.ba-bbq.min.js"
         PathNameAlias="UmbracoClient" Priority="2" />
     <umb:JsInclude ID="JsInclude5" runat="server" FilePath="Application/UmbracoApplicationActions.js"
         PathNameAlias="UmbracoClient" Priority="2" />
@@ -48,7 +48,7 @@
         PathNameAlias="UmbracoRoot" />
     <umb:JsInclude ID="JsInclude15" runat="server" FilePath="js/UmbracoSpeechBubbleBackend.js"
         PathNameAlias="UmbracoRoot" />
-    <umb:JsInclude ID="JsInclude16" runat="server" FilePath="Application/jQuery/jquery.cookie.js"
+    <umb:JsInclude ID="JsInclude16" runat="server" FilePath="Application/JQuery/jquery.cookie.js"
         PathNameAlias="UmbracoClient" Priority="1" />
     <script type="text/javascript">
         this.name = 'umbracoMain';

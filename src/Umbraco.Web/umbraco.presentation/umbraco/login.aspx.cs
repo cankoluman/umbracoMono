@@ -16,6 +16,7 @@ using umbraco.businesslogic.Exceptions;
 using umbraco.IO;
 using umbraco.cms.businesslogic.web;
 using System.Linq;
+using Umbraco.Core.MultiPlatform;
 
 namespace umbraco.cms.presentation
 {
@@ -163,7 +164,9 @@ namespace umbraco.cms.presentation
             Uri absoluteUri;
             if (Uri.TryCreate(url, UriKind.Absolute, out absoluteUri))
             {
-                return String.Equals(HttpContext.Current.Request.Url.Host, absoluteUri.Host,
+				var hostName = UriHelper.GetHostName(absoluteUri);
+
+				return String.Equals(HttpContext.Current.Request.Url.Host, hostName,
                             StringComparison.OrdinalIgnoreCase);
             }
 
