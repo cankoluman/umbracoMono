@@ -251,9 +251,6 @@
     <Content Include="umbraco_client\CodeMirror\js\mode\sieve\LICENSE" />
     <None Include="umbraco_client\CodeMirror\js\mode\xquery\LICENSE" />
     <Content Include="Views\Web.config" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Views\Web.config.transform" />
     <None Include="web.Template.Debug.config">
       <DependentUpon>web.Template.config</DependentUpon>
@@ -2342,6 +2339,9 @@
     <Content Include="config\log4net.config" />
     <Content Include="config\FileSystemProviders.config" />
     <Content Include="config\EmbeddedMedia.config" />
+    <Content Include="web.Template.mono.config" />
+    <Content Include="web.Template.mono.debug.config" />
+    <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
