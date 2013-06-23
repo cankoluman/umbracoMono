@@ -277,9 +277,6 @@
       <DependentUpon>loadStarterKitDesigns.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="install\steps\Skinning\loadStarterKitDesigns.ascx.designer.cs">
-      <DependentUpon>loadStarterKitDesigns.ascx</DependentUpon>
-    </Compile>
     <Compile Include="install\steps\Skinning\LoadStarterKits.ascx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -2342,6 +2339,9 @@
     <Content Include="web.Template.mono.config" />
     <Content Include="web.Template.mono.debug.config" />
     <Content Include="web.config" />
+    <Compile Include="install\steps\Skinning\loadStarterKitDesigns.ascx.designer.cs">
+      <DependentUpon>loadStarterKitDesigns.ascx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

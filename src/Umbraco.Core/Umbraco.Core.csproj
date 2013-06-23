@@ -685,6 +685,11 @@
     <Compile Include="Xml\XmlNodeListFactory.cs" />
     <Compile Include="Xml\XmlNodeExtensions.cs" />
     <Compile Include="Xml\XPathVariable.cs" />
+    <Compile Include="MultiPlatform\PlatformHelper.cs" />
+    <Compile Include="MultiPlatform\ReflectionHelper.cs" />
+    <Compile Include="MultiPlatform\UriHelper.cs" />
+    <Compile Include="MultiPlatform\WebFormsHelper.cs" />
+    <Compile Include="MultiPlatform\XmlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -704,4 +709,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="MultiPlatform\" />
+  </ItemGroup>
 </Project>

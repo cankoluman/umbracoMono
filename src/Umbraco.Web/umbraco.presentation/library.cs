@@ -11,6 +11,7 @@ using System.Xml;
 using System.Xml.XPath;
 using Umbraco.Core;
 using Umbraco.Core.Logging;
+using Umbraco.Core.MultiPlatform;
 using Umbraco.Web;
 using Umbraco.Web.Routing;
 using Umbraco.Web.Templates;
@@ -96,7 +97,7 @@ namespace umbraco
 
         public library(int id)
         {
-            _page = new page(((System.Xml.IHasXmlNode)GetXmlNodeById(id.ToString()).Current).GetNode());
+            _page = new page(((System.Xml.IHasXmlNode)GetXmlNodeById(id.ToString()).Current()).GetNode());
         }
 
         /// <summary>
@@ -1043,7 +1044,7 @@ namespace umbraco
         {
             try
             {
-                page p = new page(((IHasXmlNode)GetXmlNodeById(PageId.ToString()).Current).GetNode());
+                page p = new page(((IHasXmlNode)GetXmlNodeById(PageId.ToString()).Current()).GetNode());
                 template t = new template(p.Template);
                 Control c = t.parseStringBuilder(new StringBuilder(Text), p);
 
@@ -1095,7 +1096,7 @@ namespace umbraco
             else
             {
 
-                var p = new page(((IHasXmlNode)GetXmlNodeById(PageId.ToString()).Current).GetNode());
+                var p = new page(((IHasXmlNode)GetXmlNodeById(PageId.ToString()).Current()).GetNode());
                 p.RenderPage(TemplateId);
                 var c = p.PageContentControl;
                 

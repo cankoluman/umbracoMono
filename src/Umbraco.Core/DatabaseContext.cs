@@ -419,7 +419,7 @@ namespace Umbraco.Core
                                   "<p>However, your hosting provider may not support this option. Umbraco does not currently support MySQL installs that do not support case insensitive queries</p>" +
                                   "<p>Make sure to check with your hosting provider if they support case insensitive queries as well.</p>" +
                                   "<p>They can check this by looking for the following two settings in the my.ini file in their MySQL installation directory:</p>" +
-                                  "<pre>lower_case_table_names=1\nlower_case_file_system=1</pre><br />" +
+								"<pre>lower_case_table_names=1\nlower_case_file_system=1\n\nNote:ignore the lower_case_file_system=1 setting\nfor unix systems, it cannot be set.</pre><br />" +
                                   "<p>For more technical information on case sensitivity in MySQL, have a look at " +
                                   "<a href='http://dev.mysql.com/doc/refman/5.0/en/identifier-case-sensitivity.html'>the documentation on the subject</a></p>";
                     }

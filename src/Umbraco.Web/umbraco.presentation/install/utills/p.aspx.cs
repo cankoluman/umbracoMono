@@ -6,6 +6,7 @@ using System.Web.Script.Services;
 using System.Web.Services;
 using Umbraco.Core;
 using Umbraco.Core.Logging;
+using Umbraco.Core.MultiPlatform;
 
 namespace umbraco.presentation.install.utills
 {
@@ -39,11 +40,11 @@ namespace umbraco.presentation.install.utills
                 if (feed == "developervids")
                     url = "http://umbraco.org/feeds/videos/developer-foundation-html";
 
-                string XmlResponse = library.GetXmlDocumentByUrl(url).Current.OuterXml;
+                string XmlResponse = library.GetXmlDocumentByUrl(url).Current().OuterXml;
 
                 if (!XmlResponse.Contains("System.Net.WebException"))
                 {
-                    Response.Write(library.GetXmlDocumentByUrl(url).Current.OuterXml);
+					Response.Write(XmlResponse);
                 }
                 else
                 {
