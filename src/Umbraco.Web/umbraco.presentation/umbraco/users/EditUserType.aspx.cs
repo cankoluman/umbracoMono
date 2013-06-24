@@ -16,6 +16,7 @@ using umbraco.BusinessLogic;
 using umbraco.uicontrols;
 using umbraco.cms.presentation.Trees;
 using umbraco.IO;
+using Umbraco.Core.MultiPlatform;
 
 namespace umbraco.cms.presentation.user
 {
@@ -25,12 +26,18 @@ namespace umbraco.cms.presentation.user
         {
             CurrentApp = BusinessLogic.DefaultApps.users.ToString();
         }
+
+		protected void Page_PreRender(object sender, EventArgs e)
+		{
+			setCheckBoxStates(cblRights);
+		}
+
         protected void Page_Load(object sender, EventArgs e)
         {
             pnlUmbraco.Text = umbraco.ui.Text("usertype", base.getUser());
 
             ImageButton save = pnlUmbraco.Menu.NewImageButton();
-            save.ImageUrl = SystemDirectories.Umbraco + "/images/editor/save.gif";
+            save.ImageUrl = SystemDirectories.Umbraco + "/images/editor/Save.GIF";
             save.Click += new ImageClickEventHandler(save_Click);
             save.ID = "save";
             pp_alias.Text = umbraco.ui.Text("usertype", base.getUser()) + " " + umbraco.ui.Text("alias", base.getUser());
@@ -56,13 +63,22 @@ namespace umbraco.cms.presentation.user
 
         }
 
+		//mono fix for lost checkboxlist states
+		private void setCheckBoxStates(CheckBoxList cbl)
+		{
+			if (IsPostBack)
+			{
+				WebFormsHelper.SetCheckBoxStates(cbl, Request.Form);
+			}
+		}
+
         void save_Click(object sender, ImageClickEventArgs e)
         {
             UserType userType = CurrentUserType;
             userType.Name = txtUserTypeName.Text;
             string actions = "";
 
-            foreach (ListItem li in cbl_rights.Items) {
+            foreach (ListItem li in cblRights.Items) {
                 if (li.Selected)
                     actions += li.Value;
             }
@@ -109,7 +125,7 @@ namespace umbraco.cms.presentation.user
                 if(CurrentUserTypeActions.Contains(ai))
                     li.Selected = true;
 
-                cbl_rights.Items.Add(li);
+                cblRights.Items.Add(li);
             }
         }
 

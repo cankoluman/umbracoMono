@@ -58,7 +58,7 @@ namespace umbraco.presentation.create
             if (UmbracoSettings.UseLegacyXmlSchema) {
                 return "/xslt/templates";
             } else {
-                return "/xslt/templates/schema2";
+                return "/xslt/templates/Schema2";
             }
         }
 
@@ -71,7 +71,7 @@ namespace umbraco.presentation.create
                     createMacroVal = 1;
 
                 string xsltName = UmbracoSettings.UseLegacyXmlSchema ? xsltTemplate.SelectedValue :
-                    Path.Combine("schema2", xsltTemplate.SelectedValue);
+                    Path.Combine("Schema2", xsltTemplate.SelectedValue);
 
                 string returnUrl = dialogHandler_temp.Create(
                     helper.Request("nodeType"),

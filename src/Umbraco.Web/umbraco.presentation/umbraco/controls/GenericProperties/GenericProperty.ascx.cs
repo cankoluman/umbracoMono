@@ -17,7 +17,7 @@ namespace umbraco.controls.GenericProperties
 	///		Summary description for GenericProperty.
 	/// </summary>
 	[ClientDependency(ClientDependencyType.Css, "GenericProperty/genericproperty.css", "UmbracoClient")]
-    [ClientDependency(ClientDependencyType.Javascript, "GenericProperty/genericproperty.js", "UmbracoClient")]
+    [ClientDependency(ClientDependencyType.Javascript, "GenericProperty/genericProperty.js", "UmbracoClient")]
     [ClientDependency(ClientDependencyType.Javascript, "js/UmbracoCasingRules.aspx", "UmbracoRoot")]
     public partial class GenericProperty : System.Web.UI.UserControl
 	{
@@ -186,7 +186,7 @@ namespace umbraco.controls.GenericProperties
 				DeleteButton2.Visible = false;
 			}
             validationLink.NavigateUrl = "#";
-            validationLink.Attributes["onclick"] = ClientTools.Scripts.OpenModalWindow("dialogs/regexWs.aspx?target=" + tbValidation.ClientID, "Search for regular expression", 600, 500) + ";return false;";
+            validationLink.Attributes["onclick"] = ClientTools.Scripts.OpenModalWindow("dialogs/RegexWs.aspx?target=" + tbValidation.ClientID, "Search for regular expression", 600, 500) + ";return false;";
 
 			// Data type definitions
 			if (_dataTypeDefinitions != null) 
@@ -223,7 +223,7 @@ namespace umbraco.controls.GenericProperties
 				checkMandatory.Checked = true;
 
 			// validation
-			if (_pt != null && _pt.ValidationRegExp != "")
+			if (_pt != null && !String.IsNullOrEmpty(_pt.ValidationRegExp))
 				tbValidation.Text = _pt.ValidationRegExp;
 
 			// description

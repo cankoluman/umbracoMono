@@ -107,7 +107,7 @@ namespace umbraco
 				}
 			}
 
-            m_returnUrl = string.Format(SystemDirectories.Umbraco + "/developer/python/editPython.aspx?file={0}", fileName);
+            m_returnUrl = string.Format(SystemDirectories.Umbraco + "/developer/Python/editPython.aspx?file={0}", fileName);
             return true;
         }
 

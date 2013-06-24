@@ -79,7 +79,7 @@ namespace umbraco.presentation.members
 			base.OnInit(e);
 			Panel1.hasMenu = true;
 			save = Panel1.Menu.NewImageButton();
-			save.ImageUrl =  UmbracoPath + "/images/editor/save.gif";
+			save.ImageUrl =  UmbracoPath + "/images/editor/Save.GIF";
 			save.Click += new System.Web.UI.ImageClickEventHandler(save_click);
 			save.AlternateText = ui.Text("save");
 	

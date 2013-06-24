@@ -79,7 +79,7 @@
             </tr>
             <tr>
                 <td class="propertyHeader">
-                    <img alt="User control Icon" src="../../images/developer/userControlIcon.png" align="absMiddle"/>
+                    <img alt="User control Icon" src="../../images/developer/usercontrolIcon.png" align="absMiddle"/>
                     or .NET User Control
                 </td>
                 <td class="propertyContent">

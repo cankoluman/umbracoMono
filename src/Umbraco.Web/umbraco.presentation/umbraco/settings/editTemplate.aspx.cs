@@ -91,7 +91,7 @@ namespace umbraco.cms.presentation.settings
 			Panel1.hasMenu = true;
 
 			MenuIconI save = Panel1.Menu.NewIcon();
-			save.ImageURL = SystemDirectories.Umbraco + "/images/editor/save.gif";
+			save.ImageURL = SystemDirectories.Umbraco + "/images/editor/Save.GIF";
 			save.OnClickCommand = "doSubmit()";
 			save.AltText = ui.Text("save");
 			save.ID = "save";

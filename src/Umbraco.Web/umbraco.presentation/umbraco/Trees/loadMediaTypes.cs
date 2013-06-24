@@ -34,7 +34,7 @@ namespace umbraco
             Javascript.Append(
                 @"
 function openMediaType(id) {
-	UmbClientMgr.contentFrame('settings/editMediaType.aspx?id=' + id);
+	UmbClientMgr.contentFrame('settings/EditMediaType.aspx?id=' + id);
 }
 ");
         }
@@ -51,8 +51,8 @@ function openMediaType(id) {
                 xNode.NodeID = mediaType.Id.ToString(CultureInfo.InvariantCulture);
                 xNode.Text = mediaType.Name;
                 xNode.Action = string.Format("javascript:openMediaType({0});", mediaType.Id);
-                xNode.Icon = "settingDataType.gif";
-                xNode.OpenIcon = "settingDataType.gif";
+                xNode.Icon = "settingDatatype.gif";
+                xNode.OpenIcon = "settingDatatype.gif";
                 xNode.Source = GetTreeServiceUrl(mediaType.Id);
                 xNode.HasChildren = hasChildren;
                 if (hasChildren)

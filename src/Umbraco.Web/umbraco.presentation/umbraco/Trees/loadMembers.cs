@@ -50,7 +50,7 @@ namespace umbraco
             Javascript.Append(
                 @"
 function openMember(id) {
-	UmbClientMgr.contentFrame('members/editMember.aspx?id=' + id);
+	UmbClientMgr.contentFrame('members/EditMember.aspx?id=' + id);
 }
 
 function searchMembers(id) {
@@ -58,7 +58,7 @@ function searchMembers(id) {
 }
 
 function viewMembers(letter) {
-	UmbClientMgr.contentFrame('members/viewMembers.aspx?letter=' + letter);
+	UmbClientMgr.contentFrame('members/ViewMembers.aspx?letter=' + letter);
 }
 
 function openContentItem(id) {

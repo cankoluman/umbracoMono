@@ -29,7 +29,7 @@ namespace umbraco.cms.presentation.settings.stylesheet
             base.OnInit(e);
 
             SaveButton = Panel1.Menu.NewIcon();
-            SaveButton.ImageURL = SystemDirectories.Umbraco + "/images/editor/save.gif";
+            SaveButton.ImageURL = SystemDirectories.Umbraco + "/images/editor/Save.GIF";
             SaveButton.AltText = "Save stylesheet";
             SaveButton.ID = "save";
         }

@@ -22,7 +22,7 @@ namespace umbraco
 
 		protected virtual string EditViewFile
 		{
-			get { return "Settings/Views/EditView.aspx"; }
+			get { return "settings/views/EditView.aspx"; }
 		}
 
 		protected string BasePath

@@ -49,7 +49,7 @@ namespace umbraco.presentation.members {
                     Literal _login = (Literal)e.Item.FindControl("lt_login");
                     Button _button = (Button)e.Item.FindControl("bt_delete");
 
-                    _name.Text = "<a href='editMember.aspx?id=" + mem.Id.ToString() + "'>" + mem.Text + "</a>";
+                    _name.Text = "<a href='EditMember.aspx?id=" + mem.Id.ToString() + "'>" + mem.Text + "</a>";
                     _login.Text = mem.LoginName;
                     _email.Text = mem.Email;
 
@@ -65,7 +65,7 @@ namespace umbraco.presentation.members {
                     Literal _login = (Literal)e.Item.FindControl("lt_login");
                     Button _button = (Button)e.Item.FindControl("bt_delete");
 
-                    _name.Text = "<a href='editMember.aspx?id=" + mem.UserName + "'>" + mem.UserName + "</a>";
+                    _name.Text = "<a href='EditMember.aspx?id=" + mem.UserName + "'>" + mem.UserName + "</a>";
                     _login.Text = mem.UserName;
                     _email.Text = mem.Email;
                     _button.Visible = false;

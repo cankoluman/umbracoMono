@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Xml;
 using Umbraco.Core.Logging;
+using Umbraco.Core.MultiPlatform;
 using Umbraco.Web;
 using umbraco;
 using umbraco.BusinessLogic;
@@ -108,10 +109,10 @@ namespace umbraco
 			{
 				isLegacyXmlSchema = UmbracoSettings.UseLegacyXmlSchema;
 			}
-			catch (MissingMethodException)
+			catch (MemberAccessException ex)
 			{
-				// Method doesn't exist so must be using the legacy schema
-				isLegacyXmlSchema = true;
+				if (ReflectionHelper.IsMissingMemberExceptionSafe(ex))
+					isLegacyXmlSchema = true;
 			}
 
 			return isLegacyXmlSchema;

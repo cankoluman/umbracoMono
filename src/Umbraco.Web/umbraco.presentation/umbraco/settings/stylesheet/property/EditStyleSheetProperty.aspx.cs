@@ -55,7 +55,7 @@ namespace umbraco.cms.presentation.settings.stylesheet
 
             ImageButton bt = Panel1.Menu.NewImageButton();
             bt.Click += SaveClick;
-            bt.ImageUrl = UmbracoPath + "/images/editor/save.gif";
+            bt.ImageUrl = UmbracoPath + "/images/editor/Save.GIF";
             bt.AlternateText = ui.Text("save");
             bt.ID = "save";
             SetupPreView();

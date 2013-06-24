@@ -200,7 +200,7 @@ Umbraco.Application.Actions = function () {
         actionRollback: function () {
             /// <summary></summary>
 
-            UmbClientMgr.openModalWindow('dialogs/rollback.aspx?nodeId=' + UmbClientMgr.mainTree().getActionNode().nodeId + '&rnd=' + this._utils.generateRandom(), uiKeys['actions_rollback'], true, 600, 550);
+            UmbClientMgr.openModalWindow('dialogs/rollBack.aspx?nodeId=' + UmbClientMgr.mainTree().getActionNode().nodeId + '&rnd=' + this._utils.generateRandom(), uiKeys['actions_rollback'], true, 600, 550);
         },
 
         actionRefresh: function () {
@@ -257,7 +257,7 @@ Umbraco.Application.Actions = function () {
             /// <summary></summary>
 
             if (UmbClientMgr.mainTree().getActionNode().nodeId != '-1' && UmbClientMgr.mainTree().getActionNode().nodeType != '') {
-                UmbClientMgr.openModalWindow("dialogs/assignDomain.aspx?id=" + UmbClientMgr.mainTree().getActionNode().nodeId, uiKeys['actions_assignDomain'], true, 500, 420);
+                UmbClientMgr.openModalWindow("dialogs/AssignDomain.aspx?id=" + UmbClientMgr.mainTree().getActionNode().nodeId, uiKeys['actions_assignDomain'], true, 500, 420);
             }
         },
 

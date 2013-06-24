@@ -244,7 +244,10 @@ namespace Umbraco.Core
                     "HtmlAgilityPack.",
                     "TidyNet.",
                     "ICSharpCode.",
-                    "CookComputing."
+                    "CookComputing.",
+
+					/* Mono */
+					"MonoDevelop.NUnit"
                 };
 
         /// <summary>

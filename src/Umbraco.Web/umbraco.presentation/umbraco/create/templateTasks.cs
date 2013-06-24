@@ -47,7 +47,7 @@ namespace umbraco
 
             var editor = "settings/editTemplate.aspx";
             if(Umbraco.Core.Configuration.UmbracoSettings.DefaultRenderingEngine == RenderingEngine.Mvc)
-                editor = "settings/views/editView.aspx";
+                editor = "settings/views/EditView.aspx";
 
             if (masterId > 0)
             {

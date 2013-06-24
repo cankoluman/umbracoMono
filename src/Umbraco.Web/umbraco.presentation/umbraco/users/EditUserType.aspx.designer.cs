@@ -94,12 +94,12 @@ namespace umbraco.cms.presentation.user {
         protected global::umbraco.uicontrols.PropertyPanel pp_rights;
         
         /// <summary>
-        /// cbl_rights control.
+        /// cblRights control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList cbl_rights;
+        protected System.Web.UI.WebControls.CheckBoxList cblRights;
     }
 }
