@@ -22,7 +22,11 @@ namespace Umbraco.Tests.PublishedContent
 
         public override void Initialize()
         {
-            base.Initialize();
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());            
+
+			base.Initialize();
             //copy the umbraco settings file over
             var currDir = new DirectoryInfo(TestHelper.CurrentAssemblyDirectory);
             File.Copy(

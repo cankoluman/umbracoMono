@@ -21,6 +21,8 @@ using Umbraco.Tests.Stubs;
 using Umbraco.Web;
 using Umbraco.Web.Routing;
 using umbraco.BusinessLogic;
+using umbraco.DataLayer;
+using umbraco.DataLayer.SqlHelpers.MySqlTest;
 
 namespace Umbraco.Tests.TestHelpers
 {
@@ -44,24 +46,25 @@ namespace Umbraco.Tests.TestHelpers
             //Ensure that any database connections from a previous test is disposed. This is really just double safety as its also done in the TearDown.
             if(ApplicationContext != null && DatabaseContext != null)
                 DatabaseContext.Database.Dispose();
-            SqlCeContextGuardian.CloseBackgroundConnection();
-			
-            try
-            {
-                //Delete database file before continueing
-                string filePath = string.Concat(path, "\\UmbracoPetaPocoTests.sdf");
-                if (File.Exists(filePath))
-                {
-                    File.Delete(filePath);
-                }
-            }
-            catch (Exception)
-            {
-                //if this doesn't work we have to make sure everything is reset! otherwise
-                // well run into issues because we've already set some things up
-                TearDown();
-                throw;
-            }
+
+//            SqlCeContextGuardian.CloseBackgroundConnection();
+//			
+//            try
+//            {
+//                //Delete database file before continueing
+//                string filePath = string.Concat(path, "\\UmbracoPetaPocoTests.sdf");
+//                if (File.Exists(filePath))
+//                {
+//                    File.Delete(filePath);
+//                }
+//            }
+//            catch (Exception)
+//            {
+//                //if this doesn't work we have to make sure everything is reset! otherwise
+//                // well run into issues because we've already set some things up
+//                TearDown();
+//                throw;
+//            }
 
             RepositoryResolver.Current = new RepositoryResolver(
                 new RepositoryFactory());
@@ -69,13 +72,13 @@ namespace Umbraco.Tests.TestHelpers
             SqlSyntaxProvidersResolver.Current = new SqlSyntaxProvidersResolver(
                 new List<Type>{ typeof(MySqlSyntaxProvider), typeof(SqlCeSyntaxProvider), typeof(SqlServerSyntaxProvider) }) { CanResolveBeforeFrozen = true};
 
-            //Get the connectionstring settings from config
-            var settings = ConfigurationManager.ConnectionStrings[Core.Configuration.GlobalSettings.UmbracoConnectionName];
-            ConfigurationManager.AppSettings.Set(Core.Configuration.GlobalSettings.UmbracoConnectionName, @"datalayer=SQLCE4Umbraco.SqlCEHelper,SQLCE4Umbraco;data source=|DataDirectory|\UmbracoPetaPocoTests.sdf");
-            
-            //Create the Sql CE database
-            var engine = new SqlCeEngine(settings.ConnectionString);
-            engine.CreateDatabase();
+			//Get the connectionstring settings from config
+			var dbDsn = TestHelper.umbracoDbDsn;
+			ConfigurationManagerProvider.Instance.GetConfigManager().SetAppSetting(Core.Configuration.GlobalSettings.UmbracoConnectionName, dbDsn);
+
+			//Create the Sql CE database
+			//            var engine = new SqlCeEngine(settings.ConnectionString);
+			//            engine.CreateDatabase();
 
             Resolution.Freeze();
             ApplicationContext.Current = new ApplicationContext(
@@ -114,12 +117,14 @@ namespace Umbraco.Tests.TestHelpers
             SqlSyntaxContext.SqlSyntaxProvider = null;
             
 			//legacy API database connection close - because a unit test using PetaPoco db-layer can trigger the usage of SqlHelper we need to ensure that a possible connection is closed.
-			SqlCeContextGuardian.CloseBackgroundConnection();
+			//SqlCeContextGuardian.CloseBackgroundConnection();
 			
 			ApplicationContext.Current = null;
 			Resolution.IsFrozen = false;
 			RepositoryResolver.Reset();
             SqlSyntaxProvidersResolver.Reset();
+
+			ClearDatabase ();
 
             TestHelper.CleanContentDirectories();
 			
@@ -129,22 +134,33 @@ namespace Umbraco.Tests.TestHelpers
             SettingsForTests.Reset();
             UmbracoSettings.ResetSetters();
 
-            try
-            {
-                string filePath = string.Concat(path, "\\UmbracoPetaPocoTests.sdf");
-                if (File.Exists(filePath))
-                {
-                    File.Delete(filePath);
-                }
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Error<BaseDatabaseFactoryTest>("Could not remove the old database file", ex);
-
-                //We will swallow this exception! That's because a sub class might require further teardown logic.
-            }
+//            try
+//            {
+//                string filePath = string.Concat(path, "\\UmbracoPetaPocoTests.sdf");
+//                if (File.Exists(filePath))
+//                {
+//                    File.Delete(filePath);
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                LogHelper.Error<BaseDatabaseFactoryTest>("Could not remove the old database file", ex);
+//
+//                //We will swallow this exception! That's because a sub class might require further teardown logic.
+//            }
 
         }
+		
+		private void ClearDatabase()
+		{
+			var databaseSettings = TestHelper.umbracoDbDsn;
+			var dataHelper = DataLayerHelper.CreateSqlHelper(databaseSettings, true) as MySqlTestHelper;
+
+			if (dataHelper == null)
+				throw new InvalidOperationException("The sql helper for unit tests must be of type MySqlTestHelper, check the ensure the connection string used for this test is set to use MySqlTest");
+
+			dataHelper.ClearDatabase();
+		}
 
 	    protected ApplicationContext ApplicationContext
 	    {

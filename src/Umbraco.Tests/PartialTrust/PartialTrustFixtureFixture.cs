@@ -28,6 +28,7 @@ namespace Umbraco.Tests.PartialTrust
 		[Test]
 		public void InPartialTrust_WhenMethodShouldNotSucceed_PartialTrustHelper_ReportsFailure()
 		{
+			Assert.Fail("CAS Support experimental in mono - cannot get this work yet. http://www.mono-project.com/CAS");
 			//LogHelper.TraceIfEnabled<PartialTrustFixtureFixture>("In WhenTestShouldNotSucceed_InPartialTrust_PartialTrustHelper_ReportsFailure");
 			try
 			{

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using NUnit.Framework;
 using Umbraco.Core.Models;
+using Umbraco.Core.MultiPlatform;
 
 namespace Umbraco.Tests.Models
 {
@@ -85,7 +86,11 @@ namespace Umbraco.Tests.Models
             // Assert
             Assert.That(property, Is.Not.Null);
             Assert.That(property.Alias, Is.EqualTo("body"));
-            Assert.That(property.Value, Is.EqualTo("color:#000;\r\nfont-weight:normal;\r\n"));
+
+			if (PlatformHelper.IsUnix)
+            	Assert.That(property.Value, Is.EqualTo("color:#000;\nfont-weight:normal;\n"));
+			else
+				Assert.That(property.Value, Is.EqualTo("color:#000;\r\nfont-weight:normal;\r\n"));
         }
 
         [Test]

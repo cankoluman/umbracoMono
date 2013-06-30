@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using NUnit.Framework;
+using Umbraco.Core.Configuration;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.Membership;
 using Umbraco.Core.Persistence.Caching;
@@ -17,7 +18,11 @@ namespace Umbraco.Tests.Persistence.Repositories
         [SetUp]
         public override void Initialize()
         {
-            base.Initialize();
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());  
+
+			base.Initialize();
         }
 
         [Test]

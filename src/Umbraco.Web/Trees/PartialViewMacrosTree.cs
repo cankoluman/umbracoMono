@@ -27,7 +27,7 @@ namespace Umbraco.Web.Trees
 			javascript.Append(
                 @"
 		                 function openMacroPartialView(id) {
-		                    UmbClientMgr.contentFrame('Settings/views/EditView.aspx?treeType=partialViewMacros&file=MacroPartials%2f' + id);
+		                    UmbClientMgr.contentFrame('settings/views/EditView.aspx?treeType=partialViewMacros&file=MacroPartials%2f' + id);
 					    }
 		                ");
 		}

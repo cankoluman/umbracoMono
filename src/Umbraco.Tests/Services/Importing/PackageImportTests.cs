@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Xml.Linq;
 using NUnit.Framework;
+using Umbraco.Core.Configuration;
 
 namespace Umbraco.Tests.Services.Importing
 {
@@ -10,6 +11,10 @@ namespace Umbraco.Tests.Services.Importing
         [SetUp]
         public override void Initialize()
         {
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig()); 
+
             base.Initialize();
         }
 

@@ -23,7 +23,11 @@ namespace Umbraco.Tests.CodeFirst
         [SetUp]
         public override void Initialize()
         {
-            UmbracoSettings.SettingsFilePath = IOHelper.MapPath(SystemDirectories.Config + Path.DirectorySeparatorChar, false);
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());            
+
+			UmbracoSettings.SettingsFilePath = IOHelper.MapPath(SystemDirectories.Config + Path.DirectorySeparatorChar, false);
 
             //this ensures its reset
             PluginManager.Current = new PluginManager();

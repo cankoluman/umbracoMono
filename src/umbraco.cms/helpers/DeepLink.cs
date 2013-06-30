@@ -101,7 +101,7 @@ namespace umbraco.cms.helpers
                     break;
                 case DeepLinkType.XSLT:
                     section = "developer";
-                    editorUrl = "developer/xslt/editXslt.aspx";
+                    editorUrl = "developer/Xslt/editXslt.aspx";
                     idKey = "file";
                     break;
             }

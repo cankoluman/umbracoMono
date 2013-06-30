@@ -1,19 +1,39 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Configuration;
 using NUnit.Framework;
-using SqlCE4Umbraco;
+using umbraco.DataLayer.SqlHelpers.MySqlTest;
 using Umbraco.Tests.TestHelpers;
 using umbraco.BusinessLogic;
 using umbraco.DataLayer;
 using umbraco.IO;
 using GlobalSettings = umbraco.GlobalSettings;
 
+
+using Umbraco.Core.Configuration;
 namespace Umbraco.Tests.BusinessLogic
 {
 	[TestFixture, RequiresSTA]
     public abstract class BaseTest
     {
+
+		protected IConfigurationManager configManagerTest = null;
+
+		[TestFixtureSetUp]
+		public void SetUp()
+		{
+			ConfigurationManagerProvider
+				.Instance
+				.SetManager(
+						new ConfigurationManagerTest(new NameValueCollection())
+                 );
+
+			configManagerTest = 
+				ConfigurationManagerProvider
+				.Instance
+				.GetConfigManager();
+		}
         /// <summary>
         /// Removes any resources that were used for the test
         /// </summary>
@@ -21,7 +41,7 @@ namespace Umbraco.Tests.BusinessLogic
         public void Dispose()
         {
             ClearDatabase();
-            ConfigurationManager.AppSettings.Set(Core.Configuration.GlobalSettings.UmbracoConnectionName, "");
+			ConfigurationManagerProvider.Instance.GetConfigManager().ClearAppSetting(Core.Configuration.GlobalSettings.UmbracoConnectionName);
         }
 
         /// <summary>
@@ -30,7 +50,9 @@ namespace Umbraco.Tests.BusinessLogic
         [SetUp]
         public void Initialize()
         {
-            InitializeDatabase();
+			configManagerTest.SetAppSetting("umbracoDbDSN", TestHelper.umbracoDbDsn);
+
+			InitializeDatabase();
             InitializeApps();
             InitializeAppConfigFile();
             InitializeTreeConfigFile();
@@ -38,32 +60,33 @@ namespace Umbraco.Tests.BusinessLogic
 
         private void ClearDatabase()
         {
-            var databaseSettings = ConfigurationManager.ConnectionStrings[Core.Configuration.GlobalSettings.UmbracoConnectionName];
-            var dataHelper = DataLayerHelper.CreateSqlHelper(databaseSettings.ConnectionString, false) as SqlCEHelper;
-			
-            if (dataHelper == null)
-                throw new InvalidOperationException("The sql helper for unit tests must be of type SqlCEHelper, check the ensure the connection string used for this test is set to use SQLCE");
-            dataHelper.ClearDatabase();
+			var databaseSettings = TestHelper.umbracoDbDsn;
+			var dataHelper = DataLayerHelper.CreateSqlHelper(databaseSettings, true) as MySqlTestHelper;
 
-            AppDomain.CurrentDomain.SetData("DataDirectory", null);
-        }
+			if (dataHelper == null)
+				throw new InvalidOperationException("The sql helper for unit tests must be of type MySqlTestHelper, check the ensure the connection string used for this test is set to use MySqlTest");
+
+			dataHelper.ClearDatabase();
+
+			AppDomain.CurrentDomain.SetData("DataDirectory", null);
+		}
 
         private void InitializeDatabase()
         {
-            ConfigurationManager.AppSettings.Set(Core.Configuration.GlobalSettings.UmbracoConnectionName, @"datalayer=SQLCE4Umbraco.SqlCEHelper,SQLCE4Umbraco;data source=|DataDirectory|\UmbracoPetaPocoTests.sdf");
+			ConfigurationManagerProvider.Instance.GetConfigManager().SetAppSetting(Core.Configuration.GlobalSettings.UmbracoConnectionName, TestHelper.umbracoDbDsn);
 
 			ClearDatabase();
 
-            AppDomain.CurrentDomain.SetData("DataDirectory", TestHelper.CurrentAssemblyDirectory);
+			AppDomain.CurrentDomain.SetData("DataDirectory", TestHelper.CurrentAssemblyDirectory);
 
-            var databaseSettings = ConfigurationManager.ConnectionStrings[Core.Configuration.GlobalSettings.UmbracoConnectionName];
-            var dataHelper = DataLayerHelper.CreateSqlHelper(databaseSettings.ConnectionString, false) as SqlCEHelper;
-			
-            var installer = dataHelper.Utility.CreateInstaller();
-            if (installer.CanConnect)
-            {
-                installer.Install();
-            }
+			var databaseSettings = TestHelper.umbracoDbDsn;
+			var dataHelper = DataLayerHelper.CreateSqlHelper(databaseSettings, true) as MySqlTestHelper;
+
+			var installer = dataHelper.Utility.CreateInstaller();
+			if (installer.CanConnect)
+			{
+				installer.Install();
+			}
         }
 
         private void InitializeApps()

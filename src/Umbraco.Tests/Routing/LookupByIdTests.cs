@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Umbraco.Core.Configuration;
 using Umbraco.Tests.TestHelpers;
 using Umbraco.Web.Routing;
 using umbraco.BusinessLogic;
@@ -9,6 +10,22 @@ namespace Umbraco.Tests.Routing
 	[TestFixture]
 	public class LookupByIdTests : BaseRoutingTest
 	{
+		[SetUp]
+		public override void Initialize()
+		{
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());
+
+			base.Initialize();
+		}
+
+		[TearDown]
+		public override void TearDown()
+		{
+			base.TearDown();
+		}
+
 		/// <summary>
 		/// We don't need a db for this test, will run faster without one
 		/// </summary>

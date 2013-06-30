@@ -7,6 +7,7 @@ using System.Security;
 using System.Xml;
 using System.Xml.Linq;
 using NUnit.Framework;
+using Rhino.Mocks;
 using Umbraco.Core;
 
 namespace Umbraco.Tests.PartialTrust
@@ -15,6 +16,9 @@ namespace Umbraco.Tests.PartialTrust
 		where T : class, new()
 	{
 		public const string PartialTrustAppDomainName = "Partial Trust AppDomain";
+
+		private const string _systemConfigurationFile = "../../";
+		private const string _mediumTrustWebConfig = "web_mediumtrust.config";
 
 		public static void RunInPartial(MethodInfo methodInfo)
 		{

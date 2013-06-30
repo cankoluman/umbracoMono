@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using NUnit.Framework;
+using Umbraco.Core.Configuration;
 using Umbraco.Core.Models;
 using Umbraco.Core.Persistence;
 using Umbraco.Core.Persistence.Repositories;
@@ -23,7 +24,11 @@ namespace Umbraco.Tests.Services
         [SetUp]
         public override void Initialize()
         {
-	        base.Initialize();
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());  
+
+			base.Initialize();
         }
 		
 		[TearDown]
@@ -154,8 +159,8 @@ namespace Umbraco.Tests.Services
         {
             // Arrange
             var contentService = ServiceContext.ContentService;
-            var parent = ServiceContext.ContentService.GetById(1046);
-            ServiceContext.ContentService.Publish(parent);//Publishing root, so Text Page 2 can be updated.
+			var parent = contentService.GetById(1046);
+			contentService.Publish(parent);//Publishing root, so Text Page 2 can be updated.
             var subpage2 = contentService.GetById(1048);
             subpage2.Name = "Text Page 2 Updated";
             subpage2.SetValue("author", "Jane Doe");
@@ -440,7 +445,7 @@ namespace Umbraco.Tests.Services
         {
             // Arrange
             var contentService = ServiceContext.ContentService;
-            var content = contentService.GetById(1049);
+            var content = contentService.GetById(1048);
 
             // Act
             bool published = contentService.Publish(content, 0);
@@ -586,11 +591,11 @@ namespace Umbraco.Tests.Services
         {
             // Arrange
             var contentService = ServiceContext.ContentService;
-            var content = contentService.GetById(1049);
+            var content = contentService.GetById(1048);
 
             // Act
             contentService.Delete(content, 0);
-            var deleted = contentService.GetById(1049);
+            var deleted = contentService.GetById(1048);
 
             // Assert
             Assert.That(deleted, Is.Null);
@@ -658,7 +663,7 @@ namespace Umbraco.Tests.Services
         {
             // Arrange
             var contentService = ServiceContext.ContentService;
-            var content = contentService.GetById(1049);
+            var content = contentService.GetById(1048);
 
             // Act - moving out of recycle bin
             contentService.Move(content, 1046, 0);

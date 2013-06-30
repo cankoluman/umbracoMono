@@ -4,6 +4,7 @@ using System.Data.SqlServerCe;
 using System.IO;
 using NUnit.Framework;
 using Umbraco.Core;
+using Umbraco.Core.Configuration;
 using Umbraco.Core.Persistence;
 using Umbraco.Core.Persistence.SqlSyntax;
 using Umbraco.Core.Persistence.UnitOfWork;
@@ -21,6 +22,10 @@ namespace Umbraco.Tests.Persistence
 		[SetUp]
 		public void Setup()
 		{
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());  
+
 			_dbContext = new DatabaseContext(new DefaultDatabaseFactory());
 
 			//unfortunately we have to set this up because the PetaPocoExtensions require singleton access
@@ -52,7 +57,7 @@ namespace Umbraco.Tests.Persistence
         {
 			var provider = _dbContext.DatabaseProvider;
 
-            Assert.AreEqual(DatabaseProviders.SqlServerCE, provider);
+            Assert.AreEqual(DatabaseProviders.MySql, provider);
         }
 
         [Test]
@@ -62,20 +67,20 @@ namespace Umbraco.Tests.Persistence
             AppDomain.CurrentDomain.SetData("DataDirectory", path);
 
             //Delete database file before continueing
-            string filePath = string.Concat(path, "\\UmbracoPetaPocoTests.sdf");
-            if (File.Exists(filePath))
-            {
-                File.Delete(filePath);
-            }
+//            string filePath = string.Concat(path, "\\UmbracoPetaPocoTests.sdf");
+//            if (File.Exists(filePath))
+//            {
+//                File.Delete(filePath);
+//            }
 
             //Get the connectionstring settings from config
-            var settings = ConfigurationManager.ConnectionStrings[Core.Configuration.GlobalSettings.UmbracoConnectionName];
+            var settings = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[Core.Configuration.GlobalSettings.UmbracoConnectionName];
 
             //Create the Sql CE database
-            var engine = new SqlCeEngine(settings.ConnectionString);
-            engine.CreateDatabase();
-
-            SqlSyntaxContext.SqlSyntaxProvider = SqlCeSyntax.Provider;
+//            var engine = new SqlCeEngine(settings.ConnectionString);
+//            engine.CreateDatabase();
+//
+            SqlSyntaxContext.SqlSyntaxProvider = MySqlSyntax.Provider;
 
             //Create the umbraco database
 			_dbContext.Database.CreateDatabaseSchema(false);

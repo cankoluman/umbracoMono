@@ -2,6 +2,7 @@
 using System.Web.Routing;
 using NUnit.Framework;
 using Umbraco.Core;
+using Umbraco.Core.Configuration;
 using Umbraco.Tests.Stubs;
 using Umbraco.Tests.TestHelpers;
 using Umbraco.Web;
@@ -19,6 +20,10 @@ namespace Umbraco.Tests.Routing
 
 		public override void Initialize()
 		{
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig()); 
+
             //this ensures its reset
             PluginManager.Current = new PluginManager();
 
@@ -39,7 +44,10 @@ namespace Umbraco.Tests.Routing
 		public override void TearDown()
 		{
 			base.TearDown();
-			RouteTable.Routes.Clear();
+
+			for (var i = RouteTable.Routes.Count - 1; i > -1; i--)
+				RouteTable.Routes.RemoveAt(i);
+
 			SurfaceControllerResolver.Reset();
 		}
 

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using NUnit.Framework;
 using Umbraco.Core.Auditing;
+using Umbraco.Core.Configuration;
 using Umbraco.Core.Models.Rdbms;
 using Umbraco.Tests.TestHelpers;
 
@@ -12,7 +13,11 @@ namespace Umbraco.Tests.Auditing
         [SetUp]
         public override void Initialize()
         {
-            base.Initialize();
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());            
+
+			base.Initialize();
         }
 
         [Test]

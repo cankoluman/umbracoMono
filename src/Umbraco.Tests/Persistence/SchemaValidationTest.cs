@@ -11,7 +11,11 @@ namespace Umbraco.Tests.Persistence
         [SetUp]
         public override void Initialize()
         {
-            base.Initialize();
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());  
+
+			base.Initialize();
         }
 
         [TearDown]

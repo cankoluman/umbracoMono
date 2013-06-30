@@ -2,6 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 using Umbraco.Core;
+using Umbraco.Core.Configuration;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.EntityBase;
 using Umbraco.Core.Persistence;
@@ -21,6 +22,10 @@ namespace Umbraco.Tests.Persistence.Repositories
         [SetUp]
         public override void Initialize()
         {
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());  
+
             //NOTE The DataTypesResolver is only necessary because we are using the Save method in the MediaService
             //this ensures its reset
             PluginManager.Current = new PluginManager();
@@ -313,7 +318,14 @@ namespace Umbraco.Tests.Persistence.Repositories
 
         public void CreateTestData()
         {
-            //Create and Save folder-Media -> 1045
+			//Create and Save ContentType "umbTextpage" -> 1044
+			//Bring MySql table id value up so that we do not need to 
+			//update all other values
+			ContentType ignoreType = MockedContentTypes.CreateSimpleContentType("mysqlBuffer", "IgnorePage");
+			ignoreType.Key = new Guid("1D3A8E6E-0000-4CC1-0000-1AEE19821522");
+			ServiceContext.ContentTypeService.Save(ignoreType); 
+
+			//Create and Save folder-Media -> 1045
             var folderMediaType = ServiceContext.ContentTypeService.GetMediaType(1031);
             var folder = MockedMedia.CreateMediaFolder(folderMediaType, -1);
             ServiceContext.MediaService.Save(folder, 0);

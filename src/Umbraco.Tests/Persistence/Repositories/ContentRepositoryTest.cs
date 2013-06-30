@@ -2,6 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 using Umbraco.Core;
+using Umbraco.Core.Configuration;
 using Umbraco.Core.Models;
 using Umbraco.Core.Persistence;
 using Umbraco.Core.Persistence.Querying;
@@ -20,7 +21,11 @@ namespace Umbraco.Tests.Persistence.Repositories
         [SetUp]
         public override void Initialize()
         {
-            //NOTE The DataTypesResolver is only necessary because we are using the Save method in the ContentService
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());              
+
+			//NOTE The DataTypesResolver is only necessary because we are using the Save method in the ContentService
             //this ensures its reset
             PluginManager.Current = new PluginManager();
 
@@ -376,7 +381,14 @@ namespace Umbraco.Tests.Persistence.Repositories
 
         public void CreateTestData()
         {
-            //Create and Save ContentType "umbTextpage" -> 1045
+			//Create and Save ContentType "umbTextpage" -> 1044
+			//Bring MySql table id value up so that we do not need to 
+			//update all other values
+			ContentType ignoreType = MockedContentTypes.CreateSimpleContentType("mysqlBuffer", "IgnorePage");
+			ignoreType.Key = new Guid("1D3A8E6E-0000-4CC1-0000-1AEE19821522");
+			ServiceContext.ContentTypeService.Save(ignoreType);            
+
+			//Create and Save ContentType "umbTextpage" -> 1045
             ContentType contentType = MockedContentTypes.CreateSimpleContentType("umbTextpage", "Textpage");
             contentType.Key = new Guid("1D3A8E6E-2EA9-4CC1-B229-1AEE19821522");
             ServiceContext.ContentTypeService.Save(contentType);
@@ -391,9 +403,10 @@ namespace Umbraco.Tests.Persistence.Repositories
             subpage.Key = new Guid("FF11402B-7E53-4654-81A7-462AC2108059");
             ServiceContext.ContentService.Save(subpage, 0);
 
-            //Create and Save Content "Text Page 1" based on "umbTextpage" -> 1048
+            //Create and Save Content "Text Page 2" based on "umbTextpage" -> 1048
             Content subpage2 = MockedContent.CreateSimpleContent(contentType, "Text Page 2", textpage.Id);
-            ServiceContext.ContentService.Save(subpage2, 0);
+			subpage2.Key = new Guid("3291fa37-2a6d-449c-953a-559ce34ae889");
+			ServiceContext.ContentService.Save(subpage2, 0);
 
             //Create and Save Content "Text Page Deleted" based on "umbTextpage" -> 1049
             Content trashed = MockedContent.CreateSimpleContent(contentType, "Text Page Deleted", -20);

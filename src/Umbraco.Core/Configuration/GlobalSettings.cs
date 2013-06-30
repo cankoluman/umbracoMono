@@ -61,8 +61,8 @@ namespace Umbraco.Core.Configuration
             {                
                 if (_reservedUrls == null)
                 {
-                    var urls = ConfigurationManager.AppSettings.ContainsKey("umbracoReservedUrls")
-                                   ? ConfigurationManager.AppSettings["umbracoReservedUrls"]
+                    var urls = ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings.ContainsKey("umbracoReservedUrls")
+                                   ? ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings["umbracoReservedUrls"]
                                    : string.Empty;
 
                     //ensure the built on (non-changeable) reserved paths are there at all times
@@ -85,14 +85,14 @@ namespace Umbraco.Core.Configuration
                 {
                     var reservedPaths = StaticReservedPaths;
                     //always add the umbraco path to the list
-                    if (ConfigurationManager.AppSettings.ContainsKey("umbracoPath")
-                        && !ConfigurationManager.AppSettings["umbracoPath"].IsNullOrWhiteSpace())
+                    if (ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings.ContainsKey("umbracoPath")
+                        && !ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings["umbracoPath"].IsNullOrWhiteSpace())
                     {
-                        reservedPaths += ConfigurationManager.AppSettings["umbracoPath"].EnsureEndsWith(',');
+                        reservedPaths += ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings["umbracoPath"].EnsureEndsWith(',');
                     }
 
-                    var allPaths = ConfigurationManager.AppSettings.ContainsKey("umbracoReservedPaths")
-                                    ? ConfigurationManager.AppSettings["umbracoReservedPaths"]
+                    var allPaths = ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings.ContainsKey("umbracoReservedPaths")
+                                    ? ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings["umbracoReservedPaths"]
                                     : string.Empty;
 
                     _reservedPaths = reservedPaths + allPaths;
@@ -110,8 +110,8 @@ namespace Umbraco.Core.Configuration
         {
             get
             {
-                return ConfigurationManager.AppSettings.ContainsKey("umbracoContentXML")
-                    ? ConfigurationManager.AppSettings["umbracoContentXML"]
+                return ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings.ContainsKey("umbracoContentXML")
+                    ? ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings["umbracoContentXML"]
                     : string.Empty;
             }
         }
@@ -124,8 +124,8 @@ namespace Umbraco.Core.Configuration
         {
             get
             {
-                return ConfigurationManager.AppSettings.ContainsKey("umbracoStorageDirectory")
-                    ? ConfigurationManager.AppSettings["umbracoStorageDirectory"]
+                return ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings.ContainsKey("umbracoStorageDirectory")
+                    ? ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings["umbracoStorageDirectory"]
                     : string.Empty;
             }
         }
@@ -138,8 +138,8 @@ namespace Umbraco.Core.Configuration
         {
             get
             {
-                return ConfigurationManager.AppSettings.ContainsKey("umbracoPath")
-                    ? IOHelper.ResolveUrl(ConfigurationManager.AppSettings["umbracoPath"])
+                return ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings.ContainsKey("umbracoPath")
+                    ? IOHelper.ResolveUrl(ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings["umbracoPath"])
                     : string.Empty;
             }
         }
@@ -188,12 +188,12 @@ namespace Umbraco.Core.Configuration
         /// Gets the database connection string
         /// </summary>
         /// <value>The database connection string.</value>
-        [Obsolete("Use System.ConfigurationManager.ConnectionStrings to get the connection with the key Umbraco.Core.Configuration.GlobalSettings.UmbracoConnectionName instead")]
+        [Obsolete("Use System.ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings to get the connection with the key Umbraco.Core.Configuration.GlobalSettings.UmbracoConnectionName instead")]
         public static string DbDsn
         {
             get
             {
-                var settings = ConfigurationManager.ConnectionStrings[UmbracoConnectionName];
+                var settings = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[UmbracoConnectionName];
                 var connectionString = string.Empty;
 
                 if (settings != null)
@@ -234,8 +234,8 @@ namespace Umbraco.Core.Configuration
         {
             get
             {
-                return ConfigurationManager.AppSettings.ContainsKey("umbracoConfigurationStatus")
-                    ? ConfigurationManager.AppSettings["umbracoConfigurationStatus"]
+                return ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings.ContainsKey("umbracoConfigurationStatus")
+                    ? ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings["umbracoConfigurationStatus"]
                     : string.Empty;
             }
             set
@@ -265,7 +265,7 @@ namespace Umbraco.Core.Configuration
                 setting.Attribute("value").Value = value;
 
             xml.Save(fileName, SaveOptions.DisableFormatting);
-            ConfigurationManager.RefreshSection("appSettings");
+            ConfigurationManagerProvider.Instance.GetConfigManager().RefreshSection("appSettings");
         }
 
         /// <summary>
@@ -284,7 +284,7 @@ namespace Umbraco.Core.Configuration
             {
                 setting.Remove();
                 xml.Save(fileName, SaveOptions.DisableFormatting);
-                ConfigurationManager.RefreshSection("appSettings");
+                ConfigurationManagerProvider.Instance.GetConfigManager().RefreshSection("appSettings");
             }
         }
 
@@ -322,7 +322,7 @@ namespace Umbraco.Core.Configuration
             {
                 try
                 {
-                    return bool.Parse(ConfigurationManager.AppSettings["umbracoDebugMode"]);
+                    return bool.Parse(ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings["umbracoDebugMode"]);
                 }
                 catch
                 {
@@ -370,7 +370,7 @@ namespace Umbraco.Core.Configuration
             {
                 try
                 {
-                    return int.Parse(ConfigurationManager.AppSettings["umbracoTimeOutInMinutes"]);
+                    return int.Parse(ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings["umbracoTimeOutInMinutes"]);
                 }
                 catch
                 {
@@ -389,7 +389,7 @@ namespace Umbraco.Core.Configuration
             {
                 try
                 {
-                    return bool.Parse(ConfigurationManager.AppSettings["umbracoUseDirectoryUrls"]);
+                    return bool.Parse(ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings["umbracoUseDirectoryUrls"]);
                 }
                 catch
                 {
@@ -408,7 +408,7 @@ namespace Umbraco.Core.Configuration
             {
                 try
                 {
-                    return int.Parse(ConfigurationManager.AppSettings["umbracoVersionCheckPeriod"]);
+                    return int.Parse(ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings["umbracoVersionCheckPeriod"]);
                 }
                 catch
                 {
@@ -425,8 +425,8 @@ namespace Umbraco.Core.Configuration
         {
             get
             {
-                return ConfigurationManager.AppSettings.ContainsKey("umbracoDisableXsltExtensions")
-                    ? ConfigurationManager.AppSettings["umbracoDisableXsltExtensions"]
+                return ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings.ContainsKey("umbracoDisableXsltExtensions")
+                    ? ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings["umbracoDisableXsltExtensions"]
                     : string.Empty;
             }
         }
@@ -439,8 +439,8 @@ namespace Umbraco.Core.Configuration
         {
             get
             {
-                return ConfigurationManager.AppSettings.ContainsKey("umbracoEditXhtmlMode")
-                    ? ConfigurationManager.AppSettings["umbracoEditXhtmlMode"]
+                return ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings.ContainsKey("umbracoEditXhtmlMode")
+                    ? ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings["umbracoEditXhtmlMode"]
                     : string.Empty;
             }
         }
@@ -453,8 +453,8 @@ namespace Umbraco.Core.Configuration
         {
             get
             {
-                return ConfigurationManager.AppSettings.ContainsKey("umbracoDefaultUILanguage")
-                    ? ConfigurationManager.AppSettings["umbracoDefaultUILanguage"]
+                return ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings.ContainsKey("umbracoDefaultUILanguage")
+                    ? ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings["umbracoDefaultUILanguage"]
                     : string.Empty;
             }
         }
@@ -467,8 +467,8 @@ namespace Umbraco.Core.Configuration
         {
             get
             {
-                return ConfigurationManager.AppSettings.ContainsKey("umbracoProfileUrl")
-                    ? ConfigurationManager.AppSettings["umbracoProfileUrl"]
+                return ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings.ContainsKey("umbracoProfileUrl")
+                    ? ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings["umbracoProfileUrl"]
                     : string.Empty;
             }
         }
@@ -485,7 +485,7 @@ namespace Umbraco.Core.Configuration
             {
                 try
                 {
-                    return bool.Parse(ConfigurationManager.AppSettings["umbracoHideTopLevelNodeFromPath"]);
+                    return bool.Parse(ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings["umbracoHideTopLevelNodeFromPath"]);
                 }
                 catch
                 {
@@ -585,7 +585,7 @@ namespace Umbraco.Core.Configuration
             {
                 try
                 {
-                    return bool.Parse(ConfigurationManager.AppSettings["umbracoUseSSL"]);
+                    return bool.Parse(ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings["umbracoUseSSL"]);
                 }
                 catch
                 {

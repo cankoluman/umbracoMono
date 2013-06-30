@@ -9,6 +9,7 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Xml;
 using System.Xml.Serialization;
+using Umbraco.Core.Configuration;
 using Umbraco.Core.Logging;
 using umbraco.BasePages;
 using umbraco.BusinessLogic;
@@ -273,7 +274,7 @@ namespace umbraco.presentation.umbraco.webservices
 
         private int GetMaxRequestLength()
         {
-            var appSetting = Convert.ToInt32(ConfigurationManager.AppSettings["DesktopMediaUploaderMaxRequestLength"]);
+            var appSetting = Convert.ToInt32(ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings["DesktopMediaUploaderMaxRequestLength"]);
             if (appSetting > 0)
                 return appSetting;
 
@@ -291,7 +292,7 @@ namespace umbraco.presentation.umbraco.webservices
                 }
             }
 
-            var httpRuntime = ConfigurationManager.GetSection("system.web/httpRuntime") as HttpRuntimeSection;
+			var httpRuntime = ConfigurationManagerProvider.Instance.GetConfigManager().GetSection<HttpRuntimeSection>("system.web/httpRuntime") as HttpRuntimeSection;
 
             return httpRuntime == null ? 4096 : httpRuntime.MaxRequestLength;
         }

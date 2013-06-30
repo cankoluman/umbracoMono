@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using NUnit.Framework;
 using Umbraco.Core;
+using Umbraco.Core.Configuration;
 using Umbraco.Core.Models;
 using Umbraco.Core.PropertyEditors;
 using Umbraco.Tests.TestHelpers;
@@ -66,6 +67,10 @@ namespace Umbraco.Tests.PublishedContent
 
 		public override void Initialize()
 		{
+			ConfigurationManagerProvider
+				.Instance
+				.SetManager(new ConfigurationManagerFromExeConfig());
+
 			base.Initialize();
 		}
 

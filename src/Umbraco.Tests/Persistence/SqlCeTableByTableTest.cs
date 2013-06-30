@@ -15,6 +15,7 @@ using Umbraco.Tests.TestHelpers;
 namespace Umbraco.Tests.Persistence
 {
     [TestFixture]
+	[Ignore ("Ignored in mono")]
     public class SqlCeTableByTableTest : BaseTableByTableTest
     {
         private Database _database;

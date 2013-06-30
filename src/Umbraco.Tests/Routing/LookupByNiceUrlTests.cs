@@ -11,11 +11,17 @@ namespace Umbraco.Tests.Routing
 	[TestFixture]
 	public class LookupByNiceUrlTests : BaseRoutingTest
 	{
-        public override void Initialize()
+        [SetUp]
+		public override void Initialize()
         {
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());
+
             base.Initialize();            
         }
 
+		[TearDown]
         public override void TearDown()
         {
             base.TearDown();

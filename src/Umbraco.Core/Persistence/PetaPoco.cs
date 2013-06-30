@@ -24,6 +24,8 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Linq.Expressions;
 
+using Umbraco.Core.Configuration;
+
 namespace Umbraco.Core.Persistence
 {
 	// Poco's marked [Explicit] require all column properties to be marked
@@ -160,14 +162,14 @@ namespace Umbraco.Core.Persistence
 		{
 			// Use first?
 			if (connectionStringName == "")
-				connectionStringName = ConfigurationManager.ConnectionStrings[0].Name;
+				connectionStringName = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[0].Name;
 
 			// Work out connection string and provider name
 			var providerName = "System.Data.SqlClient";
-			if (ConfigurationManager.ConnectionStrings[connectionStringName] != null)
+			if (ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[connectionStringName] != null)
 			{
-				if (!string.IsNullOrEmpty(ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName))
-					providerName = ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName;
+				if (!string.IsNullOrEmpty(ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[connectionStringName].ProviderName))
+					providerName = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[connectionStringName].ProviderName;
 			}
 			else
 			{
@@ -175,7 +177,7 @@ namespace Umbraco.Core.Persistence
 			}
 
 			// Store factory and connection string
-			_connectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
+			_connectionString = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[connectionStringName].ConnectionString;
 			_providerName = providerName;
 			CommonConstruct();
 		}

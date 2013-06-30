@@ -301,9 +301,6 @@
       <DependentUpon>PartialViewMacro.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="umbraco\create\PartialViewMacro.ascx.designer.cs">
-      <DependentUpon>PartialViewMacro.ascx</DependentUpon>
-    </Compile>
     <Compile Include="umbraco\developer\Macros\EditMacro.aspx.cs">
       <DependentUpon>editMacro.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2342,20 +2339,23 @@
     <Compile Include="install\steps\Skinning\loadStarterKitDesigns.ascx.designer.cs">
       <DependentUpon>loadStarterKitDesigns.ascx</DependentUpon>
     </Compile>
+    <Compile Include="umbraco\create\PartialViewMacro.ascx.designer.cs">
+      <DependentUpon>PartialViewMacro.ascx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
     <Folder Include="App_Plugins\" />
-    <Folder Include="Css\" />
-    <Folder Include="MacroScripts\" />
-    <Folder Include="MasterPages\" />
-    <Folder Include="Media\" />
-    <Folder Include="Scripts\" />
-    <Folder Include="UserControls\" />
-    <Folder Include="Xslt\" />
     <Folder Include="umbraco_client\FolderBrowser\Images\" />
     <Folder Include="umbraco_client\tags\images\" />
+    <Folder Include="css\" />
+    <Folder Include="macroScripts\" />
+    <Folder Include="masterpages\" />
+    <Folder Include="media\" />
+    <Folder Include="scripts\" />
+    <Folder Include="usercontrols\" />
+    <Folder Include="xslt\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

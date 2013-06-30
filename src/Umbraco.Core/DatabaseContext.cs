@@ -73,10 +73,10 @@ namespace Umbraco.Core
                     return _providerName;
 
                 _providerName = "System.Data.SqlClient";
-                if (ConfigurationManager.ConnectionStrings[GlobalSettings.UmbracoConnectionName] != null)
+                if (ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[GlobalSettings.UmbracoConnectionName] != null)
                 {
-                    if (!string.IsNullOrEmpty(ConfigurationManager.ConnectionStrings[GlobalSettings.UmbracoConnectionName].ProviderName))
-                        _providerName = ConfigurationManager.ConnectionStrings[GlobalSettings.UmbracoConnectionName].ProviderName;
+                    if (!string.IsNullOrEmpty(ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[GlobalSettings.UmbracoConnectionName].ProviderName))
+                        _providerName = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[GlobalSettings.UmbracoConnectionName].ProviderName;
                 }
                 else
                 {
@@ -278,25 +278,25 @@ namespace Umbraco.Core
         /// </remarks>
         internal void Initialize()
         {
-            var databaseSettings = ConfigurationManager.ConnectionStrings[GlobalSettings.UmbracoConnectionName];
+			var databaseSettings = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[GlobalSettings.UmbracoConnectionName];
             if (databaseSettings != null && string.IsNullOrWhiteSpace(databaseSettings.ConnectionString) == false && string.IsNullOrWhiteSpace(databaseSettings.ProviderName) == false)
             {
                 var providerName = "System.Data.SqlClient";
-                if (!string.IsNullOrEmpty(ConfigurationManager.ConnectionStrings[GlobalSettings.UmbracoConnectionName].ProviderName))
+                if (!string.IsNullOrEmpty(ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[GlobalSettings.UmbracoConnectionName].ProviderName))
                 {
-                    providerName = ConfigurationManager.ConnectionStrings[GlobalSettings.UmbracoConnectionName].ProviderName;
+                    providerName = ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[GlobalSettings.UmbracoConnectionName].ProviderName;
 
                     _connectionString =
-                        ConfigurationManager.ConnectionStrings[GlobalSettings.UmbracoConnectionName].ConnectionString;
+                        ConfigurationManagerProvider.Instance.GetConfigManager().ConnectionStrings[GlobalSettings.UmbracoConnectionName].ConnectionString;
 
                 }
 
                 Initialize(providerName);
             }
-            else if (ConfigurationManager.AppSettings.ContainsKey(GlobalSettings.UmbracoConnectionName) && string.IsNullOrEmpty(ConfigurationManager.AppSettings[GlobalSettings.UmbracoConnectionName]) == false)
+            else if (ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings.ContainsKey(GlobalSettings.UmbracoConnectionName) && string.IsNullOrEmpty(ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings[GlobalSettings.UmbracoConnectionName]) == false)
             {
                 //A valid connectionstring does not exist, but the legacy appSettings key was found, so we'll reconfigure the conn.string.
-                var legacyConnString = ConfigurationManager.AppSettings[GlobalSettings.UmbracoConnectionName];
+                var legacyConnString = ConfigurationManagerProvider.Instance.GetConfigManager().AppSettings[GlobalSettings.UmbracoConnectionName];
                 if (legacyConnString.ToLowerInvariant().Contains("sqlce4umbraco"))
                 {
                     ConfigureEmbeddedDatabaseConnection();

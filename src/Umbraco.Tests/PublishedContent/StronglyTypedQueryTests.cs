@@ -20,7 +20,11 @@ namespace Umbraco.Tests.PublishedContent
 	{
         public override void Initialize()
         {
-            base.Initialize();
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());
+
+			base.Initialize();
         }
 
         public override void TearDown()

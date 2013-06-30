@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
+using Umbraco.Core.Configuration;
 using Umbraco.Tests.TestHelpers;
 using Umbraco.Web;
 using umbraco;
@@ -17,8 +18,13 @@ namespace Umbraco.Tests
 	[TestFixture]
 	public class LibraryTests : BaseRoutingTest
 	{
+		[SetUp]
 		public override void Initialize()
 		{
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());
+
 			base.Initialize();
 
 			//set the current umbraco context and a published content store
@@ -40,6 +46,7 @@ namespace Umbraco.Tests
             Core.Configuration.UmbracoSettings.SettingsFilePath = Core.IO.IOHelper.MapPath(Core.IO.SystemDirectories.Config + Path.DirectorySeparatorChar, false);
 		}
 
+		[TearDown]
 		public override void TearDown()
 		{
 			base.TearDown();
@@ -97,7 +104,7 @@ namespace Umbraco.Tests
 		private string LegacyGetItem(int nodeId, string alias)
 		{
 			var umbracoXML = UmbracoContext.Current.GetXml();
-			string xpath = UmbracoSettings.UseLegacyXmlSchema ? "./data [@alias='{0}']" : "./{0}";
+			string xpath = umbraco.UmbracoSettings.UseLegacyXmlSchema ? "./data [@alias='{0}']" : "./{0}";
 			if (umbracoXML.GetElementById(nodeId.ToString()) != null)
 				if (
 					",id,parentID,level,writerID,template,sortOrder,createDate,updateDate,nodeName,writerName,path,"

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using NUnit.Framework;
 using Umbraco.Core;
+using Umbraco.Core.Configuration;
 using Umbraco.Core.Dynamics;
 using Umbraco.Core.Models;
 using Umbraco.Tests.TestHelpers;
@@ -19,6 +20,9 @@ namespace Umbraco.Tests.PublishedContent
 	{
 		public override void Initialize()
 		{
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());
 			base.Initialize();
 			//need to specify a different callback for testing
 			Umbraco.Web.PublishedContentExtensions.GetPropertyAliasesAndNames = s =>

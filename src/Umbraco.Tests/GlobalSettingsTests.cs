@@ -16,12 +16,18 @@ namespace Umbraco.Tests
 			get { return false; }
 		}
 
+		[SetUp]
 		public override void Initialize()
-		{            
+		{    
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());
+
 			base.Initialize();
             SettingsForTests.UmbracoPath = "~/umbraco";
 		}
 
+		[TearDown]
 		public override void TearDown()
 		{
             //ensure this is reset

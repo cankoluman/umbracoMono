@@ -94,7 +94,7 @@ namespace umbraco
 				}
 			}
 
-            _returnUrl = string.Format(SystemDirectories.Umbraco + "/developer/xslt/editXslt.aspx?file={0}.xslt", fileName);
+            _returnUrl = string.Format(SystemDirectories.Umbraco + "/developer/Xslt/editXslt.aspx?file={0}.xslt", fileName);
 
             return true;
         }
