@@ -2342,6 +2342,7 @@
     <Compile Include="umbraco\create\PartialViewMacro.ascx.designer.cs">
       <DependentUpon>PartialViewMacro.ascx</DependentUpon>
     </Compile>
+    <Content Include="umbraco_client\Application\JQuery\jquery.mono.textBoxFix.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
