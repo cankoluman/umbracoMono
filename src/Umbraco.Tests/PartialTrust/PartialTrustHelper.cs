@@ -288,8 +288,8 @@ namespace Umbraco.Tests.PartialTrust
 			/// <returns></returns>
 			public static string GetMediumTrustConfigPath()
 			{
-				var readFromDirectory = Path.GetDirectoryName(RuntimeEnvironment.SystemConfigurationFile);
-				var autoPath = Path.Combine(readFromDirectory, "web_mediumtrust.config");
+				var readFromDirectory = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+				var autoPath = Path.Combine(readFromDirectory, "../../web_mediumtrust.config");
 				return autoPath;
 			}
 		}
