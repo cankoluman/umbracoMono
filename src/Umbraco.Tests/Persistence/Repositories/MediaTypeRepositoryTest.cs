@@ -71,7 +71,7 @@ namespace Umbraco.Tests.Persistence.Repositories
             unitOfWork.Commit();
 
             // Act
-            var mediaType = repository.Get(1045);
+            var mediaType = repository.Get(1044);
 
             mediaType.Thumbnail = "Doc2.png";
             mediaType.PropertyGroups["Media"].PropertyTypes.Add(new PropertyType(new Guid(), DataTypeDatabaseType.Ntext)
@@ -184,12 +184,12 @@ namespace Umbraco.Tests.Persistence.Repositories
             unitOfWork.Commit();
 
             // Act
-            var mediaTypeV2 = repository.Get(1045);
+            var mediaTypeV2 = repository.Get(1044);
             mediaTypeV2.PropertyGroups["Media"].PropertyTypes.Remove("title");
             repository.AddOrUpdate(mediaTypeV2);
             unitOfWork.Commit();
 
-            var mediaTypeV3 = repository.Get(1045);
+            var mediaTypeV3 = repository.Get(1044);
 
             // Assert
             Assert.That(mediaTypeV3.PropertyTypes.Any(x => x.Alias == "title"), Is.False);
@@ -209,7 +209,7 @@ namespace Umbraco.Tests.Persistence.Repositories
             unitOfWork.Commit();
 
             // Act
-            var contentType = repository.Get(1045);
+            var contentType = repository.Get(1044);
 
             // Assert
             Assert.That(contentType.PropertyTypes.Count(), Is.EqualTo(2));
