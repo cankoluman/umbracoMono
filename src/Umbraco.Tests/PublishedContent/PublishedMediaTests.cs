@@ -31,6 +31,7 @@ namespace Umbraco.Tests.PublishedContent
     public class PublishedMediaTests : PublishedContentTestBase
 	{
 		
+		[SetUp]
 		public override void Initialize()
 		{
 			ConfigurationManagerProvider
@@ -43,6 +44,7 @@ namespace Umbraco.Tests.PublishedContent
             UmbracoSettings.ForceSafeAliases = true;	
 		}
         
+		[TearDown]
 		public override void TearDown()
 		{
 			base.TearDown();

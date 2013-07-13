@@ -20,6 +20,7 @@ namespace Umbraco.Web.Media.ImageUrlProviders
 
             var nodeIterator = library.GetMedia(mediaId, false);
 
+			nodeIterator.MoveNext ();
             if (nodeIterator.Current != null)
             {
                 var filename = GetProperty(nodeIterator, "umbracoFile");

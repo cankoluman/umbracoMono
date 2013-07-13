@@ -7,6 +7,7 @@ using Examine;
 using Examine.LuceneEngine.SearchCriteria;
 using Examine.Providers;
 using Umbraco.Core;
+using Umbraco.Core.MultiPlatform;
 using UmbracoExamine;
 using Lucene.Net.Documents;
 using umbraco.interfaces;
@@ -50,11 +51,9 @@ namespace umbraco.MacroEngines
             }
 
             var media = umbraco.library.GetMedia(id, true);
-            if (media != null)
+            if (media != null && media.Current() != null)
             {
-				media.MoveNext();
-				if (media.Current != null)
-                	return new ExamineBackedMedia(media.Current);
+            	return new ExamineBackedMedia(media.Current);
             }
 
             return null;
@@ -127,30 +126,26 @@ namespace umbraco.MacroEngines
             //custom property, not loaded from examine
             //have to do a getmedia and get it that way, but then add it to the cache
             var media = umbraco.library.GetMedia(this.Id, true);
-            if (media != null)
+            if (media != null && media.Current() != null)
             {
-				media.MoveNext();
-				if (media.Current != null)
-				{
-					XPathNavigator xpath = media.Current;
-	                var result = xpath.SelectChildren(XPathNodeType.Element);
-	                while (result.MoveNext())
-	                {
-	                    if (result.Current != null && !result.Current.HasAttributes)
-	                    {
-	                        if (string.Equals(result.Current.Name, alias))
-	                        {
-	                            string value = result.Current.Value;
-	                            if (string.IsNullOrEmpty(value))
-	                            {
-	                                value = result.Current.OuterXml;
-	                            }
-	                            Values.Add(result.Current.Name, value);
-	                            propertyExists = true;
-	                            return new PropertyResult(alias, value, Guid.Empty);
-	                        }
-	                    }
-	                }
+				XPathNavigator xpath = media.Current;
+                var result = xpath.SelectChildren(XPathNodeType.Element);
+                while (result.MoveNext())
+                {
+                    if (result.Current != null && !result.Current.HasAttributes)
+                    {
+                        if (string.Equals(result.Current.Name, alias))
+                        {
+                            string value = result.Current.Value;
+                            if (string.IsNullOrEmpty(value))
+                            {
+                                value = result.Current.OuterXml;
+                            }
+                            Values.Add(result.Current.Name, value);
+                            propertyExists = true;
+                            return new PropertyResult(alias, value, Guid.Empty);
+                        }
+                    }
 				}
             }
             propertyExists = false;
@@ -434,11 +429,8 @@ namespace umbraco.MacroEngines
             }
 
             var media = umbraco.library.GetMedia(parentId, true);
-            if (media != null)
+            if (media != null && media.Current() != null)
             {
-                media.MoveNext();
-				if (media.Current != null)
-				{
                 var children = media.Current.SelectChildren(XPathNodeType.Element);
                 var mediaList = new List<ExamineBackedMedia>();
                 while (children != null && children.Current != null)
@@ -462,7 +454,6 @@ namespace umbraco.MacroEngines
                     }
                 }
                 return mediaList;
-				}
             }
 
             return null;

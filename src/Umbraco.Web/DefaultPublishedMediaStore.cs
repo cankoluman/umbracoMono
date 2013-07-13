@@ -13,6 +13,7 @@ using Umbraco.Core;
 using Umbraco.Core.Dynamics;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Models;
+using Umbraco.Core.MultiPlatform;
 using Umbraco.Web.Models;
 using UmbracoExamine;
 using umbraco;
@@ -60,10 +61,9 @@ namespace Umbraco.Web
 			//TODO: need to get a ConvertFromMedia method but we'll just use this for now.
 			foreach (var media in rootMedia
 				.Select(m => global::umbraco.library.GetMedia(m.Id, true))
-				.Where(media => media != null && media.Current != null))
+				.Where(media => media != null && media.Current() != null))
 			{
-				media.MoveNext();
-				result.Add(ConvertFromXPathNavigator(media.Current));
+				result.Add(ConvertFromXPathNavigator(media.Current()));
 			}
 			return result;
 		}
@@ -157,9 +157,8 @@ namespace Umbraco.Web
 			}
 
 			var media = global::umbraco.library.GetMedia(id, true);
-			if (media != null && media.Current != null)
+			if (media != null && media.Current() != null)
 			{
-				media.MoveNext();
 				var moved = media.Current.MoveToFirstChild();
 				//first check if we have an error
 				if (moved)
@@ -229,7 +228,9 @@ namespace Umbraco.Web
 				values.Add("nodeTypeAlias", xpath.Name);
 			}
 			
-			var result = xpath.SelectChildren(XPathNodeType.Element);
+			var result = xpath.Select(".");
+			result.MoveNext();
+			//XmlNode node = ((IHasXmlNode) result.Current).GetNode();
 			//add the attributes e.g. id, parentId etc
 			if (result.Current != null && result.Current.HasAttributes)
 			{
@@ -247,10 +248,11 @@ namespace Umbraco.Web
 							values.Add(result.Current.Name, result.Current.Value);
 						}						
 					}
-					result.Current.MoveToParent();
+					//result.Current.MoveToParent();
 				}
 			}
 			//add the user props
+			result = xpath.SelectChildren(XPathNodeType.Element);
 			while (result.MoveNext())
 			{
 				if (result.Current != null && !result.Current.HasAttributes)
@@ -309,9 +311,8 @@ namespace Umbraco.Web
 
 					//if we've made it here, that means it does exist on the content type but not in examine, we'll need to query the db :(
 					var media = global::umbraco.library.GetMedia(dd.Id, true);
-					if (media != null && media.Current != null)
+					if (media != null && media.Current() != null)
 					{
-						media.MoveNext();
 						var mediaDoc = ConvertFromXPathNavigator(media.Current);
 						return mediaDoc.Properties.FirstOrDefault(x => x.Alias.InvariantEquals(alias));
 					}					
@@ -391,9 +392,8 @@ namespace Umbraco.Web
                 //falling back to get media
 
 				var media = library.GetMedia(parentId, true);
-				if (media != null && media.Current != null)
+				if (media != null && media.Current() != null)
 				{
-				    media.MoveNext();
 					xpath = media.Current;
 				}
 				else
@@ -404,7 +404,7 @@ namespace Umbraco.Web
 
             //The xpath might be the whole xpath including the current ones ancestors so we need to select the current node
             var item = xpath.Select("//*[@id='" + parentId + "']");
-            if (item.Current == null)
+            if (item.Current() == null)
             {
                 return Enumerable.Empty<IPublishedContent>();
             }
