@@ -445,7 +445,7 @@ namespace Umbraco.Tests.Services
         {
             // Arrange
             var contentService = ServiceContext.ContentService;
-            var content = contentService.GetById(1048);
+            var content = contentService.GetById(1049);
 
             // Act
             bool published = contentService.Publish(content, 0);

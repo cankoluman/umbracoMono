@@ -11,6 +11,7 @@ using Umbraco.Core.Logging;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.EntityBase;
 using Umbraco.Core.Models.Rdbms;
+using Umbraco.Core.Multiplatform;
 using Umbraco.Core.Persistence;
 using Umbraco.Core.Persistence.Caching;
 using Umbraco.Core.Persistence.Querying;
@@ -1273,9 +1274,7 @@ namespace Umbraco.Core.Services
                     if (!contentTypeIds.Any())
                     {
                         //Remove all Document records from the cmsContentXml table (DO NOT REMOVE Media/Members!)
-                        uow.Database.Execute(@"DELETE FROM cmsContentXml WHERE nodeId IN
-                                                (SELECT DISTINCT cmsContentXml.nodeId FROM cmsContentXml 
-                                                    INNER JOIN cmsDocument ON cmsContentXml.nodeId = cmsDocument.nodeId)");
+						uow.Database.Execute(DatabaseHelper.GetDbSanitisedRepublishAll());
                         
                         //get all content items that are published
                         //  Consider creating a Path query instead of recursive method:
