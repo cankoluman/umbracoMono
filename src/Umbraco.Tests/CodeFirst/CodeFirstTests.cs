@@ -60,7 +60,7 @@ namespace Umbraco.Tests.CodeFirst
             var mappedContentTypes = ContentTypeDefinitionFactory.RetrieveMappedContentTypes();
             ServiceContext.ContentTypeService.Save(mappedContentTypes);
 
-            var model = ServiceContext.ContentTypeService.GetContentType(1046);
+            var model = ServiceContext.ContentTypeService.GetContentType(1045);
             Assert.That(model, Is.Not.Null);
         }
 
@@ -184,7 +184,7 @@ namespace Umbraco.Tests.CodeFirst
             var mappedContentTypes = ContentTypeDefinitionFactory.RetrieveMappedContentTypes().ToList();
             ServiceContext.ContentTypeService.Save(mappedContentTypes);
 
-            var type1 = ServiceContext.ContentTypeService.GetContentType(1047);
+            var type1 = ServiceContext.ContentTypeService.GetContentType(1046);
 
             Assert.That(type1, Is.Not.Null);
             Assert.That(type1.PropertyGroups.Count(), Is.EqualTo(2));
@@ -224,7 +224,8 @@ namespace Umbraco.Tests.CodeFirst
 
             Assert.That(contentTypeList.Count(), Is.EqualTo(mappedContentTypes.Count()));
 
-            ServiceContext.ContentTypeService.Save(mappedContentTypes);//Save to db
+            //why is this line here?
+			//ServiceContext.ContentTypeService.Save(mappedContentTypes);//Save to db
         }
 
         private SerializationService SerializationService { get; set; }
