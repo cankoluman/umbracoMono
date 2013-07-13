@@ -695,6 +695,7 @@
     <Compile Include="ConfigurationManager\ConfigurationManagerProvider.cs" />
     <Compile Include="ConfigurationManager\ConfigurationManagerTest.cs" />
     <Compile Include="ConfigurationManager\IConfigurationManager.cs" />
+    <Compile Include="MultiPlatform\DatabaseHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

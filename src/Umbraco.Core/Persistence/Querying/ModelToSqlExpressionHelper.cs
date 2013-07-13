@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Text;
+using Umbraco.Core.Multiplatform;
 using Umbraco.Core.Persistence.Mappers;
 
 namespace Umbraco.Core.Persistence.Querying
@@ -456,7 +457,7 @@ namespace Umbraco.Core.Persistence.Querying
                 return ((decimal)value).ToString(CultureInfo.InvariantCulture);
 
             if (fieldType == typeof(DateTime))
-                return "'" + EscapeParam(((DateTime)value).ToString(CultureInfo.InvariantCulture)) + "'";
+				return "'" + EscapeParam(DatabaseHelper.GetDbSanitisedDateTimeFormat(value)) + "'";
             
             if (fieldType == typeof(bool))
                 return ((bool)value) ? Convert.ToString(1, CultureInfo.InvariantCulture) : Convert.ToString(0, CultureInfo.InvariantCulture);
