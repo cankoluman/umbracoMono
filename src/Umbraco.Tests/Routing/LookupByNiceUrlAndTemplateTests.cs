@@ -17,6 +17,8 @@ namespace Umbraco.Tests.Routing
 				.Instance
 					.SetManager(new ConfigurationManagerFromExeConfig());  
 
+			SettingsForTests.HideTopLevelNodeFromPath = false;
+
 			base.Initialize();
 		}
 
