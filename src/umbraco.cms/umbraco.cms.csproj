@@ -466,5 +466,5 @@
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
-  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="$(ProjectDir)../.nuget/nuget.targets" Condition="'$(OS)' == 'Windows_NT'" />
 </Project>

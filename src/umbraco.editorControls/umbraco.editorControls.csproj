@@ -392,7 +392,7 @@
     <Compile Include="userControlWrapper\usercontrolData.cs" />
     <Compile Include="wysiwyg\editorButton.cs" />
     <Compile Include="tinyMCE3\TinyMCE.cs" />
-    <Compile Include="tinyMCE3\tinyMCE3dataType.cs" />
+    <Compile Include="tinyMCE3\tinymce3dataType.cs" />
     <Compile Include="tinyMCE3\webcontrol\plugin\ConfigSection.cs" />
     <Compile Include="tinyMCE3\webcontrol\plugin\GzipCompressor.cs" />
     <Compile Include="tinyMCE3\webcontrol\plugin\GzipModule.cs" />
@@ -494,5 +494,5 @@
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
-  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="$(ProjectDir)../.nuget/nuget.targets" Condition="'$(OS)' == 'Windows_NT'" />
 </Project>

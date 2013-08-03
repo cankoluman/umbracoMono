@@ -2,14 +2,25 @@
 using System.Collections.Generic;
 using System.Security;
 using System.Text;
+using System.Web;
 using NUnit.Framework;
 using Umbraco.Core;
+using Umbraco.Core.Configuration;
 
 namespace Umbraco.Tests
 {
 	[TestFixture]
     public class StringExtensionsTests
     {
+		[SetUp]	
+		public void Initialise()
+		{
+			ConfigurationManagerProvider
+				.Instance
+					.SetManager(new ConfigurationManagerFromExeConfig());
+
+			var appPath = HttpRuntime.AppDomainAppVirtualPath;
+		}
 
 		[TestCase("This is a string to encrypt")]
 		[TestCase("This is a string to encrypt\nThis is a second line")]

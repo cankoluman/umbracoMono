@@ -1,4 +1,6 @@
-@ECHO OFF
+#! /bin/bash
+
+
 SET release=6.0.6
 SET comment=
 SET version=%release%

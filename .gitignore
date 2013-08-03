@@ -93,6 +93,7 @@ src/Umbraco.Web.UI/[W]eb.config
 src/Umbraco.Web.UI/~/
 
 src/umbraco.userprefs
+src/Umbraco.Web.UI/App_Browsers/Default.browser
 
 #packages
 src/packages/
