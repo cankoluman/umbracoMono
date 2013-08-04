@@ -167,7 +167,11 @@
  
   <Target Name="MergeCompiledProjects" DependsOnTargets="CreateSystemFolders">
 		<Message Text="Mono quick fix: Merging _PublishedWebsites to WebApp" />
-		<Exec Command="cp -R -u $(SolutionBinFolderAbsolutePath)_PublishedWebsites/Umbraco.Web.UI/* $(WebAppFolderAbsolutePath)" />
+		
+		<!-- one offs this dll is not built in project -->
+		<Exec Command="cp $(MSBuildProjectDirectory)/../external/umbraco.XmlSerializers.dll $(WebAppFolderAbsolutePath)/bin" />
+		
+		<Exec Command="cp -R -u $(SolutionBinFolderAbsolutePath)_PublishedWebsites/Umbraco.Web.UI/* $(WebAppFolderAbsolutePath)" />		
 	</Target>
 
  <Target Name="CreateSystemFolders" DependsOnTargets="CopyLibraries" Inputs="@(SystemFolders)" Outputs="%(Identity).Dummy">
