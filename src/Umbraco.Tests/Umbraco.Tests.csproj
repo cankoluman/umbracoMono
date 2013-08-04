@@ -436,6 +436,12 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="cp -R -u ${ProjectDir}/../packages/SqlServerCE.4.0.0.0/amd64/*.*" workingdir="${TargetDir}/amd64" />
+				<Command type="AfterBuild" command="cp -R -u ${ProjectDir}/../packages/SqlServerCE.4.0.0.0/x86/*.*" workingdir="${TargetDir}/x86" />      
+      </CustomCommands>
+    </CustomCommands>		
     <PostBuildEvent>xcopy "$(ProjectDir)"..\packages\SqlServerCE.4.0.0.0\amd64\*.* "$(TargetDir)amd64\" /Y /F /E /D
 xcopy "$(ProjectDir)"..\packages\SqlServerCE.4.0.0.0\x86\*.* "$(TargetDir)x86\" /Y /F /E /D</PostBuildEvent>
   </PropertyGroup>

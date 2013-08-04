@@ -155,7 +155,7 @@
    <Exec Command="7za a -r %22$(BuildZipFileNameWebPi)%22 %22$(WebPiFolderAbsolutePath)*%22" />
  </Target>
  
- <Target Name="ZipWebApp" DependsOnTargets="CreateSystemFolders" >
+ <Target Name="ZipWebApp" DependsOnTargets="MergeCompiledProjects" >
    <Message Text="Starting to zip to $(buildDate)-$(BuildZipFileName)" Importance="high" />
 
    <Exec Command="7za a -r %22$(BuildZipFileNameBin)%22 %22$(SolutionBinFolderAbsolutePath)*%22" />
@@ -163,6 +163,12 @@
    
    <Message Text="Finished zipping to build/$(BuildFolder)/$(buildDate)-$(BuildZipFileName)" Importance="high" />
  </Target>
+
+ 
+  <Target Name="MergeCompiledProjects" DependsOnTargets="CreateSystemFolders">
+		<Message Text="Mono quick fix: Merging _PublishedWebsites to WebApp" />
+		<Exec Command="cp -R -u $(SolutionBinFolderAbsolutePath)_PublishedWebsites/Umbraco.Web.UI/* $(WebAppFolderAbsolutePath)" />
+	</Target>
 
  <Target Name="CreateSystemFolders" DependsOnTargets="CopyLibraries" Inputs="@(SystemFolders)" Outputs="%(Identity).Dummy">
    <MakeDir Directories="@(SystemFolders)" />
@@ -212,17 +218,33 @@
  </Target>
  
  <!-- Copy the xml documentation to the bin folder -->
- <Target Name="CopyXmlDocumentation"  DependsOnTargets="CompileProjects">
+ <Target Name="CopyXmlDocumentation"  DependsOnTargets="MonoMergeXmlDocumentation">
    <ItemGroup>
      <XmlDocumentationFiles Include="$(SolutionBinFolder)*.xml" />
    </ItemGroup>
-   
+   <Message Text="Found: %(XmlDocumentationFiles.Identity)" />
    <Copy SourceFiles="@(XmlDocumentationFiles)"
        DestinationFiles="@(XmlDocumentationFiles->'$(WebAppFolder)bin\%(RecursiveDir)%(Filename)%(Extension)')"
        OverwriteReadOnlyFiles="true"
        SkipUnchangedFiles="false" />
 	<Message Text="CopyXmlDocumentation" />
  </Target>
+ 
+  <Target Name="MonoMergeXmlDocumentation"  DependsOnTargets="CompileProjects">
+   <ItemGroup>
+     <XmlDocumentationFiles Include="$(MSBuildProjectDirectory)/../src/*/bin/$(BuildConfiguration)/*.xml" />
+   </ItemGroup>		
+   <Message Text="Mono, looking for xmldocs in: $(MSBuildProjectDirectory)/../src/*/bin/$(BuildConfiguration)/*.xml" />
+   <Copy SourceFiles="@(XmlDocumentationFiles)"
+       DestinationFiles="@(XmlDocumentationFiles->'$(SolutionBinFolder)%(RecursiveDir)%(Filename)%(Extension)')"
+       OverwriteReadOnlyFiles="true"
+       SkipUnchangedFiles="false" />  
+       
+		<!-- casing patches and one offs-->
+		<Exec Command="cp $(MSBuildProjectDirectory)/../src/packages/Lucene.Net.2.9.4.1/lib/net40/Lucene.Net.XML $(SolutionBinFolder)Lucene.Net.xml" />
+		<Exec Command="cp $(MSBuildProjectDirectory)/../src/Umbraco.Web/bin/umbraco.xml $(SolutionBinFolder)" />
+		
+	</Target>
  
  <Target Name="CompileProjects" DependsOnTargets="SetVersionNumber">
    <Message Text="Compiling web project to build\$(BuildFolder)" Importance="high" />
