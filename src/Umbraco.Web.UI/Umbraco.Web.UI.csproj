@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
-	
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <ProductVersion>9.0.30729</ProductVersion>
@@ -63,8 +62,8 @@
     <CustomCommands>
       <CustomCommands>
         <Command type="AfterBuild" command="rm -f ${TargetDir}/Microsoft.Web.Infrastructure.dll" workingdir="${TargetDir}" />
-        <Command type="AfterBuild" command="cp -R -u ${ProjectDir}/../packages/SqlServerCE.4.0.0.0/amd64/*.*" workingdir="${TargetDir}/amd64" />
-				<Command type="AfterBuild" command="cp -R -u ${ProjectDir}/../packages/SqlServerCE.4.0.0.0/x86/*.*" workingdir="${TargetDir}/x86" />      
+        <Command type="AfterBuild" command="cp -R -u ${ProjectDir}/../packages/SqlServerCE.4.0.0.0/amd64 ${TargetDir}" workingdir="${TargetDir}" />
+        <Command type="AfterBuild" command="cp -R -u ${ProjectDir}/../packages/SqlServerCE.4.0.0.0/x86 ${TargetDir}" workingdir="${TargetDir}" />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -2361,11 +2360,11 @@
     <Folder Include="usercontrols\" />
     <Folder Include="xslt\" />
   </ItemGroup>
- <!-- depends on mono environment -->
+  <!-- depends on mono environment -->
   <PropertyGroup>
-		<MonoPath>/opt/mono/lib/mono</MonoPath>
-   <VSToolsPath>$(MonoPath)/xbuild/Microsoft/VisualStudio/v9.0</VSToolsPath>
- </PropertyGroup>  
+    <MonoPath>/opt/mono/lib/mono</MonoPath>
+    <VSToolsPath>$(MonoPath)/xbuild/Microsoft/VisualStudio/v9.0</VSToolsPath>
+  </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -2410,9 +2409,10 @@ xcopy "$(ProjectDir)"..\packages\SqlServerCE.4.0.0.0\x86\*.* "$(TargetDir)x86\" 
   </PropertyGroup>
   <Import Project="$(ProjectDir)../.nuget/nuget.targets" Condition="'$(OS)' == 'Windows_NT'" />
   <Import Project="$(VSToolsPath)/WebApplications/Microsoft.WebApplication.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <Target Name="BeforeBuild">
-		<!-- restore packages here for now -->
-		<!--
+    <!-- restore packages here for now -->
+    <!--
 		<Exec Command="$(ProjectDir)../../tools/Mono/RestoreNugetPackages.sh" Condition="($(BuildingInsideVisualStudio) != true) and ('$(OS)' != 'Windows_NT')"  />
     -->
     <!-- Create web.config file from Template if it doesn't exist -->

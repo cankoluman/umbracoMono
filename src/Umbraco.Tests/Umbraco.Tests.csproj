@@ -38,6 +38,12 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="cp -R -u ${ProjectDir}/../packages/SqlServerCE.4.0.0.0/amd64 ${TargetDir}" workingdir="${TargetDir}" externalConsole="True" />
+        <Command type="AfterBuild" command="cp -R -u ${ProjectDir}/../packages/SqlServerCE.4.0.0.0/x86 ${TargetDir}" workingdir="${TargetDir}" externalConsole="True" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -46,6 +52,12 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="cp -R -u ${ProjectDir}/../packages/SqlServerCE.4.0.0.0/amd64/*.*" workingdir="${TargetDir}/amd64" />
+        <Command type="AfterBuild" command="cp -R -u ${ProjectDir}/../packages/SqlServerCE.4.0.0.0/x86/*.*" workingdir="${TargetDir}/x86" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Rhino.Mocks">
@@ -439,9 +451,9 @@
     <CustomCommands>
       <CustomCommands>
         <Command type="AfterBuild" command="cp -R -u ${ProjectDir}/../packages/SqlServerCE.4.0.0.0/amd64/*.*" workingdir="${TargetDir}/amd64" />
-				<Command type="AfterBuild" command="cp -R -u ${ProjectDir}/../packages/SqlServerCE.4.0.0.0/x86/*.*" workingdir="${TargetDir}/x86" />      
+        <Command type="AfterBuild" command="cp -R -u ${ProjectDir}/../packages/SqlServerCE.4.0.0.0/x86/*.*" workingdir="${TargetDir}/x86" />
       </CustomCommands>
-    </CustomCommands>		
+    </CustomCommands>
     <PostBuildEvent>xcopy "$(ProjectDir)"..\packages\SqlServerCE.4.0.0.0\amd64\*.* "$(TargetDir)amd64\" /Y /F /E /D
 xcopy "$(ProjectDir)"..\packages\SqlServerCE.4.0.0.0\x86\*.* "$(TargetDir)x86\" /Y /F /E /D</PostBuildEvent>
   </PropertyGroup>
