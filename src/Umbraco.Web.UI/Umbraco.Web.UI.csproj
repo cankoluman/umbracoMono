@@ -2336,7 +2336,6 @@
     <Content Include="config\FileSystemProviders.config" />
     <Content Include="config\EmbeddedMedia.config" />
     <Content Include="web.Template.mono.config" />
-    <Content Include="web.Template.mono.debug.config" />
     <Content Include="web.config" />
     <Compile Include="install\steps\Skinning\loadStarterKitDesigns.ascx.designer.cs">
       <DependentUpon>loadStarterKitDesigns.ascx</DependentUpon>
@@ -2345,6 +2344,8 @@
       <DependentUpon>PartialViewMacro.ascx</DependentUpon>
     </Compile>
     <Content Include="umbraco_client\Application\JQuery\jquery.mono.textBoxFix.js" />
+    <Content Include="web.Template.mono.Debug.config" />
+    <Content Include="web.Template.mono.Release.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
@@ -2409,7 +2410,7 @@ xcopy "$(ProjectDir)"..\packages\SqlServerCE.4.0.0.0\x86\*.* "$(TargetDir)x86\" 
   </PropertyGroup>
   <Import Project="$(ProjectDir)../.nuget/nuget.targets" Condition="'$(OS)' == 'Windows_NT'" />
   <Import Project="$(VSToolsPath)/WebApplications/Microsoft.WebApplication.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="$(BuildingInsideVisualStudio) == false"/>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="$(BuildingInsideVisualStudio) == false" />
   <Target Name="BeforeBuild">
     <!-- restore packages here for now -->
     <!--

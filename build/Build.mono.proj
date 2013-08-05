@@ -77,7 +77,8 @@
  </PropertyGroup>
  
  <PropertyGroup>
-   <BuildConfiguration>Release</BuildConfiguration>
+   <BuildConfiguration Condition="'$(BUILD_CONFIGURATION)' == ''">Release</BuildConfiguration>
+   <BuildConfiguration Condition="'$(BUILD_CONFIGURATION)' != ''">$(BUILD_CONFIGURATION)</BuildConfiguration>
    <BuildFolder>_BuildOutput/</BuildFolder>
    <BuildZipFileName>UmbracoCms$(DECIMAL_BUILD_NUMBER).zip</BuildZipFileName>
    <BuildZipFileNameBin>UmbracoCms.AllBinaries$(DECIMAL_BUILD_NUMBER).zip</BuildZipFileNameBin>
@@ -117,7 +118,7 @@
  -->
 
  <Target Name="Build" DependsOnTargets="ZipWebPiApp">
-   <Message Text="Build finished" />
+   <Message Text="Build finished for $(BuildConfiguration)" />
  </Target>
  
  <Target Name="GenerateWebPiHash" DependsOnTargets="ZipWebPiApp">
@@ -155,7 +156,7 @@
    <Exec Command="7za a -r %22$(BuildZipFileNameWebPi)%22 %22$(WebPiFolderAbsolutePath)*%22" />
  </Target>
  
- <Target Name="ZipWebApp" DependsOnTargets="MergeCompiledProjects" >
+ <Target Name="ZipWebApp" DependsOnTargets="WebConfigNoTransformFixes" >
    <Message Text="Starting to zip to $(buildDate)-$(BuildZipFileName)" Importance="high" />
 
    <Exec Command="7za a -r %22$(BuildZipFileNameBin)%22 %22$(SolutionBinFolderAbsolutePath)*%22" />
@@ -163,8 +164,12 @@
    
    <Message Text="Finished zipping to build/$(BuildFolder)/$(buildDate)-$(BuildZipFileName)" Importance="high" />
  </Target>
-
  
+ <Target Name="WebConfigNoTransformFixes" DependsOnTargets="MergeCompiledProjects" >
+		<Exec Command="cp $(MSBuildProjectDirectory)/../src/Umbraco.Web.UI/web.Template.mono.$(BuildConfiguration).config $(WebAppFolderAbsolutePath)/web.config" />
+		<Exec Command="rm $(WebAppFolderAbsolutePath)/web.Template.*" />
+ </Target> 
+
   <Target Name="MergeCompiledProjects" DependsOnTargets="CreateSystemFolders">
 		<Message Text="Mono quick fix: Merging _PublishedWebsites to WebApp" />
 		
