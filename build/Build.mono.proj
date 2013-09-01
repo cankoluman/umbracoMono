@@ -156,13 +156,18 @@
    <Exec Command="7za a -r %22$(BuildZipFileNameWebPi)%22 %22$(WebPiFolderAbsolutePath)*%22" />
  </Target>
  
- <Target Name="ZipWebApp" DependsOnTargets="WebConfigNoTransformFixes" >
+ <Target Name="ZipWebApp" DependsOnTargets="AddMissingFilesMonoNeeds" >
    <Message Text="Starting to zip to $(buildDate)-$(BuildZipFileName)" Importance="high" />
 
    <Exec Command="7za a -r %22$(BuildZipFileNameBin)%22 %22$(SolutionBinFolderAbsolutePath)*%22" />
    <Exec Command="7za a -r %22$(BuildZipFileName)%22 %22$(WebAppFolderAbsolutePath)*%22" />
    
    <Message Text="Finished zipping to build/$(BuildFolder)/$(buildDate)-$(BuildZipFileName)" Importance="high" />
+ </Target>
+ 
+ <Target Name="AddMissingFilesMonoNeeds" DependsOnTargets="WebConfigNoTransformFixes" >
+		<Message Text="Adding missing files..." />
+		<Exec Command="cp $(MSBuildProjectDirectory)/../src/Umbraco.Web.UI/App_Browsers/Default.browser $(WebAppFolderAbsolutePath)/App_Browsers/Default.browser" /> 
  </Target>
  
  <Target Name="WebConfigNoTransformFixes" DependsOnTargets="MergeCompiledProjects" >

@@ -59,11 +59,32 @@
 
   <Target Name="ResetConfigFiles" Condition="$(ProjDir) != $(ProjOutputDir)" BeforeTargets="Build;Rebuild" Inputs="@(ConfigFiles)" Outputs="%(Identity).Dummy">
     
+    <!--
     <PropertyGroup>
       <OriginalFileName>@(ConfigFiles)</OriginalFileName>
       <ModifiedFileName>$(OriginalFileName.Replace("%(ConfigFiles.Extension)",".$(Configuration)%(ConfigFiles.Extension)"))</ModifiedFileName>
       <OutputFileName>$(OriginalFileName.Replace("$(ProjDir)", "$(ProjOutputDir)"))</OutputFileName>
     </PropertyGroup>
+    -->
+    
+		<CreateProperty
+				Value="@(ConfigFiles)">
+				<Output
+						TaskParameter="Value"
+						PropertyName="OriginalFileName" />
+		</CreateProperty> 
+		<CreateProperty
+				Value="$(OriginalFileName.Replace('%(ConfigFiles.Extension)','.$(Configuration)%(ConfigFiles.Extension)'))">
+				<Output
+						TaskParameter="Value"
+						PropertyName="ModifiedFileName" />
+		</CreateProperty>  
+		<CreateProperty
+				Value="$(OriginalFileName.Replace('$(ProjDir)', '$(ProjOutputDir)'))">
+				<Output
+						TaskParameter="Value"
+						PropertyName="OutputFileName" />
+		</CreateProperty>  				   
 
     <Message Text="$(OriginalFileName)" Importance="high" />
     <Message Text="$(OutputFileName)" Importance="high" />
