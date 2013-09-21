@@ -80,9 +80,9 @@
    <BuildConfiguration Condition="'$(BUILD_CONFIGURATION)' == ''">Release</BuildConfiguration>
    <BuildConfiguration Condition="'$(BUILD_CONFIGURATION)' != ''">$(BUILD_CONFIGURATION)</BuildConfiguration>
    <BuildFolder>_BuildOutput/</BuildFolder>
-   <BuildZipFileName>UmbracoCms$(DECIMAL_BUILD_NUMBER).zip</BuildZipFileName>
-   <BuildZipFileNameBin>UmbracoCms.AllBinaries$(DECIMAL_BUILD_NUMBER).zip</BuildZipFileNameBin>
-   <BuildZipFileNameWebPi>UmbracoCms.WebPI$(DECIMAL_BUILD_NUMBER).zip</BuildZipFileNameWebPi>
+   <BuildZipFileName>UmbracoCms.Mono$(DECIMAL_BUILD_NUMBER).zip</BuildZipFileName>
+   <BuildZipFileNameBin>UmbracoCms.Mono.AllBinaries$(DECIMAL_BUILD_NUMBER).zip</BuildZipFileNameBin>
+   <BuildZipFileNameWebPi>UmbracoCms.Mono.WebPI$(DECIMAL_BUILD_NUMBER).zip</BuildZipFileNameWebPi>
    <IncludeSymbols>False</IncludeSymbols>
    <BuildFolderRelativeToProjects>../../build/$(BuildFolder)</BuildFolderRelativeToProjects>
    <BuildFolderAbsolutePath>$(MSBuildProjectDirectory)/$(BuildFolder)</BuildFolderAbsolutePath>
@@ -159,7 +159,7 @@
  <Target Name="ZipWebApp" DependsOnTargets="MonoNuget" >
    <Message Text="Starting to zip to $(buildDate)-$(BuildZipFileName)" Importance="high" />
 
-   <Exec Command="7za a -r %22$(BuildZipFileNameBin)%22 %22$(SolutionBinFolderAbsolutePath)*%22" />
+   <Exec Command="7za a -r %22$(BuildZipFileNameBin)%22 %22$(SolutionBinFolderAbsolutePath)*%22 -xr!_PublishedWebsites" />
    <Exec Command="7za a -r %22$(BuildZipFileName)%22 %22$(WebAppFolderAbsolutePath)*%22" />
    
    <Message Text="Finished zipping to build/$(BuildFolder)/$(buildDate)-$(BuildZipFileName)" Importance="high" />
@@ -181,9 +181,9 @@
 		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)media/dummy.txt' /> 
 		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)scripts/dummy.txt' /> 
 		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)usercontrols/dummy.txt' /> 
-		<Exec Command='if [ ! -d "$DIRECTORY" ]; then mkdir $(WebAppFolderAbsolutePath)Views/Partials;fi' /> 
+		<Exec Command='if [ ! -d "$(WebAppFolderAbsolutePath)Views/Partials" ]; then mkdir $(WebAppFolderAbsolutePath)Views/Partials;fi' /> 
 		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)Views/Partials/dummy.txt' /> 
-		<Exec Command='if [ ! -d "$DIRECTORY" ]; then mkdir $(WebAppFolderAbsolutePath)Views/MacroPartials;fi' /> 
+		<Exec Command='if [ ! -d "$(WebAppFolderAbsolutePath)Views/MacroPartials" ]; then mkdir $(WebAppFolderAbsolutePath)Views/MacroPartials;fi' /> 
 		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)Views/MacroPartials/dummy.txt' /> 
 		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)xslt/dummy.txt' /> 
 		
@@ -194,8 +194,8 @@
 		<Exec Command="nuget pack _BuildOutput/WebApp/UmbracoCms.mono.nuspec" /> 
 		
 		<Message Text="Cleaning up..." />
-		<Exec Command="rm -f $(WebAppFolderAbsolutePath)/*.mono.nuspec" /> 
-		<Exec Command="rm -rf $(WebAppFolderAbsolutePath)/tools" /> 		
+		<Exec Command="rm -f $(WebAppFolderAbsolutePath)*.mono.nuspec" /> 
+		<Exec Command="rm -rf $(WebAppFolderAbsolutePath)tools" /> 		
  </Target>
  
  
