@@ -101,6 +101,16 @@ namespace Umbraco.Core.MultiPlatform
 			return path;
 		}
 
+		public static string GetSystemDirectoriesRootSafe()
+		{
+			var rootPath = SystemDirectories.Root;
+
+			if (IsMono && String.IsNullOrEmpty (rootPath))
+				return "/";
+
+			return rootPath;
+		}
+
 	}
 }
 
