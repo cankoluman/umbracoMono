@@ -171,6 +171,23 @@
 		<Exec Command="cp $(MSBuildProjectDirectory)/NuSpecs/*.mono.nuspec $(WebAppFolderAbsolutePath)/" /> 
 		<Exec Command="cp -R $(MSBuildProjectDirectory)/NuSpecs/tools $(WebAppFolderAbsolutePath)/" /> 
 		
+		<Message Text="Creating Dummy Files" />
+		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)App_Code/dummy.txt' /> 
+		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)App_Data/dummy.txt' /> 
+		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)App_Plugins/dummy.txt' /> 
+		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)css/dummy.txt' /> 
+		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)macroScripts/dummy.txt' /> 
+		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)masterpages/dummy.txt' /> 
+		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)media/dummy.txt' /> 
+		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)scripts/dummy.txt' /> 
+		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)usercontrols/dummy.txt' /> 
+		<Exec Command='if [ ! -d "$DIRECTORY" ]; then mkdir $(WebAppFolderAbsolutePath)Views/Partials;fi' /> 
+		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)Views/Partials/dummy.txt' /> 
+		<Exec Command='if [ ! -d "$DIRECTORY" ]; then mkdir $(WebAppFolderAbsolutePath)Views/MacroPartials;fi' /> 
+		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)Views/MacroPartials/dummy.txt' /> 
+		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)xslt/dummy.txt' /> 
+		
+		
 		<Message Text="Building nuget packages" />
 		<Exec Command="cp -R $(MSBuildProjectDirectory)/NuSpecs/tools $(WebAppFolderAbsolutePath)/" /> 
 		<Exec Command="nuget pack _BuildOutput/WebApp/UmbracoCms.Core.mono.nuspec" /> 
