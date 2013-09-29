@@ -32,11 +32,6 @@
 
                                 </li>
                                 <li>
-                                    <input type="radio" id="databaseOptionEmbedded" name="database" value="embedded" />
-                                    <label for="databaseOptionEmbedded">I want to use SQL CE 4, a free, quick-and-simple embedded database</label>
-
-                                </li>
-                                <li>
                                     <input type="radio" id="databaseOptionAdvanced" name="database" value="advanced" />
                                     <label for="databaseOptionAdvanced">I'm an advanced user, let me put in the connection string</label>
 
