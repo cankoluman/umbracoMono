@@ -67,7 +67,7 @@
       </CustomCommands>
     </CustomCommands>
     <AspNet>
-      <AspNet DisableCodeBehindGeneration="True" />
+      <AspNet DisableCodeBehindGeneration="False" />
     </AspNet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
