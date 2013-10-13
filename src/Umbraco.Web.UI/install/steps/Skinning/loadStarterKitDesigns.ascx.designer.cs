@@ -2,5 +2,6 @@
     
     
     public partial class LoadStarterKitDesigns {
+		protected global::System.Web.UI.WebControls.Panel pl_CustomizeSkin;
     }
 }

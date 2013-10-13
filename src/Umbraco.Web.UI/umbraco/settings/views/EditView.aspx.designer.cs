@@ -2,6 +2,8 @@
     
     
     public partial class EditView {
+
+		protected global::System.Web.UI.WebControls.Content head;
         
         protected global::ClientDependency.Core.Controls.JsInclude JsInclude1;
         

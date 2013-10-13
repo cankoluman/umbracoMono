@@ -1,4 +1,6 @@
-﻿namespace Umbraco.Web.UI.Umbraco.Create {
+﻿using System.Web.UI.WebControls;
+
+namespace Umbraco.Web.UI.Umbraco.Create {
     
     
     public partial class PartialViewMacro {

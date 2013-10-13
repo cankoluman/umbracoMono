@@ -66,6 +66,9 @@
         <Command type="AfterBuild" command="cp -R -u ${ProjectDir}/../packages/SqlServerCE.4.0.0.0/x86 ${TargetDir}" workingdir="${TargetDir}" />
       </CustomCommands>
     </CustomCommands>
+    <AspNet>
+      <AspNet DisableCodeBehindGeneration="True" />
+    </AspNet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\</OutputPath>
@@ -1474,7 +1477,6 @@
     <Content Include="install\steps\database.ascx" />
     <Content Include="install\steps\renaming.ascx" />
     <Content Include="install\steps\skinning.ascx" />
-    <Content Include="install\steps\Skinning\loadStarterKitDesigns.ascx" />
     <Content Include="install\steps\Skinning\loadStarterKits.ascx" />
     <Content Include="install\Title.ascx" />
     <Content Include="install\utills\p.aspx" />
@@ -2336,7 +2338,6 @@
     <Content Include="config\FileSystemProviders.config" />
     <Content Include="config\EmbeddedMedia.config" />
     <Content Include="web.Template.mono.config" />
-    <Content Include="web.config" />
     <Compile Include="install\steps\Skinning\loadStarterKitDesigns.ascx.designer.cs">
       <DependentUpon>loadStarterKitDesigns.ascx</DependentUpon>
     </Compile>
@@ -2346,6 +2347,8 @@
     <Content Include="umbraco_client\Application\JQuery\jquery.mono.textBoxFix.js" />
     <Content Include="web.Template.mono.Debug.config" />
     <Content Include="web.Template.mono.Release.config" />
+    <Content Include="Web.config" />
+    <Content Include="install\steps\Skinning\loadStarterKitDesigns.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

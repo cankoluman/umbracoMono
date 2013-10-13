@@ -2,5 +2,6 @@
     
     
     public partial class EditStyleSheet {
+		protected global::System.Web.UI.WebControls.Content body;
     }
 }
