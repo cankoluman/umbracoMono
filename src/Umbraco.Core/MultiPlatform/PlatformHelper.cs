@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Umbraco.Core.IO;
 
 namespace Umbraco.Core.MultiPlatform
@@ -109,6 +110,27 @@ namespace Umbraco.Core.MultiPlatform
 				return "/";
 
 			return rootPath;
+		}
+
+		public static string GetLowerCaseOrFirstCapFileName(string fullPath, bool throwException = true)
+		{
+			var fileName = Path.GetFileName (fullPath).ToLowerInvariant();
+			var path = Path.GetFullPath (fullPath);
+
+			var testPath = Path.Combine (path, fileName);
+			if (File.Exists (testPath))
+				return testPath;
+
+			fileName = char.ToUpperInvariant (fileName[0]) + fileName.Substring (1);
+
+			testPath = Path.Combine (path, fileName);
+			if (File.Exists (testPath))
+				return testPath;
+
+			if (throwException)
+				throw (new FileNotFoundException("Could not find all lower case or first cap variant of: " + fileName));
+		
+			return String.Empty;
 		}
 
 	}

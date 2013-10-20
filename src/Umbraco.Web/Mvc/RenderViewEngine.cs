@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using Microsoft.Web.Mvc;
 using Umbraco.Core;
 using Umbraco.Core.IO;
+using Umbraco.Core.MultiPlatform;
 using Umbraco.Web.Models;
 
 namespace Umbraco.Web.Mvc
@@ -50,7 +51,9 @@ namespace Umbraco.Web.Mvc
 			var viewFolder = IOHelper.MapPath(Constants.ViewLocation);
 			//ensure the web.config file is in the ~/Views folder
 			Directory.CreateDirectory(viewFolder);
-			if (!File.Exists(Path.Combine(viewFolder, "web.config")))
+			var configPath = Path.Combine(viewFolder, "web.config");
+
+			if (string.IsNullOrEmpty(PlatformHelper.GetLowerCaseOrFirstCapFileName(configPath, false)))
 			{
 				using (var writer = File.CreateText(Path.Combine(viewFolder, "web.config")))
 				{

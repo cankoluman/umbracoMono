@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
@@ -11,6 +12,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using Umbraco.Core.Configuration;
 using Umbraco.Core.Logging;
+using Umbraco.Core.MultiPlatform;
 using umbraco.BasePages;
 using umbraco.BusinessLogic;
 using umbraco.businesslogic.Exceptions;
@@ -279,7 +281,11 @@ namespace umbraco.presentation.umbraco.webservices
                 return appSetting;
 
             var configXml = new XmlDocument { PreserveWhitespace = true };
-            configXml.Load(HttpContext.Current.Server.MapPath("/web.config"));
+
+			var appPath = HttpContext.Current.Server.MapPath (null);
+			var configPath = Path.Combine(appPath, "web.config");
+
+			configXml.Load(PlatformHelper.GetLowerCaseOrFirstCapFileName(configPath));
 
             var requestLimitsNode = configXml.SelectSingleNode("//configuration/system.webServer/security/requestFiltering/requestLimits");
             if (requestLimitsNode != null)

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Web;
 using Umbraco.Core;
+using Umbraco.Core.MultiPlatform;
 
 namespace Umbraco.Web
 {
@@ -23,8 +24,8 @@ namespace Umbraco.Web
 			//NOTE: this real way only works in full trust :(
 			//HttpRuntime.UnloadAppDomain();
 			//so we'll do the dodgy hack instead            
-			var configPath = http.Request.PhysicalApplicationPath + "\\web.config";
-			File.SetLastWriteTimeUtc(configPath, DateTime.UtcNow);
+			var configPath = Path.Combine (http.Request.PhysicalApplicationPath, "web.config");
+			File.SetLastWriteTimeUtc(PlatformHelper.GetLowerCaseOrFirstCapFileName(configPath), DateTime.UtcNow);
 		}
 	}
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Microsoft.Web.Mvc;
 using Umbraco.Core.IO;
+using Umbraco.Core.MultiPlatform;
 
 namespace Umbraco.Web.Mvc
 {
@@ -76,11 +77,15 @@ namespace Umbraco.Web.Mvc
 
 			var folder = Path.GetDirectoryName(IOHelper.MapPath(razorResult.ViewPath));
 			//now we need to get the /View/ folder
-			var viewFolder = folder.Substring(0, folder.LastIndexOf("\\Views\\")) + "\\Views";
+			var viewFolder = folder.Substring(0, 
+                              folder.LastIndexOf(PlatformHelper.DirSepChar + "Views" + PlatformHelper.DirSepChar)) + 
+								PlatformHelper.DirSepChar + "Views";
 
 			//ensure the web.config file is in the ~/Views folder
 			Directory.CreateDirectory(viewFolder);
-			if (!File.Exists(Path.Combine(viewFolder, "web.config")))
+			var configPath = Path.Combine(viewFolder, "web.config");
+
+			if (string.IsNullOrEmpty(PlatformHelper.GetLowerCaseOrFirstCapFileName(configPath, false)))
 			{
 				using (var writer = File.CreateText(Path.Combine(viewFolder, "web.config")))
 				{

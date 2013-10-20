@@ -9,6 +9,7 @@ using System.Xml;
 using System.Xml.Linq;
 using Umbraco.Core.IO;
 using Umbraco.Core.Logging;
+using Umbraco.Core.MultiPlatform;
 
 namespace Umbraco.Core.Configuration
 {
@@ -300,7 +301,7 @@ namespace Umbraco.Core.Configuration
             }
 
             var fileName = System.IO.Path.Combine(vDir, "web.config");
-            return fileName;
+			return PlatformHelper.GetLowerCaseOrFirstCapFileName(fileName);
         }
 
         /// <summary>

@@ -7,6 +7,7 @@ using System.Web.Configuration;
 using System.Xml.Linq;
 using Umbraco.Core.Configuration;
 using Umbraco.Core.Logging;
+using Umbraco.Core.MultiPlatform;
 using Umbraco.Core.Persistence;
 using Umbraco.Core.Persistence.Migrations;
 using Umbraco.Core.Persistence.Migrations.Initial;
@@ -246,7 +247,7 @@ namespace Umbraco.Core
             }
 
             var fileName = Path.Combine(vDir, "web.config");
-            var xml = XDocument.Load(fileName, LoadOptions.PreserveWhitespace);
+			var xml = XDocument.Load(PlatformHelper.GetLowerCaseOrFirstCapFileName(fileName), LoadOptions.PreserveWhitespace);
             var connectionstrings = xml.Root.Descendants("connectionStrings").Single();
 
             // Update connectionString if it exists, or else create a new appSetting for the given key and value
