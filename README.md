@@ -6,7 +6,7 @@ umbraco port to Mono
 ### Welcome to the umbraco port for mono.
 
 Please have a look at the wiki: 
-https://github.com/m57j75/umbracoMono/wiki
+https://github.com/cankoluman/umbracoMono/wiki
 
 This site replaces the old repository at:
 https://github.com/cankoluman/umbraco-mono
