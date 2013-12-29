@@ -260,7 +260,7 @@
    </ItemGroup>
    
    <Copy SourceFiles="@(WebConfigFile)"
-       DestinationFiles="$(WebAppFolder)Web.config"
+       DestinationFiles="$(WebAppFolder)web.config"
        OverwriteReadOnlyFiles="true"
        SkipUnchangedFiles="false" />
  </Target>

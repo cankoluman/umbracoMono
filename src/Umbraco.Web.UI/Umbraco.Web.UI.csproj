@@ -2419,13 +2419,13 @@ xcopy "$(ProjectDir)"..\packages\SqlServerCE.4.0.0.0\x86\*.* "$(TargetDir)x86\" 
 		<Exec Command="$(ProjectDir)../../tools/Mono/RestoreNugetPackages.sh" Condition="($(BuildingInsideVisualStudio) != true) and ('$(OS)' != 'Windows_NT')"  />
     -->
     <!-- Create web.config file from Template if it doesn't exist -->
-    <Copy SourceFiles="$(ProjectDir)web.Template.mono.config" DestinationFiles="$(ProjectDir)Web.config" OverwriteReadOnlyFiles="true" SkipUnchangedFiles="false" Condition="!Exists('$(ProjectDir)Web.config')" />
+    <Copy SourceFiles="$(ProjectDir)web.Template.mono.$(Configuration).config" DestinationFiles="$(ProjectDir)web.config" OverwriteReadOnlyFiles="true" SkipUnchangedFiles="false" Condition="!Exists('$(ProjectDir)web.config')" />
     <!-- Transform the local Web.config file in Visual Studio -->
     <TransformXml Source="$(ProjectDir)Web.config" Transform="$(ProjectDir)web.Template.$(Configuration).config" Destination="$(ProjectDir)Web.$(Configuration).config.transformed" Condition="($(BuildingInsideVisualStudio) == true) and ('$(OS)' == 'Windows_NT')" />
     <!-- Always transform the Template file when not in VS (ie: build.bat) -->
     <TransformXml Source="$(ProjectDir)Web.Template.mono.config" Transform="$(ProjectDir)web.Template.mono.$(Configuration).config" Destination="$(ProjectDir)Web.$(Configuration).config.transformed" Condition="($(BuildingInsideVisualStudio) != true) and ('$(OS)' == 'Windows_NT')" />
   </Target>
   <Target Name="AfterBuild">
-    <Copy SourceFiles="$(ProjectDir)Web.$(Configuration).config.transformed" DestinationFiles="$(ProjectDir)Web.config" OverwriteReadOnlyFiles="true" SkipUnchangedFiles="false" Condition="$(BuildingInsideVisualStudio) == true" />
+    <Copy SourceFiles="$(ProjectDir)Web.$(Configuration).config.transformed" DestinationFiles="$(ProjectDir)web.config" OverwriteReadOnlyFiles="true" SkipUnchangedFiles="false" Condition="$(BuildingInsideVisualStudio) == true and ('$(OS)' == 'Windows_NT')" />
   </Target>
 </Project>
