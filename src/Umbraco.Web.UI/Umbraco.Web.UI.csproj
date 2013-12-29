@@ -2346,7 +2346,6 @@
     <Content Include="umbraco_client\Application\JQuery\jquery.mono.textBoxFix.js" />
     <Content Include="web.Template.mono.Debug.config" />
     <Content Include="web.Template.mono.Release.config" />
-    <Content Include="Web.config" />
     <Content Include="install\steps\Skinning\loadStarterKitDesigns.ascx" />
   </ItemGroup>
   <ItemGroup>
