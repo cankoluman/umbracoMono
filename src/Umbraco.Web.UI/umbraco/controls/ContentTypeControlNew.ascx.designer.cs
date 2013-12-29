@@ -2,6 +2,6 @@
     
     
     public partial class ContentTypeControlNew {
-		protected global::System.Web.UI.WebControls.Panel pnlGeneral;
+		protected System.Web.UI.WebControls.Panel pnlGeneral;
     }
 }

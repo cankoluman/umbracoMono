@@ -2,6 +2,6 @@
     
     
     public partial class QuickSearch {
-		protected global::System.Web.UI.HtmlControls.HtmlInputControl umbSearchField;
+		protected System.Web.UI.HtmlControls.HtmlInputControl umbSearchField;
     }
 }
