@@ -15,44 +15,6 @@
  <Import Project="../tools/UmbracoMSBuildTasks/Umbraco.MSBuild.Tasks.Targets" />
  <Import Project="../tools/MSBuildCommunityTasks/MSBuild.Community.Tasks.Targets" />
  
- <UsingTask TaskName="GenerateHash" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)/Microsoft.Build.Tasks.v4.0.dll">
-    <ParameterGroup>
-        <InputFiles ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
-        <OutputFile ParameterType="System.String" Required="true" />
-    </ParameterGroup>
-    <Task>
-        <Using Namespace="System.IO" />
-        <Using Namespace="System.Linq" />
-        <Using Namespace="System.Security.Cryptography" />
-        <Code Type="Fragment" Language="cs">
-            <![CDATA[
-                using (var ms = new MemoryStream())
-                {
-                    foreach (var item in InputFiles)
-                    {
-                        string path = item.ItemSpec;
-
-                        using (FileStream stream = new FileStream(path, FileMode.Open))
-                        {
-                            using (var cryptoProvider = new SHA1CryptoServiceProvider())
-                            {
-                                
-                                var fileHash = cryptoProvider.ComputeHash(stream);
-                                
-                                using (TextWriter w = new StreamWriter(OutputFile, false))
-                                {
-                                    w.WriteLine(string.Join("", fileHash.Select(b => b.ToString("x2"))));
-                                }
-                            }
-                        }
-                    }
-                }
-            ]]>
-        </Code>
-    </Task>
- </UsingTask>
-
- 
  <!-- 
  ****************************************************
  VARIABLES 
@@ -77,7 +39,7 @@
  </PropertyGroup>
  
  <PropertyGroup>
-   <BuildConfiguration Condition="'$(BUILD_CONFIGURATION)' == ''">Release</BuildConfiguration>
+   <BuildConfiguration Condition="'$(BUILD_CONFIGURATION)' == ''">Debug</BuildConfiguration>
    <BuildConfiguration Condition="'$(BUILD_CONFIGURATION)' != ''">$(BUILD_CONFIGURATION)</BuildConfiguration>
    <BuildFolder>_BuildOutput/</BuildFolder>
    <BuildZipFileName>UmbracoCms.Mono$(DECIMAL_BUILD_NUMBER).zip</BuildZipFileName>
@@ -117,43 +79,14 @@
  *****************************************************
  -->
 
- <Target Name="Build" DependsOnTargets="ZipWebPiApp">
+ <Target Name="Build" DependsOnTargets="CleanUp">
    <Message Text="Build finished for $(BuildConfiguration)" />
  </Target>
  
- <Target Name="GenerateWebPiHash" DependsOnTargets="ZipWebPiApp">
-   <ItemGroup>
-      <WebPiFile Include="$(BuildZipFileNameWebPi)" />
-   </ItemGroup>
-   <Message Text="Calculating hash for $(BuildZipFileNameWebPi)" />
-   <GenerateHash InputFiles="@(WebPiFile)" OutputFile="webpihash.txt" />
- </Target>
- 
- <Target Name="CleanUp" DependsOnTargets="ZipWebPiApp">
+ <Target Name="CleanUp" DependsOnTargets="ZipWebApp">
    <Message Text="Deleting $(BuildFolder)" Importance="high" />
    <RemoveDir Directories="$(BuildFolder)" />
    <Message Text="Finished deleting $(BuildFolder)" Importance="high" />
- </Target>
-
- <Target Name="ZipWebPiApp" DependsOnTargets="ZipWebApp" >
-   <!-- Clean folders -->
-   <RemoveDir Directories="$(WebPiFolder)" />
-   <MakeDir Directories="$(WebPiFolder)" />
-   <MakeDir Directories="$(WebPiFolder)umbraco" />
-
-   <!-- Copy fresh built umbraco files -->
-   <Exec Command="cp -R %22$(WebAppFolderAbsolutePath)%22* %22$(WebPiFolderAbsolutePath)umbraco/%22" />
-   
-   <!-- Copy Web Pi template files -->
-   <ItemGroup>
-     <WebPiFiles Include="../src/WebPi/**/*.*" />
-   </ItemGroup>
-
-   <Copy SourceFiles="@(WebPiFiles)"
-       DestinationFiles="@(WebPiFiles->'$(WebPiFolder)%(RecursiveDir)%(Filename)%(Extension)')" />
-
-   <!-- Zip the files -->
-   <Exec Command="7za a -r %22$(BuildZipFileNameWebPi)%22 %22$(WebPiFolderAbsolutePath)*%22" />
  </Target>
  
  <Target Name="ZipWebApp" DependsOnTargets="MonoNuget" >
@@ -212,10 +145,10 @@
   <Target Name="MergeCompiledProjects" DependsOnTargets="CreateSystemFolders">
 		<Message Text="Mono quick fix: Merging _PublishedWebsites to WebApp" />
 		
+		<Exec Command="cp -R -u $(SolutionBinFolderAbsolutePath)_PublishedWebsites/Umbraco.Web.UI/* $(WebAppFolderAbsolutePath)" />
+				
 		<!-- one offs this dll is not built in project -->
-		<Exec Command="cp $(MSBuildProjectDirectory)/../external/umbraco.XmlSerializers.dll $(WebAppFolderAbsolutePath)/bin" />
-		
-		<Exec Command="cp -R -u $(SolutionBinFolderAbsolutePath)_PublishedWebsites/Umbraco.Web.UI/* $(WebAppFolderAbsolutePath)" />		
+		<Exec Command="cp $(MSBuildProjectDirectory)/../external/umbraco.XmlSerializers.dll $(WebAppFolderAbsolutePath)bin/" />		
 	</Target>
 
  <Target Name="CreateSystemFolders" DependsOnTargets="CopyLibraries" Inputs="@(SystemFolders)" Outputs="%(Identity).Dummy">
@@ -224,12 +157,13 @@
  
  <Target Name="CopyLibraries" DependsOnTargets="OffsetTimestamps" >
    <!-- Copy SQL CE -->
-   <ItemGroup>
-     <SQLCE4Files 
-		Include="../src/packages/SqlServerCE.4.0.0.0/**/*.*" 
-		Exclude="../src/packages/SqlServerCE.4.0.0.0/lib/**/*;../src/packages/SqlServerCE.4.0.0.0/**/*.nu*"
-		/>
-   </ItemGroup>
+   <CreateItem
+            Include="../src/packages/SqlServerCE.4.0.0.0/**/*.*" 
+            Exclude="../src/packages/SqlServerCE.4.0.0.0/lib/**/*;../src/packages/SqlServerCE.4.0.0.0/**/*.nu*">
+           <Output
+               TaskParameter="Include"
+               ItemName="SQLCE4Files"/>
+	</CreateItem>	   
 
    <Copy SourceFiles="@(SQLCE4Files)"
        DestinationFiles="@(SQLCE4Files->'$(SolutionBinFolder)%(RecursiveDir)%(Filename)%(Extension)')"
@@ -253,24 +187,15 @@
    <Message Text="Finished offsetting timestamps" Importance="high" />
  </Target>
  
- <!-- Copy the transformed web.config file to the root -->
- <Target Name="CopyTransformedWebConfig"  DependsOnTargets="CopyXmlDocumentation">
-   <ItemGroup>
-     <WebConfigFile Include="..\src\Umbraco.Web.UI\web.$(BuildConfiguration).Config.transformed" />
-   </ItemGroup>
-   
-   <Copy SourceFiles="@(WebConfigFile)"
-       DestinationFiles="$(WebAppFolder)web.config"
-       OverwriteReadOnlyFiles="true"
-       SkipUnchangedFiles="false" />
- </Target>
- 
  <!-- Copy the xml documentation to the bin folder -->
  <Target Name="CopyXmlDocumentation"  DependsOnTargets="MonoMergeXmlDocumentation">
-   <ItemGroup>
-     <XmlDocumentationFiles Include="$(SolutionBinFolder)*.xml" />
-   </ItemGroup>
-   <Message Text="Found: %(XmlDocumentationFiles.Identity)" />
+   <CreateItem
+            Include="$(SolutionBinFolder)*.xml">
+           <Output
+               TaskParameter="Include"
+               ItemName="XmlDocumentationFiles"/>
+	</CreateItem>	   
+   <Message Text="Found: %(XmlDocumentationFiles.Identity) in $(SolutionBinFolder)" />
    <Copy SourceFiles="@(XmlDocumentationFiles)"
        DestinationFiles="@(XmlDocumentationFiles->'$(WebAppFolder)bin\%(RecursiveDir)%(Filename)%(Extension)')"
        OverwriteReadOnlyFiles="true"
@@ -279,10 +204,13 @@
  </Target>
  
   <Target Name="MonoMergeXmlDocumentation"  DependsOnTargets="CompileProjects">
-   <ItemGroup>
-     <XmlDocumentationFiles Include="$(MSBuildProjectDirectory)/../src/*/bin/$(BuildConfiguration)/*.xml" />
-   </ItemGroup>		
-   <Message Text="Mono, looking for xmldocs in: $(MSBuildProjectDirectory)/../src/*/bin/$(BuildConfiguration)/*.xml" />
+   <CreateItem
+            Include="$(MSBuildProjectDirectory)/../src/*/bin/$(BuildConfiguration)/*.xml">
+           <Output
+               TaskParameter="Include"
+               ItemName="XmlDocumentationFiles"/>
+	</CreateItem>	
+   <Message Text="Mono, looking for xmldocs in: $(MSBuildProjectDirectory)/../src/*/bin/$(BuildConfiguration)/*.xml, found @(XmlDocumentationFiles)" />
    <Copy SourceFiles="@(XmlDocumentationFiles)"
        DestinationFiles="@(XmlDocumentationFiles->'$(SolutionBinFolder)%(RecursiveDir)%(Filename)%(Extension)')"
        OverwriteReadOnlyFiles="true"
@@ -301,7 +229,7 @@
    </MSBuild>
 
    <!-- DONE -->
-   <Message Text="Finished compiling projects" Importance="high" />
+   <Message Text="Finished compiling projects for configuration $(BuildConfiguration)" Importance="high" />
  </Target>
 
  <Target Name="SetVersionNumber" Condition="'$(BUILD_RELEASE)'!=''">
