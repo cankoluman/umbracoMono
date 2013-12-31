@@ -61,9 +61,10 @@
     <StartupObject />
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="rm -f ${TargetDir}/Microsoft.Web.Infrastructure.dll" workingdir="${TargetDir}" />
-        <Command type="AfterBuild" command="cp -R -u ${ProjectDir}/../packages/SqlServerCE.4.0.0.0/amd64 ${TargetDir}" workingdir="${TargetDir}" />
-        <Command type="AfterBuild" command="cp -R -u ${ProjectDir}/../packages/SqlServerCE.4.0.0.0/x86 ${TargetDir}" workingdir="${TargetDir}" />
+        <Command type="AfterBuild" command="rm -f ${TargetDir}/Microsoft.Web.Infrastructure.dll" workingdir="${TargetDir}" externalConsole="True" />
+        <Command type="AfterBuild" command="cp -R -u ${ProjectDir}/../packages/SqlServerCE.4.0.0.0/amd64 ${TargetDir}" workingdir="${TargetDir}" externalConsole="True" />
+        <Command type="AfterBuild" command="cp -R -u ${ProjectDir}/../packages/SqlServerCE.4.0.0.0/x86 ${TargetDir}" workingdir="${TargetDir}" externalConsole="True" />
+        <Command type="AfterBuild" command="cp ${ProjectDir}/web.Template.mono.${ProjectConfig}.config ${ProjectDir}/web.config" workingdir="${ProjectDir}" externalConsole="True" />
       </CustomCommands>
     </CustomCommands>
     <AspNet>
@@ -2417,8 +2418,6 @@ xcopy "$(ProjectDir)"..\packages\SqlServerCE.4.0.0.0\x86\*.* "$(TargetDir)x86\" 
     <!--
 		<Exec Command="$(ProjectDir)../../tools/Mono/RestoreNugetPackages.sh" Condition="($(BuildingInsideVisualStudio) != true) and ('$(OS)' != 'Windows_NT')"  />
     -->
-    <!-- Create web.config file from Template if it doesn't exist -->
-    <Copy SourceFiles="$(ProjectDir)web.Template.mono.$(Configuration).config" DestinationFiles="$(ProjectDir)web.config" OverwriteReadOnlyFiles="true" SkipUnchangedFiles="false" Condition="!Exists('$(ProjectDir)web.config')" />
     <!-- Transform the local Web.config file in Visual Studio -->
     <TransformXml Source="$(ProjectDir)Web.config" Transform="$(ProjectDir)web.Template.$(Configuration).config" Destination="$(ProjectDir)Web.$(Configuration).config.transformed" Condition="($(BuildingInsideVisualStudio) == true) and ('$(OS)' == 'Windows_NT')" />
     <!-- Always transform the Template file when not in VS (ie: build.bat) -->

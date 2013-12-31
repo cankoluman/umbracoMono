@@ -115,7 +115,7 @@ namespace Umbraco.Core.MultiPlatform
 		public static string GetLowerCaseOrFirstCapFileName(string fullPath, bool throwException = true)
 		{
 			var fileName = Path.GetFileName (fullPath).ToLowerInvariant();
-			var path = Path.GetFullPath (fullPath);
+			var path = Path.GetDirectoryName(Path.GetFullPath (fullPath));
 
 			var testPath = Path.Combine (path, fileName);
 			if (File.Exists (testPath))
