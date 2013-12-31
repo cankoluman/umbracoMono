@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-16"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
-        <id>UmbracoCms.Core.Mono</id>
+        <id>UmbracoCms.Core.Mono.Release</id>
         <version>6.0.6</version>
-        <title>Umbraco Cms Core Binaries</title>
-        <authors>Morten Christensen</authors>
+        <title>Umbraco Cms Core Binaries - Mono version</title>
+        <authors>Morten Christensen (Umbraco), Can Koluman (Mono)</authors>
         <owners>Umbraco HQ</owners>
-        <licenseUrl>http://umbraco.codeplex.com/license</licenseUrl>
-        <projectUrl>http://umbraco.com/</projectUrl>
+        <licenseUrl>https://github.com/umbraco/Umbraco-CMS/blob/master/LICENSE.md</licenseUrl>
+        <projectUrl>https://github.com/cankoluman/umbracoMono</projectUrl>
         <iconUrl>http://umbraco.com/media/357769/100px_transparent.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Contains the core assemblies needed to run Umbraco Cms. This package only contains assemblies and can be used for package development. Use the UmbracoCms-package to setup Umbraco in Visual Studio as an ASP.NET project.</description>
-        <summary>MONO VERSION: Contains the core assemblies needed to run Umbraco Cms</summary>
+        <description>Contains the core assemblies needed to run Umbraco Cms. This package only contains assemblies and can be used for package development. Use the UmbracoCms-package to setup Umbraco via NuGet.</description>
+        <summary>MONO VERSION EXPERIMENTAL: Contains the core assemblies needed to run Umbraco Cms</summary>
         <language>en-US</language>
         <tags>umbraco</tags>
 				<dependencies>

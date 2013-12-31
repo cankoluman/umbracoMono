@@ -42,9 +42,8 @@
    <BuildConfiguration Condition="'$(BUILD_CONFIGURATION)' == ''">Debug</BuildConfiguration>
    <BuildConfiguration Condition="'$(BUILD_CONFIGURATION)' != ''">$(BUILD_CONFIGURATION)</BuildConfiguration>
    <BuildFolder>_BuildOutput/</BuildFolder>
-   <BuildZipFileName>UmbracoCms.Mono$(DECIMAL_BUILD_NUMBER).zip</BuildZipFileName>
-   <BuildZipFileNameBin>UmbracoCms.Mono.AllBinaries$(DECIMAL_BUILD_NUMBER).zip</BuildZipFileNameBin>
-   <BuildZipFileNameWebPi>UmbracoCms.Mono.WebPI$(DECIMAL_BUILD_NUMBER).zip</BuildZipFileNameWebPi>
+   <BuildZipFileName>UmbracoCms.Mono.$(BuildConfiguration).$(DECIMAL_BUILD_NUMBER).zip</BuildZipFileName>
+   <BuildZipFileNameBin>UmbracoCms.Mono.AllBinaries.$(BuildConfiguration).$(DECIMAL_BUILD_NUMBER).zip</BuildZipFileNameBin>
    <IncludeSymbols>False</IncludeSymbols>
    <BuildFolderRelativeToProjects>../../build/$(BuildFolder)</BuildFolderRelativeToProjects>
    <BuildFolderAbsolutePath>$(MSBuildProjectDirectory)/$(BuildFolder)</BuildFolderAbsolutePath>
@@ -79,7 +78,7 @@
  *****************************************************
  -->
 
- <Target Name="Build" DependsOnTargets="CleanUp">
+ <Target Name="Build" DependsOnTargets="ZipWebApp">
    <Message Text="Build finished for $(BuildConfiguration)" />
  </Target>
  
@@ -101,7 +100,7 @@
  <!-- Copy nuspec files. In Linux, it looks like source package files must be in same or sub directory -->
   <Target Name="MonoNuget" DependsOnTargets="AddMissingFilesMonoNeeds" >
 		<Message Text="Copy nuspec files... and tools ...." />
-		<Exec Command="cp $(MSBuildProjectDirectory)/NuSpecs/*.mono.nuspec $(WebAppFolderAbsolutePath)/" /> 
+		<Exec Command="cp $(MSBuildProjectDirectory)/NuSpecs/*.mono.$(BuildConfiguration).nuspec $(WebAppFolderAbsolutePath)/" /> 
 		<Exec Command="cp -R $(MSBuildProjectDirectory)/NuSpecs/tools $(WebAppFolderAbsolutePath)/" /> 
 		
 		<Message Text="Creating Dummy Files" />
@@ -123,11 +122,11 @@
 		
 		<Message Text="Building nuget packages" />
 		<Exec Command="cp -R $(MSBuildProjectDirectory)/NuSpecs/tools $(WebAppFolderAbsolutePath)/" /> 
-		<Exec Command="nuget pack _BuildOutput/WebApp/UmbracoCms.Core.mono.nuspec" /> 
-		<Exec Command="nuget pack _BuildOutput/WebApp/UmbracoCms.mono.nuspec" /> 
+		<Exec Command="nuget pack _BuildOutput/WebApp/UmbracoCms.Core.mono.$(BuildConfiguration).nuspec" /> 
+		<Exec Command="nuget pack _BuildOutput/WebApp/UmbracoCms.mono.$(BuildConfiguration).nuspec" /> 
 		
 		<Message Text="Cleaning up..." />
-		<Exec Command="rm -f $(WebAppFolderAbsolutePath)*.mono.nuspec" /> 
+		<Exec Command="rm -f $(WebAppFolderAbsolutePath)*.mono.$(BuildConfiguration).nuspec" /> 
 		<Exec Command="rm -rf $(WebAppFolderAbsolutePath)tools" /> 		
  </Target>
  

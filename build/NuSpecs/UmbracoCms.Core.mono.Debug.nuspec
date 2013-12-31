@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-16"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>UmbracoCms.Core.Mono.Debug</id>
+        <version>6.0.6</version>
+        <title>Umbraco Cms Core Binaries - Mono version</title>
+        <authors>Morten Christensen (Umbraco), Can Koluman (Mono)</authors>
+        <owners>Umbraco HQ</owners>
+        <licenseUrl>https://github.com/umbraco/Umbraco-CMS/blob/master/LICENSE.md</licenseUrl>
+        <projectUrl>https://github.com/cankoluman/umbracoMono</projectUrl>
+        <iconUrl>http://umbraco.com/media/357769/100px_transparent.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Contains the core assemblies needed to run Umbraco Cms. This package only contains assemblies and can be used for package development. Use the UmbracoCms-package to setup via NuGet.</description>
+        <summary>MONO VERSION Experimental: Contains the core assemblies needed to run Umbraco Cms</summary>
+        <language>en-US</language>
+        <tags>umbraco</tags>
+				<dependencies>
+					<dependency id="Microsoft.AspNet.Mvc" version="[4.0.20710.0]" />
+					<dependency id="ServiceStack.Text" version="3.9.21" />
+					<dependency id="Microsoft.AspNet.Mvc.FixedDisplayModes" version="1.0.0" />
+				</dependencies>
+    </metadata>
+	<files>
+		<file src="bin/businesslogic.dll" target="lib/businesslogic.dll" />
+		<file src="bin/ClientDependency.Core.dll" target="lib/ClientDependency.Core.dll" />
+		<file src="bin/ClientDependency.Core.Mvc.dll" target="lib/ClientDependency.Core.Mvc.dll" />
+		<file src="bin/cms.dll" target="lib/cms.dll" />
+		<file src="bin/controls.dll" target="lib/controls.dll" />
+		<file src="bin/CookComputing.XmlRpcV2.dll" target="lib/CookComputing.XmlRpcV2.dll" />
+		<file src="bin/Examine.dll" target="lib/Examine.dll" />
+		<file src="bin/HtmlAgilityPack.dll" target="lib/HtmlAgilityPack.dll" />
+		<file src="bin/ICSharpCode.SharpZipLib.dll" target="lib/ICSharpCode.SharpZipLib.dll" />
+		<file src="bin/interfaces.dll" target="lib/interfaces.dll" />
+		<file src="bin/log4net.dll" target="lib/log4net.dll" />
+		<file src="bin/Lucene.Net.dll" target="lib/Lucene.Net.dll" />
+		<file src="bin/Microsoft.ApplicationBlocks.Data.dll" target="lib/Microsoft.ApplicationBlocks.Data.dll" />
+		<file src="bin/Microsoft.Web.Helpers.dll" target="lib/Microsoft.Web.Helpers.dll" />
+		<file src="bin/MySql.Data.dll" target="lib/MySql.Data.dll" />
+		<file src="bin/Our.Umbraco.uGoLive.47x.dll" target="lib/Our.Umbraco.uGoLive.47x.dll" />
+		<file src="bin/Our.Umbraco.uGoLive.Checks.dll" target="lib/Our.Umbraco.uGoLive.Checks.dll" />
+		<file src="bin/Our.Umbraco.uGoLive.dll" target="lib/Our.Umbraco.uGoLive.dll" />
+		<file src="bin/SQLCE4Umbraco.dll" target="lib/SQLCE4Umbraco.dll" />
+		<file src="bin/System.Data.SqlServerCe.dll" target="lib/System.Data.SqlServerCe.dll" />
+		<file src="bin/System.Data.SqlServerCe.Entity.dll" target="lib/System.Data.SqlServerCe.Entity.dll" />
+		<file src="bin/TidyNet.dll" target="lib/TidyNet.dll" />
+		<file src="bin/Umbraco.Core.dll" target="lib/Umbraco.Core.dll" />
+		<file src="bin/umbraco.DataLayer.dll" target="lib/umbraco.DataLayer.dll" />
+		<file src="bin/umbraco.dll" target="lib/umbraco.dll" />
+		<file src="bin/umbraco.editorControls.dll" target="lib/umbraco.editorControls.dll" />
+		<file src="bin/umbraco.MacroEngines.dll" target="lib/umbraco.MacroEngines.dll" />
+		<file src="bin/umbraco.macroRenderings.dll" target="lib/umbraco.macroRenderings.dll" />
+		<file src="bin/umbraco.providers.dll" target="lib/umbraco.providers.dll" />
+		<file src="bin/Umbraco.Web.UI.dll" target="lib/Umbraco.Web.UI.dll" />
+		<file src="bin/umbraco.XmlSerializers.dll" target="lib/umbraco.XmlSerializers.dll" />
+		<file src="bin/UmbracoExamine.dll" target="lib/UmbracoExamine.dll" />
+		<file src="bin/UrlRewritingNet.UrlRewriter.dll" target="lib/UrlRewritingNet.UrlRewriter.dll" />
+	</files>
+</package>
