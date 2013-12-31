@@ -98,9 +98,6 @@
     </CustomCommands>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ClientDependency.Core.Mvc">
-      <HintPath>..\packages\ClientDependency-Mvc.1.5.1.0\lib\ClientDependency.Core.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Helpers">
       <HintPath>..\packages\Microsoft.Web.Helpers.1.0.0\lib\Microsoft.Web.Helpers.dll</HintPath>
     </Reference>
@@ -193,9 +190,6 @@
     <Reference Include="UrlRewritingNet.UrlRewriter">
       <HintPath>..\packages\UrlRewritingNet.UrlRewriter.2.0.60829.1\lib\UrlRewritingNet.UrlRewriter.dll</HintPath>
     </Reference>
-    <Reference Include="ClientDependency.Core">
-      <HintPath>..\packages\ClientDependency.1.5.1.0\lib\ClientDependency.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Examine">
       <HintPath>..\packages\Examine.0.1.48.2941\lib\Examine.dll</HintPath>
     </Reference>
@@ -232,6 +226,12 @@
     </Reference>
     <Reference Include="System.Web.Entity">
       <HintPath>..\..\external\System.Web.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="ClientDependency.Core">
+      <HintPath>..\..\external\ClientDependency.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="ClientDependency.Core.Mvc">
+      <HintPath>..\..\external\ClientDependency.Core.Mvc.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

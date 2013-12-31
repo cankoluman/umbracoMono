@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
- <!-- depends on mono environment -->
+  <!-- depends on mono environment -->
   <PropertyGroup>
-		<MonoPath>/opt/mono/lib/mono</MonoPath>
-   <VSToolsPath>$(MonoPath)/xbuild/Microsoft/VisualStudio/v9.0</VSToolsPath>
- </PropertyGroup>    
+    <MonoPath>/opt/mono/lib/mono</MonoPath>
+    <VSToolsPath>$(MonoPath)/xbuild/Microsoft/VisualStudio/v9.0</VSToolsPath>
+  </PropertyGroup>
   <PropertyGroup>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
@@ -85,9 +85,6 @@
     </CustomCommands>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ClientDependency.Core">
-      <HintPath>..\packages\ClientDependency.1.5.1.0\lib\ClientDependency.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
@@ -212,6 +209,9 @@
     </Reference>
     <Reference Include="System.Web.Entity">
       <HintPath>..\..\external\System.Web.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="ClientDependency.Core">
+      <HintPath>..\..\external\ClientDependency.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

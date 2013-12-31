@@ -66,11 +66,7 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ClientDependency.Core">
-      <HintPath>..\packages\ClientDependency.1.5.1.0\lib\ClientDependency.Core.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -81,6 +77,10 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="ClientDependency.Core">
+      <HintPath>..\..\external\ClientDependency.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\SolutionInfo.cs">
@@ -121,11 +121,11 @@
       <Name>umbraco.businesslogic</Name>
     </ProjectReference>
     <ProjectReference Include="..\umbraco.cms\umbraco.cms.csproj">
-      <Project>{ccd75ec3-63db-4184-b49d-51c1dd337230}</Project>
+      <Project>{CCD75EC3-63DB-4184-B49D-51C1DD337230}</Project>
       <Name>umbraco.cms</Name>
     </ProjectReference>
     <ProjectReference Include="..\Umbraco.Core\Umbraco.Core.csproj">
-      <Project>{31785bc3-256c-4613-b2f5-a1b0bdded8c1}</Project>
+      <Project>{31785BC3-256C-4613-B2F5-A1B0BDDED8C1}</Project>
       <Name>Umbraco.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\umbraco.datalayer\umbraco.datalayer.csproj">
