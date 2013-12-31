@@ -64,7 +64,7 @@
         <Command type="AfterBuild" command="rm -f ${TargetDir}/Microsoft.Web.Infrastructure.dll" workingdir="${TargetDir}" externalConsole="True" />
         <Command type="AfterBuild" command="cp -R -u ${ProjectDir}/../packages/SqlServerCE.4.0.0.0/amd64 ${TargetDir}" workingdir="${TargetDir}" externalConsole="True" />
         <Command type="AfterBuild" command="cp -R -u ${ProjectDir}/../packages/SqlServerCE.4.0.0.0/x86 ${TargetDir}" workingdir="${TargetDir}" externalConsole="True" />
-        <Command type="AfterBuild" command="cp ${ProjectDir}/web.Template.mono.${ProjectConfig}.config ${ProjectDir}/web.config" workingdir="${ProjectDir}" externalConsole="True" />
+        <Command type="AfterBuild" command="cp -u ${ProjectDir}/web.Template.mono.${ProjectConfig}config ${ProjectDir}/web.config" workingdir="${ProjectDir}" externalConsole="True" />
       </CustomCommands>
     </CustomCommands>
     <AspNet>
@@ -90,7 +90,10 @@
     <StartupObject />
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="rm -f ${TargetDir}/Microsoft.Web.Infrastructure.dll" workingdir="${TargetDir}" />
+        <Command type="AfterBuild" command="rm -f ${TargetDir}/Microsoft.Web.Infrastructure.dll" workingdir="${TargetDir}" externalConsole="True" />
+        <Command type="AfterBuild" command="cp -R -u ${ProjectDir}/../packages/SqlServerCE.4.0.0.0/amd64 ${TargetDir}" workingdir="${TargetDir}" externalConsole="True" />
+        <Command type="AfterBuild" command="cp -R -u ${ProjectDir}/../packages/SqlServerCE.4.0.0.0/x86 ${TargetDir}" workingdir="${TargetDir}" externalConsole="True" />
+        <Command type="AfterBuild" command="cp -u ${ProjectDir}/web.Template.mono.${ProjectConfig}config ${ProjectDir}/web.config" workingdir="${ProjectDir}" externalConsole="True" />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
