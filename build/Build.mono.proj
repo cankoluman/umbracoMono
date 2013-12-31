@@ -79,63 +79,34 @@
  *****************************************************
  -->
 
- <Target Name="Build" DependsOnTargets="CleanUp">
+ <Target Name="Build" DependsOnTargets="ConfigNoTransformFixes">
    <Message Text="Build finished for $(BuildConfiguration)" />
  </Target>
  
- <Target Name="CleanUp" DependsOnTargets="ZipWebApp">
-   <Message Text="Deleting $(BuildFolder)" Importance="high" />
-   <RemoveDir Directories="$(BuildFolder)" />
-   <Message Text="Finished deleting $(BuildFolder)" Importance="high" />
- </Target>
- 
- <Target Name="ZipWebApp" DependsOnTargets="MonoNuget" >
-   <Message Text="Starting to zip to $(buildDate)-$(BuildZipFileName)" Importance="high" />
+ <Target Name="ConfigNoTransformFixes" DependsOnTargets="WebConfigNoTransformFixes" >
+    <CreateItem
+            Include="$(MSBuildProjectDirectory)/../src/Umbraco.Web.UI/config/*.config" 
+            Exclude="$(MSBuildProjectDirectory)/../src/Umbraco.Web.UI/config/*.Release.config" >
+           <Output
+               TaskParameter="Include"
+               ItemName="ConfigFiles"/>
+	</CreateItem>
+		
+	<Message Text="*** Copy Config files: @(ConfigFiles) to $(WebAppFolderAbsolutePath)config/ ***" />
+	
+   <Copy SourceFiles="@(ConfigFiles->'$(MSBuildProjectDirectory)/../src/Umbraco.Web.UI/config/%(Filename).$(BuildConfiguration)%(Extension)')"
+       DestinationFiles="@(ConfigFiles->'$(WebAppFolderAbsolutePath)config/%(Filename)%(Extension)')"
+       OverwriteReadOnlyFiles="true"
+       SkipUnchangedFiles="false" 
+       Condition="'$(BuildConfiguration)' == 'Release'"/>
+       
+   <Copy SourceFiles="@(ConfigFiles->'%(Identity)')"
+       DestinationFiles="@(ConfigFiles->'$(WebAppFolderAbsolutePath)config/%(Filename)%(Extension)')"
+       OverwriteReadOnlyFiles="true"
+       SkipUnchangedFiles="false" 
+       Condition="'$(BuildConfiguration)' != 'Release'"/>       
 
-   <Exec Command="7za a -r %22$(BuildZipFileNameBin)%22 %22$(SolutionBinFolderAbsolutePath)*%22 -xr!_PublishedWebsites" />
-   <Exec Command="7za a -r %22$(BuildZipFileName)%22 %22$(WebAppFolderAbsolutePath)*%22" />
-   
-   <Message Text="Finished zipping to build/$(BuildFolder)/$(buildDate)-$(BuildZipFileName)" Importance="high" />
- </Target>
- 
- <!-- Copy nuspec files. In Linux, it looks like source package files must be in same or sub directory -->
-  <Target Name="MonoNuget" DependsOnTargets="AddMissingFilesMonoNeeds" >
-		<Message Text="Copy nuspec files... and tools ...." />
-		<Exec Command="cp $(MSBuildProjectDirectory)/NuSpecs/*.mono.nuspec $(WebAppFolderAbsolutePath)/" /> 
-		<Exec Command="cp -R $(MSBuildProjectDirectory)/NuSpecs/tools $(WebAppFolderAbsolutePath)/" /> 
-		
-		<Message Text="Creating Dummy Files" />
-		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)App_Code/dummy.txt' /> 
-		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)App_Data/dummy.txt' /> 
-		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)App_Plugins/dummy.txt' /> 
-		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)css/dummy.txt' /> 
-		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)macroScripts/dummy.txt' /> 
-		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)masterpages/dummy.txt' /> 
-		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)media/dummy.txt' /> 
-		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)scripts/dummy.txt' /> 
-		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)usercontrols/dummy.txt' /> 
-		<Exec Command='if [ ! -d "$(WebAppFolderAbsolutePath)Views/Partials" ]; then mkdir $(WebAppFolderAbsolutePath)Views/Partials;fi' /> 
-		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)Views/Partials/dummy.txt' /> 
-		<Exec Command='if [ ! -d "$(WebAppFolderAbsolutePath)Views/MacroPartials" ]; then mkdir $(WebAppFolderAbsolutePath)Views/MacroPartials;fi' /> 
-		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)Views/MacroPartials/dummy.txt' /> 
-		<Exec Command='echo "" > $(WebAppFolderAbsolutePath)xslt/dummy.txt' /> 
-		
-		
-		<Message Text="Building nuget packages" />
-		<Exec Command="cp -R $(MSBuildProjectDirectory)/NuSpecs/tools $(WebAppFolderAbsolutePath)/" /> 
-		<Exec Command="nuget pack _BuildOutput/WebApp/UmbracoCms.Core.mono.nuspec" /> 
-		<Exec Command="nuget pack _BuildOutput/WebApp/UmbracoCms.mono.nuspec" /> 
-		
-		<Message Text="Cleaning up..." />
-		<Exec Command="rm -f $(WebAppFolderAbsolutePath)*.mono.nuspec" /> 
-		<Exec Command="rm -rf $(WebAppFolderAbsolutePath)tools" /> 		
- </Target>
- 
- 
- <Target Name="AddMissingFilesMonoNeeds" DependsOnTargets="WebConfigNoTransformFixes" >
-		<Message Text="Adding missing files..." />
-		<Exec Command="cp $(MSBuildProjectDirectory)/../src/Umbraco.Web.UI/App_Browsers/Default.browser $(WebAppFolderAbsolutePath)/App_Browsers/Default.browser" /> 
- </Target>
+ </Target>  
  
  <Target Name="WebConfigNoTransformFixes" DependsOnTargets="MergeCompiledProjects" >
 		<Exec Command="cp $(MSBuildProjectDirectory)/../src/Umbraco.Web.UI/web.Template.mono.$(BuildConfiguration).config $(WebAppFolderAbsolutePath)/web.config" />
