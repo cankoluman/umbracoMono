@@ -18,7 +18,7 @@ namespace Umbraco.Tests.TestHelpers
 	/// </summary>
 	public static class TestHelper
 	{
-		public const string umbracoDbDsn = @"server=127.0.0.1;database=umbraco6_test;user id=umbracouser;password=P@ssword1;datalayer=MySqlTest";
+		public const string umbracoDbDsn = @"server=127.0.0.1;database=umbraco6test;user id=umbracouser;password=Password1;datalayer=MySqlTest";
 
 		private static MySqlTestHelper GetDataHelper()
 		{
