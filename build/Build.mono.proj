@@ -78,7 +78,7 @@
  *****************************************************
  -->
 
- <Target Name="Build" DependsOnTargets="ZipWebApp">
+ <Target Name="Build" DependsOnTargets="CleanUp">
    <Message Text="Build finished for $(BuildConfiguration)" />
  </Target>
  
