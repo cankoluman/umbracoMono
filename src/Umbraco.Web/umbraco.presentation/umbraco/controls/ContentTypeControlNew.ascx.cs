@@ -215,10 +215,10 @@ namespace umbraco.controls
             Trace.Write("ContentTypeControlNew", "Start async operation");
 
             //get the args from the async state
-            var args = (SaveAsyncState)state;
+			var args = (SaveAsyncState)((PageAsyncTask)state).State;
 
             //start the task
-            var result = _asyncSaveTask.BeginInvoke(args, cb, args);
+            var result = _asyncSaveTask.BeginInvoke(args, cb, state);
             return result;
         }
 
@@ -234,7 +234,7 @@ namespace umbraco.controls
             Trace.Write("ContentTypeControlNew", "ending async operation");
             
             //get the args from the async state
-            var state = (SaveAsyncState)ar.AsyncState;
+			var state = (SaveAsyncState)((PageAsyncTask)ar.AsyncState).State;
 
             // reload content type (due to caching)
             LoadContentType();
@@ -1075,10 +1075,10 @@ jQuery(document).ready(function() {{ refreshDropDowns(); }});
             Trace.Write("ContentTypeControlNew", "Start async operation");
 
             //get the args from the async state
-            var args = (DeleteAsyncState)state;
+			var args = (DeleteAsyncState)((PageAsyncTask)state).State;
 
             //start the task
-            var result = _asyncDeleteTask.BeginInvoke(args, cb, args);
+            var result = _asyncDeleteTask.BeginInvoke(args, cb, state);
             return result;
         }
 
