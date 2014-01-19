@@ -120,7 +120,7 @@ namespace umbraco.presentation.translation
                                 foreach (Task translation in importTranslatationFile(translationFileXml.FullName))
                                 {
 
-                                    sb.Append("<li>" + translation.Node.Text + " <a target=\"_blank\" href=\"preview.aspx?id=" + translation.Id + "\">" + ui.Text("preview") + "</a></li>");
+                                    sb.Append("<li>" + translation.Node.Text + " <a target=\"_blank\" href=\"Preview.aspx?id=" + translation.Id + "\">" + ui.Text("preview") + "</a></li>");
                                 }
                             }
                             catch (Exception ee)
@@ -146,14 +146,14 @@ namespace umbraco.presentation.translation
                     if (l.Count == 1)
                     {
                         feedback.type = global::umbraco.uicontrols.Feedback.feedbacktype.success;
-                        feedback.Text = "<h3>" + ui.Text("translation", "translationDone") + "</h3><p>" + ui.Text("translation", "translationDoneHelp") + "</p><p><a target=\"_blank\" href=\"preview.aspx?id=" + l[0].Id + "\">" + ui.Text("preview") + "</a></p>";
+                        feedback.Text = "<h3>" + ui.Text("translation", "translationDone") + "</h3><p>" + ui.Text("translation", "translationDoneHelp") + "</p><p><a target=\"_blank\" href=\"Preview.aspx?id=" + l[0].Id + "\">" + ui.Text("preview") + "</a></p>";
                     }
 
                     else
                     {
                         foreach (Task t in l)
                         {
-                            sb.Append("<li>" + t.Node.Text + " <a target=\"_blank\" href=\"preview.aspx?id=" + t.Id + "\">" + ui.Text("preview") + "</a></li>");
+                            sb.Append("<li>" + t.Node.Text + " <a target=\"_blank\" href=\"Preview.aspx?id=" + t.Id + "\">" + ui.Text("preview") + "</a></li>");
                         }
 
                         feedback.type = global::umbraco.uicontrols.Feedback.feedbacktype.success;

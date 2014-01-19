@@ -417,7 +417,7 @@ namespace umbraco.presentation.developer.packages
                 tp.Style["background"] = "none !Important"; 
                 
                 ImageButton publishes = tp.Menu.NewImageButton();
-                publishes.ImageUrl = SystemDirectories.Umbraco + "/images/editor/saveAndPublish.gif";
+                publishes.ImageUrl = SystemDirectories.Umbraco + "/images/editor/SaveAndPublish.gif";
                 publishes.CommandName = "publish";
                 publishes.Command += new CommandEventHandler(saveOrPublish);
                 publishes.AlternateText = "Save and publish the package as a .umb file";

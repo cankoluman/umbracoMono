@@ -13,6 +13,7 @@ using ClientDependency.Core;
 using Umbraco.Core;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Models;
+using Umbraco.Core.MultiPlatform;
 using umbraco.BusinessLogic;
 using umbraco.cms.businesslogic;
 using umbraco.cms.businesslogic.propertytype;
@@ -598,9 +599,21 @@ jQuery(document).ready(function() {{ refreshDropDowns(); }});
             allowAtRoot.Checked = _contentType.AllowAtRoot;
         }
 
+		//mono fix for lost checkboxlist states
+		private void SetCheckBoxStates(CheckBoxList cbl)
+		{
+			if (IsPostBack)
+			{
+				WebFormsHelper.SetCheckBoxStates(cbl, Request.Form);
+			}
+		}
+
         private int[] SaveAllowedChildTypes()
         {
-            var tmp = new ArrayList();
+			SetCheckBoxStates (lstAllowedContentTypes);
+
+			var tmp = new ArrayList();
+
             foreach (ListItem li in lstAllowedContentTypes.Items)
             {
                 if (li.Selected)

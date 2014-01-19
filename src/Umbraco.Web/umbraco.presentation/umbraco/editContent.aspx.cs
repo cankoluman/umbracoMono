@@ -487,7 +487,7 @@ namespace umbraco.cms.presentation
             if (_document.Template != -1)
             {
                 menuItem.AltText = ui.Text("buttons", "showPage", this.getUser());
-                menuItem.OnClickCommand = "window.open('dialogs/preview.aspx?id=" + id + "','umbPreview')";
+                menuItem.OnClickCommand = "window.open('dialogs/Preview.aspx?id=" + id + "','umbPreview')";
             }
             else
             {

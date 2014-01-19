@@ -33,13 +33,13 @@ namespace umbraco.presentation.translation
             var t = new Task(taskId);
             var translated = new Document(t.Node.Id);
 
-            translatedUrl = string.Format("../dialogs/preview.aspx?id={0}", translated.Id.ToString());
+            translatedUrl = string.Format("../dialogs/Preview.aspx?id={0}", translated.Id.ToString());
 
             var orgRel = Relation.GetRelations(t.Node.Id, RelationType.GetByAlias("relateDocumentOnCopy"));
             if (orgRel.Length > 0)
             {
                 var original = new Document(orgRel[0].Parent.Id);
-                originalUrl = String.Format("../dialogs/preview.aspx?id={0}", original.Id.ToString());
+                originalUrl = String.Format("../dialogs/Preview.aspx?id={0}", original.Id.ToString());
             }
             else
             {

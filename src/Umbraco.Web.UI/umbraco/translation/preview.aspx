@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="../masterpages/umbracoPage.Master" CodeBehind="preview.aspx.cs" Inherits="umbraco.presentation.translation.preview" %>
+<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="../masterpages/umbracoPage.Master" CodeBehind="Preview.aspx.cs" Inherits="umbraco.presentation.translation.preview" %>
 <%@ Register TagPrefix="cc1" Namespace="umbraco.uicontrols" Assembly="controls" %>
 
 <asp:Content ContentPlaceHolderID="body" runat="server">
