@@ -20,6 +20,18 @@ namespace Umbraco.Core.MultiPlatform
 				i++;
 			}
 		}
+
+		public static void SetCheckBoxState(CheckBox cb, NameValueCollection formData)
+		{
+			var cbId = cb.ClientID.Replace ("_", "$");
+			cbId = cbId.Substring(0, cbId.LastIndexOf("$")) ;
+
+			string itemChecked = formData[cbId];
+			if (!String.IsNullOrEmpty (itemChecked))
+				cb.Checked = true;
+			else
+				cb.Checked = false;
+		}
 	}
 }
 

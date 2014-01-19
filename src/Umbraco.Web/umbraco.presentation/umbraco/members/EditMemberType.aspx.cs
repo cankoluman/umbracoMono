@@ -9,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using umbraco.cms.presentation.Trees;
+using Umbraco.Core.MultiPlatform;
 
 namespace umbraco.cms.presentation.members
 {
@@ -85,13 +86,30 @@ namespace umbraco.cms.presentation.members
 			dgEditExtras.DataBind();			
 		}
 
+		//mono fix for lost checkbox states
+		private void SetCheckBoxState(CheckBox cb)
+		{
+			if (IsPostBack)
+			{
+				WebFormsHelper.SetCheckBoxState(cb, Request.Form);
+			}
+		}
+
 		protected void saveExtras() {
 			foreach (DataGridItem dgi in dgEditExtras.Items) {
 				if(dgi.ItemType == ListItemType.Item || dgi.ItemType == ListItemType.AlternatingItem) 
 				{
 					cms.businesslogic.propertytype.PropertyType pt = cms.businesslogic.propertytype.PropertyType.GetPropertyType(int.Parse(dgi.Cells[0].Text));
-					dt.setMemberCanEdit(pt,((CheckBox)dgi.FindControl("ckbMemberCanEdit")).Checked);
-					dt.setMemberViewOnProfile(pt,((CheckBox)dgi.FindControl("ckbMemberCanView")).Checked);
+
+					var cb = (CheckBox)dgi.FindControl ("ckbMemberCanEdit");
+					SetCheckBoxState (cb);
+
+					dt.setMemberCanEdit(pt, cb.Checked);
+
+					cb = (CheckBox)dgi.FindControl ("ckbMemberCanView");
+					SetCheckBoxState (cb);
+
+					dt.setMemberViewOnProfile(pt, cb.Checked);
                     dt.Save();
 				}
 			}
