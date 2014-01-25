@@ -58,7 +58,7 @@ namespace umbraco.cms.presentation.developer
 
 			var tmp = UmbracoPanel1.Menu.NewIcon();
 			tmp.ImageURL = IOHelper.ResolveUrl(SystemDirectories.Umbraco) + "/images/editor/insField.gif";
-			tmp.OnClickCommand = ClientTools.Scripts.OpenModalWindow(IOHelper.ResolveUrl(SystemDirectories.Umbraco) + "/developer/xslt/xsltinsertvalueof.aspx?objectId=" + editorSource.ClientID, "Insert value", 750, 250);
+			tmp.OnClickCommand = ClientTools.Scripts.OpenModalWindow(IOHelper.ResolveUrl(SystemDirectories.Umbraco) + "/developer/Xslt/xsltInsertValueOf.aspx?objectId=" + editorSource.ClientID, "Insert value", 750, 250);
 			//"umbracoInsertField(document.getElementById('editorSource'), 'xsltInsertValueOf', '','felt', 750, 230, '');";
 			tmp.AltText = "Insert xslt:value-of";
 
