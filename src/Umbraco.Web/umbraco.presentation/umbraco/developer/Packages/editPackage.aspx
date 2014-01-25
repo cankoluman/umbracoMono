@@ -150,7 +150,7 @@
                 <td class="propertyContent">
                     <asp:TextBox runat="server" ID="packageFilePathNew" Width="330px" CssClass="guiInputText"
                         Text='' />
-                    <a href="#" onclick="UmbClientMgr.openModalWindow('developer/packages/directoryBrowser.aspx?target=<%= packageFilePathNew.ClientID %>','Choose a file or a folder', true, 400, 500); return false;"
+                    <a href="#" onclick="UmbClientMgr.openModalWindow('developer/Packages/directoryBrowser.aspx?target=<%= packageFilePathNew.ClientID %>','Choose a file or a folder', true, 400, 500); return false;"
                         style="border: none;">
                         <img alt="" style="border: none;" src="../../images/foldericon.png" /></a>
                 </td>
@@ -171,7 +171,7 @@
             <tr>
                 <td class="propertyContent">
                     <asp:TextBox ID="packageControlPath" Width="330px" CssClass="guiInputText" runat="server" />
-                    <a href="#" onclick="UmbClientMgr.openModalWindow('developer/packages/directoryBrowser.aspx?target=<%= packageControlPath.ClientID %>','Choose a file or a folder', true, 500, 400); return false;"
+                    <a href="#" onclick="UmbClientMgr.openModalWindow('developer/Packages/directoryBrowser.aspx?target=<%= packageControlPath.ClientID %>','Choose a file or a folder', true, 500, 400); return false;"
                         style="border: none;">
                         <img style="border: none;" src="../../images/foldericon.png" /></a>
                 </td>

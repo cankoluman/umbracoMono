@@ -47,10 +47,10 @@ namespace umbraco
         {
             Javascript.Append(@"
             function openCreatedPackage(id) {
-	            UmbClientMgr.contentFrame('developer/packages/editPackage.aspx?id=' + id);
+	            UmbClientMgr.contentFrame('developer/Packages/editPackage.aspx?id=' + id);
             }
             function openInstalledPackage(id) {
-	            UmbClientMgr.contentFrame('developer/packages/installedPackage.aspx?id=' + id);
+	            UmbClientMgr.contentFrame('developer/Packages/installedPackage.aspx?id=' + id);
             }
             ");
         }
@@ -267,10 +267,10 @@ namespace umbraco
         {
             Javascript.Append(@"
             function openCreatedPackage(id) {
-	            UmbClientMgr.contentFrame('developer/packages/editPackage.aspx?id=' + id);
+	            UmbClientMgr.contentFrame('developer/Packages/editPackage.aspx?id=' + id);
             }
             function openInstalledPackage(id) {
-	            UmbClientMgr.contentFrame('developer/packages/installedPackage.aspx?id=' + id);
+	            UmbClientMgr.contentFrame('developer/Packages/installedPackage.aspx?id=' + id);
             }
             ");
         }

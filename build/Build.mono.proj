@@ -28,8 +28,8 @@
  </PropertyGroup>
 
  <!-- NB: BUILD_NUMBER is passed in by the build server -->
- <PropertyGroup Condition="'$(BUILD_NUMBER)'!=''">
-   <DECIMAL_BUILD_NUMBER>.$(BUILD_NUMBER)</DECIMAL_BUILD_NUMBER>
+ <PropertyGroup>
+   <DECIMAL_BUILD_NUMBER>.0</DECIMAL_BUILD_NUMBER>
  </PropertyGroup> 
  <PropertyGroup Condition="'$(BUILD_RELEASE)'!=''">
    <DECIMAL_BUILD_NUMBER>.$(BUILD_RELEASE)</DECIMAL_BUILD_NUMBER>

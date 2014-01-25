@@ -44,7 +44,7 @@ namespace umbraco
         {
             LogHelper.Info<CreatedPackageTasks>("Xml save started");
             int id = cms.businesslogic.packager.CreatedPackage.MakeNew(Alias).Data.Id;
-            m_returnUrl = string.Format("developer/packages/editPackage.aspx?id={0}", id);
+            m_returnUrl = string.Format("developer/Packages/editPackage.aspx?id={0}", id);
             return true;
         }
 
