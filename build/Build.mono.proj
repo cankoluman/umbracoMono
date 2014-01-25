@@ -27,23 +27,12 @@
    <VSToolsPath>$(MonoPath)/xbuild/Microsoft/VisualStudio/v9.0</VSToolsPath>
  </PropertyGroup>
 
- <!-- NB: BUILD_NUMBER is passed in by the build server -->
- <PropertyGroup>
-   <DECIMAL_BUILD_NUMBER>.0</DECIMAL_BUILD_NUMBER>
- </PropertyGroup> 
- <PropertyGroup Condition="'$(BUILD_RELEASE)'!=''">
-   <DECIMAL_BUILD_NUMBER>.$(BUILD_RELEASE)</DECIMAL_BUILD_NUMBER>
- </PropertyGroup>
- <PropertyGroup Condition="'$(BUILD_RELEASE)'!='' AND '$(BUILD_COMMENT)'!=''">
-   <DECIMAL_BUILD_NUMBER>.$(BUILD_RELEASE)-$(BUILD_COMMENT)</DECIMAL_BUILD_NUMBER>
- </PropertyGroup>
- 
  <PropertyGroup>
    <BuildConfiguration Condition="'$(BUILD_CONFIGURATION)' == ''">Debug</BuildConfiguration>
    <BuildConfiguration Condition="'$(BUILD_CONFIGURATION)' != ''">$(BUILD_CONFIGURATION)</BuildConfiguration>
    <BuildFolder>_BuildOutput/</BuildFolder>
-   <BuildZipFileName>UmbracoCms.Mono.$(BuildConfiguration).$(DECIMAL_BUILD_NUMBER).zip</BuildZipFileName>
-   <BuildZipFileNameBin>UmbracoCms.Mono.AllBinaries.$(BuildConfiguration).$(DECIMAL_BUILD_NUMBER).zip</BuildZipFileNameBin>
+   <BuildZipFileName>UmbracoCms.Mono.$(BuildConfiguration).zip</BuildZipFileName>
+   <BuildZipFileNameBin>UmbracoCms.Mono.AllBinaries.$(BuildConfiguration).zip</BuildZipFileNameBin>
    <IncludeSymbols>False</IncludeSymbols>
    <BuildFolderRelativeToProjects>../../build/$(BuildFolder)</BuildFolderRelativeToProjects>
    <BuildFolderAbsolutePath>$(MSBuildProjectDirectory)/$(BuildFolder)</BuildFolderAbsolutePath>
