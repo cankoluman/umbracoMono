@@ -239,6 +239,7 @@ namespace umbraco.controls
 
             // reload content type (due to caching)
             LoadContentType();
+
             BindTabs();
             BindDataGenericProperties(true);
 
@@ -325,14 +326,7 @@ namespace umbraco.controls
                         SavePropertyType(asyncState.SaveArgs, _contentType.ContentTypeItem);
                         UpdatePropertyTypes(_contentType.ContentTypeItem);
 
-                        if (DocumentTypeCallback != null)
-                        {
-                            var documentType = _contentType as DocumentType;
-                            if (documentType != null)
-                            {
-                                var result = DocumentTypeCallback(documentType);
-                            }
-                        }
+						ExecDocumentTypeCallback();
 
                         _contentType.Save();
                     }
@@ -574,30 +568,36 @@ jQuery(document).ready(function() {{ refreshDropDowns(); }});
             Save.Click += new System.Web.UI.ImageClickEventHandler(save_click);
             Save.ImageUrl = UmbracoPath + "/images/editor/Save.GIF";
 
-            int[] allowedIds = _contentType.AllowedChildContentTypeIDs;
             if (!Page.IsPostBack)
             {
-                string chosenContentTypeIDs = "";
-                ContentType[] contentTypes = _contentType.GetAll();
-                foreach (ContentType ct in contentTypes.OrderBy(x => x.Text))
-                {
-                    ListItem li = new ListItem(ct.Text, ct.Id.ToString());
-                    DualAllowedContentTypes.Items.Add(li);
-                    lstAllowedContentTypes.Items.Add(li);
-                    foreach (int i in allowedIds)
-                    {
-                        if (i == ct.Id)
-                        {
-                            li.Selected = true;
-                            chosenContentTypeIDs += ct.Id + ",";
-                        }
-                    }
-                }
-                DualAllowedContentTypes.Value = chosenContentTypeIDs;
+				PopulateAllowedContentTypes ();
             }
 
             allowAtRoot.Checked = _contentType.AllowAtRoot;
         }
+
+		private void PopulateAllowedContentTypes()
+		{
+			string chosenContentTypeIDs = "";
+			int[] allowedIds = _contentType.AllowedChildContentTypeIDs;
+
+			ContentType[] contentTypes = _contentType.GetAll();
+			foreach (ContentType ct in contentTypes.OrderBy(x => x.Text))
+			{
+				ListItem li = new ListItem(ct.Text, ct.Id.ToString());
+				DualAllowedContentTypes.Items.Add(li);
+				lstAllowedContentTypes.Items.Add(li);
+				foreach (int i in allowedIds)
+				{
+					if (i == ct.Id)
+					{
+						li.Selected = true;
+						chosenContentTypeIDs += ct.Id + ",";
+					}
+				}
+			}
+			DualAllowedContentTypes.Value = chosenContentTypeIDs;
+		}
 
 		//mono fix for lost checkboxlist states
 		private void SetCheckBoxStates(CheckBoxList cbl)
@@ -605,6 +605,17 @@ jQuery(document).ready(function() {{ refreshDropDowns(); }});
 			if (IsPostBack)
 			{
 				WebFormsHelper.SetCheckBoxStates(cbl, Request.Form);
+			}
+		}
+		private void ExecDocumentTypeCallback()
+		{
+			if (DocumentTypeCallback != null)
+			{
+				var documentType = _contentType as DocumentType;
+				if (documentType != null)
+				{
+					var result = DocumentTypeCallback(documentType);
+				}
 			}
 		}
 
@@ -1108,6 +1119,8 @@ jQuery(document).ready(function() {{ refreshDropDowns(); }});
             
             // reload content type (due to caching)
             LoadContentType(_contentType.Id);
+			SetCheckBoxStates (lstAllowedContentTypes);
+			ExecDocumentTypeCallback ();
             BindDataGenericProperties(true);
             
             Trace.Write("ContentTypeControlNew", "async operation ended");
@@ -1305,6 +1318,9 @@ jQuery(document).ready(function() {{ refreshDropDowns(); }});
 
                 txtNewTab.Text = "";
 
+				SetCheckBoxStates (lstAllowedContentTypes);
+				ExecDocumentTypeCallback ();
+
                 BindTabs();
                 BindDataGenericProperties(true);
             }
@@ -1347,7 +1363,9 @@ Umbraco.Controls.TabView.onActiveTabChange(function(tabviewid, tabid, tabs) {
 
             }
 
-            BindTabs();
+			SetCheckBoxStates (lstAllowedContentTypes);
+			ExecDocumentTypeCallback();
+			BindTabs();
             BindDataGenericProperties(true);
         }
 

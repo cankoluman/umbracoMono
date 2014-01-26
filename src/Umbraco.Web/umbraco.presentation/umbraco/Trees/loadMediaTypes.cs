@@ -57,8 +57,8 @@ function openMediaType(id) {
                 xNode.HasChildren = hasChildren;
                 if (hasChildren)
                 {
-                    xNode.Icon = "settingMasterDataType.gif";
-                    xNode.OpenIcon = "settingMasterDataType.gif";
+                    xNode.Icon = "settingMasterDatatype.gif";
+                    xNode.OpenIcon = "settingMasterDatatype.gif";
                 }
 
                 OnBeforeNodeRender(ref tree, ref xNode, EventArgs.Empty);
