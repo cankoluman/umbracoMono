@@ -11,6 +11,9 @@ https://github.com/cankoluman/umbracoMono/wiki
 This site replaces the old repository at:
 https://github.com/cankoluman/umbraco-mono
 
+The development blog is at:
+http://www.cankoluman.com
+
 You can find work on each ported (or porting) version of Umbraco
 as a branch, 
 e.g. 4.7.2 -> https://github.com/cankoluman/umbracoMono/tree/u4.7.2
